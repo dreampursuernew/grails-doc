@@ -1,0 +1,24 @@
+
+=== Command Line Usage
+
+
+Grails incorporates a CLI and also uses the powerful build system https://gradle.org[Gradle].
+
+The basic usage scenario is:
+
+[source,console]
+----
+grails <<command name>> <<options>>*
+----
+
+When running Gradle tasks you can specify the environment that the command executes in with an optional grails.env parameter, either with one of the built-in environment names:
+
+[source,console]
+----
+./gradlew bootRun -Dgrails.env=dev
+./gradlew bootRun -Dgrails.env=test
+./gradlew bootRun -Dgrails.env=prod
+./gradlew bootRun -Dgrails.env=custom
+----
+
+Refer to the user guide section on link:{guidePath}/commandLine.html[The Command Line] for more information.

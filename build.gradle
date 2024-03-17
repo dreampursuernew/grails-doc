@@ -146,7 +146,8 @@ task publishGuide(type: grails.doc.gradle.PublishGuide, dependsOn: ['apiDocs', '
     // generated with a 'en' in the path, but the source is in 'en'
     // so that it's easy to track with git.
     sourceRepo = "https://github.com/grails/grails-doc/edit/$githubBranch/src/en"
-    sourceDir = new File(projectDir, "src/en")
+    // 把下面修改成中文，这样就能生成中文翻译的文档
+    sourceDir = new File(projectDir, "src/zh")
     propertiesFiles = [ new File(projectDir, "gradle.properties") ]
     asciidoc = true
     properties = [

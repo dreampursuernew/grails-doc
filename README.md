@@ -8,3 +8,10 @@ For contributing to grails docs look at [Building/Contributing to Grails Documen
 [Grails Documentation]: https://grails.org/doc/latest
 [Grails]: https://grails.org
 [Contributing]: https://grails.github.io/grails-doc/latest/guide/contributing.html#patchesDoc
+
+翻译：
+
+需要修改`build.gradle`中publishGuide任务里:
+```groovy
+sourceDir = new File(projectDir, "src/zh")
+```
