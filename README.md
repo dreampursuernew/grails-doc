@@ -20,7 +20,7 @@ sourceDir = new File(projectDir, "src/zh")
 ### 如何Build
 
 ```shell
-gradlew publishGuide -x apiDocs
+./gradlew publishGuide -x apiDocs
 ```
 
 ### 查看结果
