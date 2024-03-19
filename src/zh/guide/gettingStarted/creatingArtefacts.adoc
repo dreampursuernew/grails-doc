@@ -1,6 +1,6 @@
-Grails provides a set of useful CLI commands for various tasks, including the creation of essential artifacts such as controllers and domain classes. These commands simplify the development process, although you can achieve similar results using your preferred Integrated Development Environment (IDE) or text editor.
+Grails 提供了一组有用的 CLI 命令，用于各种任务，包括创建控制器和领域类等基本构件。这些命令简化了开发过程，尽管您也可以使用您偏爱的集成开发环境（IDE）或文本编辑器来实现类似的结果。
 
-For instance, to create the foundation of an application, you typically need to generate a domain model using Grails Commands:
+例如，要创建应用程序的基础，通常需要使用 Grails 命令生成领域模型：
 
 [source,bash]
 ----
@@ -9,7 +9,7 @@ cd myapp
 grails create-domain-class book
 ----
 
-Executing these commands will result in the creation of a domain class located at `grails-app/domain/myapp/Book.groovy`, as shown in the following code:
+执行这些命令将导致创建一个位于 `grails-app/domain/myapp/Book.groovy` 的领域类，如下面的代码所示：
 
 [source,groovy]
 ----
@@ -19,7 +19,6 @@ class Book {
 }
 ----
 
-The Grails CLI offers numerous other commands that you can explore in the Grails command line reference guide.
+Grails CLI 还提供了许多其他命令，您可以在 Grails 命令行参考指南中探索。
 
-NOTE: Using interactive mode enhances the development experience by providing auto-complete and making the process smoother.
-
+注意：使用交互模式可以通过提供自动完成和使过程更加顺畅来增强开发体验。

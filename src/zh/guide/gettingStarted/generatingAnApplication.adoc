@@ -1,6 +1,6 @@
-=== Quick Start with Grails Scaffolding
+=== 使用 Grails 搭建快速启动
 
-To quickly initiate your Grails project, you can employ the "runCommand" Gradle task. This task allows you to generate the essential structure of an application swiftly. Specifically, when running the following Bash command, you can create a link:theWebLayer.html#controllers[controller] (including its unit test) and the associated link:theWebLayer.html#gsp[views] for your application:
+要快速启动您的 Grails 项目，您可以使用 "runCommand" Gradle 任务。该任务允许您迅速生成应用程序的基本结构。具体来说，当运行以下 Bash 命令时，您可以为您的应用程序创建一个控制器（包括其单元测试）以及相关的视图：
 
 [source,shell]
 ----

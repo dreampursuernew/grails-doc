@@ -1,10 +1,10 @@
-Grails offers a convenient feature where you can automatically generate unit and integration tests for your application using the `create-*` commands. These generated tests are stored in the `src/test/groovy` and `src/integration-tests/groovy` directory. However, it is your responsibility to populate these tests with the appropriate test logic. You can find comprehensive guidance on crafting valid test logic in the section dedicated to [Unit and Integration Tests](link:testing.html).
+Grails提供了一个便利的功能，您可以使用`create-*`命令自动生成应用程序的单元测试和集成测试。这些生成的测试存储在`src/test/groovy`和`src/integration-tests/groovy`目录中。但是，您有责任使用适当的测试逻辑填充这些测试。您可以在专门用于[Unit and Integration Tests](link:testing.html)的部分找到有关编写有效测试逻辑的全面指南。
 
-To initiate the execution of your tests, including both unit and integration tests, you can utilize the Gradle `check` task. Follow these steps:
+要启动您的测试的执行，包括单元测试和集成测试，您可以利用Gradle的`check`任务。按照以下步骤操作：
 
-1. Open your terminal or command prompt and navigate to your Grails project's root directory.
+1. 打开您的终端或命令提示符，并导航到您的Grails项目的根目录。
 
-2. Execute the following Gradle command:
+2. 执行以下Gradle命令：
 
 +
 [source,shell]
@@ -13,10 +13,10 @@ To initiate the execution of your tests, including both unit and integration tes
 ----
 
 +
-By running the `check` task, you ensure that all tests in your Grails project, including the ones you've created and populated with test logic, are executed. This comprehensive testing approach contributes significantly to the robustness and overall quality of your application.
+通过运行`check`任务，您确保执行了您Grails项目中的所有测试，包括您创建并填充了测试逻辑的测试。这种全面的测试方法对于提高应用程序的健壮性和整体质量有很大的帮助。
 
-3. **Viewing Test Reports**: After running your tests, Grails generates test reports that provide valuable insights into the test results. You can typically find these reports in the `build/reports/tests` directory of your Grails project. Open these reports in a web browser to view detailed information about test outcomes, including passed, failed, and skipped tests.
+3. **查看测试报告**：运行测试后，Grails会生成测试报告，提供有关测试结果的宝贵见解。您通常可以在您的Grails项目的`build/reports/tests`目录中找到这些报告。在Web浏览器中打开这些报告，以查看有关测试结果的详细信息，包括通过、失败和跳过的测试。
 
-Remember, testing is not just a process; it's a fundamental practice that enhances your Grails application's reliability. Viewing test reports helps you analyze and understand the test results, making it easier to identify and address any issues.
+记住，测试不仅是一个过程；它是一种增强Grails应用程序可靠性的基本实践。查看测试报告可帮助您分析和理解测试结果，从而更容易地识别和解决任何问题。
 
-By following these testing practices and reviewing test reports, you can deliver a high-quality Grails application to your users with confidence.
+通过遵循这些测试实践并查看测试报告，您可以自信地向用户交付高质量的Grails应用程序。

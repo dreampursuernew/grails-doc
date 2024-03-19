@@ -1,13 +1,13 @@
-This section covers all the new features introduced in Grails 6
+本节涵盖了 Grails 6 中引入的所有新功能。
 
-=== Overview
+=== 概述
 
-Grails framework 6 updates Spring Boot to version 2.7. We recommend checking the following Spring technologies release notes for more information.
+Grails 框架 6 将 Spring Boot 更新到 2.7 版本。我们建议查看以下 Spring 技术的发行说明以获取更多信息。
 
 * https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes[Spring Boot 2.7]
 
-The minimum Java version required to run Grails 6 has been updated to Java 11.
+运行 Grails 6 所需的最低 Java 版本已更新至 Java 11。
 
-=== Support for Micronaut Environments in `application.yml`
+=== 在 `application.yml` 中支持 Micronaut 环境
 
-The support has been introduced for Micronaut's Environments concept within the `application.yml` file. This feature allows developers to define environment-specific configurations seamlessly, aiding in smoother transitions between different operational environments like development, testing, and production.
+在 `application.yml` 文件中引入了对 Micronaut 环境概念的支持。该功能允许开发人员无缝定义环境特定的配置，有助于在开发、测试和生产等不同操作环境之间实现更平滑的过渡。

@@ -1,47 +1,46 @@
-Many modern web frameworks in the Java space are more complicated than needed and don't embrace the Don't Repeat Yourself (DRY) principles.
+许多现代Java空间中的网络框架比需要的更复杂，并且没有采用不要重复自己（DRY）原则。
 
-Dynamic frameworks like Rails and Django helped pave the way to a more modern way of thinking about web applications. Grails builds on these concepts and dramatically reduces the complexity of building web applications on the Java platform. What makes it different, however, is that it does so by building on already established Java technologies like Spring and Hibernate.
+像Rails和Django这样的动态框架帮助铺平了通往更现代化的网络应用思维方式的道路。Grails建立在这些概念之上，极大地减少了在Java平台上构建网络应用程序的复杂性。然而，它与众不同之处在于，它是通过建立在已经建立的Java技术如Spring和Hibernate之上来实现这一点的。
 
-Grails is a full stack framework and attempts to solve as many pieces of the web development puzzle through the core technology and its associated plugins. Included out the box are things like:
+Grails是一个全栈框架，并试图通过核心技术及其关联的插件解决网络开发难题中的尽可能多的部分。开箱即用的功能包括：
 
-* http://gorm.grails.org[GORM] - An easy to use Object Mapping library with support for http://gorm.grails.org/latest/hibernate[SQL], http://gorm.grails.org/latest/mongodb[MongoDB], http://gorm.grails.org/latest/neo4j[Neo4j] and http://gorm.grails.org[more].
-* View technologies for https://gsp.grails.org[rendering HTML] as well as http://views.grails.org[JSON]
-* A controller layer built on http://www.spring.io[Spring Boot]
-* A plugin system featuring http://plugins.grails.org[hundreds of plugins].
-* Flexible profiles to http://start.grails.org/#/index[create applications with AngularJS, React and more].
-* An interactive command line environment and build system based on http://gradle.org[Gradle]
-* An embedded http://tomcat.apache.org[Tomcat] container which is configured for on the fly reloading
+* http://gorm.grails.org[GORM] - 一个易于使用的对象映射库，支持 http://gorm.grails.org/latest/hibernate[SQL]、 http://gorm.grails.org/latest/mongodb[MongoDB]、 http://gorm.grails.org/latest/neo4j[Neo4j]等。
+* 用于 https://gsp.grails.org[渲染HTML]以及 http://views.grails.org[JSON]的视图技术
+* 基于 http://www.spring.io[Spring Boot]的控制器层
+* 具有 http://plugins.grails.org[数百个插件]的插件系统
+* 灵活的配置文件，用于使用AngularJS、React等创建应用程序。
+* 基于 http://gradle.org[Gradle]的交互式命令行环境和构建系统
+* 配置为即时重新加载的嵌入式 http://tomcat.apache.org[Tomcat]容器
 
-All of these are made easy to use through the power of the http://groovy-lang.org[Groovy] language and the extensive use of Domain Specific Languages (DSLs)
+所有这些都通过 http://groovy-lang.org[Groovy]语言的强大功能和领域特定语言（DSLs）的广泛使用变得易于使用。
 
-This documentation will take you through getting started with Grails and building web applications with the Grails framework.
+本文档将带您开始使用Grails并使用Grails框架构建网络应用程序。
 
-In addition to this documentation there are http://guides.grails.org[comprehensive guides] that walk you through various aspects of the technology.
+除了这份文档之外，还有 http://guides.grails.org[全面的指南]，指导您了解技术的各个方面。
 
-Finally, Grails is far more than just a web framework and is made up of various sub-projects. The following table summarizes some other key projects in the eco-system with links to documentation.
+最后，Grails不仅仅是一个网络框架，它由各种子项目组成。以下表格总结了生态系统中的一些其他关键项目，并附有文档链接。
 
-.Grails Ecosystem Projects
+.Grails生态系统项目
 |===
-|Project            | Description
+| 项目             | 描述
 
-|http://gorm.grails.org/latest/hibernate[GORM for Hibernate]
-|An Object Mapping implementation for SQL databases
+|http://gorm.grails.org/latest/hibernate[用于Hibernate的GORM]
+|用于SQL数据库的对象映射实现
 
-|http://gorm.grails.org/latest/mongodb[GORM for MongoDB]
-|An Object Mapping implementation for the MongoDB Document Database
+|http://gorm.grails.org/latest/mongodb[用于MongoDB的GORM]
+|用于MongoDB文档数据库的对象映射实现
 
-|http://gorm.grails.org/latest/neo4j[GORM for Neo4j]
-|An Object Mapping implementation for Neo4j Graph Database
+|http://gorm.grails.org/latest/neo4j[用于Neo4j的GORM]
+|用于Neo4j图数据库的对象映射实现
 
-|http://views.grails.org[JSON Views]
-|A View technology for rendering JSON on the server side
+|http://views.grails.org[JSON视图]
+|用于在服务器端渲染JSON的视图技术
 
 |http://gsp.grails.org[Groovy Server Pages]
-|A View technology for rendering HTML and other markup on the server
+|用于在服务器端渲染HTML和其他标记的视图技术
 
-|http://async.grails.org[Async Framework]
-|Asynchronous programming abstraction with support for RxJava, GPars and more
+|http://async.grails.org[异步框架]
+|带有对RxJava、GPars等的支持的异步编程抽象
 
 
 |===
-

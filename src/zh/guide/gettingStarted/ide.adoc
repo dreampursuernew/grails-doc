@@ -1,40 +1,40 @@
-Because Grails is built upon the https://spring.io[Spring Framework] (Sprint Boot), the https://gradle.org/[Gradle] build tool, and the https://groovy-lang.org[Groovy] programming language, it is possible to develop Grails application using most popular JVM Integrated Development Environments (IDEs). Some IDEs offer more specialized support for Grails, while others may offer basic support for managing dependencies/plugins, running Gradle tasks, code-completion and syntax highlighting.
+因为Grails是构建在 https://spring.io[Spring Framework]（Spring Boot）、 https://gradle.org/[Gradle]构建工具和 https://groovy-lang.org[Groovy]编程语言之上的，所以可以使用大多数流行的JVM集成开发环境（IDE）来开发Grails应用程序。一些IDE提供了更专门的支持，而另一些可能提供了基本的支持，用于管理依赖项/插件、运行Gradle任务、代码补全和语法高亮。
 
 == 1. IntelliJ IDEA
 
-IntelliJ IDEA is a widely used IDE for Grails development. It offers comprehensive support for Groovy and Grails, including features like code-completion, intelligent code analysis, and seamless integration with Grails artefacts.
+IntelliJ IDEA是广泛使用的Grails开发IDE。它提供了对Groovy和Grails的全面支持，包括代码补全、智能代码分析和与Grails构件的无缝集成。
 
-IntelliJ IDEA also provides powerful database tools that work with Grails' GORM (Grails Object Relational Mapping) seamlessly. It offers both a Community (free) and Ultimate (paid) edition, with the latter offering more advanced Grails support, including an embedded version of the https://start.grails.org[Grails Forge], and view resolution for both GSPs and JSON views.
+IntelliJ IDEA还提供了强大的数据库工具，与Grails的GORM（Grails对象关系映射）无缝集成。它提供了社区（免费）和旗舰（付费）版本，后者提供了更先进的Grails支持，包括 https://start.grails.org[Grails Forge]的嵌入版本和对GSP和JSON视图的视图分辨率。
 
-https://www.jetbrains.com/idea/[IntelliJ IDEA Website]
+https://www.jetbrains.com/idea/[IntelliJ IDEA官网]
 
 == 2. Visual Studio Code (VS Code)
 
-Visual Studio Code is a lightweight, open-source code editor developed by Microsoft. While it's not a full-fledged IDE, it offers powerful extensions for Grails and Groovy development. You can install extensions like https://marketplace.visualstudio.com/items?itemName=marlon407.code-groovy[code-groovy] and [https://marketplace.visualstudio.com/items?itemName=GDOTecnologia.gfvscode[Grails for VSCode] to enhance your Grails developer experience.
+Visual Studio Code是由微软开发的轻量级、开源的代码编辑器。虽然它不是一个完整的IDE，但它提供了强大的扩展支持Grails和Groovy开发。你可以安装像 https://marketplace.visualstudio.com/items?itemName=marlon407.code-groovy[code-groovy]和[https://marketplace.visualstudio.com/items?itemName=GDOTecnologia.gfvscode[Grails for VSCode]等扩展来增强你的Grails开发体验。
 
-VS Code provides features such as syntax highlighting, code navigation, and integrated terminal support. It's a great choice for developers who prefer a lightweight and customizable development environment.
+VS Code提供了语法高亮、代码导航和集成终端支持等功能。它是那些喜欢轻量级和可定制的开发环境的开发者的绝佳选择。
 
 https://code.visualstudio.com/[Visual Studio Code (VS Code)]
 
 == 3. STS (Spring Tool Suite)
 
-The https://spring.io/tools[Spring Tool Suite] (STS) is set of IDE tools designed for Spring Framework development, with versions based on both VSCode and Eclipse. This section focuses on the Eclipse version, VSCode users can refer to the preceding discussion.
+https://spring.io/tools[Spring Tool Suite]（STS）是专为Spring Framework开发设计的一组IDE工具，基于VSCode和Eclipse两个版本。本节专注于Eclipse版本，VSCode用户可以参考前面的讨论。
 
-STS can work as an effective Grails developer platform when used with the https://marketplace.eclipse.org/content/groovy-development-tools[Groovy Development Tools] plugin (which can be installed using the Eclipse Marketplace). STS does not offer specific support for Grails artefacts or GSP views.
+当与 https://marketplace.eclipse.org/content/groovy-development-tools[Groovy Development Tools]插件结合使用时（可通过Eclipse Marketplace安装），STS可以作为一个有效的Grails开发平台。STS不提供针对Grails构件或GSP视图的特定支持。
 
 https://spring.io/tools/sts[Spring Tool Suite (STS)]
 
 == 4. Netbeans
 
-Apache https://netbeans.apache.org[Netbeans] does not offer specific support for Grails, but it will import Grails applications as Gradle projects and provides reasonable editing support for Groovy and GSP views.
+Apache https://netbeans.apache.org[Netbeans]不提供针对Grails的特定支持，但它会将Grails应用程序导入为Gradle项目，并为Groovy和GSP视图提供合理的编辑支持。
 
-== 5. TextMate, VIM, and More
+== 5. TextMate、VIM等
 
-There are several excellent text editors that work nicely with Groovy and Grails. Here are some references:
+有几款优秀的文本编辑器与Groovy和Grails非常配合。以下是一些参考：
 
-* A https://github.com/textmate/groovy-grails.tmbundle[bundle] is available for Groovy / Grails support in http://macromates.com[Textmate].
-* A https://packagecontrol.io/packages/Grails[plugin] can be installed via Sublime Package Control for the http://www.sublimetext.com[Sublime Text Editor].
-* The https://github.com/lifeisfoo/emacs-grails[emacs-grails] extension offers basic support for Grails development in Emacs.
-* See http://www.objectpartners.com/2012/02/21/using-vim-as-your-grails-ide-part-1-navigating-your-project/[this post] for some helpful tips on how to set up VIM as your Grails editor of choice.
+* 可以在 http://macromates.com[Textmate]中获取用于Groovy/Grails支持的 https://github.com/textmate/groovy-grails.tmbundle[bundle]。
+* 可以通过Sublime Package Control安装 https://packagecontrol.io/packages/Grails[插件]，用于 http://www.sublimetext.com[Sublime Text Editor]。
+* https://github.com/lifeisfoo/emacs-grails[emacs-grails]扩展为Emacs提供了基本的Grails开发支持。
+* 参见 http://www.objectpartners.com/2012/02/21/using-vim-as-your-grails-ide-part-1-navigating-your-project/[这篇文章]，了解如何将VIM设置为你选择的Grails编辑器的一些有用提示。
 
-These text editors, along with the provided extensions and configurations, can enhance your Groovy and Grails development experience, offering flexibility and customization to meet your coding preferences.
+这些文本编辑器以及提供的扩展和配置可以增强你的Groovy和Grails开发体验，提供灵活性和定制性，以满足你的编码偏好。

@@ -1,21 +1,21 @@
-Grails adopts the "convention over configuration" approach to configure itself. In this approach, the name and location of files are used instead of explicit configuration. Therefore, it's essential to become familiar with the directory structure provided by Grails. Here's a breakdown of the key directories and links to relevant sections:
+Grails采用了"约定优于配置"的方法来配置自身。在这种方法中，使用文件的名称和位置来替代显式配置。因此，熟悉Grails提供的目录结构是非常重要的。以下是关键目录的分解及相关部分的链接：
 
-1. `grails-app` - Top-Level Directory for Groovy Sources
+1. `grails-app` - Groovy源码的顶级目录
 
-* `conf` - link:conf.html[Configuration Sources]
-* `controllers` - link:theWebLayer.html#controllers[Web Controllers] - Responsible for the "C" in MVC (Model-View-Controller).
-* `domain` - link:GORM.html[Application Domain] - Represents the "M" in MVC.
-* `i18n` - Supports link:i18n.html[Internationalization (i18n)].
-* `services` - The link:services.html[Service Layer].
-* `taglib` - link:theWebLayer.html#taglibs[Tag Libraries].
-* `utils` - Houses Grails-specific utilities.
-* `views` - link:theWebLayer.html#gsp[Groovy Server Pages (GSP)] or http://views.grails.org/latest[JSON Views] - Responsible for the "V" in MVC.
-* `commands` - link:commandLine.html#customCommands[Custom Grails Commands] - Create your own Grails CLI commands.
+* `conf` - link:conf.html[配置源]
+* `controllers` - link:theWebLayer.html#controllers[Web控制器] - 负责MVC（模型-视图-控制器）中的"C"。
+* `domain` - link:GORM.html[应用程序域] - 代表MVC中的"M"。
+* `i18n` - 支持 link:i18n.html[国际化（i18n）]。
+* `services` - link:services.html[服务层]。
+* `taglib` - link:theWebLayer.html#taglibs[标签库]。
+* `utils` - 存放Grails特定的实用工具。
+* `views` - link:theWebLayer.html#gsp[Groovy服务器页面（GSP）]或 http://views.grails.org/latest[JSON视图] - 负责MVC中的"V"。
+* `commands` - link:commandLine.html#customCommands[自定义Grails命令] - 创建自己的Grails CLI命令。
 
-2.  `src/main/groovy` - Supporting Sources
+2.  `src/main/groovy` - 支持源码
 
-3.  `src/test/groovy` - link:testing.html[Unit and Integration Tests]
+3.  `src/test/groovy` - link:testing.html[单元和集成测试]
 
-4.  `src/integration-tests/groovy` - link:testing.html#integrationTests[Integration Tests] - For testing Grails applications at the integration level.
+4.  `src/integration-tests/groovy` - link:testing.html#integrationTests[集成测试] - 用于在集成级别测试Grails应用程序。
 
-Understanding this directory structure and its conventions is fundamental to efficient Grails development.
+了解这个目录结构及其约定对于高效的Grails开发至关重要。

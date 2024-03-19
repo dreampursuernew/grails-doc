@@ -1,55 +1,55 @@
-= Downloading and installing
+= 下载和安装
 
-The first step to getting up and running with Grails is to install the distribution.
+使用 Grails 开始工作的第一步是安装发行版。
 
-The best way to install Grails on *nix systems is with https://sdkman.io[SDKMAN] which greatly simplifies installing and managing multiple Grails versions.
+在 *nix 系统上安装 Grails 的最佳方法是使用 https://sdkman.io[SDKMAN]，它极大地简化了安装和管理多个 Grails 版本的过程。
 
-== Install with SDKMAN
+== 使用 SDKMAN 安装
 
-To install the latest version of Grails using SDKMAN, run this on your terminal:
+要使用 SDKMAN 安装最新版本的 Grails，请在终端上运行以下命令：
 
 [source,shell]
 ----
 sdk install grails
 ----
 
-You can also specify a version
+您还可以指定一个版本
 
 [source,shell,subs="attributes+"]
 ----
 sdk install grails {version}
 ----
 
-You can find more information about SDKMAN usage on the https://sdkman.io/usage[SDKMAN Docs]
+您可以在 https://sdkman.io/usage[SDKMAN 文档]中找到更多有关 SDKMAN 使用的信息。
 
-== Manual installation
+== 手动安装
 
-For manual installation follow these steps:
+对于手动安装，请按照以下步骤操作：
 
-* https://github.com/grails/grails-core/releases[Download] a binary distribution of Grails and extract the resulting zip file to a location of your choice
-* Set the GRAILS_HOME environment variable to the location where you extracted the zip
+* 从 https://github.com/grails/grails-core/releases[下载] Grails 的二进制发行版，并将生成的 zip 文件解压缩到您选择的位置
+* 将 GRAILS_HOME 环境变量设置为您解压缩 zip 文件的位置
 
 === Unix/Linux
-** This is typically a matter of adding something like the following `export GRAILS_HOME=/path/to/grails` to your profile
-** This can be done by adding `export PATH="$PATH:$GRAILS_HOME/bin"` to your profile
+** 这通常是向您的配置文件添加类似以下内容的内容 `export GRAILS_HOME=/path/to/grails`
+** 这可以通过向您的配置文件添加 `export PATH="$PATH:$GRAILS_HOME/bin"` 来完成
 
 === Windows
-** Copy the path to the bin directory inside the grails folder you have downloaded, for example, 
+** 复制您下载的 grails 文件夹内 bin 目录的路径，例如，
 
 ----
 C:/path_to_grails/bin
 ----
 
-** Go to Environment Variables, you can typically search or run the command below, the type env and then Enter
+** 进入环境变量设置，您通常可以搜索或运行以下命令，然后键入 env 然后按 Enter 键
 
 ----
 Start + R
 ----
 
-** Edit the Path variable on User Variables / System Variables depending on your choice.
-** Paste the copied path in the Path Variable.
+** 在用户变量/系统变量上编辑 Path 变量。
+** 将复制的路径粘贴到 Path 变量中。
 
-If Grails is working correctly you should now be able to type `grails --version` in the terminal window and see output similar to this:
+如果 Grails 正常工作，您现在应该能够在终端窗口中键入 `grails --version` 并看到类似于以下内容的输出：
 
 [source,groovy,subs="attributes+"]
 ----

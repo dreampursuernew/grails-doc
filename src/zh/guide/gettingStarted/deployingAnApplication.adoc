@@ -1,31 +1,31 @@
-Grails applications offer multiple deployment options.
+Grails 应用程序提供了多种部署选项。
 
-For traditional container deployments, such as Tomcat or Jetty, you can generate a Web Application Archive (WAR) file using the Gradle `war` task as follows::
+对于传统的容器部署，如 Tomcat 或 Jetty，您可以使用 Gradle 的 `war` 任务生成一个 Web 应用程序归档（WAR）文件，方法如下：
 
 [source,bash]
 ----
 ./gradlew war
 ----
 
-This task generates a WAR file within the `build/libs` directory, ready for deployment according to your container's guidelines.
+此任务在 `build/libs` 目录中生成一个 WAR 文件，按照您容器的指南进行部署。
 
-It's worth noting that Grails includes an embedded version of Tomcat within the WAR file by default. This could pose compatibility issues if you intend to deploy to a different Tomcat version. To exclude the embedded container, you can adjust the Tomcat dependencies in your `build.gradle` file:
+值得注意的是，Grails 默认在 WAR 文件中包含了一个嵌入式版本的 Tomcat。如果您打算部署到不同的 Tomcat 版本，这可能会导致兼容性问题。要排除嵌入式容器，您可以在 `build.gradle` 文件中调整 Tomcat 依赖：
 
 [source,groovy]
 ----
 implementation "org.springframework.boot:spring-boot-starter-tomcat"
 ----
 
-**Recommended**: For Grails 6 applications, it is advisable to use Tomcat 9 for compatibility and performance enhancements. Ensure that you refer to the http://tomcat.apache.org/whichversion.html[Tomcat version table] for compatibility details.
+**推荐**：对于 Grails 6 应用程序，建议使用 Tomcat 9 以获得兼容性和性能增强。请确保参考 http://tomcat.apache.org/whichversion.html[Tomcat 版本表] 以获取兼容性详情。
 
-By default, the `war` task runs in the `production` environment. You can specify a different environment, such as `development`, by overriding it in the Gradle command:
+默认情况下，`war` 任务在 `production` 环境下运行。您可以通过在 Gradle 命令中覆盖它来指定不同的环境，如 `development`：
 
 [source,bash]
 ----
 ./gradlew -Pgrails.env=dev war
 ----
 
-If you prefer not to use a separate Servlet container, you can run the Grails WAR file as a regular Java application:
+如果您不想使用单独的 Servlet 容器，可以将 Grails WAR 文件作为普通的 Java 应用程序运行：
 
 [source,bash]
 ----
@@ -33,7 +33,7 @@ If you prefer not to use a separate Servlet container, you can run the Grails WA
 java -Dgrails.env=prod -jar build/libs/mywar-0.1.war
 ----
 
-When deploying Grails, ensure that your container's JVM runs with the `-server` option and sufficient memory allocation. Here are recommended VM flags:
+在部署 Grails 时，请确保您容器的 JVM 使用 `-server` 选项运行，并分配足够的内存。以下是推荐的 VM 标志：
 
 [source,bash]
 ----
