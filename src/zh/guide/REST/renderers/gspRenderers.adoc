@@ -1,17 +1,20 @@
-You can also customize rendering on a per action basis using Groovy Server Pages (GSP). For example given the `show` action mentioned previously:
+您也可以使用Groovy服务器页面（GSP）基础上的每个操作自定义渲染。例如，给定之前提到的`show`操作：
 
+```
 [source,groovy]
 ----
 def show(Book book) {
     respond book
 }
 ----
+```
 
-You could supply a `show.xml.gsp` file to customize the rendering of the XML:
+你可以提供一个`show.xml.gsp`文件来自定义XML的渲染：
 
+```
 [source,groovy]
 ----
-<%@page contentType="application/xml"%>
-<book id="${book.id}" title="${book.title}"/>
+<%@page contentType=\"application/xml\"%>
+<book id=\"${book.id}\" title=\"${book.title}\"/>
 ----
-
+```

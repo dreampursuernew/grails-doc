@@ -1,25 +1,21 @@
+=== 理解事务和 Hibernate 会话
 
-=== Understanding Transactions and the Hibernate Session
+在使用事务时，您必须考虑到 Hibernate 如何处理底层持久性会话的重要考虑因素。当事务被回滚时，被 GORM 使用的 Hibernate 会话被清除。这意味着会话中的任何对象都变为脱离状态，访问未初始化的延迟加载集合将导致 `LazyInitializationException`。
 
+要理解清除 Hibernate 会话的重要性，考虑以下示例：
 
-When using transactions there are important considerations you must take into account with regards to how the underlying persistence session is handled by Hibernate. When a transaction is rolled back the Hibernate session used by GORM is cleared. This means any objects within the session become detached and accessing uninitialized lazy-loaded collections will lead to a `LazyInitializationException`.
-
-To understand why it is important that the Hibernate session is cleared. Consider the following example:
-
-[source,groovy]
-----
+```groovy
 class Author {
     String name
     Integer age
 
     static hasMany = [books: Book]
 }
-----
+```
 
-If you were to save two authors using consecutive transactions as follows:
+如果您使用连续事务保存两个作者如下：
 
-[source,groovy]
-----
+```groovy
 Author.withTransaction { status ->
     new Author(name: "Stephen King", age: 40).save()
     status.setRollbackOnly()
@@ -28,30 +24,28 @@ Author.withTransaction { status ->
 Author.withTransaction { status ->
     new Author(name: "Stephen King", age: 40).save()
 }
-----
+```
 
-Only the second author would be saved since the first transaction rolls back the author `save()` by clearing the Hibernate session. If the Hibernate session were not cleared then both author instances would be persisted and it would lead to very unexpected results.
+只有第二位作者会被保存，因为第一个事务通过清除 Hibernate 会话来回滚作者的 `save()`。如果 Hibernate 会话没有被清除，那么两个作者实例都将被持久化，并将导致非常意外的结果。
 
-It can, however, be frustrating to get a `LazyInitializationException` due to the session being cleared.
+然而，由于清除了会话而导致 `LazyInitializationException`，可能会让人感到沮丧。
 
-For example, consider the following example:
+例如，考虑以下示例：
 
-[source,groovy]
-----
+```groovy
 class AuthorService {
 
     void updateAge(id, int age) {
         def author = Author.get(id)
         author.age = age
         if (author.isTooOld()) {
-            throw new AuthorException("too old", author)
+            throw new AuthorException("太老了", author)
         }
     }
 }
-----
+```
 
-[source,groovy]
-----
+```groovy
 class AuthorController {
 
     def authorService
@@ -61,33 +55,31 @@ class AuthorController {
             authorService.updateAge(params.id, params.int("age"))
         }
         catch(e) {
-            render "Author books ${e.author.books}"
+            render "作者作品 ${e.author.books}"
         }
     }
 }
-----
+```
 
-In the above example the transaction will be rolled back if the age of the `Author` age exceeds the maximum value defined in the `isTooOld()` method by throwing an `AuthorException`. The `AuthorException` references the author but when the `books` association is accessed a `LazyInitializationException` will be thrown because the underlying Hibernate session has been cleared.
+在上述示例中，如果 `Author` 的年龄超过了 `isTooOld()` 方法中定义的最大值，事务将被回滚并抛出 `AuthorException`。`AuthorException` 引用了作者，但当访问 `books` 关联时，会抛出 `LazyInitializationException`，因为底层的 Hibernate 会话已被清除。
 
-To solve this problem you have a number of options. One is to ensure you query eagerly to get the data you will need:
+要解决这个问题，您有几个选项。其中一个是确保您进行急切查询，以获取所需的数据：
 
-[source,groovy]
-----
+```groovy
 class AuthorService {
     ...
     void updateAge(id, int age) {
         def author = Author.findById(id, [fetch:[books:"eager"]])
         ...
-----
+```
 
-In this example the `books` association will be queried when retrieving the `Author`.
+在这个示例中，在检索 `Author` 时将查询 `books` 关联。
 
-NOTE: This is the optimal solution as it requires fewer queries than the following suggested solutions.
+注意：这是最佳解决方案，因为它需要比以下建议的解决方案更少的查询。
 
-Another solution is to redirect the request after a transaction rollback:
+另一个解决方案是在事务回滚后重定向请求：
 
-[source,groovy]
-----
+```groovy
 class AuthorController {
 
     AuthorService authorService
@@ -97,17 +89,16 @@ class AuthorController {
             authorService.updateAge(params.id, params.int("age"))
         }
         catch(e) {
-            flash.message = "Can't update age"
+            flash.message = "无法更新年龄"
             redirect action:"show", id:params.id
         }
     }
 }
-----
+```
 
-In this case a new request will deal with retrieving the `Author` again. And, finally a third solution is to retrieve the data for the `Author` again to make sure the session remains in the correct state:
+在这种情况下，一个新请求将处理重新检索 `Author`。最后一个解决方案是再次检索 `Author` 数据，以确保会话保持在正确的状态：
 
-[source,groovy]
-----
+```groovy
 class AuthorController {
 
     def authorService
@@ -118,20 +109,17 @@ class AuthorController {
         }
         catch(e) {
             def author = Author.read(params.id)
-            render "Author books ${author.books}"
+            render "作者作品 ${author.books}"
         }
     }
 }
-----
+```
 
+=== 验证错误和回滚
 
-=== Validation Errors and Rollback
+一个常见的用例是如果存在验证错误，则回滚事务。例如，请考虑以下服务：
 
-
-A common use case is to rollback a transaction if there are validation errors. For example consider this service:
-
-[source,groovy]
-----
+```groovy
 import grails.validation.ValidationException
 
 class AuthorService {
@@ -140,16 +128,15 @@ class AuthorService {
         def author = Author.get(id)
         author.age = age
         if (!author.validate()) {
-            throw new ValidationException("Author is not valid", author.errors)
+            throw new ValidationException("作者无效", author.errors)
         }
     }
 }
-----
+```
 
-To re-render the same view that a transaction was rolled back in you can re-associate the errors with a refreshed instance before rendering:
+要重新呈现事务回滚的相同视图，您可以在呈现之前将错误与刷新的实例重新关联：
 
-[source,groovy]
-----
+```groovy
 import grails.validation.ValidationException
 
 class AuthorController {
@@ -167,4 +154,4 @@ class AuthorController {
         }
     }
 }
-----
+```

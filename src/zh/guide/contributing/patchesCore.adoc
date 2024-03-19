@@ -1,85 +1,69 @@
-If you want to submit patches to the project, you simply need to fork the repository on GitHub rather than clone it directly. Then you will commit your changes to your fork and send a pull request for a core team member to review.
+如果您想向该项目提交补丁，您只需要在GitHub上fork存储库，而不是直接克隆它。然后，您将提交更改到您的fork，并发送拉取请求以供核心团队成员审查。
 
+=== Forking和Pull请求
 
-=== Forking and Pull Requests
+http://github.com[GitHub]的一个好处是您可以通过https://help.github.com/articles/fork-a-repo/ [fork存储库] 和https://help.github.com/articles/creating-a-pull-request/ [发送拉取请求] 与您的更改轻松地为项目做出贡献。
 
-One of the benefits of http://github.com[GitHub] is the way that you can easily contribute to a project by https://help.github.com/articles/fork-a-repo/[forking the repository] and https://help.github.com/articles/creating-a-pull-request/[sending pull requests] with your changes.
+接下来是一些指导方针，帮助确保您的拉取请求得以迅速处理并提供我们需要的信息。 这也会让您的生活更轻松！
 
-What follows are some guidelines to help ensure that your pull requests are speedily dealt with and provide the information we need. They will also make your life easier!
+==== 确保您的fork是最新的
 
-
-==== Make sure your fork is up to date
-
-
-Making changes to outdated sources is not a good idea. Someone else may have already made the change.
-[source,groovy]
+对过时的源代码进行更改并不明智。 可能有其他人已经做出了更改。
+[source, groovy]
 ----
 git pull upstream master
 ----
 
+==== 为您的更改创建本地分支
 
-==== Create a local branch for your changes
-
-
-Your life will be greatly simplified if you create a local branch to make your changes on. For example, as soon as you fork a repository and clone the fork locally, execute
-[source,groovy]
+如果您为更改创建本地分支，您的生活将变得更简单。 例如，一旦您fork一个存储库并将fork克隆到本地，立即执行
+[source, groovy]
 ----
 git checkout -b issue_123
 ----
 
-This will create a new local branch called "issue_123" based off the "master" branch. Of course, you can name the branch whatever you like, but a good idea would be to reference the GitHub issue number that the change is relevant to. Each Pull Request should have its own branch.
+这将基于“master”分支创建一个名为“issue_123”的新本地分支。 当然，您可以按照自己的喜好命名分支，但一个好主意是参考与更改相关的GitHub问题号。 每个拉取请求应该有自己的分支。
 
+==== 为非常规更改创建Github问题
 
-==== Create Github issues for non-trivial changes
+对于任何非常规更改，请在github上提出问题（如果尚不存在）。 这有助于我们跟踪每个新版本中引入的更改。
 
+==== 在提交消息中包含github问题ID
 
-For any non-trivial changes, raise an issue on github if one doesn't already exist. That helps us keep track of what changes go into each new version of Grails.
+这可能看起来并不特别重要，但在提交消息中包含github问题ID意味着我们可以在以后找出更改的原因。 在与该问题相关的所有提交中都包含ID。 如果提交与问题无关，则无需包含问题ID。
 
+==== 确保您的fork再次更新并rebase
 
-==== Include github issue ID in commit messages
-
-
-This may not seem particularly important, but having a github issue ID in a commit message means that we can find out at a later date why a change was made. Include the ID in any and all commits that relate to that issue. If a commit isn't related to an issue, then there's no need to include an issue ID.
-
-
-==== Make sure your fork is up to date again and rebase
-
-
-Since the core developers must merge your commits into the main repository, it makes life much easier if your fork on GitHub is up to date before you send a pull request.
-
-Let's say you have the main repository set up as a remote called "upstream" and you want to submit a pull request. Also, all your changes are currently on the local "issue_123" branch but not on "master". The first step involves pulling any changes from the main repository that have been added since you last fetched and merged:
-[source,groovy]
+由于核心开发人员必须将您的提交合并到主存储库中，因此在发送拉取请求之前，确保GitHub上的fork是最新的会使生活变得轻松。
+ 
+假设您已将主存储库设置为称为“upstream”的远程存储库，并且要提交拉取请求。 此外，您所有的更改目前都在本地“issue_123”分支上，而不在“master”上。 第一步涉及从自上次获取和合并以来添加的任何更改中提取任何更改：
+[source, groovy]
 ----
 git checkout master
 git pull upstream master
 ----
 
-This should complete without any problems or conflicts. Next, rebase your local branch against the now up-to-date master:
-[source,groovy]
+这应该可以在没有任何问题或冲突的情况下完成。 接下来，根据现在最新的主支重新对您的本地分支进行rebase：
+[source, groovy]
 ----
 git checkout issue_123
 git rebase master
 ----
 
-What this does is rearrange the commits such that all of your changes come after the most recent one in master. Think adding some cards to the top of a deck rather than shuffling them into the pack.
+这样做会重排提交，使得所有更改都在最近的主分支更改之后。 考虑将一些卡片添加到卡组的顶部，而不是将它们混合到卡组中。
 
+==== 将您的分支推送到GitHub并发送拉取请求
 
-==== Push your branch to GitHub and send Pull Request
-
-
-Finally, you must push your changes to your fork on GitHub, otherwise the core developers won't be able to pick them up:
-
-[source,groovy]
+最后，您必须将更改推送到GitHub上的fork，否则核心开发人员将无法获取它们：
+ 
+[source, groovy]
 ----
 git push origin issue_123
 ----
 
-NOTE: You should not merge your branch to your forks master. If the Pull Request is not accepted, your master will then be out of sync with upstream forever.
+注意：您不应合并分支到您的fork的主分支。 如果拉取请求未被接受，则您的主分支将永远与上游不同步。
+现在您准备从GitHub用户界面发送拉取请求。
 
-You're now ready to send the pull request from the GitHub user interface.
+==== 告诉您的拉取请求是为什么的
 
-
-==== Say what your pull request is for
-
-
-A pull request can contain any number of commits and it may be related to any number of issues. In the pull request message, please specify the IDs of all issues that the request relates to. Also give a brief description of the work you have done, such as: "I refactored the data binder and added support for custom number editors. Fixes #xxxx".
+拉取请求可以包含任意数量的提交，并且可能与任意数量的问题相关联。 在拉取请求消息中，请指定与请求相关的所有问题的ID。 同样，简要描述您所做的工作，例如：“我重构了数据绑定器并添加了对自定义数字编辑器的支持。 修复#xxxx”。

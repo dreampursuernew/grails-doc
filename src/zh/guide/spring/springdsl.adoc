@@ -1,14 +1,12 @@
-This Bean builder in Grails aims to provide a simplified way of wiring together dependencies that uses Spring at its core.
+这个Grails中的Bean构建器旨在提供一种简化的方法，用于将使用Spring作为核心的依赖项进行连线。
 
-In addition, Spring's regular way of configuration (via XML and annotations) is static and difficult to modify and configure at runtime, other than programmatic XML creation which is both error prone and verbose. Grails' {apiDocs}grails/spring/BeanBuilder.html[BeanBuilder] changes all that by making it possible to programmatically wire together components at runtime, allowing you to adapt the logic based on system properties or environment variables.
+此外，Spring的常规配置方式（通过XML和注解）是静态的，很难在运行时进行修改和配置，除非是通过编程方式创建XML，但这既容易出错又啰嗦。Grails的BeanBuilder通过在运行时将组件以编程方式连接起来，使您能够根据系统属性或环境变量调整逻辑，从而改变这一切。
 
-This enables the code to adapt to its environment and avoids unnecessary duplication of code (having different Spring configs for test, development and production environments)
+这使得代码能够适应其环境，避免代码不必要的重复（为测试、开发和生产环境设置不同的Spring配置）。
 
+BeanBuilder类
 
-==== The BeanBuilder class
-
-
-Grails provides a {apiDocs}grails/spring/BeanBuilder.html[grails.spring.BeanBuilder] class that uses dynamic Groovy to construct bean definitions. The basics are as follows:
+Grails提供了一个使用动态Groovy构建Bean定义的grails.spring.BeanBuilder类。基本原理如下：
 
 [source,groovy]
 ----
@@ -31,49 +29,47 @@ bb.beans {
     sessionFactory(ConfigurableLocalSessionFactoryBean) {
         dataSource = ref('dataSource')
         hibernateProperties = ["hibernate.hbm2ddl.auto": "create-drop",
-                               "hibernate.show_sql":     "true"]
+                               "hibernate.show_sql": "true"]
     }
 }
 
 ApplicationContext appContext = bb.createApplicationContext()
 ----
 
-NOTE: Within link:plugins.html[plugins] and the `grails-app/conf/spring/resources.groovy` file you don't need to create a new instance of `BeanBuilder`. Instead the DSL is implicitly available inside the `doWithSpring` and `beans` blocks respectively.
+注意：在link:plugins.html[插件]和`grails-app/conf/spring/resources.groovy`文件中，您不需要创建一个新的`BeanBuilder`的实例。相反，DSL分别在`doWithSpring`和`beans`块中隐式可用。
 
-This example shows how you would configure Hibernate with a data source with the `BeanBuilder` class.
+此示例显示了如何使用BeanBuilder类配置带有数据源的Hibernate。
 
-Each method call (in this case `dataSource` and `sessionFactory` calls) maps to the name of the bean in Spring. The first argument to the method is the bean's class, whilst the last argument is a block. Within the body of the block you can set properties on the bean using standard Groovy syntax.
+每个方法调用（在这种情况下是`dataSource`和`sessionFactory`调用）映射到Spring中Bean的名称。方法的第一个参数是Bean的类，而最后一个参数是一个块。在块的主体中，您可以使用标准的Groovy语法为Bean设置属性。
 
-Bean references are resolved automatically using the name of the bean. This can be seen in the example above with the way the `sessionFactory` bean resolves the `dataSource` reference.
+Bean引用会自动根据Bean的名称解析。在上面的示例中可以看到`sessionFactory` bean 是如何解析`dataSource`引用的。
 
-Certain special properties related to bean management can also be set by the builder, as seen in the following code:
+构建器还可以设置与Bean管理相关的特殊属性，如下所示：
 
 [source,groovy]
 ----
 sessionFactory(ConfigurableLocalSessionFactoryBean) { bean ->
-    // Autowiring behaviour. The other option is 'byType'. <<autowire>>
+    // 自动装配行为。另一个选项是'byType'。 <<autowire>>
     bean.autowire = 'byName'
-    // Sets the initialisation method to 'init'. [init-method]
+    // 将初始化方法设置为'init'。[init-method]
     bean.initMethod = 'init'
-    // Sets the destruction method to 'destroy'. [destroy-method]
+    // 将销毁方法设置为'destroy'。[destroy-method]
     bean.destroyMethod = 'destroy'
-    // Sets the scope of the bean. <<scope>>
+    // 设置Bean的范围。 <<scope>>
     bean.scope = 'request'
     dataSource = ref('dataSource')
     hibernateProperties = ["hibernate.hbm2ddl.auto": "create-drop",
-                           "hibernate.show_sql":     "true"]
+                           "hibernate.show_sql": "true"]
 }
 ----
 
-The strings in square brackets are the names of the equivalent bean attributes in Spring's XML definition.
+方括号中的字符串是Spring XML定义中等效Bean属性的名称。
 
+使用BeanBuilder与Spring MVC
 
-==== Using BeanBuilder with Spring MVC
+在常规的Spring MVC应用程序中，需要在类路径中包含`grails-spring-<version>.jar`文件才能使用BeanBuilder。然后，将以下`<context-param>`值添加到`/WEB-INF/web.xml`文件中：
 
-
-Include the `grails-spring-<version>.jar` file in your classpath to use BeanBuilder in a regular Spring MVC application. Then add the following `<context-param>` values to your `/WEB-INF/web.xml` file:
-
-[source,xml]
+[source, xml]
 ----
 <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -88,9 +84,9 @@ Include the `grails-spring-<version>.jar` file in your classpath to use BeanBuil
 </context-param>
 ----
 
-Then create a `/WEB-INF/applicationContext.groovy` file that does the rest:
+然后创建一个`/WEB-INF/applicationContext.groovy`文件执行剩下的操作：
 
-[source,groovy]
+[source, groovy]
 ----
 import org.apache.commons.dbcp.BasicDataSource
 
@@ -104,11 +100,9 @@ beans {
 }
 ----
 
+从文件系统加载Bean定义
 
-==== Loading Bean Definitions from the File System
-
-
-You can use the `BeanBuilder` class to load external Groovy scripts that define beans using the same path matching syntax defined here. For example:
+您可以使用`BeanBuilder`类加载外部Groovy脚本，这些脚本使用与此处定义的相同的路径匹配语法来定义Bean。例如：
 
 [source,groovy]
 ----
@@ -118,9 +112,9 @@ bb.loadBeans("classpath:*SpringBeans.groovy")
 def applicationContext = bb.createApplicationContext()
 ----
 
-Here the `BeanBuilder` loads all Groovy files on the classpath ending with `SpringBeans.groovy` and parses them into bean definitions. An example script can be seen below:
+这里的`BeanBuilder`加载类路径上以`SpringBeans.groovy`结尾的所有Groovy文件，并将它们解析为Bean定义。下面是一个示例脚本：
 
-[source,groovy]
+[source, groovy]
 ----
 import org.apache.commons.dbcp.BasicDataSource
 import org.grails.orm.hibernate.ConfigurableLocalSessionFactoryBean
@@ -137,16 +131,14 @@ beans {
     sessionFactory(ConfigurableLocalSessionFactoryBean) {
         dataSource = dataSource
         hibernateProperties = ["hibernate.hbm2ddl.auto": "create-drop",
-                               "hibernate.show_sql":     "true"]
+                               "hibernate.show_sql": "true"]
     }
 }
 ----
 
+向绑定（上下文）添加变量
 
-==== Adding Variables to the Binding (Context)
-
-
-If you're loading beans from a script you can set the binding to use by creating a Groovy `Binding`:
+如果您从脚本中加载Bean，可以通过创建一个Groovy `Binding`来设置要使用的绑定：
 
 [source,groovy]
 ----
@@ -161,4 +153,4 @@ bb.loadBeans("classpath:*SpringBeans.groovy")
 def ctx = bb.createApplicationContext()
 ----
 
-Then you can access the `maxSize` and `productGroup` properties in your DSL files.
+然后您可以在DSL文件中访问`maxSize`和`productGroup`属性。

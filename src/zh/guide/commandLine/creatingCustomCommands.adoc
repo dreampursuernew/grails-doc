@@ -1,34 +1,30 @@
-In Grails, a custom command is a piece of functionality that you can add to your Grails application and execute via the command-line interface (CLI). These commands are not part of the core Grails framework but are extensions you can create to perform specific tasks or operations that are unique to your application's requirements. Custom commands are a powerful way to automate various tasks, interact with your application, and perform administrative functions from the command line. When you run custom commands, they cause the Grails environment to start, giving you full access to the application context and the runtime, allowing you to work with the application's resources, services, and configuration as needed within your custom command.
+在Grails中，自定义命令是一种功能片段，你可以将其添加到Grails应用程序中，并通过命令行界面（CLI）执行。这些命令不是核心Grails框架的一部分，而是你可以创建的扩展，用于执行特定任务或操作，这些任务或操作是唯一的，符合你的应用需求。自定义命令是自动化各种任务、与应用程序互动以及从命令行执行管理功能的强大方式。当你运行自定义命令时，它们会导致Grails环境启动，使你完全可以访问应用程序上下文和运行时，从而允许你根据需要在自定义命令中使用应用程序的资源、服务和配置。
 
-There are several reasons why you might want to write a custom command for your Grails application:
+有几个原因可能会促使你为Grails应用程序编写自定义命令：
+* 自动化任务：自定义命令允许你自动化常规任务，例如数据迁移、数据库更新或批处理，通过将逻辑封装在一个可按需执行的命令中。
+* 管理操作：你可以使用自定义命令进行用户管理、系统维护和配置管理等管理任务，使得在不同的环境中更容易管理你的应用程序。
+* 集成：自定义命令可用于将你的Grails应用程序与其他系统或服务集成。例如，你可以创建一个命令来与外部API同步数据。
+* 自定义工作流程：如果你的应用程序具有独特的工作流程或流程，自定义命令提供了可以从命令行执行这些工作流程的方式。
 
-* Automating Tasks: Custom commands allow you to automate routine tasks, such as data migration, database updates, or batch processing, by encapsulating the logic in a command that can be executed on-demand.
-* Administrative Operations: You can use custom commands for administrative tasks like user management, system maintenance, and configuration management, making it easier to manage your application in different environments.
-* Integration: Custom commands can be used to integrate your Grails application with other systems or services. For example, you can create a command to synchronize data with an external API.
-* Customized Workflows: If your application has unique workflows or processes, custom commands provide a way to execute these workflows from the command line.
+在Grails中，你可以通过实现https://docs.grails.org/latest/api/grails/dev/commands/GrailsApplicationCommand.html[GrailsApplicationCommand] trait来创建自定义命令。默认情况下，该trait要求你的命令实现以下handle()方法：
 
-In Grails, you can create custom commands by implementing the https://docs.grails.org/latest/api/grails/dev/commands/GrailsApplicationCommand.html[GrailsApplicationCommand] trait. By default, this trait requires your command to implement the handle() method as following:
-
-[source,shell]
-----
+```shell
 boolean handle()
-----
+```
 
-[NOTE]
+【提示】
 ====
-Commands defined this way still have access to the execution context via a variable called "executionContext."
-====
+通过这种方式定义的命令仍然可以通过名为“executionContext”的变量访问执行上下文。
 
-Here's a step-by-step guide on how to create custom commands using the GrailsApplicationCommand trait with examples, and how to run these commands.
+以下是一个关于使用GrailsApplicationCommand trait创建自定义命令的逐步指南，包含示例以及如何运行这些命令。
 
-In Grails, you can create custom commands by implementing the `GrailsApplicationCommand` trait. Custom commands allow you to add functionality to your Grails application that can be executed via the command-line interface (CLI). Here's a step-by-step guide on how to create custom commands using the `GrailsApplicationCommand` trait with examples, and how to run these commands.
+在Grails中，你可以通过实现`GrailsApplicationCommand` trait来创建自定义命令。自定义命令允许你为Grails应用程序添加功能，可以通过命令行界面（CLI）执行。下面是一个关于使用`GrailsApplicationCommand` trait创建自定义命令的逐步指南，包含示例以及如何运行这些命令。
 
-**Step 1: Create a Custom Command**
+**步骤1：创建自定义命令**
 
-To create a custom command, you need to create a Groovy class that implements the `GrailsApplicationCommand` trait. This trait provides methods for command execution. Let's create a simple example command that greets the user:
+要创建一个自定义命令，你需要创建一个实现`GrailsApplicationCommand` trait的Groovy类。该trait提供了命令执行的方法。让我们创建一个简单的示例命令，向用户打招呼：
 
-[source,groovy]
-----
+```groovy
 // grails-app/commands/com/example/GreetCommand.groovy
 package com.example
 
@@ -46,48 +42,44 @@ class GreetCommand implements GrailsApplicationCommand {
 
     boolean handle() {
         println("Hello, user!")
-        return true // Return true to indicate successful execution
+        return true // 返回true表示执行成功
     }
 }
-----
+```
 
-In this example, we've created a `GreetCommand` class that implements the `GrailsApplicationCommand` trait. It provides a `getName()` method to define the command name, a `getDescription()` method for a brief description, and the `run()` method to specify the code to execute when the command is run.
+在这个例子中，我们创建了一个`GreetCommand`类，该类实现了`GrailsApplicationCommand` trait。它提供了一个`getName()`方法来定义命令名称，一个`getDescription()`方法用于简要描述，以及一个`run()`方法来指定运行命令时执行的代码。
 
-Step 2: Build Your Grails Application
+**步骤2：构建你的Grails应用**
 
-Before you can use the runCommand task, ensure you have built your Grails application using the following command:
+在使用runCommand任务之前，确保你已经使用以下命令构建了你的Grails应用程序：
 
-[source,shell]
-----
+```shell
 ./gradlew assemble
-----
+```
 
-This command will compile your application and make it ready for running custom commands.
+这个命令将编译你的应用程序，并使其准备好运行自定义命令。
 
-**Step 3: Run the Custom Command**
+**步骤3：运行自定义命令**
 
-To run the custom command, use Gradle's runCommand task. Open your terminal and navigate to your Grails application's root directory. Then, run the custom command with the following Gradle command:
+要运行自定义命令，使用Gradle的runCommand任务。打开终端并导航到你的Grails应用程序的根目录。然后，使用以下Gradle命令运行自定义命令：
 
-[source,shell]
-----
+```shell
 ./gradlew runCommand -Pargs="greet"
-----
+```
 
-In the command above, replace "greet" with the name of your custom command. This will execute the GreetCommand, and you will see the output.
+在上面的命令中，用你的自定义命令名称替换"greet"。这将执行GreetCommand，并显示输出。
 
-Here's the expected final output when you run the greet command:
+当你运行greet命令时，预期的最终输出如下：
 
-[source,shell]
-----
+```shell
 Hello, user!
-----
+```
 
-**Additional Features: Command Arguments and Options**
+**附加功能：命令参数和选项**
 
-Grails also supports command-line arguments and options for custom commands. You can define these in your command class by implementing the `GrailsApplicationCommand` interface. Here's an example of a command that takes a name as an argument and an optional `--loud` option to make the greeting louder:
+Grails还支持自定义命令的命令行参数和选项。你可以通过实现`GrailsApplicationCommand`接口在你的命令类中定义这些参数。以下是一个命令的示例，该命令作为参数接收一个名称，并可选的`--loud`选项使问候更响亮：
 
-[source,groovy]
-----
+```groovy
 // grails-app/commands/com/example/GreetCommand.groovy
 package com.example
 
@@ -117,41 +109,39 @@ class GreetCommand implements GrailsApplicationCommand {
         return true
     }
 }
-----
+```
 
-Now you can run the `greet` command with arguments and options:
+现在你可以使用参数和选项运行`greet`命令：
 
-[source,shell]
-----
-# Greet the user with the default message
+```shell
+# 用默认消息问候用户
 ./gradlew runCommand -Pargs="greet"
 
-# Greet a specific user
+# 问候特定用户
 ./gradlew runCommand -Pargs="greet Alice"
 
-# Greet loudly
+# 大声问候
 ./gradlew runCommand -Pargs="greet --loud"
 
-# Greet a specific user loudly
+# 大声问候特定用户
 ./gradlew runCommand -Pargs="greet Alice --loud"
-----
+```
 
-This allows you to create more versatile and interactive custom commands for your Grails application.
+这样可以为你的Grails应用程序创建更具灵活性和交互性的自定义命令。
 
-In summary, creating custom commands in Grails using the `GrailsApplicationCommand` trait is a powerful way to extend your application's functionality beyond the web interface. You can define the command's name, description, and logic, and then execute it from the command line, optionally passing arguments and options as needed.
+总结一下，使用`GrailsApplicationCommand` trait在Grails中创建自定义命令是一种强大的扩展应用程序功能的方式，超越了Web界面。你可以定义命令的名称、描述和逻辑，然后从命令行执行它，根据需要可选地传递参数和选项。
 
-**Using the `executionContext` in the Grails Custom Commands**
+**在Grails自定义命令中使用`executionContext`**
 
-In Grails, the executionContext is a runtime context object that provides valuable information about the current execution environment of a Grails application. It includes details such as the application's environment (e.g., development, production, test) and allows developers to access this context within custom commands.
+在Grails中，executionContext是一个运行时上下文对象，提供关于Grails应用程序当前执行环境的宝贵信息。它包括应用程序的环境等细节（例如开发、生产、测试），并允许开发人员在自定义命令中访问这个上下文。
 
-Custom commands in Grails can use the executionContext to make informed decisions and perform specific tasks based on the current runtime environment. For example, developers can write conditional logic in custom commands that execute differently in production, development, or testing environments. This flexibility enables custom commands to adapt and behave differently depending on the context in which they are run, making them versatile tools for managing and extending Grails applications.
+Grails中的自定义命令可以使用executionContext根据当前运行环境做出明智的决定，并根据当前运行时环境执行特定任务。例如，开发人员可以在自定义命令中编写有条件逻辑，该逻辑在生产、开发或测试环境中执行不同。这种灵活性使得自定义命令根据运行的上下文在行为上进行调整和表现不同，让它们成为管理和扩展Grails应用程序的多用工具。
 
-Suppose you have a Grails application that manages customer data, and you want to create a custom command to perform data backup. In this scenario, you may want the backup process to behave differently depending on whether you're running it in a development, staging, or production environment.
+假设你有一个管理客户数据的Grails应用程序，你想要创建一个自定义命令来执行数据备份。在这种情况下，你可能希望备份过程根据你在开发、预发布或生产环境中运行的情况以不同方式运作。
 
-Here's an example of how you can create a custom command that uses the executionContext to determine the backup behavior:
+以下是一个使用executionContext确定备份行为的自定义命令示例：
 
-[source,groovy]
-----
+```groovy
 // grails-app/commands/com/example/BackupCommand.groovy
 package com.example
 
@@ -168,52 +158,48 @@ class BackupCommand implements GrailsApplicationCommand {
     }
 
     boolean handle() {
-        // Access the executionContext to determine the environment
+        // 访问executionContext以确定当前环境
         def environment = executionContext.environment
-
+        
         if (environment == "production") {
-            // Perform a full backup in the production environment
+            // 在生产环境执行全备份
             println("Performing a full backup of customer data (Production)")
-            // Add production-specific backup logic here
+            // 添加生产环境特定的备份逻辑
         } else {
-            // Perform a partial backup in other environments
+            // 在其他环境中执行部分备份
             println("Performing a partial backup of customer data (Non-production)")
-            // Add non-production backup logic here
+            // 添加非生产环境备份逻辑
         }
 
-        return true // Return true to indicate successful execution
+        return true // 返回true表示执行成功
     }
 }
-----
+```
 
-In this example:
+在这个例子中：
 
-- The custom command, named `BackupCommand`, is created to back up customer data.
-- It checks the `executionContext` to determine the current environment.
-- If the environment is "production," it performs a full backup with production-specific logic.
-- In all other environments, it performs a partial backup with non-production logic.
+- 创建了名为`BackupCommand`的自定义命令来备份客户数据。
+- 它检查`executionContext`以确定当前环境。
+- 如果环境是“production”，则使用生产特定逻辑执行完整备份。
+- 在其他环境中，使用非生产逻辑执行部分备份。
 
-When you run this custom command using `./gradlew runCommand -Pargs="backup"`, it will adapt its behavior based on whether you're in a production or non-production environment, demonstrating how the `executionContext` can be used to make environment-specific decisions in a realistic scenario.
+使用`./gradlew runCommand -Pargs="backup"`运行此自定义命令时，它将根据你在生产环境或非生产环境中运行的环境，调整其行为，展示了如何根据`executionContext`在实际场景中做出环境特定决策。
 
-**How to Create a Custom Command from a Grails Plugin**
+**如何从Grails插件创建自定义命令**
 
-You can create custom commands not only within your Grails application but also from a Grails plugin. Here's how to do it:
+你不仅可以在Grails应用程序中创建自定义命令，还可以从Grails插件中创建自定义命令。以下是如何操作：
 
-1. **Create a Grails Plugin:** If you don't already have a Grails plugin, you can create one using Grails' plugin generation commands. For example:
+1. **创建一个Grails插件：** 如果你还没有Grails插件，你可以使用Grails的插件生成命令来创建一个。例如：
 
-+
-[source,shell]
-----
+```shell
 grails create-plugin my-plugin
-----
+```
 
-2. **Define the Command:** Inside your Grails plugin, define the custom command by creating a Groovy class that implements the `GrailsApplicationCommand` trait or interface, providing the necessary methods like `getName()`, `getDescription()`, and `handle()`.
+2. **定义命令：** 在你的Grails插件中，通过创建实现`GrailsApplicationCommand` trait或接口的Groovy类来定义自定义命令，提供像`getName()`、`getDescription()`和`handle()`等必要方法。
 
-3. **Build and Package the Plugin:** To publish the plugin, you should use the Gradle maven-publish plugin. Update your plugin's build.gradle file to include the following configuration:
+3. **构建和打包插件：** 要发布插件，你应该使用Gradle的maven-publish插件。更新插件的build.gradle文件以包含以下配置：
 
-+
-[source,groovy]
-----
+```groovy
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -222,44 +208,36 @@ publishing {
     }
     repositories {
         maven {
-            url "file://path/to/your/local/repo" // Adjust the path accordingly
+            url "file://path/to/your/local/repo" // 根据需要调整路径
         }
     }
 }
+```
 
-----
-+
+然后，你可以将插件发布到本地仓库：
 
-Then, you can publish the plugin to your local repository:
-
-+
-[source,shell]
-----
+```shell
 ./gradlew publishToMavenLocal
-----
+```
 
-4. **Add the Plugin as a Dependency:** Instead of using the grails install-plugin command, you should add the plugin as a dependency in your Grails application's build.gradle file. Include the following dependency:
+4. **将插件作为依赖项添加：** 除了使用grails install-plugin命令之外，在你的Grails应用程序的build.gradle文件中将插件作为依赖项添加。包括以下依赖项：
 
-+
-[source,groovy]
-----
+```groovy
 dependencies {
     // ...
-    implementation 'com.example:my-plugin:1.0.0' // Replace with your plugin's group and version
+    implementation 'com.example:my-plugin:1.0.0' // 替换为你的插件组和版本
     // ...
 }
-----
-+
-Make sure to replace "com.example:my-plugin:1.0.0" with the appropriate group and version for your plugin
+```
 
-5. **Run the Custom Command:** Now, you can run the custom command from your Grails application's root directory using the Gradle `runCommand` task, as previously explained:
-+
-[source,shell]
-----
-./gradlew runCommand -Pargs="your-command-name"
-----
-+
+确保用你的插件组和版本替换"com.example:my-plugin:1.0.0"。
 
-Replace `"your-command-name"` with the name of the custom command you defined in your plugin.
+5. **运行自定义命令：** 现在，你可以使用先前解释的Gradle`runCommand`任务从你的Grails应用程序的根目录运行自定义命令：
 
-By following these steps, you can create and run custom commands from a Grails plugin, extending the functionality of your Grails application as needed. This approach allows you to modularize your custom functionality and share it across multiple Grails projects if necessary.
+```shell
+./gradlew runCommand -Pargs="你的命令名称"
+```
+
+用你在插件中定义的自定义命令名称替换`"你的命令名称"`。
+
+通过按照这些步骤，你可以从Grails插件中创建和运行自定义命令，根据需要扩展你的Grails应用程序功能。这种方法允许你将自定义功能模块化，并在有需要时在多个Grails项目中共享。【翻译完毕】

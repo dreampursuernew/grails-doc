@@ -1,12 +1,10 @@
-The default renderers for XML and JSON can be found in the `grails.rest.render.xml` and `grails.rest.render.json` packages respectively. These use the Grails converters (`grails.converters.XML` and `grails.converters.JSON`) by default for response rendering. 
+XML和JSON的默认渲染器分别可以在`grails.rest.render.xml`和`grails.rest.render.json`包中找到。这些默认渲染器默认使用Grails转换器（`grails.converters.XML`和`grails.converters.JSON`）来进行响应渲染。
 
-You can easily customize response rendering using these default renderers. A common change you may want to make is to include or exclude certain properties from rendering. 
+您可以轻松地使用这些默认渲染器自定义响应渲染。您可能想要进行的常见更改是包含或排除特定属性进行渲染。
 
+==== 包含或排除属性进行渲染
 
-==== Including or Excluding Properties from Rendering
-
-
-As mentioned previously, Grails maintains a registry of `grails.rest.render.Renderer` instances. There are some default configured renderers and the ability to register or override renderers for a given domain class or even for a collection of domain classes. To include a particular property from rendering you need to register a custom renderer by defining a bean in `grails-app/conf/spring/resources.groovy`:
+正如之前提到的，Grails维护着`grails.rest.render.Renderer`实例的注册表。有一些默认配置的渲染器以及注册或覆盖给定域类或一组域类的渲染器的能力。要从渲染中包含特定属性，您需要通过在`grails-app/conf/spring/resources.groovy`中定义一个bean来注册自定义渲染器：
 
 [source,groovy]
 ----
@@ -19,10 +17,9 @@ beans = {
 }
 ----
 
+注意：bean的名称并不重要（Grails将扫描应用程序上下文以查找所有已注册的渲染器bean），但出于组织和可读性的目的，建议您给它命名为有意义的内容。
 
-NOTE: The bean name is not important (Grails will scan the application context for all registered renderer beans), but for organizational and readability purposes it is recommended you name it something meaningful.
-
-To exclude a property, the `excludes` property of the `XmlRenderer` class can be used:
+要排除属性，可以使用`XmlRenderer`类的`excludes`属性：
 
 [source,groovy]
 ----
@@ -35,11 +32,9 @@ beans = {
 }
 ----
 
+==== 自定义转换器
 
-==== Customizing the Converters
-
-
-As mentioned previously, the default renders use the `grails.converters` package under the covers. In other words, under the covers they essentially do the following:
+如前所述，默认渲染器在底层使用`grails.converters`包。换句话说，在底层它们基本上执行以下操作：
 
 [source,groovy]
 ----
@@ -51,4 +46,4 @@ render book as XML
 // or render book as JSON
 ----
 
-Why the separation between converters and renderers? Well a renderer has more flexibility to use whatever rendering technology you chose. When implementing a custom renderer you could use http://wiki.fasterxml.com/JacksonHome[Jackson], http://code.google.com/p/google-gson/[Gson] or any Java library to implement the renderer. Converters on the other hand are very much tied to Grails' own marshalling implementation.
+为什么要区分转换器和渲染器呢？好吧，渲染器具有更大的灵活性，可以使用您选择的任何渲染技术。在实现自定义渲染器时，您可以使用http://wiki.fasterxml.com/JacksonHome[Jackson]、http://code.google.com/p/google-gson/[Gson]或任何Java库来实现渲染器。另一方面，转换器很大程度上与Grails自己的编组实现绑定。

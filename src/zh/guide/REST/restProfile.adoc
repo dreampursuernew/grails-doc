@@ -1,28 +1,26 @@
-Since Grails 3.1, Grails supports a tailored profile for creating REST applications that provides a more focused set of dependencies and commands.
+自Grails 3.1开始，Grails支持创建REST应用程序的定制配置文件，该配置文件提供了更专注的依赖项和命令集。
 
-To get started with the REST profile, create an application specifying `rest-api` as the name of the profile:
+要开始使用REST配置文件，创建一个指定`rest-api`作为配置文件名称的应用程序：
 
-[source,bash]
+[source, bash]
 ----
 $ grails create-rest-api my-api
 ----
 
-This will create a new REST application that provides the following features:
+这将创建一个新的REST应用程序，提供以下功能：
 
-* Default set of commands for creating and generating REST endpoints
-* Defaults to using JSON views for rendering responses (see the next section)
-* Fewer plugins than the default Grails plugin (no GSP, no Asset Pipeline, nothing HTML related)
+* 用于创建和生成REST端点的默认命令集
+* 默认使用JSON视图渲染响应（参见下一节）
+* 插件数量比默认的Grails插件更少（没有GSP，没有Asset Pipeline，没有HTML相关插件）
 
-You will notice for example in the `grails-app/views` directory that there are `*.gson` files for rendering the default index page and as well as any 404 and 500 errors.
+例如，您会注意到在`grails-app/views`目录中有`*.gson`文件，用于渲染默认的索引页面以及任何404和500错误页面。
 
-If you issue the following set of commands:
-
-[source,bash]
+如果您发出以下一组命令：
+[source, bash]
 ----
 $ grails create-domain-class my.api.Book
 $ grails generate-all my.api.Book
 ----
 
-Instead of CRUD HTML interface a REST endpoint is generated that produces JSON responses. In addition, the generated functional and unit tests by default test the REST endpoint. 
-
+将生成一个生成JSON响应的REST端点，而不是CRUD HTML界面。此外，默认生成的功能和单元测试将测试REST端点。
 

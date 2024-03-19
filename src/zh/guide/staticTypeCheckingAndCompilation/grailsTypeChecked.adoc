@@ -1,18 +1,15 @@
-
 ==== GrailsTypeChecked
 
+{apiDocs}grails/compiler/GrailsTypeChecked.html[grails.compiler.GrailsTypeChecked]注解的工作方式与`GrailsCompileStatic`注解类似，差别在于它只启用静态类型检查，而不是静态编译。这为不能在编译时静态验证的表达式提供了编译时反馈，同时仍然保留了类的动态分派功能。
 
-The {apiDocs}grails/compiler/GrailsTypeChecked.html[grails.compiler.GrailsTypeChecked] annotation works a lot like the `GrailsCompileStatic` annotation except that it only enables static type checking, not static compilation.  This affords compile time feedback for expressions which cannot be validated statically at compile time while still leaving dynamic dispatch in place for the class.
-
-[source,groovy]
+[groovy源码]
 ----
 import grails.compiler.GrailsTypeChecked
 
 @GrailsTypeChecked
 class SomeClass {
 
-    // all of the code in this class will be statically type
-    // checked and will be dynamically dispatched at runtime
+    // 此类中的所有代码将进行静态类型检查，并在运行时进行动态分派
 
     def methodOne() {
         // ...
@@ -27,4 +24,3 @@ class SomeClass {
     }
 }
 ----
-

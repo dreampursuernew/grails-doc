@@ -1,11 +1,11 @@
-If you prefer to keep the declaration of the URL mapping in your `UrlMappings.groovy` file then simply removing the `uri` attribute of the `Resource` transformation and adding the following line to `UrlMappings.groovy` will suffice:
+如果你更愿意保留在`UrlMappings.groovy`文件中声明URL映射，那么只需简单地删除`Resource`转换的`uri`属性，并将以下行添加到`UrlMappings.groovy`文件中即可：
 
 [source,groovy]
 ----
 "/books"(resources:"book")
 ----
 
-Extending your API to include more end points then becomes trivial:
+扩展你的API以包括更多端点则变得很简单：
 
 [source,groovy]
 ----
@@ -14,6 +14,6 @@ Extending your API to include more end points then becomes trivial:
 }
 ----
 
-The above example will expose the URI `/books/1/publisher`.
+上面的示例将暴露URI `/books/1/publisher`。
 
-A more detailed explanation on link:theWebLayer.html#restfulMappings[creating RESTful URL mappings] can be found in the link:theWebLayer.html#urlmappings[URL Mappings section] of the user guide.
+有关更详细的解释，可以在用户指南的链接：theWebLayer.html#urlmappings[URL映射部分]中找到有关链接：theWebLayer.html#restfulMappings[创建RESTful URL映射]的说明。

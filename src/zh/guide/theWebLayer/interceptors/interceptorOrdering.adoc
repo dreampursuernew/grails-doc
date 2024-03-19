@@ -1,57 +1,52 @@
-Interceptors can be ordered by defining an `order` property that defines a priority.
+拦截器可以通过定义一个`order`属性来进行排序，该属性定义了优先级。
 
-For example:
+例如：
 
-[source,groovy]
-----
+```groovy
 class AuthInterceptor {
 
   int order = HIGHEST_PRECEDENCE
 
   ...
 }
-----
+```
 
-The default value of the `order` property is 0.  Interceptor execution order is determined by sorting the `order` property in an ascending direction and executing the lowest numerically ordered interceptor first. 
+`order`属性的默认值为0。拦截器执行顺序是通过对`order`属性进行升序排序并执行数字顺序最低的拦截器来确定的。
 
-The values `HIGHEST_PRECEDENCE` and `LOWEST_PRECEDENCE` can be used to define filters that should should run first or last respectively.
+值`HIGHEST_PRECEDENCE`和`LOWEST_PRECEDENCE`可以用来定义应该优先或最后运行的过滤器。
 
-Note that if you write an interceptor that is to be used by others it is better increment or decrement the `HIGHEST_PRECEDENCE` and `LOWEST_PRECEDENCE` to allow other interceptors to be inserted before or after the interceptor you are authoring:
+请注意，如果您编写一个拦截器供其他人使用，最好增加或减少`HIGHEST_PRECEDENCE`和`LOWEST_PRECEDENCE`，以允许其他拦截器在您编写的拦截器之前或之后插入：
 
-[source,groovy]
-----
+```groovy
 int order = HIGHEST_PRECEDENCE + 50
 
-// or
+// 或
 
 int order = LOWEST_PRECEDENCE - 50
-----
+```
 
-To find out the computed order of interceptors you can add a debug logger to `logback.groovy` as follows:
+要查找拦截器的计算顺序，您可以在`logback.groovy`中添加调试日志记录器如下：
 
-[source,groovy]
-----
+```groovy
 logger 'grails.artefact.Interceptor', DEBUG, ['STDOUT'], false
-----
+```
 
-You can override any interceptors default order by using bean override configuration in `grails-app/conf/application.yml`:
+您可以通过在`grails-app/conf/application.yml`中使用Bean覆盖配置来覆盖任何拦截器的默认顺序：
 
-[source,groovy]
-----
+```groovy
 beans:
   authInterceptor:
     order: 50
-----
+```
 
-Or in `grails-app/conf/application.groovy`:
+或者在`grails-app/conf/application.groovy`中：
 
-[source,groovy]
-----
+```groovy
 beans {
   authInterceptor {
     order = 50
   }
 }
-----
 
-Thus giving you complete control over interceptor execution order.
+```
+因此，您可以完全控制拦截器的执行顺序。

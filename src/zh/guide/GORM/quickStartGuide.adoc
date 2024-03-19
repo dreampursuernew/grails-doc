@@ -1,40 +1,41 @@
-A domain class can be created with the <<ref-command-line-create-domain-class,create-domain-class>> command:
+一个领域类可以使用<<ref-command-line-create-domain-class，create-domain-class>>命令创建：
 
-[source,groovy]
+[source，groovy]
 ----
 grails create-domain-class myapp.Person
 ----
 
-NOTE: If no package is specified with the create-domain-class script, Grails automatically uses the application name as the package name.
+注意：如果在create-domain-class脚本中没有指定包，Grails将自动使用应用程序名称作为包名称。
 
-This will create a class at the location `grails-app/domain/myapp/Person.groovy` such as the one below:
+这将在`grails-app / domain / myapp / Person.groovy`位置创建一个类，就像下面这样：
 
-[source,groovy]
+[source，groovy]
 ----
-package myapp
+包myapp
 
-class Person {
+类人{
+
 }
 ----
 
-NOTE: If you have the `dbCreate` property set to "update", "create" or "create-drop" on your link:conf.html#dataSource[DataSource], Grails will automatically generate/modify the database tables for you.
+注意：如果您在link：conf.html#dataSource [DataSource]上将‘dbCreate’属性设置为“update”，“create”或“create-drop”，Grails将自动为您生成/修改数据库表。
 
-You can customize the class by adding properties:
+您可以通过添加属性来自定义类：
 
-[source,groovy]
+[source，groovy]
 ----
-class Person {
-    String name
-    Integer age
-    Date lastVisit
+类人{
+    字符串名字
+    整数年龄
+    日期上次访问
 }
 ----
 
-Once you have a domain class try and manipulate it with the <<ref-command-line-shell,shell>> or <<ref-command-line-console,console>> by typing:
+有了一个领域类后，尝试用<<ref-command-line-shell，shell>>或<<ref-command-line-console，console>>来操作它，方法是输入：
 
-[source,groovy]
+[source，groovy]
 ----
-grails console
+grails控制台
 ----
 
-This loads an interactive GUI where you can run Groovy commands with access to the Spring ApplicationContext, GORM, etc.
+这将加载一个交互式GUI，您可以在其中运行Groovy命令，并访问Spring应用程序上下文，GORM等。

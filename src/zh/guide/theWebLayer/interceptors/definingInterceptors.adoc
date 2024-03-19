@@ -1,42 +1,40 @@
-By default interceptors will match the controllers with the same name. For example if you have an interceptor called `BookInterceptor` then all requests to the actions of the `BookController` will trigger the interceptor.
+默认情况下，拦截器将与相同名称的控制器匹配。例如，如果您有一个名为 `BookInterceptor` 的拦截器，那么对 `BookController` 的所有请求都将触发该拦截器。
 
-An `Interceptor` implements the {apiDocs}grails/artefact/Interceptor.html[Interceptor] trait and provides 3 methods that can be used to intercept requests:
+`Interceptor` 实现了 {apiDocs}grails/artefact/Interceptor.html[Interceptor] 特性，并提供了可用于拦截请求的 3 个方法：
 
 [source,groovy]
 ----
 /**
- * Executed before a matched action
+ * 在匹配的动作之前执行
  *
- * @return Whether the action should continue and execute
+ * @return 动作是否应继续执行
  */
 boolean before() { true }
 
 /**
- * Executed after the action executes but prior to view rendering
+ * 在动作执行后但在视图渲染之前执行
  *
- * @return True if view rendering should continue, false otherwise
+ * @return 如果视图渲染应继续，返回 true，否则返回 false
  */
 boolean after() { true }
 
 /**
- * Executed after view rendering completes
+ * 在视图渲染完成后执行
  */
 void afterView() {}
 ----
 
-As described above the `before` method is executed prior to an action and can cancel the execution of the action by returning `false`.
+如上所述，`before` 方法在动作之前执行，如果返回 `false`，可以取消动作的执行。
 
-The `after` method is executed after an action executes and can halt view rendering if it returns false. The `after` method can also modify the view or model using the `view` and `model` properties respectively:
-
-
+`after` 方法在动作执行后执行，并且如果返回 false，可以停止视图渲染。`after` 方法还可以分别使用 `view` 和 `model` 属性来修改视图或模型：
 
 [source,groovy]
 ----
 boolean after() {
-  model.foo = "bar" // add a new model attribute called 'foo'
-  view = 'alternate' // render a different view called 'alternate'
+  model.foo = "bar" // 添加一个名为 'foo' 的新模型属性
+  view = 'alternate' // 渲染名为 'alternate' 的不同视图
   true
 }
 ----
 
-The `afterView` method is executed after view rendering completes. If an exception occurs, the exception is available using the `throwable` property of the {apiDocs}grails/artefact/Interceptor.html[Interceptor] trait.
+`afterView` 方法在视图渲染完成后执行。如果发生异常，可以使用 {apiDocs}grails/artefact/Interceptor.html[Interceptor] 特性的 `throwable` 属性来获取异常。

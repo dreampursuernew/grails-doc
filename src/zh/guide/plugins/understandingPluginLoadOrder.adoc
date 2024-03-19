@@ -1,8 +1,6 @@
+控制插件依赖关系
 
-==== Controlling Plugin Dependencies
-
-
-Plugins often depend on the presence of other plugins and can adapt depending on the presence of others. This is implemented with two properties. The first is called `dependsOn`. For example, take a look at this snippet from the Hibernate plugin:
+插件经常依赖于其他插件的存在，并且可以根据其他插件的存在进行调整。这是通过两种属性实现的。第一个称为`dependsOn`。例如，看一下Hibernate插件中的这个片段：
 
 [source,groovy]
 ----
@@ -17,11 +15,11 @@ class HibernateGrailsPlugin {
 }
 ----
 
-The Hibernate plugin is dependent on the presence of four plugins: the `dataSource`, `domainClass`, `i18n` and `core` plugins.
+Hibernate插件依赖于四个插件的存在：`dataSource`，`domainClass`，`i18n`和`core`插件。
 
-The dependencies will be loaded before the Hibernate plugin and if all dependencies do not load, then the plugin will not load.
+依赖关系将在Hibernate插件之前加载，如果所有依赖项没有加载，则插件将不会加载。
 
-The `dependsOn` property also supports a mini expression language for specifying version ranges. A few examples of the syntax can be seen below:
+`dependsOn`属性还支持用于指定版本范围的迷你表达式语言。以下是一些语法示例：
 
 [source,groovy]
 ----
@@ -30,7 +28,7 @@ def dependsOn = [foo: "1.0 > 1.1"]
 def dependsOn = [foo: "1.0 > *"]
 ----
 
-When the wildcard * character is used it denotes "any" version. The expression syntax also excludes any suffixes such as -BETA, -ALPHA etc. so for example the expression "1.0 > 1.1" would match any of the following versions:
+当使用通配符*字符时，它表示“任何”版本。表达式语法还排除任何后缀，如-BETA，-ALPHA等，因此例如表达式“1.0 > 1.1”将匹配以下任何版本：
 
 * 1.1
 * 1.0
@@ -38,18 +36,16 @@ When the wildcard * character is used it denotes "any" version. The expression s
 * 1.0.3-SNAPSHOT
 * 1.1-BETA2
 
+控制加载顺序
 
-==== Controlling Load Order
-
-
-Using `dependsOn` establishes a "hard" dependency in that if the dependency is not resolved, the plugin will give up and won't load.  It is possible though to have a weaker dependency using the `loadAfter` and `loadBefore` properties:
+使用`dependsOn`建立了一个“硬”依赖，如果依赖关系没有解析，插件将放弃并不会加载。但是也可以使用`loadAfter`和`loadBefore`属性实现弱依赖：
 
 [source,groovy]
 ----
 def loadAfter = ['controllers']
 ----
 
-Here the plugin will be loaded after the `controllers` plugin if it exists, otherwise it will just be loaded. The plugin can then adapt to the presence of the other plugin, for example the Hibernate plugin has this code in its `doWithSpring` closure:
+在这里，如果`controllers`插件存在，则该插件将在`controllers`插件之后加载，否则将仅加载。然后插件可以根据其他插件的存在进行调整，例如Hibernate插件在其`doWithSpring`闭包中有以下代码：
 
 [source,groovy]
 ----
@@ -62,62 +58,11 @@ if (manager?.hasGrailsPlugin("controllers")) {
 }
 ----
 
-Here the Hibernate plugin will only register an `OpenSessionInViewInterceptor` if the `controllers` plugin has been loaded. The `manager` variable is an instance of the {apiDocs}grails/plugins/GrailsPluginManager.html[GrailsPluginManager] interface and it provides methods to interact with other plugins.
+在这里，只有在加载`controllers`插件后，Hibernate插件才会注册`OpenSessionInViewInterceptor`。`manager`变量是{apiDocs}grails/plugins/GrailsPluginManager.html[GrailsPluginManager]接口的一个实例，它提供了与其他插件交互的方法。
 
-You can also use the `loadBefore` property to specify one or more plugins that your plugin should load before:
+您还可以使用`loadBefore`属性指定应在您的插件之前加载的一个或多个插件：
 
 [source,groovy]
 ----
 def loadBefore = ['rabbitmq']
 ----
-
-
-==== Scopes and Environments
-
-
-It's not only plugin load order that you can control. You can also specify which environments your plugin should be loaded in and which scopes (stages of a build). Simply declare one or both of these properties in your plugin descriptor:
-
-[source,groovy]
-----
-def environments = ['development', 'test', 'myCustomEnv']
-def scopes = [excludes:'war']
-----
-
-In this example, the plugin will only load in the 'development' and 'test' environments. Nor will it be packaged into the WAR file, because it's excluded from the 'war' phase. This allows `development-only` plugins to not be packaged for production use.
-
-The full list of available scopes are defined by the enum {apiDocs}grails/util/BuildScope.html[BuildScope], but here's a summary:
-
-* `test` - when running tests
-* `functional-test` - when running functional tests
-* `run` - for run-app and run-war
-* `war` - when packaging the application as a WAR file
-* `all` - plugin applies to all scopes (default)
-
-Both properties can be one of:
-
-* a string - a sole inclusion
-* a list - a list of environments or scopes to include
-* a map - for full control, with 'includes' and/or 'excludes' keys that can have string or list values
-
-For example,
-
-[source,groovy]
-----
-def environments = "test"
-----
-
-will only include the plugin in the test environment, whereas
-
-[source,groovy]
-----
-def environments = ["development", "test"]
-----
-
-will include it in both the development _and_ test environments. Finally,
-
-[source,groovy]
-----
-def environments = [includes: ["development", "test"]]
-----
-
-will do the same thing.

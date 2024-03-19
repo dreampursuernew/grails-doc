@@ -1,6 +1,6 @@
-Grails controllers support a simple mechanism for declarative exception handling.  If a controller declares a method that accepts a single argument and the argument type is `java.lang.Exception` or some subclass of `java.lang.Exception`, that method will be invoked any time an action in that controller throws an exception of that type.  See the following example.
+Grails控制器支持声明式异常处理的简单机制。如果一个控制器声明了一个接受单个参数的方法，并且参数类型是`java.lang.Exception`或其某个子类，那么每当该控制器中的一个动作抛出该类型的异常时，该方法将被调用。请看下面的示例。
 
-[source,groovy]
+[src,groovy]
 .grails-app/controllers/demo/DemoController.groovy
 ----
 package demo
@@ -8,11 +8,11 @@ package demo
 class DemoController {
 
     def someAction() {
-        // do some work
+        // 执行一些工作
     }
 
     def handleSQLException(SQLException e) {
-        render 'A SQLException Was Handled'
+        render '已处理一个SQLException'
     }
 
     def handleBatchUpdateException(BatchUpdateException e) {
@@ -20,16 +20,14 @@ class DemoController {
     }
 
     def handleNumberFormatException(NumberFormatException nfe) {
-        [problemDescription: 'A Number Was Invalid']
+        [problemDescription: '一个数字是无效的']
     }
 }
 ----
 
+该控制器的行为将类似于以下方式写的...
 
-That controller will behave as if it were written something like this...
-
-
-[source,groovy]
+[src,groovy]
 .grails-app/controllers/demo/DemoController.groovy
 ----
 package demo
@@ -38,7 +36,7 @@ class DemoController {
 
     def someAction() {
         try {
-            // do some work
+            // 执行一些工作
         } catch (BatchUpdateException e) {
             return handleBatchUpdateException(e)
         } catch (SQLException e) {
@@ -49,7 +47,7 @@ class DemoController {
     }
 
     def handleSQLException(SQLException e) {
-        render 'A SQLException Was Handled'
+        render '已处理一个SQLException'
     }
 
     def handleBatchUpdateException(BatchUpdateException e) {
@@ -57,44 +55,42 @@ class DemoController {
     }
 
     def handleNumberFormatException(NumberFormatException nfe) {
-        [problemDescription: 'A Number Was Invalid']
+        [problemDescription: '一个数字是无效的']
     }
 }
 ----
 
-The exception handler method names can be any valid method name.  The name is not what makes the method an exception handler, the `Exception` argument type is the important part.
+异常处理方法的名称可以是任何有效的方法名。方法之所以成为异常处理器并不是因为其名称，而是因为`Exception`参数类型是重要的部分。
 
-The exception handler methods can do anything that a controller action can do including invoking `render`, `redirect`, returning a model, etc.
+异常处理方法可以做与控制器动作相同的任何事情，包括调用`render`，`redirect`，返回一个模型等。
 
-One way to share exception handler methods across multiple controllers is to use inheritance.  Exception handler methods are inherited into subclasses so an application could define the exception handlers in an abstract class that multiple controllers extend from.  Another way to share exception handler methods across multiple controllers is to use a trait, as shown below...
+跨多个控制器分享异常处理方法的一种方法是使用继承。异常处理方法会继承到子类，因此应用程序可以在一个抽象类中定义异常处理器，多个控制器从中继承。另一种跨多个控制器分享异常处理方法的方式是使用trait，如下所示...
 
-[source,groovy]
+[src,groovy]
 .src/main/groovy/com/demo/DatabaseExceptionHandler.groovy
 ----
 package com.demo
 
 trait DatabaseExceptionHandler {
     def handleSQLException(SQLException e) {
-        // handle SQLException
+        // 处理SQLException
     }
 
     def handleBatchUpdateException(BatchUpdateException e) {
-        // handle BatchUpdateException
+        // 处理BatchUpdateException
     }
 }
 ----
 
-[source,groovy]
+[src,groovy]
 .grails-app/controllers/com/demo/DemoController.groovy
 ----
 package com.demo
 
 class DemoController implements DatabaseExceptionHandler {
 
-    // all of the exception handler methods defined
-    // in DatabaseExceptionHandler will be added to
-    // this class at compile time
+    // 所有在DatabaseExceptionHandler中定义的异常处理器方法将会在编译时添加到这个类中
 }
 ----
 
-Exception handler methods must be present at compile time.  Specifically, exception handler methods which are runtime metaprogrammed onto a controller class are not supported.
+异常处理方法必须在编译时存在。具体来说，在运行时编程到一个控制器类的异常处理方法是不受支持的。

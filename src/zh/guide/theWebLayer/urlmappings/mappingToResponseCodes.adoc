@@ -1,33 +1,28 @@
-Grails also lets you map HTTP response codes to controllers, actions or views. Just use a method name that matches the response code you are interested in:
+Grails还允许您将HTTP响应代码映射到控制器、操作或视图。只需使用与您感兴趣的响应代码匹配的方法名：
 
-[source,groovy]
-----
+```
 static mappings = {
    "403"(controller: "errors", action: "forbidden")
    "404"(controller: "errors", action: "notFound")
    "500"(controller: "errors", action: "serverError")
 }
-----
+```
 
-Or you can specify custom error pages:
+或者您可以指定自定义错误页面：
 
-[source,groovy]
-----
+```
 static mappings = {
    "403"(view: "/errors/forbidden")
    "404"(view: "/errors/notFound")
    "500"(view: "/errors/serverError")
 }
-----
+```
 
+声明式错误处理
 
-==== Declarative Error Handling
+此外，您还可以为单个异常配置处理程序：
 
-
-In addition you can configure handlers for individual exceptions:
-
-[source,groovy]
-----
+```
 static mappings = {
    "403"(view: "/errors/forbidden")
    "404"(view: "/errors/notFound")
@@ -39,20 +34,20 @@ static mappings = {
          exception: MyException)
    "500"(view: "/errors/serverError")
 }
-----
+```
 
-With this configuration, an `IllegalArgumentException` will be handled by the `illegalArgument` action in `ErrorsController`, a `NullPointerException` will be handled by the `nullPointer` action, and a `MyException` will be handled by the `customException` action. Other exceptions will be handled by the catch-all rule and use the `/errors/serverError` view.
+通过这种配置，`IllegalArgumentException`将由`ErrorsController`中的`illegalArgument`操作处理，`NullPointerException`将由`nullPointer`操作处理，并且`MyException`将由`customException`操作处理。其他异常将由通用规则处理，并使用`/errors/serverError`视图。
 
-You can access the exception from your custom error handing view or controller action using the request's `exception` attribute like so:
+您可以通过请求的`exception`属性在自定义错误处理视图或控制器操作中访问异常：
 
-[source,groovy]
-----
+
+```
 class ErrorController {
     def handleError() {
         def exception = request.exception
-        // perform desired processing to handle the exception
+        // 执行所需的处理来处理异常
     }
 }
-----
+```
 
-WARNING: If your error-handling controller action throws an exception as well, you'll end up with a `StackOverflowException`.
+警告：如果您的错误处理控制器操作也抛出异常，您最终会遇到`StackOverflowException`。

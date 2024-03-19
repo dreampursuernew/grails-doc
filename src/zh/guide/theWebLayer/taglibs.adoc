@@ -1,74 +1,67 @@
-Like http://www.oracle.com/technetwork/java/javaee/jsp/index.html[Java Server Pages] (JSP), GSP supports the concept of custom tag libraries. Unlike JSP, Grails' tag library mechanism is simple, elegant and completely reloadable at runtime.
+像Java Server Pages (JSP)一样，GSP支持自定义标签库的概念。与JSP不同，Grails的标签库机制简单、优雅，并且可以在运行时完全重新加载。
 
-Quite simply, to create a tag library create a Groovy class that ends with the convention `TagLib` and place it within the `grails-app/taglib` directory:
+简单来说，要创建一个标签库，创建一个以`TagLib`结尾的Groovy类，并将其放在`grails-app/taglib`目录中：
 
-[source,groovy]
-----
+```groovy
 class SimpleTagLib {
 
 }
-----
+```
 
-Now to create a tag create a Closure property that takes two arguments: the tag attributes and the body content:
+现在，要创建一个标签，创建一个接受两个参数的Closure属性：标签属性和正文内容：
 
-[source,groovy]
-----
+```groovy
 class SimpleTagLib {
     def simple = { attrs, body ->
 
     }
 }
-----
+```
 
-The `attrs` argument is a Map of the attributes of the tag, whilst the `body` argument is a Closure that returns the body content when invoked:
+`attrs`参数是标签的属性Map，而`body`参数是在调用时返回正文内容的Closure：
 
-[source,groovy]
-----
+```groovy
 class SimpleTagLib {
     def emoticon = { attrs, body ->
        out << body() << (attrs.happy == 'true' ? " :-)" : " :-(")
     }
 }
-----
+```
 
-As demonstrated above there is an implicit `out` variable that refers to the output `Writer` which you can use to append content to the response. Then you can reference the tag inside your GSP; no imports are necessary:
+如上所示，有一个隐式的`out`变量，用于引用输出的`Writer`，您可以使用它来追加内容到响应中。然后，您可以在GSP中引用标签；不需要导入任何内容：
 
-[source,xml]
-----
+```xml
 <g:emoticon happy="true">Hi John</g:emoticon>
-----
+```
 
-NOTE: To help IDEs autocomplete tag attributes, you should add Javadoc comments to your tag closures with `@attr` descriptions. Since taglibs use Groovy code it can be difficult to reliably detect all usable attributes.
+注意：为了帮助IDE自动完成标签属性，您应该在标签闭包中添加带有`@attr`描述的Javadoc注释。由于标签库使用Groovy代码，可靠地检测所有可用属性可能会有困难。
 
-For example:
+例如：
 
-[source,groovy]
-----
+```groovy
 class SimpleTagLib {
 
     /**
      * Renders the body with an emoticon.
      *
-     * @attr happy whether to show a happy emoticon ('true') or
-     * a sad emoticon ('false')
+     * @attr happy 是否显示快乐的表情符（'true'）还是悲伤的表情符（'false'）
      */
     def emoticon = { attrs, body ->
        out << body() << (attrs.happy == 'true' ? " :-)" : " :-(")
     }
 }
-----
+```
 
-and any mandatory attributes should include the REQUIRED keyword, e.g.
+任何必需属性都应包含REQUIRED关键字，例如：
 
-[source,groovy]
-----
+```groovy
 class SimpleTagLib {
 
     /**
-     * Creates a new password field.
+     * 创建新的密码字段。
      *
-     * @attr name REQUIRED the field name
-     * @attr value the field value
+     * @attr name REQUIRED 字段名称
+     * @attr value 字段值
      */
     def passwordField = { attrs ->
         attrs.type = "password"
@@ -76,4 +69,4 @@ class SimpleTagLib {
         fieldImpl(out, attrs)
     }
 }
-----
+```

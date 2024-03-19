@@ -1,40 +1,34 @@
-The `application.yml` file was introduced in Grails 3.0, and YAML is now the preferred format for configuration files.
+`application.yml`文件是在Grails 3.0中引入的，现在YAML是配置文件的首选格式。
 
+=== 使用系统属性/命令行参数
 
-=== Using system properties / command line arguments
+假设您正在使用`JDBC_CONNECTION_STRING`命令行参数，并且您希望在yml文件中访问相同的属性，则可以按照以下方式进行：
 
-
-Suppose you are using the `JDBC_CONNECTION_STRING` command line argument and you want to access the same in the yml file then it can be done in the following manner:
-
-[source,yaml]
-----
+```yaml
 production:
     dataSource: 
         url: '${JDBC_CONNECTION_STRING}'
-----
+```
 
-Similarly system arguments can be accessed.
+类似地，系统参数也可以被访问。
 
-You will need to have this in `build.gradle` to modify the `bootRun` target if `./gradlew bootRun` is used to start the application
+如果使用`./gradlew bootRun`来启动应用程序，则需要在`build.gradle`中对`bootRun`目标进行修改。
 
-[source,groovy]
-----
+```groovy
 bootRun {
     systemProperties = System.properties
 }
-----
+```
 
-For testing the following will need to change the `test` task as follows
+为了测试，需要按照以下方式更改`test`任务：
 
-[source,groovy]
-----
+```groovy
 test { 
     systemProperties = System.properties 
 }
-----
+```
 
+=== 外部配置
 
-=== External configuration
-
-Grails will read `application.(properties|yml)` from the `./config` or the current directory by default.
-As Grails is a SpringBoot configuration options are available as well, for documentation please consult: {springBootReference}/html/features.html#features.external-config.files
+Grails默认会从`./config`或当前目录中读取`application.(properties|yml)`文件。
+由于Grails是一个SpringBoot配置，也可以使用SpringBoot的配置选项，具体请参阅文档：{springBootReference}/html/features.html#features.external-config.files

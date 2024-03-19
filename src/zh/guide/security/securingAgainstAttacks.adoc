@@ -1,98 +1,79 @@
+SQL注入
 
-==== SQL injection
+Hibernate是GORM领域类的底层技术，当提交到数据库时会自动转义数据，因此这不是一个问题。然而，仍然有可能编写使用未经检查的请求参数的不良动态HQL代码。例如，以下操作容易受到HQL注入攻击：
 
-
-Hibernate, which is the technology underlying GORM domain classes, automatically escapes data when committing to database so this is not an issue. However it is still possible to write bad dynamic HQL code that uses unchecked request parameters. For example doing the following is vulnerable to HQL injection attacks:
-
-[source,groovy]
-----
+```groovy
 def vulnerable() {
     def books = Book.find("from Book as b where b.title ='" + params.title + "'")
 }
-----
+```
 
-or the analogous call using a GString:
+或者使用GString的类似调用：
 
-[source,groovy]
-----
+```groovy
 def vulnerable() {
     def books = Book.find("from Book as b where b.title ='${params.title}'")
 }
-----
+```
 
-Do *not* do this. Use named or positional parameters instead to pass in parameters:
+*不要*这样做。使用命名或位置参数传递参数：
 
-[source,groovy]
-----
+```groovy
 def safe() {
     def books = Book.find("from Book as b where b.title = ?",
                           [params.title])
 }
-----
+```
 
-or
+或
 
-[source,groovy]
-----
+```groovy
 def safe() {
     def books = Book.find("from Book as b where b.title = :title",
                           [title: params.title])
 }
-----
+```
 
+网络钓鱼
 
-==== Phishing
+这实际上是一个关于避免品牌被劫持和与客户之间声明的沟通政策的公共关系问题。客户需要知道如何识别有效的电子邮件。
 
+XSS-跨站脚本注入
 
-This really a public relations issue in terms of avoiding hijacking of your branding and a declared communication policy with your customers. Customers need to know how to identify valid emails.
+重要的是您的应用程序尽可能验证传入请求是否源自您的应用程序而不是其他站点。同样重要的是确保将所有数据值正确转义为视图。例如，当呈现到HTML或XHTML时，您必须确保其他人无法恶意注入JavaScript或其他HTML到其他人查看的数据中。
 
+Grails 2.3及以上版本包含特殊支持，用于在GSP页面中自动编码数据。有关更多信息，请参阅关于<<xssPrevention，跨站点脚本（XSS）预防>>的文档。
 
-==== XSS - cross-site scripting injection
+您还必须避免使用请求参数或数据字段来确定将用户重定向到何处的下一个URL。例如，如果您使用`successURL`参数确定登录成功后将用户重定向到何处，攻击者可以模拟您自己站点上的登录程序，然后在登录后将用户重定向回他们自己的站点，从而潜在地允许JavaScript代码利用站点上的登录帐户。
 
+跨站点请求伪造
 
-It is important that your application verifies as much as possible that incoming requests were originated from your application and not from another site. It is also important to ensure that all data values rendered into views are escaped correctly. For example when rendering to HTML or XHTML you must ensure that people cannot maliciously inject JavaScript or other HTML into data or tags viewed by others.
+CSRF涉及未经授权的命令从网站信任的用户传输。一个典型的例子是另一个网站嵌入链接，在用户仍处于身份验证状态下执行您网站上的操作。
 
-Grails 2.3 and above include special support for automatically encoded data placed into GSP pages. See the documentation on <<xssPrevention,Cross Site Scripting (XSS) prevention>> for further information.
+降低这些类型攻击风险的最佳方法是在您的表单上使用`useToken`属性。有关如何使用的更多信息，请参阅链接：theWebLayer.html#formtokens[处理重复表单提交]。另一种措施是不使用记住我cookie。
 
-You must also avoid the use of request parameters or data fields for determining the next URL to redirect the user to. If you use a `successURL` parameter for example to determine where to redirect a user to after a successful login, attackers can imitate your login procedure using your own site, and then redirect the user back to their own site once logged in, potentially allowing JavaScript code to then exploit the logged-in account on the site.
+HTML/URL注入
 
+这是提供了恶意数据的情况，这样当稍后用于在页面中创建链接时，点击它将不会导致预期的行为，并且可能会重定向到另一个站点或修改请求参数。
 
-==== Cross-site request forgery
+HTML/URL注入可以通过Grails提供的<<codecs，codecs>>和Grails提供的标记库轻松处理，所有这些标记库在适当的情况下都使用<<codecs，encodeAsURL>>。如果您创建自己生成URL的标记，您也需要谨慎对待这一点。
 
+拒绝服务
 
-CSRF involves unauthorized commands being transmitted from a user that a website trusts. A typical example would be another website embedding a link to perform an action on your website if the user is still authenticated.
+负载均衡器和其他设备在这里更可能是有用的，但还涉及过多查询等问题，例如攻击者创建一个链接来设置结果集的最大值，使查询可能超出服务器的内存限制或降低系统速度。解决方案是在将请求参数传递给动态查找器或其他GORM查询方法之前始终对其进行清理：
 
-The best way to decrease risk against these types of attacks is to use the `useToken` attribute on your forms. See link:theWebLayer.html#formtokens[Handling Duplicate Form Submissions] for more information on how to use it. An additional measure would be to not use remember-me cookies.
-
-
-==== HTML/URL injection
-
-
-This is where bad data is supplied such that when it is later used to create a link in a page, clicking it will not cause the expected behaviour, and may redirect to another site or alter request parameters.
-
-HTML/URL injection is easily handled with the <<codecs,codecs>> supplied by Grails, and the tag libraries supplied by Grails all use <<codecs,encodeAsURL>> where appropriate. If you create your own tags that generate URLs you will need to be mindful of doing this too.
-
-
-==== Denial of service
-
-
-Load balancers and other appliances are more likely to be useful here, but there are also issues relating to excessive queries for example where a link is created by an attacker to set the maximum value of a result set so that a query could exceed the memory limits of the server or slow the system down. The solution here is to always sanitize request parameters before passing them to dynamic finders or other GORM query methods:
-
-[source,groovy]
-----
+```groovy
 int limit = 100
-def safeMax = Math.min(params.max?.toInteger() ?: limit, limit) // limit to 100 results
+def safeMax = Math.min(params.max?.toInteger() ?: limit, limit) // 限制为100个结果
 return Book.list(max:safeMax)
-----
+```
 
+可猜测的ID
 
-==== Guessable IDs
+许多应用程序使用URL的最后一部分作为某个对象的“id”，以从GORM或其他地方检索。特别是在GORM的情况下，这些通常是可预测的，因为它们通常是顺序整数。
 
+因此，在将响应返回给用户之前，您必须确保请求用户被允许查看请求的id对象。
 
-Many applications use the last part of the URL as an "id" of some object to retrieve from GORM or elsewhere. Especially in the case of GORM these are easily guessable as they are typically sequential integers.
+不这样做是一种“模糊安全性”，这是不可避免的被攻破的，就像使用“letmein”作为默认密码一样。
 
-Therefore you must assert that the requesting user is allowed to view the object with the requested id before returning the response to the user.
-
-Not doing this is "security through obscurity" which is inevitably breached, just like having a default password of "letmein" and so on.
-
-You must assume that every unprotected URL is publicly accessible one way or another.
+您必须假设每个未受保护的URL都可以以某种方式被公开访问。

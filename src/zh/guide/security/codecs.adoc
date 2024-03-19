@@ -1,31 +1,26 @@
-Grails supports the concept of dynamic encode/decode methods.  A set of standard codecs are bundled with Grails.  Grails also supports a simple mechanism for developers to contribute their own codecs that will be recognized at runtime.
+Grails支持动态编码/解码方法的概念。一组标准编解码器与Grails捆绑在一起。Grails还支持一个简单的机制，使开发人员能够在运行时贡献自己的编解码器，这些编解码器将在运行时被识别。
 
+编解码器类
+Grails编解码器类可能包含一个编码闭包、一个解码闭包或两者都有。当Grails应用程序启动时，Grails框架动态从`grails-app/utils/`目录加载编解码器。
 
-==== Codec Classes
+该框架查找以`Codec`约定结尾的类名，位于`grails-app/utils/`下。例如，Grails附带的一个标准编解码器是`HTMLCodec`。
 
+如果一个编解码器包含一个`encode`闭包，Grails将创建一个动态的`encode`方法，并将该方法添加到`Object`类中，方法的名称代表了定义了编码闭包的编解码器。例如，`HTMLCodec`类定义了一个`encode`闭包，所以Grails将其命名为`encodeAsHTML`。
 
-A Grails codec class is one that may contain an encode closure, a decode closure or both.  When a Grails application starts up the Grails framework dynamically loads codecs from the `grails-app/utils/` directory.
+`HTMLCodec`和`URLCodec`类还定义了一个`decode`闭包，因此Grails分别将其附加到名称为`decodeHTML`和`decodeURL`的方法上。动态编解码器方法可以在Grails应用程序的任何地方调用。例如，考虑一个情况，一个报告包含一个名为“description”的属性，该属性可能包含必须进行转义以在HTML文档中呈现的特殊字符。在GSP中处理这种情况的一种方法是使用下面显示的动态编码方法对描述属性进行编码：
 
-The framework looks under `grails-app/utils/` for class names that end with the convention `Codec`.  For example one of the standard codecs that ships with Grails is `HTMLCodec`.
-
-If a codec contains an `encode` closure Grails will create a dynamic `encode` method and add that method to the `Object` class with a name representing the codec that defined the encode closure. For example, the `HTMLCodec` class defines an `encode` closure, so Grails attaches it with the name `encodeAsHTML`.
-
-The `HTMLCodec` and `URLCodec` classes also define a `decode` closure, so Grails attaches those with the names `decodeHTML` and `decodeURL` respectively. Dynamic codec methods may be invoked from anywhere in a Grails application. For example, consider a case where a report contains a property called 'description' which may contain special characters that must be escaped to be presented in an HTML document.  One way to deal with that in a GSP is to encode the description property using the dynamic encode method as shown below:
-
-[source,groovy]
+[code,groovy]
 ----
 ${report.description.encodeAsHTML()}
 ----
 
-Decoding is performed using `value.decodeHTML()` syntax.
+解码使用`value.decodeHTML()`语法进行。
 
+静态编译代码的编码器和解码器接口
 
-==== Encoder and Decoder interfaces for staticly compiled code
+使用编解码器的首选方法是使用codecLookup bean获取`Encoder`和`Decoder`实例。
 
-
-A preferred way to use codecs is to use the codecLookup bean to get hold of `Encoder` and `Decoder` instances .
-
-[source,groovy]
+[code,groovy]
 ----
 package org.grails.encoder;
 
@@ -35,8 +30,8 @@ public interface CodecLookup {
 }
 ----
 
-example of using `CodecLookup` and `Encoder` interface
-[source,groovy]
+使用`CodecLookup`和`Encoder`接口的示例
+[code,groovy]
 ----
 import org.grails.encoder.CodecLookup
 
@@ -50,153 +45,38 @@ class CustomTagLib {
 ----
 
 
-==== Standard Codecs
+标准编解码器
 
+HTMLCodec
+该编解码器执行HTML转义和反转义，以便值可以安全地在HTML页面中呈现，而不会创建任何HTML标记或损坏页面布局。例如，给定值“Don't you know that 2 > 1?”，您不能安全地显示在HTML页面中，因为`>将看起来关闭标签，如果您在属性中呈现这些数据，如输入字段的值属性尤其糟糕。
 
-*HTMLCodec*
+使用示例：
 
-This codec performs HTML escaping and unescaping, so that values can be rendered safely in an HTML page without creating any HTML tags or damaging the page layout. For example, given a value "Don't you know that 2 > 1?" you wouldn't be able to show this safely within an HTML page because the > will look like it closes a tag, which is especially bad if you render this data within an attribute, such as the value attribute of an input field.
-
-Example of usage:
-
-[source,groovy]
+[code,groovy]
 ----
 <input name="comment.message" value="${comment.message.encodeAsHTML()}"/>
 ----
 
-NOTE: Note that the HTML encoding does not re-encode apostrophe/single quote so you must use double quotes on attribute values to avoid text with apostrophes affecting your page.
+注意：请注意，HTML编码不会重新对撇号/单引号进行编码，因此必须在属性值上使用双引号，以避免具有撇号的文本影响页面。
 
-HTMLCodec defaults to HTML4 style escaping (legacy HTMLCodec implementation in Grails versions before 2.3.0) which escapes non-ascii characters.
+HTMLCodec默认为HTML4样式转义（在Grails 2.3.0之前的版本中的遗留HTMLCodec实现），可转义非ASCII字符。
 
-You can use plain XML escaping instead of HTML4 escaping by setting this config property in `application.groovy`:
-[source,groovy]
+您可以在`application.groovy`中设置此配置属性，而不是使用HTML4转义，而是使用纯XML转义：
+
+[code,groovy]
 ----
 grails.views.gsp.htmlcodec = 'xml'
 ----
 
+XMLCodec
+该编解码器执行XML转义和反转义。它转义 & , < , > , " , ', \ ， @ ， ` ，不间断空格（\u00a0），行分隔符（\u2028）和段分隔符（\u2029）。
 
-*XMLCodec*
+HTMLJSCodec
+该编解码器执行HTML和JS编码。用于防止某些DOM-XSS漏洞。请参阅[OWASP - DOM based XSS Prevention Cheat Sheet]以了解如何预防基于DOM的XSS攻击的准则。
 
-This codec performs XML escaping and unescaping. It escapes & , < , > , " , ' , \\\\ , @ , ` , non breaking space (\\\\u00a0), line separator (\\\\u2028) and paragraph separator (\\\\u2029).
+URLCodec
+在创建链接或表单操作链接时，或任何时候数据用于创建URL时，需要进行URL编码。它防止非法字符进入URL并改变其含义，例如“Apple & Blackberry”作为GET请求中的参数不会很好地工作，因为和符号将破坏参数解析。
 
+使用示例：
 
-*HTMLJSCodec*
-
-This codec performs HTML and JS encoding. It is used for preventing some DOM-XSS vulnerabilities. See https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet[OWASP - DOM based XSS Prevention Cheat Sheet] for guidelines of preventing DOM based XSS attacks.
-
-*URLCodec*
-
-URL encoding is required when creating URLs in links or form actions, or any time data is used to create a URL. It prevents illegal characters from getting into the URL and changing its meaning, for example "Apple & Blackberry" is not going to work well as a parameter in a GET request as the ampersand will break parameter parsing.
-
-Example of usage:
-
-[source,groovy]
-----
-<a href="/mycontroller/find?searchKey=${lastSearch.encodeAsURL()}">
-Repeat last search
-</a>
-----
-
-*Base64Codec*
-
-Performs Base64 encode/decode functions. Example of usage:
-
-[source,groovy]
-----
-Your registration code is: ${user.registrationCode.encodeAsBase64()}
-----
-
-*JavaScriptCodec*
-
-Escapes Strings so they can be used as valid JavaScript strings. For example:
-
-[source,groovy]
-----
-Element.update('${elementId}',
-    '${render(template: "/common/message").encodeAsJavaScript()}')
-----
-
-*HexCodec*
-
-Encodes byte arrays or lists of integers to lowercase hexadecimal strings, and can decode hexadecimal strings into byte arrays. For example:
-
-[source,groovy]
-----
-Selected colour: #${[255,127,255].encodeAsHex()}
-----
-
-*MD5Codec*
-
-Uses the MD5 algorithm to digest byte arrays or lists of integers, or the bytes of a string (in default system encoding), as a lowercase hexadecimal string. Example of usage:
-
-[source,groovy]
-----
-Your API Key: ${user.uniqueID.encodeAsMD5()}
-----
-
-*MD5BytesCodec*
-
-Uses the MD5 algorithm to digest byte arrays or lists of integers, or the bytes of a string (in default system encoding), as a byte array. Example of usage:
-
-[source,groovy]
-----
-byte[] passwordHash = params.password.encodeAsMD5Bytes()
-----
-
-*SHA1Codec*
-
-Uses the SHA1 algorithm to digest byte arrays or lists of integers, or the bytes of a string (in default system encoding), as a lowercase hexadecimal string. Example of usage:
-
-[source,groovy]
-----
-Your API Key: ${user.uniqueID.encodeAsSHA1()}
-----
-
-*SHA1BytesCodec*
-
-Uses the SHA1 algorithm to digest byte arrays or lists of integers, or the bytes of a string (in default system encoding), as a byte array. Example of usage:
-
-[source,groovy]
-----
-byte[] passwordHash = params.password.encodeAsSHA1Bytes()
-----
-
-*SHA256Codec*
-
-Uses the SHA256 algorithm to digest byte arrays or lists of integers, or the bytes of a string (in default system encoding), as a lowercase hexadecimal string. Example of usage:
-
-[source,groovy]
-----
-Your API Key: ${user.uniqueID.encodeAsSHA256()}
-----
-
-*SHA256BytesCodec*
-
-Uses the SHA256 algorithm to digest byte arrays or lists of integers, or the bytes of a string (in default system encoding), as a byte array. Example of usage:
-
-[source,groovy]
-----
-byte[] passwordHash = params.password.encodeAsSHA256Bytes()
-----
-
-
-==== Custom Codecs
-
-
-Applications may define their own codecs and Grails will load them along with the standard codecs. A custom codec class must be defined in the `grails-app/utils/` directory and the class name must end with `Codec`. The codec may contain a `static` `encode` closure, a `static` `decode` closure or both. The closure must accept a single argument which will be the object that the dynamic method was invoked on. For Example:
-
-[source,groovy]
-----
-class PigLatinCodec {
-  static encode = { str ->
-    // convert the string to pig latin and return the result
-  }
-}
-----
-
-With the above codec in place an application could do something like this:
-
-[source,xml]
-----
-${lastName.encodeAsPigLatin()}
-----
+[code,groovy]

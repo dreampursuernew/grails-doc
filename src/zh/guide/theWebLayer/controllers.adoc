@@ -1,3 +1,3 @@
-A controller handles requests and creates or prepares the response. A controller can generate the response directly or delegate to a view. To create a controller, simply create a class whose name ends with `Controller` in the `grails-app/controllers` directory (in a subdirectory if it's in a package).
+一个控制器处理请求并创建或准备响应。控制器可以直接生成响应，也可以委托给视图。要创建一个控制器，只需在`grails-app/controllers`目录中创建一个名称以`Controller`结尾的类（如果在包中则在子目录中）。
 
-The default <<urlmappings,URL Mapping>> configuration ensures that the first part of your controller name is mapped to a URI and each action defined within your controller maps to URIs within the controller name URI.
+默认的URL映射配置确保控制器名称的第一部分映射到一个URI，并且在控制器内定义的每个操作都映射到控制器名称URI内的URI。

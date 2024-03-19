@@ -1,35 +1,33 @@
+==== 创建插件
 
-==== Creating Plugins
-
-
-Creating a Grails plugin is a simple matter of running the command:
+创建一个Grails插件只需要运行以下命令:
 
 [source,groovy]
 ----
 grails create-plugin <<PLUGIN NAME>>
 ----
 
-This will create a web-plugin project for the name you specify. For example running `grails create-plugin example` would create a new web-plugin project called `example`.
+这将为您指定的名称创建一个web插件项目。例如，运行`grails create-plugin example`将创建一个名为`example`的新web插件项目。
 
-In Grails 3.0 you should consider whether the plugin you create requires a web environment or whether the plugin can be used with other profiles. If your plugin does not require a web environment then use the "plugin" profile instead of the default "web-plugin" profile:
+在Grails 3.0中，您应该考虑您创建的插件是否需要一个web环境，或者插件是否可以与其他配置文件一起使用。如果您的插件不需要web环境，则应该使用“plugin”配置文件而不是默认的“web-plugin”配置文件:
 
 [source,groovy]
 ----
 grails create-plugin <<PLUGIN NAME>> --profile=plugin
 ----
 
-Make sure the plugin name does not contain more than one capital letter in a row, or it won't work. Camel case is fine, though.
+请确保插件名称不包含超过一个大写字母，否则将无法使用。但是，驼峰命名法是可以的。
 
-Being a regular Grails project has a number of benefits in that you can immediately test your plugin by running (if the plugin targets the "web" profile):
+作为常规的Grails项目，有许多好处，因为您可以立即通过运行来测试您的插件（如果插件针对“web”配置文件）:
 
 [source,shell]
 ----
 ./gradlew bootRun
 ----
 
-NOTE: Plugin projects don't provide an index.gsp by default since most plugins don't need it. So, if you try to view the plugin running in a browser right after creating it, you will receive a page not found error. You can easily create a `grails-app/views/index.gsp` for your plugin if you'd like.
+注意: 默认情况下，插件项目不提供index.gsp文件，因为大多数插件不需要。因此，如果您在创建插件后立即尝试在浏览器中查看插件运行，您将收到一个页面未找到的错误。 如果您愿意，您可以轻松创建一个`grails-app/views/index.gsp`来为您的插件创建。
 
-The structure of a Grails plugin is very nearly the same as a Grails application project's except that in the `src/main/groovy` directory under the plugin package structure you will find a plugin descriptor class (a class that ends in "GrailsPlugin"). For example:
+Grails插件的结构几乎与Grails应用程序项目的结构相同，只是在插件包结构下的`src/main/groovy`目录下会找到一个插件描述符类（一个以“GrailsPlugin”结尾的类）。例如:
 
 [source,groovy]
 ----
@@ -40,22 +38,22 @@ class ExampleGrailsPlugin extends Plugin {
 }
 ----
 
-All plugins must have this class under the `src/main/groovy` directory, otherwise they are not regarded as a plugin. The plugin class defines metadata about the plugin, and optionally various hooks into plugin extension points (covered shortly).
+所有插件都必须在`src/main/groovy`目录下拥有这个类，否则它们将不被视为插件。插件类定义了关于插件的元数据，以及可选的插件扩展点。
 
-You can also provide additional information about your plugin using several special properties:
+您还可以使用几个特殊属性提供有关您的插件的其他信息:
 
-* `title` - short one-sentence description of your plugin
-* `grailsVersion` - The version range of Grails that the plugin supports. eg. "1.2 > *" (indicating 1.2 or higher)
-* `author` - plugin author's name
-* `authorEmail` - plugin author's contact e-mail
-* `developers` - Any additional developers beyond the author specified above.
-* `description` - full multi-line description of plugin's features
-* `documentation` - URL of the plugin's documentation
-* `license` - License of the plugin
-* `issueManagement` - Issue Tracker of the plugin
-* `scm` - Source code management location of the plugin
+* `title` - 插件的简短一句描述
+* `grailsVersion` - 插件支持的Grails版本范围。例如“1.2 > *”（表示1.2或更高版本）
+* `author` - 插件作者的姓名
+* `authorEmail` - 插件作者的联系邮箱
+* `developers` - 除上面指定的作者之外的任何额外开发人员
+* `description` - 插件功能的完整多行描述
+* `documentation` - 插件文档的URL
+* `license` - 插件的许可证
+* `issueManagement` - 插件的问题跟踪
+* `scm` - 插件的源代码管理位置
 
-Here is a slimmed down example from the https://github.com/grails-plugins/grails-quartz[Quartz Grails plugin]:
+以下是https://github.com/grails-plugins/grails-quartz[Quartz Grails插件]的一个简化示例:
 
 [source,groovy]
 ----
@@ -63,13 +61,13 @@ package quartz
 
 @Slf4j
 class QuartzGrailsPlugin extends Plugin {
-    // the version or versions of Grails the plugin is designed for
+    // 插件设计的Grails版本或版本
     def grailsVersion = "3.0.0.BUILD-SNAPSHOT > *"
-    // resources that are excluded from plugin packaging
+    // 插件打包中被排除的资源
     def pluginExcludes = [
             "grails-app/views/error.gsp"
     ]
-    def title = "Quartz" // Headline display name of the plugin
+    def title = "Quartz" // 插件的主题显示名称
     def author = "Jeff Brown"
     def authorEmail = "zzz@yyy.com"
     def description = '''\
@@ -88,9 +86,9 @@ Adds Quartz job scheduling features
     Closure doWithSpring()......
 ----
 
-==== Plugin Configuration
+==== 插件配置
 
-Instead of directly accessing Grails configuration as `grailsApplication.config.getProperty('mail.hostName', String)`, use a Spring Boot configuration bean (or a POJO) annotated with {springbootapi}/org/springframework/boot/context/properties/ConfigurationProperties.html[ConfigurationProperties] annotation. Here is an example plugin configuration:
+与其直接访问Grails配置，例如`grailsApplication.config.getProperty('mail.hostName', String)`，我们可以使用一个带有{springbootapi}/org/springframework/boot/context/properties/ConfigurationProperties.html[ConfigurationProperties]注解的Spring Boot配置bean（或POJO）。以下是一个插件配置示例:
 
 _./src/main/groovy/example/MailPluginConfiguration.groovy_
 [source,groovy]
@@ -109,7 +107,7 @@ class MailPluginConfiguration {
 
 ```
 
-You can inject the `MailPluginConfiguration` bean into your bean like any other bean.
+您可以像任何其他bean一样将`MailPluginConfiguration`注入到您的bean中。
 
 _./grails-app/services/example/MailService.groovy_
 [source,groovy]
@@ -125,13 +123,14 @@ class MailService {
     }
 
 }
+
 ```
 
-Please read the {springBootReference}/html/features.html#features.external-config[Spring Boot Externalized Configuration] section for more information.
+请阅读{springBootReference}/html/features.html#features.external-config[Spring Boot Externalized Configuration]部分获取更多信息。
 
-==== Installing Local Plugins
+==== 安装本地插件
 
-In order to install the Grails plugin to your local Maven, you could use Gradle https://docs.gradle.org/current/userguide/publishing_maven.html[Maven Publish] plugin. You may also need to configure the publishing extension as:
+为了将Grails插件安装到您本地的Maven中，您可以使用Gradle https://docs.gradle.org/current/userguide/publishing_maven.html[Maven Publish]插件。您还可能需要配置发布扩展如下:
 
 [source,groovy]
 ----
@@ -152,16 +151,16 @@ publishing {
 }
 ----
 
-NOTE: Please refer to the Gradle Maven Publish plugin documentation for up-to-date information.
+注意：请参考Gradle Maven Publish插件文档获取最新信息。
 
-To make your plugin available for use in a Grails application run the `./gradlew publishToMavenLocal` command:
+要使您的插件可用于Grails应用程序中，请运行`./gradlew publishToMavenLocal`命令:
 
 [source,bash]
 ----
 ./gradlew publishToMavenLocal
 ----
 
-This will install the plugin into your local Maven cache. Then to use the plugin within an application declare a dependency on the plugin in your `build.gradle` file and include `mavenLocal()` in your repositories hash:
+这将安装插件到您本地的Maven缓存中。然后，在应用程序中声明对插件的依赖项，在您的`build.gradle`文件中包含`mavenLocal()`在您的repositories哈希中:
 
 [source,groovy]
 ----
@@ -174,18 +173,15 @@ repositories {
 implementation "org.grails.plugins:quartz:0.1"
 ----
 
-NOTE: In Grails 2.x plugins were packaged as ZIP files, however in Grails 3.x plugins are simple JAR files that can be added to the classpath of the IDE.
+注意：在Grails 2.x中，插件打包为ZIP文件，然而在Grails 3.x中，插件是简单的JAR文件，可以添加到IDE的类路径中。
 
+==== 插件和多项目构建
 
+如果您希望将插件设置为多项目构建的一部分，请按照以下步骤操作。
 
-==== Plugins and Multi-Project Builds
+*步骤1: 创建应用程序和插件*
 
-
-If you wish to setup a plugin as part of a multi project build then follow these steps.
-
-*Step 1: Create the application and the plugin*
-
-Using the `grails` command create an application and a plugin:
+使用`grails`命令创建一个应用程序和一个插件:
 
 [source,groovy]
 ----
@@ -193,20 +189,20 @@ $ grails create-app myapp
 $ grails create-plugin myplugin
 ----
 
-*Step 2: Create a settings.gradle file*
+*步骤2: 创建一个settings.gradle文件*
 
-In the same directory create a `settings.gradle` file with the following contents:
+在相同目录中创建一个`settings.gradle`文件，其中包含以下内容:
 
 [source,groovy]
 ----
 include "myapp", "myplugin"
 ----
 
-The directory structure should be as follows:
+目录结构应如下所示:
 
 [source,groovy]
 ----
-PROJECT_DIR
+项目目录
   - settings.gradle
   - myapp
     - build.gradle
@@ -214,9 +210,9 @@ PROJECT_DIR
     - build.gradle
 ----
 
-*Step 3: Declare a project dependency on the plugin*
+*步骤3: 在插件中声明对该插件的项目依赖*
 
-Within the `build.gradle` of the application declare a dependency on the plugin within the `plugins` block:
+在应用程序的`build.gradle`中，在`plugins`块内声明对插件的依赖关系:
 
 [source,groovy]
 ----
@@ -227,15 +223,15 @@ grails {
 }
 ----
 
-NOTE: You can also declare the dependency within the `dependencies` block, however you will not get subproject reloading if you do this!
+注意: 您也可以在`dependencies`块内声明依赖关系，但是这样做将不会获得子项目重新加载！
 
-*Step 4: Configure the plugin to enable reloading*
+*步骤4: 配置插件以启用重新加载*
 
-In the plugin directory, add or modify the `gradle.properties` file. A new property `exploded=true` needs to be set in order for the plugin to add the exploded directories to the classpath.
+在插件目录中，添加或修改`gradle.properties`文件。需要设置一个新属性`exploded=true`，以便插件将爆炸目录添加到类路径中。
 
-*Step 5: Run the application*
+*步骤5: 运行应用程序*
 
-Now run the application using the `./gradlew bootRun` command from the root of the application directory, you can use the `verbose` flag to see the Gradle output:
+现在从应用程序目录的根目录使用`./gradlew bootRun`命令运行应用程序，您可以使用`verbose`标志查看Gradle输出:
 
 [source,groovy]
 ----
@@ -243,95 +239,4 @@ $ cd myapp
 $ ./gradlew bootRun --verbose
 ----
 
-You will notice from the Gradle output that plugins sources are built and placed on the classpath of your application:
-
-[source,groovy]
-----
-:myplugin:compileAstJava UP-TO-DATE
-:myplugin:compileAstGroovy UP-TO-DATE
-:myplugin:processAstResources UP-TO-DATE
-:myplugin:astClasses UP-TO-DATE
-:myplugin:compileJava UP-TO-DATE
-:myplugin:configScript UP-TO-DATE
-:myplugin:compileGroovy
-:myplugin:copyAssets UP-TO-DATE
-:myplugin:copyCommands UP-TO-DATE
-:myplugin:copyTemplates UP-TO-DATE
-:myplugin:processResources
-:myapp:compileJava UP-TO-DATE
-:myapp:compileGroovy
-:myapp:processResources UP-TO-DATE
-:myapp:classes
-:myapp:findMainClass
-:myapp:bootRun
-Grails application running at http://localhost:8080 in environment: development
-----
-
-
-==== Notes on excluded Artefacts
-
-
-Although the link:../ref/Command%20Line/create-plugin.html[create-plugin] command creates certain files for you so that the plugin can be run as a Grails application, not all of these files are included when packaging a plugin. The following is a list of artefacts created, but not included by link:../ref/Command%20Line/package-plugin.html[package-plugin]:
-
-* `grails-app/build.gradle` (although it is used to generate `dependencies.groovy`)
-* `grails-app/conf/application.yml` (renamed to plugin.yml)
-* `grails-app/conf/spring/resources.groovy`
-* `grails-app/conf/logback.groovy`
-* Everything within `/src/test/\*\*`
-* SCM management files within `\*\*/.svn/\*\*` and `\*\*/CVS/\*\*`
-
-
-==== Customizing the plugin contents
-
-
-When developing a plugin you may create test classes and sources that are used during the development and testing of the plugin but should not be exported to the application.
-
-To exclude test sources you need to modify the `pluginExcludes` property of the plugin descriptor AND exclude the resources inside your `build.gradle` file. For example say you have some classes under the `com.demo` package that are in your plugin source tree but should not be packaged in the application. In your plugin descriptor you should exclude these:
-
-[source,groovy]
-----
-// resources that should be loaded by the plugin once installed in the application
-  def pluginExcludes = [
-    '**/com/demo/**'
-  ]
-----
-
-And in your `build.gradle` you should exclude the compiled classes from the JAR file:
-
-[source,groovy]
-----
-jar {
-  exclude "com/demo/**/**"
-}
-----
-
-
-
-==== Inline Plugins in Grails 3.0
-
-
-In Grails 2.x it was possible to specify inline plugins in `BuildConfig`, in Grails 3.x this functionality has been replaced by Gradle's multi-project build feature.
-
-To set up a multi project build create an appliation and a plugin in a parent directory:
-
-[source,groovy]
-----
-$ grails create-app myapp
-$ grails create-plugin myplugin
-----
-
-Then create a `settings.gradle` file in the parent directory specifying the location of your application and plugin:
-
-[source,groovy]
-----
-include 'myapp', 'myplugin'
-----
-
-Finally add a dependency in your application's `build.gradle` on the plugin:
-
-[source,groovy]
-----
-implementation project(':myplugin')
-----
-
-Using this technique you have achieved the equivalent of inline plugins from Grails 2.x.
+您将从Gradle输出中注意到插件源代码已构建并放置在应用程序的类路径上。

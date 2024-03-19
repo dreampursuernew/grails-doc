@@ -1,44 +1,44 @@
-### Upgrade Instructions for Grails and Related Dependencies
+### 升级指南 Grails 和相关依赖项
 
-To ensure compatibility with Grails 6, you must update the following versions in your project:
+为了确保与 Grails 6 的兼容性，您必须更新项目中以下版本：
 
-#### 1. Java 11 as Baseline:
+#### 1. Java 11 作为基线：
 
-Starting from Grails 6, Java 11 serves as the baseline requirement for the framework. When upgrading to Grails 6, ensure that your project is configured to use Java 11. This compatibility with Java 11 allows you to take advantage of the latest features, security enhancements, and performance improvements provided by Java 11.
+从 Grails 6 开始，Java 11 成为框架的基线要求。在升级到 Grails 6 时，请确保您的项目配置为使用 Java 11。与 Java 11 的兼容性使您能够利用 Java 11 提供的最新功能、安全增强和性能改进。
 
-Please make sure to update your project's Java version to 11 before proceeding with the Grails 6 upgrade. Doing so will ensure a seamless transition to the latest version of Grails and enable you to enjoy all the benefits that Java 11 has to offer.
+请确保在继续 Grails 6 升级之前将您的项目的 Java 版本升级为 11。这样做将确保您顺利过渡到 Grails 的最新版本，并让您享受 Java 11 所提供的所有好处。
 
-#### 2. The New Grails CLI:
+#### 2. 新的 Grails CLI：
 
-Grails 6 comes with a completely revamped and highly efficient Command Line Interface (CLI) that enables you to generate applications and plugins at a remarkable speed. For instance, you can now use the new CLI to create a new Grails 6 application with the following command:
+Grails 6配备了一个完全改进且高效的命令行界面（CLI），可让您以惊人的速度生成应用程序和插件。例如，您现在可以使用新的 CLI 使用以下命令创建一个新的 Grails 6 应用程序：
 
 ```bash
 grails create-app my-app
 ```
 
-The new CLI also allows you to generate plugins easily. For example, to create a new plugin named "my-plugin," you can use the following command:
+新的 CLI 还允许您轻松生成插件。例如，要创建一个名为 "my-plugin" 的新插件，您可以使用以下命令：
 
 ```bash
 grails create-plugin my-plugin
 ```
 
-One notable improvement in Grails 6 is that it no longer supports certain commands that performed redundant tasks, such as the outdated `grails run-app` command. Instead, it recommends using the Gradle `bootRun` task for running your application, which offers better performance and functionality.
+Grails 6 中的一个显著改进是不再支持执行冗余任务的某些命令，如过时的 `grails run-app` 命令。相反，它建议使用 Gradle 的 `bootRun` 任务来运行您的应用程序，这提供了更好的性能和功能。
 
-For example, to run your Grails 6 application, you can use the following command:
+例如，要运行您的 Grails 6 应用程序，您可以使用以下命令：
 
 ```bash
 ./gradlew bootRun
 ```
 
-As a result of these improvements, the new CLI provides a more streamlined and efficient way to work with Grails applications and plugins.
+由于这些改进，新的 CLI 提供了一种更简化和高效的方式来处理 Grails 应用程序和插件。
 
-Additionally, in order to fully embrace the improvements in Grails 6, it is advised to remove the old Grails wrapper files `./grailsw` and `./grails` from your project root folder. This ensures that you solely rely on the enhanced capabilities of the new CLI.
+另外，为了充分拥抱 Grails 6 的改进，建议从您的项目根目录中删除旧的 Grails wrapper 文件 `./grailsw` 和 `./grails`。这将确保您完全依赖新 CLI 的增强功能。
 
-Overall, Grails 6 offers a significantly improved development experience with its new CLI, optimized commands, and advanced features for generating applications and plugins.
+总的来说，Grails 6 通过其新 CLI、优化的命令和先进的功能为开发体验提供了显著改进，用于生成应用程序和插件。
 
-#### 3. Setting Grails Version and Grails Gradle Plugin:
+#### 3. 设置 Grails 版本和 Grails Gradle 插件：
 
-To upgrade to Grails 6, it's important to configure the appropriate versions in the `gradle.properties` file as shown below:
+要升级到 Grails 6，重要的是在 `gradle.properties` 文件中配置适当的版本，如下所示：
 
 .gradle.properties
 ```properties
@@ -47,63 +47,62 @@ grailsGradlePluginVersion=6.0.0
 
 ```
 
-By specifying the above versions, you'll gain access to the latest features, improvements, and bug fixes introduced in Grails 6. Upgrading to this version empowers your application with enhanced performance and improved security. Additionally, it allows you to leverage the latest advancements in the Grails framework for a more efficient and secure development experience.
+通过指定上述版本，您将能够访问 Grails 6 中引入的最新功能、改进和 bug 修复。升级到这个版本将增强您的应用程序性能并改善安全性。此外，它还允许您利用 Grails 框架的最新进展，实现更高效和安全的开发体验。
 
-#### 4. GORM Version:
+#### 4. GORM 版本：
 
-If your project utilizes GORM, ensure to update the version in the `gradle.properties` file as demonstrated below:
+如果您的项目使用了 GORM，请确保在 `gradle.properties` 文件中更新版本，如下所示：
 
 .gradle.properties
 ```properties
 gormVersion=8.0.0
 ```
 
-By upgrading to GORM 8.0.0, you will benefit from essential updates and optimizations. This upgrade guarantees seamless interactions with your database and enhances your data management experience. Staying current with GORM allows you to take advantage of the latest database features and improvements, thereby optimizing the performance and functionality of your application.
+通过升级到 GORM 8.0.0，您将受益于必要的更新和优化。此次升级确保与数据库的无缝交互，并增强您的数据管理体验。与 GORM 保持同步可以让您利用最新的数据库功能和改进，从而优化应用程序的性能和功能。
 
-#### 5. Gradle Version:
+#### 5. Gradle 版本：
 
-Grails 6 uses Gradle 7.6.2 which offers performance improvements, bug fixes, and new features over previous versions. Upgrading to the latest Gradle version helps accelerate your build processes and ensures compatibility with other dependencies.
+Grails 6 使用 Gradle 7.6.2，相比之前的版本，它提供了性能改进、bug 修复和新功能。升级到最新的 Gradle 版本有助于加快您的构建过程，并确保与其他依赖项的兼容性。
 
-##### 5.1. Upgrade to Gradle 7.6.2
+##### 5.1. 升级到 Gradle 7.6.2
 
-Run the following command to update the Gradle wrapper to the desired version (e.g., Gradle 7.6.2):
+运行以下命令将 Gradle 包装器更新到所需版本（例如，Gradle 7.6.2）：
 
 ```bash
 ./gradlew wrapper --gradle-version 7.6.2
 ```
 
-This command will download the specified Gradle version and update the Gradle wrapper settings in your project.
+此命令将下载指定的 Gradle 版本，并更新项目中的 Gradle 包装器设置。
 
-##### 5.2. Check Gradle Version:
+##### 5.2. 检查 Gradle 版本：
 
-After the command finishes, you can verify that the Gradle version has been updated by checking the `gradle-wrapper.properties` file located in the `gradle/wrapper` directory. The `distributionUrl` in the file should now point to the Gradle 7.6.2 distribution:
+命令完成后，您可以通过检查 `gradle/wrapper` 目录中的 `gradle-wrapper.properties` 文件来验证 Gradle 版本是否已更新。该文件中的 `distributionUrl` 应该指向 Gradle 7.6.2 分发版：
 
 ```
-distributionUrl=https\://services.gradle.org/distributions/gradle-7.6.2-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-7.6.2-bin.zip
 ```
 
+##### 5.3. 构建项目：
 
-##### 5.3. Build the Project:
-
-After updating the Gradle wrapper, you can now build your Grails project using the updated Gradle version:
+在更新 Gradle 包装器后，您现在可以使用更新后的 Gradle 版本构建您的 Grails 项目：
 
 ```bash
 ./gradlew build
 ```
 
-This will initiate the build process with the new Gradle version.
+这将使用新的 Gradle 版本启动构建过程。
 
-#### 6. Embracing Modern Plugin Management with Grails 6
+#### 6. 采用现代插件管理器 Grails 6
 
-In Gradle, there are two main ways to add plugins to your project: the `plugins` block and the `apply plugin` statement.
+在 Gradle 中，有两种向项目添加插件的主要方式：`plugins` 块和 `apply plugin` 语句。
 
-Grails 6 introduces a significant change in how plugins are managed by adopting the Gradle `plugins` block instead of the traditional `apply plugin` statements. This shift streamlines the project's build configuration and brings it more in line with modern Gradle conventions. New Grails projects will now utilize the `plugins` block to manage plugin dependencies and configurations.
+Grails 6 通过采用 Gradle 的 `plugins` 块而不是传统的 `apply plugin` 语句来管理插件，引入了对插件管理的重大改进。这种转变简化了项目的构建配置，并使其更符合现代 Gradle 约定。新的 Grails 项目现在将使用 `plugins` 块来管理插件依赖项和配置。
 
-**Using the `plugins` Block in Grails 6:**
+**在 Grails 6 中使用 `plugins` 块：**
 
-With the new approach, adding plugins to a Grails 6 project is more explicit and organized. In your `build.gradle` file, you can declare plugins within the `plugins` block, specifying the plugin's ID and version.
+通过这种新方法，向 Grails 6 项目添加插件更加明确和有组织。在您的 `build.gradle` 文件中，您可以在 `plugins` 块内声明插件，指定插件的 ID 和版本。
 
-Here's an example of adding the `views-json` plugin using the `plugins` block:
+以下是使用 `plugins` 块添加 `views-json` 插件的示例：
 
 .build.gradle
 ```groovy
@@ -112,32 +111,30 @@ plugins {
 }
 ```
 
+**管理多个插件：**
 
-**Managing Multiple Plugins:**
-
-The `plugins` block allows you to add multiple plugins, each on its own line. This enhances clarity and makes it easier to manage plugin dependencies.
+`plugins` 块允许您逐行添加多个插件。这提高了清晰度，使得更容易管理插件依赖项。
 
 .build.gradle
 ```groovy
 plugins {
     id 'org.grails.plugins.views-json' version '3.0.0'
-    // Add other plugins as needed
+    // 需要时添加其他插件
 }
 ```
 
-**Moving Older Applications to the New Approach:**
+**将旧应用程序迁移到新方法：**
 
-If you are migrating an older Grails application to Grails 6, you can update the plugin declarations from `apply plugin` to the `plugins` block. For example, if your previous application used the `views-json` plugin, you can modify the build.gradle as follows:
+如果您正在将旧的 Grails 应用程序迁移到 Grails 6，您可以将插件声明从 `apply plugin` 更改为 `plugins` 块。例如，如果您的先前应用程序使用了 `views-json` 插件，则可以修改 build.gradle 如下：
 
-**Before (Using `apply plugin`):**
+**之前（使用 `apply plugin`）：**
 
 .build.gradle
 ```groovy
 apply plugin: 'org.grails.plugins.views-json'
 ```
 
-
-**After (Using `plugins` Block in Grails 6):**
+**之后（在 Grails 6 中使用 `plugins` 块）：**
 
 .build.gradle
 ```groovy
@@ -146,31 +143,17 @@ plugins {
 }
 ```
 
+通过采用 `plugins` 块，您的 Grails 6 项目将遵循现代 Gradle 约定，从而更容易管理插件依赖项和配置。这种新方法保持一致性并增强项目的整体结构，确保开发过程更加顺畅和高效。
 
-By migrating to the `plugins` block, your Grails 6 project will adhere to modern Gradle conventions, making it easier to manage plugin dependencies and configurations. This new approach maintains consistency and enhances the overall structure of the project, ensuring a smoother and more efficient development process.
+##### 6.2. 使用 pluginManagement 块
 
-##### 6.2. Use the pluginManagement Block
+从 `build.gradle` 文件中的 `apply plugin` 到 `settings.gradle` 文件中的 `pluginManagement` 块是 Grails 6 中引入的重大改变。这一变化是 Grails 采用 Gradle `pluginManagement` 方法的一部分，以实现更好的插件版本控制和项目间的一致性。
 
-Moving from `apply plugin` in the `build.gradle` file to the `pluginManagement` block in the `settings.gradle` file is a significant change introduced in Grails 6. This change is part of Grails' effort to adopt the Gradle `pluginManagement` approach for better plugin version control and consistency across projects.
-
-In the previous versions of Grails (before Grails 6), developers used to apply plugins directly in the `build.gradle` file using the `apply plugin` syntax. For example:
+在 Grails 之前的版本（Grails 6 之前），开发者通常会使用 `apply plugin` 语法直接在 `build.gradle` 文件中应用插件。例如：
 
 .build.gradle
 ```groovy
-buildscript {
-    repositories {
-        maven { url "https://plugins.gradle.org/m2/" }
-        maven { url "https://repo.grails.org/grails/core" }
-    }
-    dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
-        classpath "org.grails.plugins:hibernate5:7.3.0"
-        classpath "org.grails.plugins:views-gradle:2.3.2"
-    }
-}
-
-version "0.1"
-group "hellorestapi"
+......
 
 apply plugin:"eclipse"
 apply plugin:"idea"
@@ -179,82 +162,79 @@ apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.plugins.views-json"
 ```
 
+然而，在 Grails 6 中，建议的做法是将插件声明移至 `settings.gradle` 文件中的 `pluginManagement` 块。`pluginManagement` 块充当一个中心位置，可以为多项目构建中的所有项目管理插件版本。
 
-However, with Grails 6, the recommended practice is to move plugin declarations to the `pluginManagement` block in the `settings.gradle` file. The `pluginManagement` block acts as a central place to manage plugin versions for all projects within a multi-project build.
+**在 pluginManagement 块中配置插件：**
 
-**Configuring Plugins in the pluginManagement Block:**
+以下是如何在 `pluginManagement` 块中声明 `views-json` 插件：
 
-Here's how you can declare the `views-json` plugin in the `pluginManagement` block:
-
-    1. Open the `settings.gradle` file in your Grails 6 project.
-
-    2. Add the `pluginManagement` block with the `views-json` plugin declaration:
+1. 打开 Grails 6 项目中的 `settings.gradle` 文件。
+2. 在 `pluginManagement` 块中添加 `views-json` 插件声明：
 
 .settings.gradle
 ```groovy
 pluginManagement {
     repositories {
-        // Add the Grails plugin repository to resolve the views-json plugin
+        // 添加 Grails 插件仓库以解析 views-json 插件
         maven { url "https://repo.grails.org/grails/core" }
-        // Other repositories can be added here if needed
+        // 如果需要，可以在此处添加其他仓库
     }
 
-    // Declare the views-json plugin and its version
+    // 声明 views-json 插件及其版本
     plugins {
         id 'org.grails.plugins.views-json' version '3.0.0'
-        // Other plugins can be declared here
+        // 可在此处声明其他插件
     }
 }
 ```
 
+通过在 `pluginManagement` 块中包括 `views-json` 插件，Grails 6 将确保所有多项目构建中的项目使用指定版本的 `views-json` 插件。这有助于在不同项目中保持 JSON 渲染的一致性，并简化维护和版本控制。
 
-By including the `views-json` plugin in the `pluginManagement` block, Grails 6 will ensure that all projects within the multi-project build use the specified version of the `views-json` plugin. This promotes consistency in JSON rendering across different projects and simplifies maintenance and version control.
+**将旧应用程序迁移到新方法：**
 
-**Moving Older Applications to the New Approach:**
+如果您正在将旧的 Grails 应用程序迁移到 Grails 6，您可以将插件声明从 `build.gradle` 文件中的 `apply plugin` 更改为 `插件管理` 块在 `settings.gradle` 文件中，如前面部分所示。
 
-If you are migrating an older Grails application to Grails 6, you can update the plugin declarations from `apply plugin` to the `plugins` block in the `build.gradle` file, as shown in the previous section.
+通过采用 `pluginManagement` 块，并在 `settings.gradle` 文件中声明 `views-json` 插件，确保在 Grails 6 生态系统中所有项目中始终使用插件的一致性。该方法简化了插件版本控制，并在处理 Grails 应用程序的 JSON 响应时提高了开发体验。
 
-By adopting the `pluginManagement` block and declaring the `views-json` plugin in the `settings.gradle` file, you ensure consistent usage of the plugin across all projects in the Grails 6 ecosystem. This approach simplifies plugin version control and improves the overall development experience when working with JSON responses in your Grails applications.
+##### 6.3 Grails采纳"buildSrc"文件夹用于构建脚本依赖
 
-
-##### 6.3 Grails Adoption of "buildSrc" Folder for Buildscript Dependencies
-
-In previous versions of Grails (before Grails 6), managing buildscript dependencies, such as the `views-gradle` plugin, was typically done directly in the main `build.gradle` file. This enables Gradle compilation of JSON views for production environment. Developers would define the repositories and dependencies needed for the buildscript within the `buildscript` block:
+在 Grails 6 之前的版本中，管理构建脚本依赖项（例如 `views-gradle` 插件）通常直接在主 `build.gradle` 文件中完成。这样可以使 Gradle 在生产环境中编译 JSON 视图。开发者会在 `buildscript` 块内定义构建脚本所需的仓库和依赖项：
 
 .build.gradle
-```groovy
+```
+......
 
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        // Example: views-gradle plugin
+        // 示例：views-gradle 插件
         classpath "org.grails.plugins:views-gradle:3.0.0"
     }
 }
 
-// Apply the views-json plugin
+// 应用 views-json 插件
 apply plugin: 'views-json'
 
-// Other configurations and dependencies
+// 其他配置和依赖项
 ```
 
-This approach meant that the buildscript dependencies were mixed with the rest of the project's configurations, making the `build.gradle` file longer and potentially harder to maintain. As a result, the buildscript section might become cluttered with various plugin dependencies and other build logic.
+这种方法意味着构建脚本依赖项混合在项目的其他配置中，使得 `build.gradle` 文件变得更长，可能更难以维护。因此，构建脚本部分可能变得混乱，充斥着各种插件依赖项和其他构建逻辑。
 
-With the introduction of Grails 6, there is a significant improvement in managing buildscript dependencies through the use of the `buildSrc` folder. This dedicated folder provides a more organized approach to handle buildscript dependencies, custom Gradle plugins, and extensions specific to the project.
+随着 Grails 6 的推出，通过使用 `buildSrc` 文件夹来管理构建脚本依赖项有了重大改进。这个专用文件夹提供了一个更有组织的方法来处理构建脚本依赖项、自定义 Gradle 插件和项目特定扩展。
 
-**Benefits of Grails 6 Adoption of "buildSrc" Folder**
+**Grails 6 采用"buildSrc"文件夹的优势**
 
-    1. **Modular Build Configuration:** The `buildSrc` folder acts as a separate mini-project within your Grails application, allowing you to encapsulate build logic, plugins, and dependencies. This separation of concerns improves the organization and modularity of the build configuration.
+1. **模块化构建配置：** `buildSrc` 文件夹充当 Grails 应用程序内的一个独立的小型项目，允许您封装构建逻辑、插件和依赖项。关注点的分离提高了构建配置的组织和模块化程度。
 
-    2. **Streamlined Buildscript Management:** By moving buildscript dependencies to `buildSrc`, you can keep the main `build.gradle` file clean and focused on the application's specific requirements. This reduces clutter and promotes a more concise and clear build script.
+2. **简化构建脚本管理：** 通过将构建脚本依赖项移动到 `buildSrc`，您可以保持主要 `build.gradle` 文件的干净，并专注于应用程序的特定要求。这减少了混乱，促进了更简洁明了的构建脚本。
 
-    3. **Better Collaboration:** The `buildSrc` approach simplifies collaboration within development teams. Build logic can be centralized and shared across projects, enabling a consistent and efficient development workflow.
+3. **更好的协作性：** `buildSrc` 方法简化了团队内的协作。构建逻辑可以集中并在项目间共享，实现一致和高效的开发流程。
 
-**Update from Grails 5**
+**从 Grails 5 升级**
 
-The new Grails 6 application uses `buildSrc/build.gradle`. The buildSrc directory can host a build script if additional configuration is needed (e.g. to apply plugins or to declare dependencies). The `buildSrc` folder in a Grails project follows a specific tree layout, which includes the `build.gradle` file. Here's how the tree layout looks like:
+新的 Grails 6 应用程序使用 `buildSrc/build.gradle`。如果需要进一步配置，`buildSrc` 目录可以托管构建脚本（例如，应用插件或声明依赖项）。Grails 项目中的 `buildSrc` 文件夹遵循特定的树形布局，其中包括 `build.gradle` 文件。以下是该树形布局的外观：
 
 ```bash
 buildSrc/
@@ -264,15 +244,15 @@ buildSrc/
         └── groovy/
 ```
 
-**Let's walk through how to manage the `views-gradle` plugin using the `buildSrc` folder in Grails 6:**
+**让我们看看如何在 Grails 6 中使用 `buildSrc` 文件夹管理 `views-gradle` 插件：**
 
-**Step 1: Create buildSrc Folder:**
+**步骤 1：创建 buildSrc 文件夹：**
 
-In the root directory of your Grails 6 project, create a new folder named `buildSrc`.
+在您的 Grails 6 项目的根目录中创建一个名为 `buildSrc` 的新文件夹。
 
-**Step 2: Add buildSrc Script:**
+**步骤 2：添加 buildSrc 脚本：**
 
-Inside the `buildSrc` folder, create a build.gradle file and specify the `views-gradle` plugin dependency:
+在 `buildSrc` 文件夹内创建一个 build.gradle 文件，并指定 `views-gradle` 插件的依赖项：
 
 .buildSrc/build.gradle
 ```groovy
@@ -285,9 +265,9 @@ dependencies {
 }
 ```
 
-**Step 3: Remove apply plugin Statement:**
+**步骤 3：移除 apply plugin 语句：**
 
-In the main `build.gradle` file, remove the `buildscript` block and the `apply plugin` statement related to `views-gradle`, as it is now managed in the `buildSrc` folder:
+在主 `build.gradle` 文件中，删除与 `views-gradle` 相关的 `buildscript` 块和 `apply plugin` 语句，因为现在在 `buildSrc` 文件夹中管理：
 
 .build.gradle
 ```groovy
@@ -300,47 +280,47 @@ buildscript {
     }
 }
 
-// No need to apply views-json plugin here
-// Remove the apply plugin statement for views-json if it was previously present
+// 这里不需要应用 views-json 插件
+// 如果之前存在 views-json 的 apply plugin 语句，请移除它
 apply plugin: 'views-json'
 
-// ... Other configurations and dependencies
+// ... 其他配置和依赖项
 ```
 
-By using the `buildSrc` folder, developers can separate buildscript dependencies and custom plugin configurations from the main `build.gradle` file. This leads to a cleaner and more concise build script, which is easier to maintain and understand. Additionally, the `buildSrc` approach encourages modularity, as build logic and custom plugins can be centralized and shared across projects, fostering better collaboration and consistency within development teams.
+通过使用 `buildSrc` 文件夹，开发者可以将构建脚本依赖项和自定义插件配置从主 `build.gradle` 文件中分离出来。这导致更清晰、更简洁的构建脚本，易于维护和理解。此外，`buildSrc` 方法鼓励模块化，因为构建逻辑和自定义插件可以集中并在项目间共享，促进了更好的团队协作和一致性。
 
-#### 7. GORM for MongoDB Sync Driver:
+#### 7. MongoDB的GORM同步驱动：
 
-The GORM for MongoDB is updated to support the latest mongodb-driver-sync. If you are using GORM for MongoDB and making use of specific MongoDB Driver or low-level Mongo API features, consider checking the https://mongodb.github.io/mongo-java-driver/4.0/upgrading/[Upgrading to the 4.0 Driver guide].
+GORM for MongoDB已更新以支持最新的mongodb-driver-sync。如果您正在使用GORM for MongoDB并利用特定的MongoDB驱动程序或低级别的Mongo API功能，请考虑查看[升级至4.0驱动程序指南](https://mongodb.github.io/mongo-java-driver/4.0/upgrading/)。
 
-This update ensures seamless integration with MongoDB, access to new features, and improved performance while interacting with your MongoDB database.
+此更新确保了与MongoDB的无缝集成，访问新功能以及与MongoDB数据库交互时的性能提升。
 
-#### 8. Asset Pipeline Plugin:
+#### 8. 资源管道插件：
 
-In Grails 6, there is an update to the Asset Pipeline Plugin, which is now version 4.3.0. The Asset Pipeline Plugin is a crucial component in Grails applications, responsible for managing frontend assets like stylesheets, JavaScript files, and images. The update to version 4.3.0 brings several improvements and new features to enhance the management and processing of frontend assets in your Grails projects.
+在Grails 6中，Asset Pipeline插件更新到了4.3.0版本。Asset Pipeline插件是Grails应用程序的关键组件，负责管理前端资产，如样式表、JavaScript文件和图像。升级到4.3.0版本带来了几项改进和新功能，以增强在Grails项目中管理和处理前端资产的能力。
 
-The asset-pipeline plugin 4.3.0 offers new features for managing and processing your frontend assets, ensuring they are efficiently bundled and served to your users.
+asset-pipeline插件4.3.0提供了新功能，用于管理和处理前端资产，确保它们被有效地捆绑和提供给用户。
 
-#### 9. Spring 5.3:
+#### 9. Spring 5.3：
 
-Grails 6 is built on Spring 5.3.27. If your project uses Spring-specific features, refer to the https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x#upgrading-to-version-53[Upgrading to Spring 5.3 guide].
+Grails 6是建立在Spring 5.3.27之上的。如果您的项目使用了Spring特定的功能，请参考[升级至Spring 5.3指南](https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x#upgrading-to-version-53)。
 
-Spring 5.3 introduces enhancements and fixes to the Spring framework, providing you with the latest improvements in dependency injection, web frameworks, and other Spring-related functionalities.
+Spring 5.3引入了增强和修复Spring框架，为您提供了最新的依赖注入、Web框架和其他与Spring相关的功能改进。
 
-#### 10. Spring Boot 2.7:
+#### 10. Spring Boot 2.7：
 
-Grails 6 updates to Spring Boot 2.7. For more information, consult the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes[Spring Boot 2.7 Release Notes]
+Grails 6更新到了Spring Boot 2.7。有关更多信息，请查阅[Spring Boot 2.7发行说明](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes)。
 
-Spring Boot 2.7 comes with new features, performance enhancements, and compatibility improvements, making it a solid foundation for your Grails application.
+Spring Boot 2.7带来了新功能、性能改进和兼容性提升，使其成为您的Grails应用程序的坚实基础。
 
-#### 11. Micronaut 3.9.3:
+#### 11. Micronaut 3.9.3：
 
-Grails 6 is shipped with Micronaut 3.9.3. If you are using specific Micronaut features, refer to the https://docs.micronaut.io/3.9.3/guide/index.html#upgrading[Upgrading to Micronaut 3.x guide].
+Grails 6附带了Micronaut 3.9.3。如果您正在使用特定的Micronaut功能，请参考[升级至Micronaut 3.x指南](https://docs.micronaut.io/3.9.3/guide/index.html#upgrading)。
 
-Micronaut 3.9.3 brings new capabilities, improvements, and bug fixes, empowering your application with a powerful and lightweight microservices framework.
+Micronaut 3.9.3带来了新功能、改进和错误修复，为您的应用程序提供了功能强大且轻量级的微服务框架。
 
-#### 12. Micronaut for Spring 4.5.1:
+#### 12. Micronaut for Spring 4.5.1：
 
-Grails 6 is updated to use Micronaut for Spring 4.5.1. For more information, check out the https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.5.1[release notes].
+Grails 6已更新为使用Micronaut for Spring 4.5.1。有关更多信息，请查看[发布说明](https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.5.1)。
 
-Micronaut for Spring 4.5.1 provides seamless integration between Micronaut and Spring, allowing you to leverage the strengths of both frameworks in your Grails project.
+Micronaut for Spring 4.5.1在Micronaut和Spring之间提供了无缝集成，使您能够在Grails项目中利用两个框架的优势。

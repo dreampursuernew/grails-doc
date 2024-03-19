@@ -1,75 +1,65 @@
+====监控资源变化
 
-==== Monitoring Resources for Changes
+通常情况下，监控资源的变化并在其发生时执行某些操作是非常有价值的。这就是Grails在运行时实现应用程序状态高级重新加载的方式。例如，考虑Grails的`ServicesPlugin`中的这个简化代码片段：
 
-
-Often it is valuable to monitor resources for changes and perform some action when they occur. This is how Grails implements advanced reloading of application state at runtime. For example, consider this simplified snippet from the Grails `ServicesPlugin`:
-
-[source,groovy]
-----
+```groovy
 class ServicesGrailsPlugin extends Plugin {
     ...
     def watchedResources = "file:./grails-app/services/**/*Service.groovy"
 
     ...
-    void onChange( Map<String, Object> event) {
+    void onChange(Map<String, Object> event) {
         if (event.source) {
             def serviceClass = grailsApplication.addServiceClass(event.source)
             def serviceName = "${serviceClass.propertyName}"
             beans {
                 "$serviceName"(serviceClass.getClazz()) { bean ->
-                    bean.autowire =  true
+                    bean.autowire = true
                 }
             }
         }
     }
 }
-----
+```
 
-First it defines `watchedResources` as either a String or a List of strings that contain either the references or patterns of the resources to watch. If the watched resources specify a Groovy file, when it is changed it will automatically be reloaded and passed into the `onChange` closure in the `event` object.
+首先，它将`watchedResources`定义为一个字符串或包含要监视的资源引用或模式的字符串列表。如果监视的资源指定了一个Groovy文件，在更改时它将自动重新加载并传递给`onChange`闭包中的`event`对象。
 
-The `event` object defines a number of useful properties:
+`event`对象定义了一些有用的属性：
 
-* `event.source` - The source of the event, either the reloaded `Class` or a Spring `Resource`
-* `event.ctx` - The Spring `ApplicationContext` instance
-* `event.plugin` - The plugin object that manages the resource (usually `this`)
-* `event.application` - The `GrailsApplication` instance
-* `event.manager` - The `GrailsPluginManager` instance
+- `event.source` - 事件的来源，可以是重新加载的`Class`或Spring的`Resource`
+- `event.ctx` - Spring的`ApplicationContext`实例
+- `event.plugin` - 管理资源的插件对象（通常是`this`）
+- `event.application` - `GrailsApplication`实例
+- `event.manager` - `GrailsPluginManager`实例
 
-These objects are available to help you apply the appropriate changes based on what changed. In the "Services" example above, a new service bean is re-registered with the `ApplicationContext` when one of the service classes changes.
+这些对象可用于帮助您根据所发生的更改应用适当的更改。在上面的“Services”示例中，当其中一个服务类发生更改时，新的服务bean将重新注册到`ApplicationContext`中。
 
+影响其他插件
 
-==== Influencing Other Plugins
+除了对变化做出反应外，有时插件需要“影响”另一个插件。
 
+举个例子，Services和Controllers插件。当重新加载一个服务时，除非您也重新加载控制器，否则当您尝试将重新加载的服务自动连接到旧控制器Class时就会出现问题。
 
-In addition to reacting to changes, sometimes a plugin needs to "influence" another.
+为了解决这个问题，您可以指定另一个插件“影响”哪些插件。这意味着当一个插件检测到变化时，它将重新加载自身，然后重新加载其受影响的插件。例如，考虑`ServicesGrailsPlugin`中的这个代码片段：
 
-Take for example the Services and Controllers plugins. When a service is reloaded, unless you reload the controllers too, problems will occur when you try to auto-wire the reloaded service into an older controller Class.
-
-To get around this, you can specify which plugins another plugin "influences". This means that when one plugin detects a change, it will reload itself and then reload its influenced plugins. For example consider this snippet from the `ServicesGrailsPlugin`:
-
-[source,groovy]
-----
+```groovy
 def influences = ['controllers']
-----
+```
 
+观察其他插件
 
-==== Observing other plugins
+如果有你想要观察变化但不需要监视其监控资源的特定插件，您可以使用“observe”属性：
 
-
-If there is a particular plugin that you would like to observe for changes but not necessary watch the resources that it monitors you can use the "observe" property:
-
-[source,groovy]
-----
+```groovy
 def observe = ["controllers"]
-----
+```
 
-In this case when a controller is changed you will also receive the event chained from the controllers plugin.
+在这种情况下，当控制器发生变化时，您还将从控制器插件中链式接收事件。
 
-It is also possible for a plugin to observe all loaded plugins by using a wildcard:
+插件还可以用通配符观察所有加载的插件：
 
-[source,groovy]
-----
+```groovy
 def observe = ["*"]
-----
+```
 
-The Logging plugin does exactly this so that it can add the `log` property back to _any_ artefact that changes while the application is running.
+Logging插件就是这样做的，这样它在应用程序运行时可以将`log`属性重新添加到任何发生更改的工件中。

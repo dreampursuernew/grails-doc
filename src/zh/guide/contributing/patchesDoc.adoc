@@ -1,12 +1,12 @@
-=== Contributing Simple Changes
+=== 贡献简单的更改
 
-The user guide is written using http://asciidoctor.org/docs/user-manual/[Asciidoctor]. The simplest way to contribute fixes is to simply click on the "Improve this doc" link that is to the right of each section of the documentation.
+用户指南是使用http://asciidoctor.org/docs/user-manual/[Asciidoctor]编写的。贡献修复的最简单方法是简单点击文档每个部分右侧的"改进此文档"链接。
 
-This will link to the Github edit screen where you can make changes, preview them and create a pull request.
+这将链接到 Github 编辑屏幕，您可以在那里进行更改、预览并创建一个拉取请求。
 
-=== Building the Guide
+=== 构建指南
 
-If you want to make significant changes, such as changing the structure of the table of contents etc. then we recommend you build the user guide. To do that simply checkout the sources from github:
+如果您想要做出重大更改，例如更改目录结构等，则我们建议您构建用户指南。为此，只需从 github 检出源代码。
 
 [source,bash]
 ----
@@ -14,9 +14,9 @@ $ git clone https://github.com/grails/grails-doc/
 $ cd grails-doc
 ----
 
-The source files can be found in the `src/en/guide` directory. Whilst the Table of Contents (TOC) is defined in the `src/en/guide/toc.yml` file.
+源文件位于 `src/en/guide` 目录中。目录结构 (TOC) 定义在 `src/en/guide/toc.yml` 文件中。
 
-Each YAML key points to a Asciidoc template. For example consider the following YAML:
+每个 YAML 键指向一个 Asciidoc 模板。例如，请考虑以下 YAML:
 
 [source,yaml]
 ----
@@ -27,18 +27,17 @@ introduction:
   ...
 ----
 
-The `introduction` key points to `src/en/guide/introduction.adoc`. The `title` key defines the title that is dislayed in the TOC. Because `whatsNew` key is nested underneath the `introduction` key it points to `src/en/guide/introduction/whatsNew.adoc`, which is nested in a directory called `introduction`.
+`introduction` 键指向 `src/en/guide/introduction.adoc`。`title` 键定义了在 TOC 中显示的标题。因为 `whatsNew` 键被嵌套在 `introduction` 键下面，它指向 `src/en/guide/introduction/whatsNew.adoc`，该文件位于名为 `introduction` 的目录中。
 
-Essentially, using the `toc.yml` file and the directory structure you can manipulate the structure of the user guide.
+基本上，使用 `toc.yml` 文件和目录结构，您可以操作用户指南的结构。
 
-To generate the documentation run the `publishGuide` task:
+要生成文档，请运行 `publishGuide` 任务：
 
 [source,bash]
 ----
 $ ./gradlew publishGuide -x apiDocs
 ----
 
-NOTE: In the above example we skip the `apiDocs` task to speed up building of the guide, otherwise all Groovydoc documentation will be built too!
+注意：在上面的示例中，我们跳过 `apiDocs` 任务以加快构建指南的速度，否则将同时构建所有的 Groovydoc 文档！
 
-Once the guide is built simply open the `build/docs/index.html` file in a browser to review your changes.
-
+一旦完成指南构建，请在浏览器中打开 `build/docs/index.html` 文件，以查看您的更改。

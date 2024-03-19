@@ -1,28 +1,24 @@
+设置独立部署的HTTPS和SSL证书
 
+要配置SSL证书并监听HTTPS端口而不是HTTP，请将以下属性添加到`application.yml`文件中：
 
-=== Setting up HTTPS and SSL certificates for standalone deployment
-
-
-To configure an SSL certificate and to listen on an HTTPS port instead of HTTP, add properties like these to `application.yml`:
-
-[source,groovy]
-----
+```groovy
 server:
-    port: 8443                                             # The port to listen on
+    port: 8443                                             # 要监听的端口
     ssl:
-        enabled: true                                      # Activate HTTPS mode on the server port
-        key-store: <the-location-of-your-keystore>         # e.g. /etc/tomcat7/keystore/tomcat.keystore
-        key-store-password: <your-key-store-password>      # e.g. changeit
-        key-alias: <your-key-alias>                        # e.g. tomcat
-        key-password: <usually-the-same-as-your-key-store-password>
-----
+        enabled: true                                      # 在服务器端口上激活HTTPS模式
+        key-store: <您密钥库的位置>                        # 例如 /etc/tomcat7/keystore/tomcat.keystore
+        key-store-password: <您的密钥库密码>               # 例如 changeit
+        key-alias: <您的密钥别名>                          # 例如 tomcat
+        key-password: <通常与您的密钥库密码相同>
+```
 
-These settings control the embedded Tomcat container for a production deployment. Alternatively, the properties can be specified on the command-line. Example: `-Dserver.ssl.enabled=true -Dserver.ssl.key-store=/path/to/keystore`.
+这些设置控制了用于生产部署的内嵌Tomcat容器。或者，这些属性也可以在命令行上指定。例如：`-Dserver.ssl.enabled=true -Dserver.ssl.key-store=/path/to/keystore`。
 
-NOTE: Configuration of both an HTTP and HTTPS connector via application properties is not supported. If you want to have both, then you'll need to configure one of them programmatically. (More information on how to do this can be found in the how-to guide below.)
+注意：不支持通过应用程序属性配置HTTP和HTTPS连接器。如果您想要同时拥有两者，那么您需要通过编程的方式配置其中一个。（如何做到这一点的更多信息可以在下面的指南中找到。）
 
-There are other relevant settings. Further reference:
+还有其他相关的设置。更详细的参考资料：
 
-* https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-configure-ssl[Spring Boot: Embed Webservers - Configure SSL]
-* https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-enable-multiple-connectors-in-tomcat[Spring Book: Enable Multiple Connectors with Tomcat]
-* https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html[Spring Boot: Common Application Properties]
+* [Spring Boot：嵌入式Web服务器-配置SSL](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-configure-ssl)
+* [Spring Boot：在Tomcat中启用多个连接器](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-enable-multiple-connectors-in-tomcat)
+* [Spring Boot：常见应用程序属性](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)

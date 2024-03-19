@@ -1,6 +1,6 @@
-{apiDocs}grails/web/api/WebAttributes.html[WebAttributes] is one of the traits provided by the framework.  Any Groovy class may implement this trait to inherit all of the properties and behaviors provided by the trait.
+{apiDocs}grails/web/api/WebAttributes.html [WebAttributes] 是框架提供的特性之一。任何Groovy类都可以实现这个特性，从而继承特性提供的所有属性和行为。
 
-[source,groovy]
+```groovy
 .src/main/groovy/demo/Helper.groovy
 ----
 package demo
@@ -10,17 +10,18 @@ import grails.web.api.WebAttributes
 class Helper implements WebAttributes {
 
     List<String> getControllerNames() {
-        // There is no need to pass grailsApplication as an argument
-        // or otherwise inject the grailsApplication property.  The
-        // WebAttributes trait provides access to grailsApplication.
+        // 不需要将grailsApplication作为参数传递
+        // 或以其他方式注入grailsApplication属性。 
+        // WebAttributes特性提供了对grailsApplication的访问。
         grailsApplication.getArtefacts('Controller')*.name
     }
 }
 ----
+```
 
-The traits are compatible with static compilation...
+特性与静态编译兼容...
 
-[source,groovy]
+```groovy
 .src/main/groovy/demo/Helper.groovy
 ----
 package demo
@@ -32,10 +33,11 @@ import groovy.transform.CompileStatic
 class Helper implements WebAttributes {
 
     List<String> getControllerNames() {
-        // There is no need to pass grailsApplication as an argument
-        // or otherwise inject the grailsApplication property.  The
-        // WebAttributes trait provides access to grailsApplication.
+        // 不需要将grailsApplication作为参数传递
+        // 或以其他方式注入grailsApplication属性。 
+        // WebAttributes特性提供了对grailsApplication的访问。
         grailsApplication.getArtefacts('Controller')*.name
     }
 }
 ----
+```

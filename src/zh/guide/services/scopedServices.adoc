@@ -1,39 +1,27 @@
-By default, access to service methods is not synchronised, so nothing prevents concurrent execution of those methods. In fact, because the service is a singleton and may be used concurrently, you should be very careful about storing state in a service. Or take the easy (and better) road and never store state in a service.
+默认情况下，对服务方法的访问是不同步的，因此没有任何东西可以阻止这些方法的并发执行。实际上，由于服务是单例并且可能同时使用，您应该非常小心在服务中存储状态。或者选择更简单（也更好）的方法，永远不要在服务中存储状态。
 
-You can change this behaviour by placing a service in a particular scope. The supported scopes are:
+您可以通过将服务放置在特定范围内来更改此行为。支持的范围包括：
 
-* `prototype` - A new service is created every time it is injected into another class
-* `request` - A new service will be created per request
-* `flash` - A new service will be created for the current and next request only
-* `flow` - In web flows the service will exist for the scope of the flow
-* `conversation` - In web flows the service will exist for the scope of the conversation. ie a root flow and its sub flows
-* `session` - A service is created for the scope of a user session
-* `singleton` (default) - Only one instance of the service ever exists
+* `prototype` - 每次将服务注入到另一个类时都会创建一个新的服务
+* `request` - 每次请求将创建一个新的服务
+* `flash` - 仅为当前请求和下一个请求创建一个新的服务
+* `flow` - 在Web流中，服务将存在于流的范围内
+* `conversation` - 在Web流中，服务将存在于对话的范围内，即根流及其子流
+* `session` - 为用户会话的范围创建一个服务
+* `singleton`（默认） - 服务只存在一个实例
 
-NOTE: If your service is `flash`, `flow` or `conversation` scoped it must implement `java.io.Serializable` and can only be used in the context of a Web Flow.
+注意：如果您的服务是`flash`，`flow`或`conversation`范围，则必须实现`java.io.Serializable`并且只能在Web流上下文中使用。
 
-To enable one of the scopes, add a static scope property to your class whose value is one of the above, for example
+要启用这些范围之一，请向您的类添加一个静态范围属性，其值为上述之一，例如
 
-[source,groovy]
-----
+```
 static scope = "flow"
-----
+```
 
-[NOTE]
-.Upgrading
-====
-Starting with Grails 2.3, new applications are generated with configuration that defaults the scope of controllers to `singleton`.
-If `singleton` controllers interact with `prototype` scoped services, the services effectively behave as per-controller singletons.
-If non-singleton services are required, controller scope should be changed as well.
+升级：
 
-See link:theWebLayer.html#controllersAndScopes[Controllers and Scopes] in the user guide for more information.
-====
+从Grails 2.3开始，新应用程序生成的配置默认将控制器范围设置为`singleton`。
+如果`singleton`控制器与`prototype`范围的服务交互，则服务实际上会像每个控制器一样的单例。
+如果需要非单例服务，则应该同时更改控制器范围。
 
-==== Lazy initialization
-
-You can also configure whether the service is lazily initialized. By default, this is set to `true`, but you can disable this and make initialization eager with the `lazyInit` property: 
-
-[source,groovy]
-----
-static lazyInit = false
-----
+请参阅用户指南中有关更多信息的链接：theWebLayer.html#controllersAndScopes[Controllers and Scopes]。

@@ -1,22 +1,18 @@
-If you set the configuration property `logging.config`, you can instruct `Logback` to use an external configuration file.
+如果你设置了配置属性`logging.config`，你可以指示`Logback`使用外部配置文件。
 
-[source,yaml]
 .grails-app/conf/application.yml
 ----
-logging:
-    config: /Users/me/config/logback.groovy
+日志:
+    配置: /Users/me/config/logback.groovy
 ----
 
-Alternatively, you can supply the configuration file location with a system property:
+或者，你可以通过系统属性提供配置文件位置：
 
 `$ ./gradlew -Dlogging.config=/Users/me/config/logback.groovy bootRun`
 
-Or, you could use an environment variable:
+或者，你可以使用环境变量：
 
-[source, bash]
 ----
 $ export LOGGING_CONFIG=/Users/me/config/logback.groovy
 $ ./gradlew bootRun
 ----
-
-

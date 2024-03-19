@@ -1,1 +1,1 @@
-If you are looking for a more low-level API and JSON or Markup views don't suite your needs then you may want to consider implementing a custom renderer.
+如果你正在寻找一个更低级的API，而JSON或标记视图不符合你的需求，那么你可能想要考虑实现一个自定义的渲染器。

@@ -1,8 +1,8 @@
-{springBootReference}/html/production-ready-endpoints.html[Spring Boot Actuator endpoints] allow you to monitor and interact with your application. Spring Boot includes a number of built-in endpoints. For example the `health` endpoint provides basic application health information.
+{springBootReference}/html/production-ready-endpoints.html[Spring Boot Actuator endpoints] 允许您监控并与应用程序进行交互。Spring Boot 包含了许多内置的 endpoints。例如，`health` endpoint 提供基本的应用程序健康信息。
 
-These endpoints are disabled by default since Grails 3.1.8. 
+这些 endpoints 在 Grails 3.1.8 中默认是禁用的。
 
-You can enable actuator endpoints in your `application.yml` as follows:
+您可以按照以下方式在 `application.yml` 中启用 actuator endpoints：
 
 [source,yml]
 .grails-app/conf/application.yml

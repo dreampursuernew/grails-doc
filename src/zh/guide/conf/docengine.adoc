@@ -1,12 +1,10 @@
-Since Grails 1.2, the documentation engine that powers the creation of this documentation has been available for your own Grails projects.
+自Grails 1.2开始，用于创建此文档的文档引擎已经可以用于您自己的Grails项目。
 
-The documentation engine uses a variation on the http://txstyle.org/[Textile] syntax to automatically create project documentation with smart linking, formatting etc.
+文档引擎使用了一种变种http://txstyle.org/[Textile] 语法，以便自动创建具有智能链接、格式等的项目文档。
 
+==== 创建项目文档
 
-==== Creating project documentation
-
-
-To use the engine you need to follow a few conventions. First, you need to create a `src/docs/guide` directory where your documentation source files will go. Then, you need to create the source docs themselves. Each chapter should have its own gdoc file as should all numbered sub-sections. You will end up with something like:
+要使用引擎，您需要遵循一些约定。首先，您需要创建一个 `src/docs/guide` 目录，用于存放文档源文件。然后，您需要创建源文档本身。每个章节应该有自己的 gdoc 文件，以及所有编号的子部分也应有自己的 gdoc 文件。您将得到类似以下的目录结构：
 
 [source,groovy]
 ----
@@ -18,9 +16,9 @@ To use the engine you need to follow a few conventions. First, you need to creat
 + src/docs/guide/configuration/build/controllers.gdoc
 ----
 
-Note that you can have all your gdoc files in the top-level directory if you want, but you can also put sub-sections in sub-directories named after the parent section - as the above example shows.
+请注意，如果您愿意，您可以将所有的 gdoc 文件放在顶层目录中，但您也可以将子部分放在以父部分命名的子目录中 - 如上例所示。
 
-Once you have your source files, you still need to tell the documentation engine what the structure of your user guide is going to be. To do that, you add a `src/docs/guide/toc.yml` file that contains the structure and titles for each section. This file is in http://www.yaml.org/[YAML] format and basically represents the structure of the user guide in tree form. For example, the above files could be represented as:
+一旦您有了源文件，您还需要告诉文档引擎您的用户指南的结构。要做到这一点，您需要添加一个 `src/docs/guide/toc.yml` 文件，其中包含每个部分的结构和标题。该文件采用 http://www.yaml.org/[YAML] 格式，基本上表示用户指南的树形结构。例如，上述文件可以表示为：
 
 [source,yaml]
 ----
@@ -35,174 +33,161 @@ configuration:
     controllers: Specifying Controllers
 ----
 
-The format is pretty straightforward. Any section that has sub-sections is represented with the corresponding filename (minus the .gdoc extension) followed by a colon. The next line should contain `title:` plus the title of the section as seen by the end user. Every sub-section then has its own line after the title. Leaf nodes, i.e. those without any sub-sections, declare their title on the same line as the section name but after the colon.
+格式非常简单。任何具有子部分的部分均以相应的文件名（去掉 .gdoc 扩展）后跟冒号表示。下一行应包含 `title:` 和最终用户看到的部分标题。每个子部分在标题之后有自己的一行。末端节点，即没有任何子部分的节点，将其标题声明在与部分名称相同的一行上，但在冒号之后。
 
-That's it. You can easily add, remove, and move sections within the `toc.yml` to restructure the generated user guide. You should also make sure that all section names, i.e. the gdoc filenames, should be unique since they are used for creating internal links and for the HTML filenames. Don't worry though, the documentation engine will warn you of duplicate section names.
+就是这个样子。您可以轻松地在 `toc.yml` 中添加、删除和移动部分，以重新构建生成的用户指南，同时您也应确保所有部分名称，即 gdoc 文件名，应该是唯一的，因为它们用于创建内部链接和 HTML 文件名。不过不用担心，文档引擎会提示您重复的部分名称。
 
+==== 创建参考项
 
-==== Creating reference items
-
-
-Reference items appear in the Quick Reference section of the documentation. Each reference item belongs to a category and a category is a directory located in the `src/docs/ref` directory. For example, suppose you have defined a new controller method called `renderPDF`. That belongs to the `Controllers` category so you would create a gdoc text file at the following location:
+参考项出现在文档的快速参考部分。每个参考项属于一个类别，而类别是位于 `src/docs/ref` 目录中的一个目录。例如，假设您定义了一个名为 `renderPDF` 的新控制器方法。那属于 `Controllers` 类别，因此您应该在以下位置创建一个 gdoc 文本文件：
 
 [source,groovy]
 ----
 + src/docs/ref/Controllers/renderPDF.gdoc
 ----
 
+==== 配置输出属性
 
-==== Configuring Output Properties
+您可以在 `grails-app/conf/application.groovy` 文件中设置各种属性，以自定义文档输出，例如：
 
+* *grails.doc.title* - 文档的标题
+* *grails.doc.subtitle* - 文档的副标题
+* *grails.doc.authors* - 文档的作者
+* *grails.doc.license* - 软件的许可证
+* *grails.doc.copyright* - 要显示的版权信息
+* *grails.doc.footer* - 要使用的页脚
 
-There are various properties you can set within your `grails-app/conf/application.groovy` file that customize the output of the documentation such as:
+其他属性，例如版本信息，将从您的项目中获取。如果没有指定标题，将使用应用程序名称。
 
-* *grails.doc.title* - The title of the documentation
-* *grails.doc.subtitle* - The subtitle of the documentation
-* *grails.doc.authors* - The authors of the documentation
-* *grails.doc.license* - The license of the software
-* *grails.doc.copyright* - The copyright message to display
-* *grails.doc.footer* - The footer to use
+您还可以通过设置其他几个选项来自定义文档的外观，并提供图像：
 
-Other properties such as the version are pulled from your project itself.  If a title is not specified, the application name is used.
+* *grails.doc.css* - 包含自定义 CSS 文件的目录位置（类型 `java.io.File`）
+* *grails.doc.js* - 包含自定义 JavaScript 文件的目录位置（类型 `java.io.File`）
+* *grails.doc.style* - 包含用于指南的自定义 HTML 模板的目录位置（类型 `java.io.File`）
+* *grails.doc.images* - 包含用于样式模板和文档页面中使用的图像文件的目录位置（类型 `java.io.File`）
 
-You can also customise the look of the documentation and provide images by setting a few other options:
+定制生成指南外观的最简单方法之一是为 `grails.doc.css` 提供一个值，然后将一个 custom.css 文件放在相应的目录中。Grails 将自动将此 CSS 文件包含在指南中。您也可以将 custom-pdf.css 文件放在该目录中。这将允许您覆盖指南的 PDF 版本的样式。
 
-* *grails.doc.css* - The location of a directory containing custom CSS files (type `java.io.File`)
-* *grails.doc.js* - The location of a directory containing custom JavaScript files (type `java.io.File`)
-* *grails.doc.style* - The location of a directory containing custom HTML templates for the guide (type `java.io.File`)
-* *grails.doc.images* - The location of a directory containing image files for use in the style templates and within the documentation pages themselves (type `java.io.File`)
+==== 生成文档
 
-One of the simplest ways to customise the look of the generated guide is to provide a value for `grails.doc.css` and then put a custom.css file in the corresponding directory. Grails will automatically include this CSS file in the guide. You can also place a custom-pdf.css file in that directory. This allows you to override the styles for the PDF version of the guide.
-
-
-==== Generating Documentation
-
-
-Add the plugin in your `build.gradle`:
+在您的 `build.gradle` 中添加插件：
 
 [source,groovy]
 ----
-apply plugin: "org.grails.grails-doc"
+apply plugin: \"org.grails.grails-doc\"
 ----
 
-Once you have created some documentation (refer to the syntax guide in the next chapter) you can generate an HTML version of the documentation using the command:
+一旦您创建了一些文档（请参阅下一章节中的语法指南），您可以使用以下命令生成文档的 HTML 版本：
 
 [source,groovy]
 ----
 gradle docs
 ----
 
-This command will output an `docs/manual/index.html` which can be opened in a browser to view your documentation.
+该命令将输出一个 `docs/manual/index.html`，您可以在浏览器中打开以查看您的文档。
 
+==== 文档语法
 
-==== Documentation Syntax
+如前所述，语法与 Textile 或 Confluence 风格的维基标记类似。以下部分将指导您了解语法基础知识。
 
+===== 基本格式
 
-As mentioned the syntax is largely similar to Textile or Confluence style wiki markup. The following sections walk you through the syntax basics.
-
-
-===== Basic Formatting
-
-
-Monospace: `monospace`
+等宽字体：`monospace`
 [source,groovy]
 ----
-\`monospace\`
+\\`monospace\\`
 ----
 
-Italic: _italic_
+斜体： _italic_
 [source,groovy]
 ----
-\_italic\_
+\\_italic\\_
 ----
 
-Bold: *bold*
+加粗：*bold*
 [source,groovy]
 ----
 *bold*
 ----
 
-Image:
+图像：
 image::http://grails.org/images/new/grailslogo_topNav.png[]
 
 [source,xml]
 ----
-\!http://grails.org/images/new/grailslogo_topNav.png\!
+\\!http://grails.org/images/new/grailslogo_topNav.png\\!
 ----
 
-You can also link to internal images like so:
+您还可以这样链接到内部图像：
 
 [source,xml]
 ----
-\!someFolder/my_diagram.png\!
+\\!someFolder/my_diagram.png\\!
 ----
 
-This will link to an image stored locally within your project. There is currently no default location for doc images, but you can specify one with the `grails.doc.images` setting in application.groovy like so:
+这将链接到在项目中存储的本地图像。目前没有默认位置用于文档图像，但您可以在 application.groovy 中使用 `grails.doc.images` 设置指定一个位置，如下所示：
 
 [source,groovy]
 ----
-grails.doc.images = new File("src/docs/images")
+grails.doc.images = new File(\"src/docs/images\")
 ----
 
-In this example, you would put the my_diagram.png file in the directory 'src/docs/images/someFolder'.
+在这个示例中，您应该将 my_diagram.png 文件放在 'src/docs/images/someFolder' 目录中。
 
+===== 链接
 
-===== Linking
-
-
-There are several ways to create links with the documentation generator. A basic external link can either be defined using confluence or textile style markup:
+文档生成器有几种方法可以创建链接。基本的外部链接可以使用 Confluence 或 textile 样式标记来定义：
 
 [source,groovy]
 ----
 http://www.pivotal.io/oss[Pivotal]
 ----
 
-or
+或者
 
 [source,groovy]
 ----
 http://www.pivotal.io/oss[Pivotal] ----
+----
 
-For links to other sections inside the user guide you can use the `guide:` prefix with the name of the section you want to link to:
+要链接到用户指南内部的其他部分，可以使用 `guide:` 前缀和要链接到的部分名称：
 
 [source,groovy]
 ----
 <<introduction,Intro>>
 ----
 
-The section name comes from the corresponding gdoc filename. The documentation engine will warn you if any links to sections in your guide break.
+部分名称来自相应的 gdoc 文件名。如果任何链接到指南中的部分断开，文档引擎将会提醒您。
 
-To link to reference items you can use a special syntax:
+要链接到参考项，可以使用特殊的语法：
 
 [source,groovy]
 ----
 <<ref-controllers-renderPDF,renderPDF>>
 ----
 
-In this case the category of the reference item is on the right hand side of the | and the name of the reference item on the left.
+在这种情况下，参考项的类别位于 | 右侧，而参考项的名称位于左侧。
 
-Finally, to link to external APIs you can use the `api:` prefix. For example:
+最后，要链接到外部 API，可以使用 `api:` 前缀。例如：
 
 [source,groovy]
 ----
 {javase}java.base/java/lang/String.html[String]
 ----
 
-The documentation engine will automatically create the appropriate javadoc link in this case. To add additional APIs to the engine you can configure them in `grails-app/conf/application.groovy`. For example:
+在这种情况下，文档引擎将自动创建适当的 javadoc 链接。要将其他 API 添加到引擎中，您可以在 `grails-app/conf/application.groovy` 中配置它们。例如：
 
 [source,groovy]
 ----
 grails.doc.api.org.hibernate=
-            "http://docs.jboss.org/hibernate/stable/core/javadocs"
+            \"http://docs.jboss.org/hibernate/stable/core/javadocs\"
 ----
 
-The above example configures classes within the `org.hibernate` package to link to the Hibernate website's API docs.
+上述示例配置了 `org.hibernate` 包中的类到 Hibernate 网站的 API 文档的链接。
 
+===== 列表和标题
 
-===== Lists and Headings
-
-
-Headings can be created by specifying the letter 'h' followed by a number and then a dot:
+标题可通过指定字母 'h' 后跟一个数字和一个点来创建：
 
 [source,groovy]
 ----
@@ -210,7 +195,7 @@ h3.<space>Heading3
 h4.<space>Heading4
 ----
 
-Unordered lists are defined with the use of the * character:
+无序列表使用 * 字符定义：
 
 [source,groovy]
 ----
@@ -220,16 +205,16 @@ Unordered lists are defined with the use of the * character:
 * item 2
 ----
 
-Numbered lists can be defined with the # character:
+可以使用 # 字符定义编号列表：
 
 [source,groovy]
 ----
 # item 1
 ----
 
-Tables can be created using the `table` macro:
+表格可以使用 `table` 宏创建：
 
-[format="csv", options="header"]
+[format=\"csv\", options=\"header\"]
 |===
 
 *Name*,*Number*
@@ -240,22 +225,19 @@ James,12
 
 [source,groovy]
 ----
-\[format="csv", options="header"]
+\\[format=\"csv\", options=\"header\"]
 |===
 
 *Name*,*Number*
 Albert,46
 Wilma,1348
 James,12
-\
-|===
+\\\r\n|===
 ----
 
+===== 代码和注释
 
-===== Code and Notes
-
-
-You can define code blocks with the `code` macro:
+您可以使用 `code` 宏定义代码块：
 
 [source,groovy]
 ----
@@ -266,14 +248,14 @@ class Book {
 
 [source,groovy]
 ----
-\{code\}
+\\{code\\}
 class Book {
     String title
 }
-\{code\}
+\\{code\\}
 ----
 
-The example above provides syntax highlighting for Java and Groovy code, but you can also highlight XML markup:
+上面的示例为 Java 和 Groovy 代码提供了语法高亮，但您也可以突出显示 XML 标记：
 
 [source,xml]
 ----
@@ -282,30 +264,28 @@ The example above provides syntax highlighting for Java and Groovy code, but you
 
 [source,groovy]
 ----
-\
-<hello>world</hello>
-\{code\}
+\\\r\n<hello>world</hello>\r\n\\{code\\}
 ----
 
-There are also a couple of macros for displaying notes and warnings:
+还有几个用于显示注释和警告的宏：
 
-Note:
+注意：
 NOTE: This is a note!
 
 [source,groovy]
 ----
-\{note\}
+\\{note\\}
 This is a note!
-\{note\}
+\\{note\\}
 ----
 
-Warning:
+警告：
 
 WARNING: This is a warning!
 
 [source,groovy]
 ----
-\{warning\}
+\\{warning\\}
 This is a warning!
-\{warning\}
+\\{warning\\}
 ----

@@ -1,1 +1,1 @@
-The `Resource` transformation is a quick way to get started, but typically you'll want to customize the controller logic, the rendering of the response or extend the API to include additional actions.
+`Resource` 转换是一个快速入门的方法，但通常您会想要定制控制器逻辑，响应的呈现方式或扩展 API 以包括其他操作。

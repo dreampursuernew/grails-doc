@@ -1,15 +1,12 @@
-Grails controllers support the concept of command objects. A command object is a class that is used in conjunction with link:theWebLayer.html#dataBinding[data binding], usually to allow validation of data that may not fit into an existing domain class.
+Grails 控制器支持命令对象的概念。命令对象是一个类，通常与 link:theWebLayer.html#dataBinding[数据绑定] 结合使用，通常用于验证可能不适合现有领域类的数据。
 
-TIP: A class is only considered to be a command object when it is used as a parameter of an action.
+提示：当一个类被用作操作的参数时，它才被视为命令对象。
 
+声明命令对象
 
-==== Declaring Command Objects
+命令对象类的定义与任何其他类一样。
 
-
-Command object classes are defined just like any other class.
-
-[source,groovy]
-----
+```groovy
 class LoginCommand implements grails.validation.Validateable {
     String username
     String password
@@ -19,14 +16,13 @@ class LoginCommand implements grails.validation.Validateable {
         password(blank: false, minSize: 6)
     }
 }
-----
+```
 
-In this example, the command object class implements the `Validateable` trait. The `Validateable` trait allows the definition of link:validation.html#constraints[Constraints] just like in link:GORM.html[domain classes]. If the command object is defined in the same source file as the controller that is using it, Grails will automatically make it `Validateable`. It is not required that command object classes be validateable.
+在这个例子中，命令对象类实现了`Validateable` trait。`Validateable` trait 允许定义 link:validation.html#constraints[约束]，就像 link:GORM.html[领域类] 中一样。如果命令对象在与正在使用它的控制器相同的源文件中定义，Grails 将自动使其成为`Validateable`。并非命令对象类必须是可验证的。
 
-By default, all `Validateable` object properties which are not instances of `java.util.Collection` or `java.util.Map` are `nullable: false`.  Instances of `java.util.Collection` and `java.util.Map` default to `nullable: true`.  If you want a `Validateable` that has `nullable: true` properties by default, you can specify this by defining a `defaultNullable` method in the class:
+默认情况下，所有不是`java.util.Collection`或`java.util.Map`实例的 `Validateable` 对象属性都是 `nullable: false`。`java.util.Collection`和`java.util.Map`的实例默认为 `nullable: true`。如果要创建具有默认为 `nullable: true` 属性的 `Validateable` 对象，则可以通过在类中定义 `defaultNullable` 方法来指定：
 
-[source,groovy]
-----
+```groovy
 class AuthorSearchCommand implements grails.validation.Validateable {
     String  name
     Integer age
@@ -35,20 +31,17 @@ class AuthorSearchCommand implements grails.validation.Validateable {
         true
     }
 }
-----
+```
 
-In this example, both `name` and `age` will allow null values during validation.
+在这个例子中，`name` 和 `age` 在验证期间将允许空值。
 
+使用命令对象
 
-==== Using Command Objects
+为使用命令对象，控制器操作可以选择性地指定任意数量的命令对象参数。必须提供参数类型，以便 Grails 知道要创建和初始化哪些对象。
 
+在执行控制器操作之前，Grails 将自动创建命令对象类的实例，并通过绑定请求参数来填充其属性。如果命令对象类标记为`Validateable`，则会对命令对象进行验证。例如：
 
-To use command objects, controller actions may optionally specify any number of command object parameters. The parameter types must be supplied so that Grails knows what objects to create and initialize.
-
-Before the controller action is executed Grails will automatically create an instance of the command object class and populate its properties by binding the request parameters.  If the command object class is marked with `Validateable` then the command object will be validated. For example:
-
-[source,groovy]
-----
+```groovy
 class LoginController {
 
     def login(LoginCommand cmd) {
@@ -57,27 +50,24 @@ class LoginController {
             return
         }
 
-        // work with the command object data
+        // 处理命令对象数据
     }
 }
-----
+```
 
-If the command object's type is that of a domain class and there is an `id` request parameter then instead of invoking the domain class constructor to create a new instance a call will be made to the static `get` method on the domain class and the value of the `id` parameter will be passed as an argument.
+如果命令对象的类型是领域类，并且存在 `id` 请求参数，则不会调用领域类构造函数创建一个新实例，而是会调用领域类的静态 `get` 方法，并将 `id` 参数的值作为参数传递。
 
-Whatever is returned from that call to `get` is what will be passed into the controller action.  This means that if there is an `id` request parameter and no corresponding record is found in the database then the value of the command object will be `null`.  If an error occurs retrieving the instance from the database then `null` will be passed as an argument to the controller action and an error will be added the controller's `errors` property.
+无论从`get`方法返回的是什么，都将传递给控制器操作。这意味着，如果存在`id`请求参数，但在数据库中找不到相应记录，则命令对象的值将是 `null`。如果从数据库检索实例时发生错误，则将 `null` 作为参数传递给控制器操作，并将错误添加到控制器的`errors`属性中。
 
-If the command object's type is a domain class and there is no `id` request parameter or there is an `id` request parameter and its value is empty then `null` will be passed into the controller action unless the HTTP request method is "POST", in which case a new instance of the domain class will be created by invoking the domain class constructor.  For all of the cases where the domain class instance is non-null, data binding is only performed if the HTTP request method is "POST", "PUT" or "PATCH".
+如果命令对象的类型是一个领域类，并且没有`id`请求参数，或者有一个`id`请求参数且其值为空，则除非 HTTP 请求方法是“POST”，否则将 `null` 传递给控制器操作，在这种情况下，通过调用领域类构造函数将创建一个新实例。对于领域类实例非空的所有情况，只有在 HTTP 请求方法是“POST”、“PUT”或“PATCH”时才执行数据绑定。
 
+命令对象和请求参数名称
 
-==== Command Objects And Request Parameter Names
+通常，请求参数名称将直接映射到命令对象中的属性名称。可以使用嵌套参数名称以直观方式绑定对象图。
 
+在下面的示例中，名为 `name` 的请求参数将绑定到 `Person` 实例的 `name` 属性，名为 `address.city` 的请求参数将绑定到 `Person` 的 `address` 属性中的 `city` 属性。
 
-Normally request parameter names will be mapped directly to property names in the command object.  Nested parameter names may be used to bind down the object graph in an intuitive way.
-
-In the example below a request parameter named `name` will be bound to the `name` property of the `Person` instance and a request parameter named `address.city` will be bound to the `city` property of the `address` property in the `Person`.
-
-[source,groovy]
-----
+```groovy
 class StoreController {
     def buy(Person buyer) {
         // ...
@@ -92,12 +82,11 @@ class Person {
 class Address {
     String city
 }
-----
+```
 
-A problem may arise if a controller action accepts multiple command objects which happen to contain the same property name.  Consider the following example.
+如果一个控制器操作接受包含相同属性名称的多个命令对象时，可能会出现问题。考虑以下例子。
 
-[source,groovy]
-----
+```groovy
 class StoreController {
     def buy(Person buyer, Product product) {
         // ...
@@ -116,12 +105,11 @@ class Address {
 class Product {
     String name
 }
-----
+```
 
-If there is a request parameter named `name` it isn't clear if that should represent the name of the `Product` or the name of the `Person`.  Another version of the problem can come up if a controller action accepts 2 command objects of the same type as shown below.
+如果有一个名为`name`的请求参数，不清楚它是表示`Product`的名称还是`Person`的名称。如果一个控制器操作接受两个相同类型的命令对象，则可能会出现问题。
 
-[source,groovy]
-----
+```groovy
 class StoreController {
     def buy(Person buyer, Person seller, Product product) {
         // ...
@@ -140,20 +128,17 @@ class Address {
 class Product {
     String name
 }
-----
+```
 
-To help deal with this the framework imposes special rules for mapping parameter names to command object types.  The command object data binding will treat all parameters that begin with the controller action parameter name as belonging to the corresponding command object.
+为了应对这个问题，框架对将参数名称映射到命令对象类型施加了特殊规则。命令对象数据绑定将对所有以控制器操作参数名称开头的参数视为属于相应的命令对象。
 
-For example, the `product.name` request parameter will be bound to the `name` property in the `product` argument, the `buyer.name` request parameter will be bound to the `name` property in the `buyer` argument the `seller.address.city` request parameter will be bound to the `city` property of the `address` property of the `seller` argument, etc...
+例如，`product.name` 请求参数将绑定到 `product` 参数中的 `name` 属性，`buyer.name` 请求参数将绑定到 `buyer` 参数中的 `name` 属性，`seller.address.city` 请求参数将绑定到 `seller` 参数的 `address` 属性的 `city` 属性，等等...
 
+命令对象和依赖注入
 
-==== Command Objects and Dependency Injection
+命令对象可以参与依赖注入。如果您的命令对象具有一些自定义验证逻辑，需要使用 Grails link:services.html[service]，则这将非常有用：
 
-
-Command objects can participate in dependency injection. This is useful if your command object has some custom validation logic which uses a Grails link:services.html[service]:
-
-[source,groovy]
-----
+```groovy
 class LoginCommand implements grails.validation.Validateable {
 
     def loginService
@@ -167,19 +152,15 @@ class LoginCommand implements grails.validation.Validateable {
         }
     }
 }
-----
+```
 
-In this example the command object interacts with the `loginService` bean which is injected by name from the Spring `ApplicationContext`.
+在这个例子中，命令对象与从 Spring `ApplicationContext` 中按名称注入的 `loginService` bean 交互。
 
+将请求体绑定到命令对象
 
-==== Binding The Request Body To Command Objects
+当向接受命令对象的控制器操作发出请求且请求包含主体时，Grails 将尝试基于请求内容类型解析请求体，并使用该主体对命令对象进行数据绑定。请参考下面的例子。
 
-
-When a request is made to a controller action which accepts a command object and the request contains a body, Grails will attempt to parse the body of the request based on the request content type and use the body to do data binding on the command object.  See the following example.
-
-[source,groovy]
-.grails-app/controllers/bindingdemo/DemoController.groovy
-----
+```groovy
 package bindingdemo
 
 class DemoController {
@@ -193,59 +174,33 @@ class Widget {
     String name
     Integer size
 }
-----
+```
 
-[source,bash]
-----
+```bash
 $ curl -H "Content-Type: application/json" -d '{"name":"Some Widget","42"}'[size] localhost:8080/demo/createWidget
  Name: Some Widget, Size: 42
 
 $ curl -H "Content-Type: application/xml" -d '<widget><name>Some Other Widget</name><size>2112</size></widget>' localhost:8080/bodybind/demo/createWidget
  Name: Some Other Widget, Size: 2112
-----
+```
 
-[NOTE]
-====
-The request body will not be parsed under the following conditions:
+【注意】
+请求体将不会在以下情况下解析：
+- 请求方法是 GET
+- 请求方法是 DELETE
+- 内容长度为 0
 
-    * The request method is GET
-    * The request method is DELETE
-    * The content length is 0
-====
+请注意，请求体正在解析以使其工作。之后任何尝试读取请求体的操作都将失败，因为相应的输入流将为空。控制器操作可以使用命令对象，也可以自行解析请求体（直接或通过引用诸如 request.JSON 之类的内容），但不能同时执行两者。
 
-Note that the body of the request is being parsed to make that work.  Any attempt to read the body of the request after that will fail since the corresponding input stream will be empty.  The controller action can either use a command object or it can parse the body of the request on its own (either directly, or by referring to something like request.JSON), but cannot do both.
+处理命令对象列表
 
-[source,groovy]
-.grails-app/controllers/bindingdemo/DemoController.groovy
-----
-package bindingdemo
+命令对象的常见用例是包含另一个集合的命令对象：
 
-class DemoController {
-
-    def createWidget(Widget w) {
-        // this will fail because it requires reading the body,
-        // which has already been read.
-        def json = request.JSON
-
-        // ...
-
-    }
-}
-----
-
-
-==== Working with Lists of Command Objects
-
-
-A common use case for command objects is a Command Object that contains a collection of another:
-
-[source,groovy]
-----
+```groovy
 class DemoController {
 
     def createAuthor(AuthorCommand command) {
         // ...
-
     }
 
     class AuthorCommand {
@@ -258,14 +213,13 @@ class DemoController {
         String isbn
     }
 }
-----
+```
 
-On this example, we want to create an Author with multiple Books.
+在此示例中，我们要创建一个带有多个书籍的作者。
 
-In order to make this work from the UI layer, you can do the following in your GSP:
+为了使此操作从UI层正常工作，可以在您的 GSP 中执行以下操作：
 
-[source,xml]
-----
+```xml
 <g:form name="submit-author-books" controller="demo" action="createAuthor">
     <g:fieldValue name="fullName" value=""/>
     <ul>
@@ -280,12 +234,11 @@ In order to make this work from the UI layer, you can do the following in your G
         </li>
     </ul>
 </g:form>
-----
+```
 
-There is also support for JSON, so you can submit the following with correct databinding
+还支持 JSON，因此您可以提交以下内容以正确地绑定数据：
 
-[source,json]
-----
+```json
 {
     "fullName": "Graeme Rocher",
     "books": [{
@@ -296,4 +249,4 @@ There is also support for JSON, so you can submit the following with correct dat
         "isbn": "1111-343455-1112"
     }],
 }
-----
+```

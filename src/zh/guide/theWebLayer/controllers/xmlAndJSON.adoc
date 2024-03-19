@@ -1,10 +1,8 @@
+使用render方法输出XML
 
-==== Using the render method to output XML
+Grails支持几种不同的方式来生成XML和JSON响应。首先是link:../ref/Controllers/render.html[render]方法。
 
-
-Grails supports a few different ways to produce XML and JSON responses. The first is the link:../ref/Controllers/render.html[render] method.
-
-The `render` method can be passed a block of code to do mark-up building in XML:
+`render`方法可以传递一个代码块，用于在XML中构建标记：
 
 [source,groovy]
 ----
@@ -22,7 +20,7 @@ def list() {
 }
 ----
 
-The result of this code would be something like:
+这段代码的结果类似于：
 
 [source,xml]
 ----
@@ -32,13 +30,13 @@ The result of this code would be something like:
 </books>
 ----
 
-Be careful to avoid naming conflicts when using mark-up building. For example this code would produce an error:
+在使用标记构建时要小心避免命名冲突。例如，这段代码将会产生错误：
 
 [source,groovy]
 ----
 def list() {
 
-    def books = Book.list()  // naming conflict here
+    def books = Book.list()  //这里存在命名冲突
 
     render(contentType: "text/xml") {
         books {
@@ -50,4 +48,4 @@ def list() {
 }
 ----
 
-This is because there is local variable `books` which Groovy attempts to invoke as a method.
+这是因为有一个本地变量`books`，Groovy尝试将其作为一个方法调用。

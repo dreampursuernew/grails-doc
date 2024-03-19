@@ -1,33 +1,30 @@
-It is also possible to register named configurations. For example:
+也可以注册具有名称的配置。例如：
 
-[source,groovy]
-----
+```groovy
 XML.createNamedConfig('publicApi') {
   it.registerObjectMarshaller(Book) { Book book, XML xml ->
-    // do public API
+    // 执行公共API
   }
 }
 XML.createNamedConfig('adminApi') {
   it.registerObjectMarshaller(Book) { Book book, XML xml ->
-    // do admin API
+    // 执行管理员API
   }
 }
-----
+```
 
-Then when you use either the `render` or `respond` methods you can wrap the call in a named configuration if necessary to customize rendering per request:
+然后，当您使用`render`或`respond`方法时，如果需要自定义每个请求的呈现方式，可以将调用包装在一个命名配置中：
 
-[source,groovy]
-----
+```groovy
 XML.use( isAdmin ? 'adminApi' : 'publicApi') {
     render book as XML
 }
-----
+```
 
-or
+或者
 
-[source,groovy]
-----
+```groovy
 XML.use( isAdmin ? 'adminApi' : 'publicApi') {
     respond book 
 }
-----
+```

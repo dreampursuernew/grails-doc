@@ -1,7 +1,6 @@
-To map a domain class with annotations, create a new class in `src/main/groovy/` and use the annotations defined as part of the EJB 3.0 spec (for more info on this see the http://annotations.hibernate.org/[Hibernate Annotations Docs]):
+要使用注解来映射一个域类，需要在`src/main/groovy/`中创建一个新的类，并使用作为EJB 3.0规范的一部分定义的注解（有关更多信息，请参阅http://annotations.hibernate.org/[Hibernate Annotations Docs]）：
 
-[source,groovy]
-----
+```groovy
 package com.books;
 
 import javax.persistence.Entity;
@@ -41,21 +40,21 @@ public class Book {
         this.description = description;
     }
 }
-----
+```
 
-Then register the class with the Hibernate `sessionFactory` by adding relevant entries to the `grails-app/conf/hibernate.cfg.xml` file as follows:
+然后通过向`grails-app/conf/hibernate.cfg.xml`文件添加相关条目来使用Hibernate的`sessionFactory`注册类，如下所示：
 
-[source,xml]
-----
+```xml
 <!DOCTYPE hibernate-configuration SYSTEM
-  "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+  \"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd\">
 <hibernate-configuration>
     <session-factory>
-        <mapping package="com.books" />
-        <mapping class="com.books.Book" />
+        <mapping package=\"com.books\" />
+        <mapping class=\"com.books.Book\" />
     </session-factory>
 </hibernate-configuration>
-----
-See the previous section for more information on the `hibernate.cfg.xml` file.
+```
 
-When Grails loads it will register the necessary dynamic methods with the class. To see what else you can do with a Hibernate domain class see the section on link:scaffolding.html[scaffolding].
+有关`hibernate.cfg.xml`文件的更多信息，请参阅上一节。
+
+当Grails加载时，它将为类注册必要的动态方法。要查看Hibernate域类的其他用途，请参阅关于link:scaffolding.html[scaffolding]的部分。

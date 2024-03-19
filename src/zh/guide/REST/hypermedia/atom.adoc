@@ -1,7 +1,6 @@
-http://tools.ietf.org/html/rfc4287[Atom] is another standard interchange format used to implement REST APIs. An example of Atom output can be seen below:
+[Atom]是另一种标准的交换格式，用于实现REST API。下面是一个Atom输出的示例：
 
-[source,xml]
-----
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
@@ -22,15 +21,14 @@ http://tools.ietf.org/html/rfc4287[Atom] is another standard interchange format 
  </entry>
 
 </feed>
-----
+```
 
-To use Atom rendering again simply define a custom renderer:
+要再次使用Atom渲染，只需定义一个自定义渲染器：
 
-[source,groovy]
-----
+```groovy
 import grails.rest.render.atom.*
 beans = {
     halBookRenderer(AtomRenderer, rest.test.Book)
     halBookListRenderer(AtomCollectionRenderer, rest.test.Book)
 }
-----
+```

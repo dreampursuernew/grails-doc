@@ -1,6 +1,6 @@
-Calling Grails REST services - as well as third-party services - is very straightforward using the https://docs.micronaut.io/latest/guide/index.html#httpClient[Micronaut HTTP Client]. This HTTP client has both a low-level API and a higher level AOP-driven API, making it useful for both simple requests as well as building declarative, type-safe API layers.
+使用https://docs.micronaut.io/latest/guide/index.html#httpClient[Micronaut HTTP Client]调用Grails REST服务以及第三方服务非常简单。这个HTTP客户端具有低级API和基于AOP驱动的高级API，可用于简单请求以及构建声明性、类型安全的API层。
 
-To use the Micronaut HTTP client you must have the `micronaut-http-client` dependency on your classpath. Add the following dependency to your `build.gradle` file.
+要使用Micronaut HTTP客户端，必须在类路径上具有`micronaut-http-client`依赖项。将以下依赖项添加到您的`build.gradle`文件中。
 
 .build.gradle
 [source,groovy]
@@ -8,15 +8,15 @@ To use the Micronaut HTTP client you must have the `micronaut-http-client` depen
 implementation 'io.micronaut:micronaut-http-client'
 ----
 
-==== Low-level API
+低级API
 
-The https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[HttpClient] interface forms the basis for the low-level API. This interfaces declares methods to help ease executing HTTP requests and receive responses.
+https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[HttpClient]接口构成了低级API的基础。该接口声明了一些方法来帮助执行HTTP请求和接收响应。
 
-The majority of the methods in the `HttpClient` interface returns Reactive Streams Publisher instances, and a sub-interface called RxHttpClient is included that provides a variation of the HttpClient interface that returns RxJava Flowable types. When using `HttpClient` in a blocking flow, you may wish to call `toBlocking()` to return an instance of https://docs.micronaut.io/latest/api/io/micronaut/http/client/BlockingHttpClient.html[BlockingHttpClient].
+`HttpClient`接口中的大多数方法返回响应式流发布器实例，还包括一个名为RxHttpClient的子接口，提供返回RxJava Flowable类型的HttpClient接口的变体。在阻塞流中使用`HttpClient`时，可能需要调用`toBlocking()`来返回https://docs.micronaut.io/latest/api/io/micronaut/http/client/BlockingHttpClient.html[BlockingHttpClient]的实例。
 
-There are a few ways by which you can obtain a reference to a https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[HttpClient]. The most simple way is using the https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html#create-java.net.URL-[create] method
+有几种方式可以获取引用https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[HttpClient]。最简单的方法是使用https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html#create-java.net.URL-[create]方法。
 
-.Creating an HTTP client
+创建HTTP客户端
 [source, groovy]
 ----
     List<Album> searchWithApi(String searchTerm) {
@@ -35,15 +35,15 @@ There are a few ways by which you can obtain a reference to a https://docs.micro
         searchResult.results
     }
 ----
-<1> Create a new instance of `HttpClient` with the `create` method, and convert to an instance of `BlockingHttpClient` with `toBlocking()`,
-<2> The client should be closed using the `close` method to prevent thread leaking.
-<3> Jackson's https://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html[ObjectMapper] API can be used to map the raw JSON to POGOs, in this case `SearchResult`
+<1> 使用`create`方法创建`HttpClient`的新实例，并使用`toBlocking()`转换为`BlockingHttpClient`的实例，
+<2> 应使用`close`方法关闭客户端以防止线程泄漏。
+<3> Jackson的https://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html[ObjectMapper] API可用于将原始JSON映射到POGOs，在本例中为`SearchResult`。
 
-Consult the https://docs.micronaut.io/latest/guide/index.html#lowLevelHttpClient[Http Client section] of the https://docs.micronaut.io/latest/guide/index.html[Micronaut user guide] for more information on using the `HttpClient` low-level API.
+有关使用`HttpClient`低级API的更多信息，请查阅https://docs.micronaut.io/latest/guide/index.html#lowLevelHttpClient[Http Client部分]的https://docs.micronaut.io/latest/guide/index.html[Micronaut用户指南]。
 
-==== Declarative API
+声明性API
 
-A declarative HTTP client can be written by adding the https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html[`@Client`] annotation to any interface or abstract class. Using Micronaut's AOP support (see the Micronaut user guide section on https://docs.micronaut.io/latest/guide/index.html#introductionAdvice[Introduction Advice]), the abstract or interface methods will be implemented for you at compilation time as HTTP calls. Declarative clients can return data-bound POGOs (or POJOs) without requiring special handling from the calling code.
+通过将https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html[`@Client`]注解添加到任何接口或抽象类，可以编写声明性HTTP客户端。利用Micronaut的AOP支持（请参阅https://docs.micronaut.io/latest/guide/index.html#introductionAdvice[Introduction Advice]中的Micronaut用户指南部分），抽象或接口方法将在编译时作为HTTP调用实现。声明性客户端可返回数据绑定的POGOs（或POJOs），无需调用代码进行特殊处理。
 
 [source,groovy]
 ----
@@ -62,9 +62,9 @@ interface GrailsAppForgeClient {
 
 ----
 
-Note that HTTP client methods are annotated with the appropriate HTTP method, such as `@Get` or `@Post`.
+请注意，HTTP客户端方法使用适当的HTTP方法进行注解，例如`@Get`或`@Post`。
 
-To use a client like the one in the above example, simply inject an instance of the client into any bean using the `@Autowired` annotation.
+要使用上面示例中的客户端，只需使用`@Autowired`注解将客户端的实例注入到任何Bean中。
 
 [source,groovy]
 ----
@@ -75,4 +75,4 @@ To use a client like the one in the above example, simply inject an instance of 
     }
 ----
 
-For more details on writing and using declarative clients, consult the https://docs.micronaut.io/latest/guide/index.html#clientAnnotation[Http Client section] of the https://docs.micronaut.io/latest/guide/index.html[Micronaut user guide].
+有关编写和使用声明性客户端的更多详细信息，请参阅https://docs.micronaut.io/latest/guide/index.html#clientAnnotation[Http Client部分]的https://docs.micronaut.io/latest/guide/index.html[Micronaut用户指南]。

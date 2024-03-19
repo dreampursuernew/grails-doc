@@ -1,16 +1,14 @@
-If you are using the REST application, then the JSON views plugin will already be included and you can skip the remainder of this section. Otherwise you will need to modify your `build.gradle` to include the necessary plugin to activate JSON views:
+如果您正在使用REST应用程序，那么JSON视图插件将已经包含在内，您可以跳过本节的其余部分。否则，您需要修改您的 `build.gradle` 文件以包含必要的插件来激活JSON视图：
 
-[source,groovy]
-----
-implementation 'org.grails.plugins:views-json:1.0.0' // or whatever is the latest version
-----
+```groovy
+implementation 'org.grails.plugins:views-json:1.0.0' // 或者最新版本
+```
 
-TIP: The https://github.com/grails/grails-views[source code repository for JSON views] can be found on Github if you are looking for more documentation and contributions
+提示：如果您需要更多文档和贡献，可以在Github上找到用于JSON视图的源代码仓库：
 
-In order to compile JSON views for production deployment you should also activate the Gradle plugin by first modifying the `buildscript` block:
+要为生产部署编译JSON视图，您还需要首先修改 `buildscript` 块来激活Gradle插件：
 
-[source,groovy]
-----
+```groovy
 buildscript {
     ...
     dependencies {
@@ -18,15 +16,14 @@ buildscript {
         classpath "org.grails.plugins:views-gradle:1.0.0"
     }
 }
-----
+```
 
-Then apply the `org.grails.plugins.views-json` Gradle plugin after any Grails core gradle plugins:
+然后在任何Grails核心gradle插件之后应用 `org.grails.plugins.views-json` Gradle插件：
 
-[source,groovy]
-----
+```groovy
 ...
 apply plugin: "org.grails.grails-web"
 apply plugin: "org.grails.plugins.views-json"
-----
+```
 
-This will add a `compileGsonViews` task to Gradle, which is invoked prior to creating the production JAR or WAR file.
+这将在Gradle中添加一个 `compileGsonViews` 任务，在创建生产JAR或WAR文件之前调用。

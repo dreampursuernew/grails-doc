@@ -1,29 +1,26 @@
-Grails apps can be deployed to a Servlet Container or Application Server.
+Grails应用可以部署到一个Servlet容器或应用服务器。
 
+WAR文件
 
-=== WAR file
+在生产环境中，部署Grails应用的常见方法是通过WAR文件部署到现有的Servlet容器。容器允许在同一个端口上部署多个应用程序，但路径不同。
 
+创建一个WAR文件就像执行链接：../ref/Command%20Line/war.html[war]命令一样简单：
 
-A common approach to Grails application deployment in production is to deploy to an existing Servlet container via a WAR file. Containers allow multiple applications to be deployed on the same port with different paths.
-
-Creating a WAR file is as simple as executing the link:../ref/Command%20Line/war.html[war] command:
-
-[source,groovy]
+[源，Groovy]
 ----
 grails war
 ----
 
-This will produce a WAR file that can be deployed to a container, in the `build/libs` directory.
+这将生成一个WAR文件，可以部署到`build/libs`目录中的容器中。
 
-Note that by default Grails will include an embeddable version of Tomcat inside the WAR file so that it is runnable (see the previous section), this can cause problems if you deploy to a different version of Tomcat. If you don't intend to use the embedded container then you should either remove the Tomcat dependencies or change the scope to `testImplementation` prior to deploying to your production container in `build.gradle`:
+请注意，默认情况下，Grails会在WAR文件中包含一个可嵌入的Tomcat版本，以便可以运行（参见上一节），如果您部署到不同版本的Tomcat可能会引发问题。如果您不打算使用嵌入式容器，则应在部署到生产容器之前在`build.gradle`中删除Tomcat依赖项或将范围改为`testImplementation`：
 
-[source,groovy]
+[源，Groovy]
 ----
-testImplementation "org.springframework.boot:spring-boot-starter-tomcat"
+testImplementation \"org.springframework.boot:spring-boot-starter-tomcat\"
 ----
 
 
+应用服务器
 
-== Application servers
-
-The Grails framework requires that runtime containers support Servlet 3.0 and above. By default, Grails framework applications are bundled with an embeddable Tomcat and testing is primarily done with Tomcat.  Any servlet container meeting the minimum requirements should be able to run Grails framework applications, but some workarounds may be required for container-specific bugs or configurations.
+Grails框架要求运行时容器支持Servlet 3.0及以上。默认情况下，Grails框架应用程序捆绑有一个可嵌入的Tomcat，并且主要使用Tomcat进行测试。任何满足最低要求的servlet容器都应该能够运行Grails框架应用程序，但某些特定于容器的错误或配置可能需要一些解决方法。

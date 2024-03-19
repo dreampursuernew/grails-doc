@@ -1,16 +1,16 @@
-Grails supports the notion of property placeholder configuration through an extended version of Spring's {springapi}org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[PropertyPlaceholderConfigurer].
+Grails通过扩展版的Spring的{springapi}org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[PropertyPlaceholderConfigurer]来支持属性占位符配置的概念。
 
-Settings defined in either {groovyapi}groovy/util/ConfigSlurper.html[ConfigSlurper] scripts or Java properties files can be used as placeholder values for Spring configuration in `grails-app/conf/spring/resources.xml` and `grails-app/conf/spring/resources.groovy`. For example given the following entries in `grails-app/conf/application.groovy` (or an externalized config):
+在`grails-app/conf/spring/resources.xml`和`grails-app/conf/spring/resources.groovy`中，可以使用在{groovyapi}groovy/util/ConfigSlurper.html[ConfigSlurper]脚本或Java属性文件中定义的设置作为Spring配置的占位值。例如，在`grails-app/conf/application.groovy`中（或外部化配置文件）定义以下条目：
 
-[source,groovy]
+[source, groovy]
 ----
 database.driver="com.mysql.jdbc.Driver"
 database.dbname="mysql:mydb"
 ----
 
-You can then specify placeholders in `resources.xml` as follows using the familiar ${..} syntax:
+然后在`resources.xml`中使用熟悉的${..}语法指定占位符，如下所示：
 
-[source,xml]
+[source, xml]
 ----
 <bean id="dataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -23,9 +23,9 @@ You can then specify placeholders in `resources.xml` as follows using the famili
  </bean>
 ----
 
-To specify placeholders in `resources.groovy` you need to use single quotes:
+要在`resources.groovy`中指定占位符，需要使用单引号：
 
-[source,groovy]
+[source, groovy]
 ----
 dataSource(org.springframework.jdbc.datasource.DriverManagerDataSource) {
     driverClassName = '${database.driver}'
@@ -33,16 +33,16 @@ dataSource(org.springframework.jdbc.datasource.DriverManagerDataSource) {
 }
 ----
 
-This sets the property value to a literal string which is later resolved against the config by Spring's PropertyPlaceholderConfigurer.
+这将属性值设置为一个文本字符串，稍后由Spring的PropertyPlaceholderConfigurer解析。
 
-A better option for `resources.groovy` is to access properties through the `grailsApplication` variable:
+在`resources.groovy`中更好的选项是通过`grailsApplication`变量访问属性：
 
-[source,groovy]
+[source, groovy]
 ----
 dataSource(org.springframework.jdbc.datasource.DriverManagerDataSource) {
     driverClassName = grailsApplication.config.getProperty('database.driver', String)
-    url = "jdbc\:${grailsApplication.config.getProperty('database.dbname', String)}"
+    url = "jdbc\\:${grailsApplication.config.getProperty('database.dbname', String)}"
 }
 ----
 
-Using this approach will keep the types as defined in your config.
+使用这种方法将保留在配置中定义的类型。

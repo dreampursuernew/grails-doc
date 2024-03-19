@@ -1,30 +1,25 @@
+====基础知识
 
-==== The Basics
+Grails插件允许您在运行时向任何Grails管理或其他类注册动态方法。这项工作是在`doWithDynamicMethods`方法中完成的。
 
+注意：请注意，Grails 3.x具有更新的功能，如可从使用`CompileStatic`编译的代码中使用的特征。建议仅在无法使用特征的情况下添加动态行为。
 
-Grails plugins let you register dynamic methods with any Grails-managed or other class at runtime. This work is done in a `doWithDynamicMethods` method.
-
-NOTE: Note that Grails 3.x features newer features such as traits that are usable from code compiled with `CompileStatic`. It is recommended that dynamic behavior is only added for cases that are not possible with traits.
-
-[source,groovy]
-----
+```groovy
 class ExamplePlugin extends Plugin {
     void doWithDynamicMethods() {
         for (controllerClass in grailsApplication.controllerClasses) {
-             controllerClass.metaClass.myNewMethod = {-> println "hello world" }
+            controllerClass.metaClass.myNewMethod = {-> println "hello world" }
         }
     }
 }
-----
+```
 
-In this case we use the implicit application object to get a reference to all of the controller classes' MetaClass instances and add a new method called `myNewMethod` to each controller. If you know beforehand the class you wish the add a method to you can simply reference its `metaClass` property.
+在这种情况下，我们使用隐式应用程序对象来获取所有控制器类的MetaClass实例的引用，并为每个控制器添加一个名为`myNewMethod`的新方法。如果您事先知道要向其添加方法的类，则可以简单地引用其`metaClass`属性。
 
-For example we can add a new method `swapCase` to `java.lang.String`:
+例如，我们可以向`java.lang.String`添加一个新方法`swapCase`：
 
-[source,groovy]
-----
-class ExamplePlugin extends Plugin  {
-
+```groovy
+class ExamplePlugin extends Plugin {
     @Override
     void doWithDynamicMethods() {
         String.metaClass.swapCase = {->
@@ -40,19 +35,16 @@ class ExamplePlugin extends Plugin  {
         assert "UpAndDown" == "uPaNDdOWN".swapCase()
     }
 }
-----
+```
 
+与应用程序上下文交互
 
-==== Interacting with the ApplicationContext
+`doWithDynamicMethods`闭包会传递Spring `ApplicationContext`实例。这很有用，因为它允许您与其中的对象进行交互。例如，如果您正在实现一个与Hibernate交互的方法，则可以在`SessionFactory`实例与`HibernateTemplate`的组合中使用它：
 
-
-The `doWithDynamicMethods` closure gets passed the Spring `ApplicationContext` instance. This is useful as it lets you interact with objects within it. For example if you were implementing a method to interact with Hibernate you could use the `SessionFactory` instance in combination with a `HibernateTemplate`:
-
-[source,groovy]
-----
+```groovy
 import org.springframework.orm.hibernate3.HibernateTemplate
 
-class ExampleHibernatePlugin extends Plugin{
+class ExampleHibernatePlugin extends Plugin {
 
    void doWithDynamicMethods() {
 
@@ -66,12 +58,11 @@ class ExampleHibernatePlugin extends Plugin{
        }
    }
 }
-----
+```
 
-Also because of the autowiring and dependency injection capability of the Spring container you can implement more powerful dynamic constructors that use the application context to wire dependencies into your object at runtime:
+另外，由于Spring容器的自动装配和依赖注入功能，您可以实现更强大的动态构造函数，这些构造函数使用应用程序上下文在运行时将依赖项连接到对象中：
 
-[source,groovy]
-----
+```groovy
 class MyConstructorPlugin {
 
     void doWithDynamicMethods()
@@ -82,6 +73,7 @@ class MyConstructorPlugin {
          }
     }
 }
-----
+```
 
-Here we actually replace the default constructor with one that looks up prototyped Spring beans instead!
+在这里，我们实际上用查找原型Spring bean替换了默认构造函数！
+```

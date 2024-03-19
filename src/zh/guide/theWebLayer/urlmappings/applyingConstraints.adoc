@@ -1,39 +1,35 @@
-URL Mappings also support Grails' unified link:validation.html#constraints[validation constraints] mechanism, which lets you further "constrain" how a URL is matched. For example, if we revisit the blog sample code from earlier, the mapping currently looks like this:
+URL映射还支持Grails的统一链接：验证.html＃constraints[验证约束]机制，让您进一步“约束”如何匹配URL。例如，如果我们重新查看之前的博客示例代码，映射当前看起来像这样：
 
-[source,groovy]
-----
+```groovy
 static mappings = {
    "/$blog/$year?/$month?/$day?/$id?"(controller:"blog", action:"show")
 }
-----
+```
 
-This allows URLs such as:
+这允许诸如以下URL：
 
-[source]
-----
+```
 /graemerocher/2007/01/10/my_funky_blog_entry
-----
+```
 
-However, it would also allow:
+但是，它还允许以下内容：
 
-[source]
-----
+```
 /graemerocher/not_a_year/not_a_month/not_a_day/my_funky_blog_entry
-----
+```
 
-This is problematic as it forces you to do some clever parsing in the controller code. Luckily, URL Mappings can be constrained to further validate the URL tokens:
+这是有问题的，因为它强迫您在控制器代码中进行一些巧妙的解析。幸运的是，URL映射可以被约束以进一步验证URL标记：
 
-[source,groovy]
-----
+```groovy
 "/$blog/$year?/$month?/$day?/$id?" {
-     controller = "blog"
-     action = "show"
-     constraints {
-          year(matches:/\\\d{4}/)
-          month(matches:/\\\d{2}/)
-          day(matches:/\\\d{2}/)
-     }
+    controller = "blog"
+    action = "show"
+    constraints {
+        year(matches:/\d{4}/)
+        month(matches:/\d{2}/)
+        day(matches:/\d{2}/)
+    }
 }
-----
+```
 
-In this case the constraints ensure that the `year`, `month` and `day` parameters match a particular valid pattern thus relieving you of that burden later on.
+在这种情况下，约束确保`year`，`month`和`day`参数与特定的有效模式匹配，从而在以后解除您的负担。

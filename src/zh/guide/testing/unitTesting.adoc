@@ -1,26 +1,24 @@
-Unit testing are tests at the "unit" level. In other words you are testing individual methods or blocks of code without consideration for surrounding infrastructure. Unit tests are typically run without the presence of physical resources that involve I/O such as databases, socket connections or files. This is to ensure they run as quick as possible since quick feedback is important.
+单元测试是在“单元”级别进行的测试。换句话说，您正在测试单个方法或代码块，而不考虑周围的基础设施。单元测试通常在没有涉及I/O（例如数据库、套接字连接或文件）的物理资源的情况下运行。这是为了确保它们尽可能快地运行，因为快速反馈很重要。
 
+自Grails 3.3起，所有单元测试均使用https://testing.grails.org[Grails测试支持框架]。该支持提供了一组trait。以下是一个示例“hello world”测试：
 
-Since Grails 3.3, the https://testing.grails.org[Grails Testing Support Framework] is used for all unit tests. This support provides a set of traits. An example hello world test can be seen below:
-
-[source,groovy]
+[source，groovy]
 ----
 import spock.lang.Specification
 import grails.testing.web.controllers.ControllerUnitTest
 
 class HelloControllerTests extends Specification implements ControllerUnitTest<HelloController> {
 
-    void "Test message action"() {
-        when:"The message action is invoked"
+    void "测试消息操作"() {
+        when:"调用消息操作"
         controller.message()
 
-        then:"Hello is returned"
+        then:"返回Hello"
         response.text == 'Hello'
     }
 }
 ----
 
-For more information on writing tests with Grails Testing Support see the https://testing.grails.org[dedicated documentation].
+有关使用Grails测试支持编写测试的更多信息，请参见https://testing.grails.org[专用文档]。
 
-
-Versions of Grails below 3.2 used the https://grails-plugins.github.io/grails-test-mixin-plugin/latest/guide/index.html[Grails Test Mixin Framework] which was based on the `@TestMixin` AST transformation. This library has been superceded by the simpler and more IDE friendly trait based implementation.
+在Grails 3.2以下的版本中，使用基于`@TestMixin` AST转换的https://grails-plugins.github.io/grails-test-mixin-plugin/latest/guide/index.html[Grails测试混合框架]。这个库已被更简单、更适合IDE的trait实现取代。

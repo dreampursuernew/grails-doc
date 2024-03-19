@@ -1,7 +1,6 @@
-You can define templates starting with underscore `_`. For example given the following template called `_person.gson`:
+您可以使用下划线 `_` 开头来定义模板。例如，给定以下名为 `_person.gson` 的模板：
 
-[source,groovy]
-----
+```groovy
 model {
     Person person
 }
@@ -9,12 +8,11 @@ json {
     name person.name
     age person.age
 }
-----
+```
 
-You can render it with a view as follows:
+您可以通过以下方式使用视图来渲染它：
 
-[source,groovy]
-----
+```groovy
 model {
     Family family
 }
@@ -24,19 +22,18 @@ json {
     oldestChild g.render(template:"person", model:[person: family.children.max { Person p -> p.age } ])
     children g.render(template:"person", collection: family.children, var:'person')
 }
-----
+```
 
-Alternatively for a more concise way to invoke templates, using the tmpl variable:
+或者，为了更简洁地调用模板，可以使用 tmpl 变量：
 
-[source,groovy]
-----
+```groovy
 model {
     Family family
 }
 json {
     name family.father.name
     age family.father.age
-    oldestChild tmpl.person( family.children.max { Person p -> p.age } ] )
+    oldestChild tmpl.person( family.children.max { Person p -> p.age } )
     children tmpl.person( family.children )
 }
-----
+```

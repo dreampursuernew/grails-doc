@@ -1,51 +1,43 @@
+=== 声明性事务
 
-=== Declarative Transactions
+服务通常涉及在领域类之间协调逻辑，因此经常涉及涉及跨大型操作的持久性。 鉴于服务的性质，它们经常需要事务行为。 您可以使用编程式事务和 `withTransaction` 方法，但这是重复的，无法充分利用Spring的底层事务抽象的功能。
 
+服务使事务划分变得可能，这是一种声明性定义哪些方法将被作为事务进行的方法。 要在服务上启用事务，请使用`Transactional`变换：
 
-Services are typically involved with coordinating logic between link:GORM.html[domain classes], and hence often involved with persistence that spans large operations. Given the nature of services, they frequently require transactional behaviour. You can use programmatic transactions with the link:../ref/Domain%20Classes/withTransaction.html[withTransaction] method, however this is repetitive and doesn't fully leverage the power of Spring's underlying transaction abstraction.
-
-Services enable transaction demarcation, which is a declarative way of defining which methods are to be made transactional. To enable transactions on a service use the `Transactional` transform:
-
-[source,groovy]
-----
+```groovy
 import grails.gorm.transactions.*
 
 @Transactional
 class CountryService {
 
 }
-----
+```
 
-The result is that all methods are wrapped in a transaction and automatic rollback occurs if a method throws an exception (both Checked or Runtime exceptions) or an Error. The propagation level of the transaction is by default set to {springapi}org/springframework/transaction/TransactionDefinition.html#PROPAGATION_REQUIRED[PROPAGATION_REQUIRED]. 
+结果是所有方法都被包装在一个事务中，并且如果一个方法抛出异常（无论是受检异常还是运行时异常）或错误，则会自动回滚。 事务的传播级别默认设置为`PROPAGATION_REQUIRED`。
 
-WARNING: Version Grails 3.2.0 was the first version to use GORM 6 by default. Checked exceptions did not roll back transactions before GORM 6. Only a method which threw a runtime exception (i.e. one that extends RuntimeException) rollbacked a transaction.
+警告：Grails 3.2.0版本是默认使用GORM 6的第一个版本。 在GORM 6之前，受检异常不会回滚事务。 只有抛出运行时异常（即继承自RuntimeException的异常）的方法会回滚事务。
 
-WARNING: Warning: <<dependencyInjectionServices,dependency injection>> is the *only* way that declarative transactions work. You will not get a transactional service if you use the `new` operator such as `new BookService()`
+警告：警告：`依赖注入服务`是声明性事务起作用的 *唯一* 方式。 如果您使用`new`操作符（如`new BookService()`），则不会得到一个事务性服务。
 
+=== Transactional注解与transactional属性
 
-==== The Transactional annotation vs the transactional property
+在Grails 3.1之前的版本中，Grails创建了Spring代理并使用`transactional`属性来启用和禁用代理创建。 在Grails 3.1及以上版本中，这些代理默认情况下被禁用，而更倾向于使用`@Transactional`变换。
 
+在Grails 3.1.x和3.2.x版本中，如果您希望重新启用此功能（不建议），则必须将`grails.spring.transactionManagement`设置为true，或者从`grails-app/conf/application.yml`或`grails-app/conf/application.groovy`中删除配置。
 
-In versions of Grails prior to Grails 3.1, Grails created Spring proxies and used the `transactional` property to enable and disable proxy creation. These proxies are disabled by default in applications created with Grails 3.1 and above in favor of the `@Transactional` transformation.
+在Grails 3.3.x中，完全放弃了用于事务管理的Spring代理，必须使用Grails的AST转换。 在Grails 3.3.x中，如果您希望继续使用Spring代理进行事务管理，必须手动配置它们，使用适当的Spring配置。
 
-For versions of Grails 3.1.x and 3.2.x, if you wish to renable this feature (not recommended) then you must set `grails.spring.transactionManagement` to true or remove the configuration in `grails-app/conf/application.yml` or `grails-app/conf/application.groovy`.
+注意：此外，在Grails 3.1之前，默认情况下服务是事务性的，从Grails 3.1开始，只有在应用`@Transactional`变换时才会使用事务。
 
-In Grails 3.3.x  Spring proxies for transaction management has been dropped completely, and you must use Grails' AST transforms. In Grails 3.3.x, if you wish to continue to use Spring proxies for transaction management you will have to configure them manually, using the appropriate Spring configuration.
+=== 自定义事务配置
 
-NOTE: In addition, prior to Grails 3.1 services were transactional by default, as of Grails 3.1 they are only transactional if the `@Transactional` transformation is applied.
+Grails还提供了`@Transactional`和`@NotTransactional`注解，用于在每个方法级别更精细地控制事务，或者需要指定替代的传播级别的情况。 例如，`@NotTransactional`注解可用于标记在类标记为`@Transactional`时要跳过的特定方法。
 
+注意：对服务方法使用`Transactional`注解会禁用该服务的默认Grails事务行为（就像添加`transactional=false`一样），因此如果您使用任何注解，则必须为所有需要事务的方法添加注释。
 
-=== Custom Transaction Configuration
+在这个例子中，`listBooks`使用只读事务，`updateBook`使用默认的读写事务，`deleteBook`不是事务性的（鉴于其名称，这可能不是一个好主意）。
 
-
-Grails also provides `@Transactional` and `@NotTransactional` annotations for cases where you need more fine-grained control over transactions at a per-method level or need to specify an alternative propagation level. For example, the `@NotTransactional` annotation can be used to mark a particular method to be skipped when a class is annotated with `@Transactional`.
-
-NOTE: Annotating a service method with `Transactional` disables the default Grails transactional behavior for that service (in the same way that adding `transactional=false` does) so if you use any annotations you must annotate all methods that require transactions.
-
-In this example `listBooks` uses a read-only transaction, `updateBook` uses a default read-write transaction, and `deleteBook` is not transactional (probably not a good idea given its name).
-
-[source,groovy]
-----
+```groovy
 import grails.gorm.transactions.Transactional
 
 class BookService {
@@ -64,12 +56,11 @@ class BookService {
         // ...
     }
 }
-----
+```
 
-You can also annotate the class to define the default transaction behavior for the whole service, and then override that default per-method:
+您还可以在类上注释以定义整个服务的默认事务行为，然后根据需要重写默认值：
 
-[source,groovy]
-----
+```groovy
 import grails.gorm.transactions.Transactional
 
 @Transactional
@@ -87,12 +78,11 @@ class BookService {
         // ...
     }
 }
-----
+```
 
-This version defaults to all methods being read-write transactional (due to the class-level annotation), but the `listBooks` method overrides this to use a read-only transaction:
+此版本默认所有方法都是读写事务（由于类级别注解），但`listBooks`方法重写此行为以使用只读事务。
 
-[source,groovy]
-----
+```groovy
 import grails.gorm.transactions.Transactional
 
 @Transactional
@@ -111,24 +101,21 @@ class BookService {
         // ...
     }
 }
-----
+```
 
-Although `updateBook` and `deleteBook` aren't annotated in this example, they inherit the configuration from the class-level annotation.
+尽管在此示例中未对`updateBook`和`deleteBook`进行注释，但它们会从类级别注释中继承配置。
 
-For more information refer to the section of the Spring user guide on http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html#transaction-declarative-annotations[Using @Transactional].
+有关更多信息，请参阅Spring用户指南http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html#transaction-declarative-annotations[`使用 @Transactional`]部分。
 
-Unlike Spring you do not need any prior configuration to use `Transactional`; just specify the annotation as needed and Grails will detect them up automatically.
+与Spring不同，您不需要任何先前的配置来使用`@Transactional`；只需根据需要指定注释，Grails将自动检测它们。
 
+=== 事务状态
 
-==== Transaction status
+在Grails事务服务方法中，默认情况下可以使用`org.springframework.transaction.TransactionStatus`的实例。
 
+示例：
 
-An instance of {springapi}org/springframework/transaction/TransactionStatus.html[TransactionStatus] is available by default in Grails transactional service methods.
-
-Example:
-
-[source,groovy]
-----
+```groovy
 import grails.gorm.transactions.Transactional
 
 @Transactional
@@ -138,4 +125,4 @@ class BookService {
         transactionStatus.setRollbackOnly()
     }
 }
-----
+```

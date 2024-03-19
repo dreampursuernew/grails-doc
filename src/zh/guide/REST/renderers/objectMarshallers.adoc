@@ -1,6 +1,6 @@
-Grails' Converters feature the notion of an {apiDocs}org/grails/web/converters/marshaller/ObjectMarshaller.html[ObjectMarshaller] and each type can have a registered `ObjectMarshaller`. You can register custom `ObjectMarshaller` instances to completely customize response rendering. For example, you can define the following in `BootStrap.init`:
+Grails的转换器功能涉及 {apiDocs}org/grails/web/converters/marshaller/ObjectMarshaller.html[ObjectMarshaller] 的概念，每种类型都可以注册一个 `ObjectMarshaller`。您可以注册自定义的 `ObjectMarshaller` 实例来完全自定义响应渲染。例如，您可以在 `BootStrap.init` 中定义以下内容：
 
-[source,groovy]
+[source, groovy]
 ----
 XML.registerObjectMarshaller Book, { Book book, XML xml ->
   xml.attribute 'id', book.id
@@ -10,18 +10,18 @@ XML.registerObjectMarshaller Book, { Book book, XML xml ->
 }
 ----
 
-You can customize the formatting of an individual value this way too. For example the http://grails.org/plugin/jodatime[JodaTime plugin] does the following to support rendering of JodaTime dates in JSON output:
+您还可以以这种方式自定义单个值的格式。例如，http://grails.org/plugin/jodatime[JodaTime插件]执行以下操作以支持将 JodaTime 日期呈现为JSON输出：
 
-[source,groovy]
+[source, groovy]
 ----
 JSON.registerObjectMarshaller(DateTime) {
     return it?.toString("yyyy-MM-dd'T'HH:mm:ss'Z'")
 }
 ----
 
-In the case of JSON it's often simple to use a map to customize output:
+在JSON的情况下，通常可以使用map来自定义输出：
 
-[source,groovy]
+[source, groovy]
 ----
 JSON.registerObjectMarshaller(Book) {
   def map= [:]
@@ -32,12 +32,11 @@ JSON.registerObjectMarshaller(Book) {
 ----
 
 
-==== Registering Custom Marshallers via Spring
+==== 通过Spring注册自定义的Marshallers
 
+请注意，如果您有很多自定义的Marshallers，建议将这些注册拆分为一个单独的类：
 
-Note that if you have many custom marshallers it is recommended you split the registration of these into a separate class:
-
-[source,groovy]
+[source, groovy]
 ----
 class CustomMarshallerRegistrar {
 
@@ -50,13 +49,13 @@ class CustomMarshallerRegistrar {
 }
 ----
 
-Then define this class as Spring bean in `grails-app/conf/spring/resources.groovy`:
+然后在 `grails-app/conf/spring/resources.groovy` 中将此类定义为Spring bean：
 
-[source,groovy]
+[source, groovy]
 ----
 beans = {
     myCustomMarshallerRegistrar(CustomMarshallerRegistrar)
 }
 ----
 
-The `PostConstruct` annotation will get triggered on startup of your application.
+在启动应用程序时，`PostConstruct`注解将触发。

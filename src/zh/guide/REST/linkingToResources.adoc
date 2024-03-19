@@ -1,20 +1,20 @@
-The `link` tag offers an easy way to link to any domain class resource:
+`link`标签提供了一种轻松链接到任何领域类资源的方法:
 
 [source,xml]
 ----
-<g:link resource="${book}">My Link</g:link>
+<g:link resource=\"${book}\">My Link</g:link>
 ----
 
-However, currently you cannot use g:link to link to the DELETE action and most browsers do not support sending the DELETE method directly.
+然而，目前您无法使用g:link链接到DELETE动作，并且大多数浏览器不支持直接发送DELETE方法。
 
-The best way to accomplish this is to use a form submit:
+实现这一点的最佳方式是使用表单提交:
 
 [source,xml]
 ----
-<form action="/book/2" method="post">
- 	<input type="hidden" name="_method" value="DELETE"/>
+<form action=\"/book/2\" method=\"post\">
+ \t<input type=\"hidden\" name=\"_method\" value=\"DELETE\"/>
 </form>
 ----
 
-Grails supports overriding the request method via the hidden `_method` parameter. This is for browser compatibility purposes. This is useful when using restful resource mappings to create powerful web interfaces.
-To make a link fire this type of event, perhaps capture all click events for links with a `data-method` attribute and issue a form submit via JavaScript.
+Grails支持通过隐藏的`_method`参数覆盖请求方法。这是为了浏览器兼容性的目的。在使用RESTful资源映射创建强大的Web界面时非常有用。
+为了使链接触发这种事件，也许可以捕捉带有`data-method`属性的所有链接的单击事件，并通过JavaScript发出表单提交。

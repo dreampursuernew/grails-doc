@@ -1,14 +1,10 @@
-Grails is no more or less secure than Java Servlets. However, Java servlets (and hence Grails) are extremely secure and largely immune to common buffer overrun and malformed URL exploits due to the nature of the Java Virtual Machine underpinning the code.
+Grails与Java Servlet相比既不更安全也不更不安全。然而，由于Java虚拟机支持代码，Java Servlet（因此也包括Grails）极为安全，基本上免疫常见的缓冲区溢出和URL错误利用。Web安全问题通常是由于开发人员的天真或错误导致的，Grails无法避免常见错误，并使编写安全应用程序更加容易。
 
-Web security problems typically occur due to developer naivety or mistakes, and there is a little Grails can do to avoid common mistakes and make writing secure applications easier to write.
+==== Grails自动执行的操作
 
+Grails默认具有一些内置的安全机制。
 
-==== What Grails Automatically Does
-
-
-Grails has a few built in safety mechanisms by default.
-
-* All standard database access via link:GORM.html[GORM] domain objects is automatically SQL escaped to prevent SQL injection attacks
-* The default link:scaffolding.html[scaffolding] templates HTML escape all data fields when displayed
-* Grails link creating tags (link:{gspdocs}/ref/Tags/link.html[link], link:{gspdocs}/ref/Tags/form.html[form], link:{gspdocs}/ref/Tags/createLink.html[createLink], link:{gspdocs}/ref/Tags/createLinkTo.html[createLinkTo] and others) all use appropriate escaping mechanisms to prevent code injection
-* Grails provides <<codecs,codecs>> to let you trivially escape data when rendered as HTML, JavaScript and URLs to prevent injection attacks here.
+- 所有通过GORM领域对象的标准数据库访问都会自动进行SQL转义，以防止SQL注入攻击
+- 默认的脚手架模板在显示时会对所有数据字段进行HTML转义
+- Grails创建标签（<gspdocs>/ref/Tags/link.html[link]、<gspdocs>/ref/Tags/form.html[form]、<gspdocs>/ref/Tags/createLink.html[createLink]、<gspdocs>/ref/Tags/createLinkTo.html[createLinkTo]等）都使用适当的转义机制，以防止代码注入
+- Grails提供了编解码器，让您可以轻松地转义呈现为HTML、JavaScript和URL的数据，以防止注入攻击。

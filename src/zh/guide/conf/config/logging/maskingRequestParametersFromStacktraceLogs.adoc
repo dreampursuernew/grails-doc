@@ -1,25 +1,21 @@
-When Grails logs a stacktrace, the log message may include the names and values of all of the request parameters for the current request.
-To mask out the values of secure request parameters, specify the parameter names in the `grails.exceptionresolver.params.exclude` config property:
+当Grails记录堆栈跟踪时，日志消息可能包括当前请求的所有请求参数的名称和值。
+要屏蔽安全请求参数的值，请在`grails.exceptionresolver.params.exclude`配置属性中指定参数名称：
 
-[source, yaml]
-.grails-app/conf/application.yml
+.grails-app/conf/application.yml文件中的源代码如下：
 ----
-grails:
-    exceptionresolver:
-        params:
-            exclude:
+grails：
+    exceptionresolver：
+        params：
+            exclude：
                 - password
                 - creditCard
 ----
 
-Request parameter logging may be turned off altogether by setting the `grails.exceptionresolver.logRequestParameters`
-config property to false. The default value is true when the application is running in DEVELOPMENT mode and false for all other
-environments.
+可以通过将`grails.exceptionresolver.logRequestParameters`配置属性设置为false来彻底关闭请求参数记录。当应用程序在开发模式下运行时，默认值为true，而在所有其他环境下为false。
 
-[source, yaml]
-.grails-app/conf/application.yml
+.grails-app/conf/application.yml文件中的源代码如下：
 ----
-grails:
-    exceptionresolver:
-        logRequestParameters: false
+grails：
+    exceptionresolver：
+        logRequestParameters：false
 ----

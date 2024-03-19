@@ -1,13 +1,13 @@
-With modern hardware featuring multiple cores, many programming languages have been adding asynchronous, parallel programming APIs, Groovy being no exception.
+随着现代硬件具备多个核心，许多编程语言都在添加异步、并行编程API，Groovy也不例外。
 
-Popular asynchronous libraries include:
+一些流行的异步库包括：
 
 * RxJava - http://reactivex.io
 * GPars - http://gpars.org
 * Reactor - https://projectreactor.io
 
-By building on top of these various libraries the https://async.grails.org[Async features of Grails] aim to simplify concurrent programming within the framework, include the concept of Promises, and a unified event model.
+通过构建在这些不同库之上，https://async.grails.org[Grails的异步特性]旨在简化框架内并发编程，包括Promises的概念和统一的事件模型。
 
-In general, since the Reactive programming model is an evolving space, Grails tries to provide generic support for integrating a range of asynchronous libraries and doesn't recommend any single library as they all have various advantages and disadvantages.
+一般来说，由于响应式编程模型是一个不断发展的领域，Grails尝试提供通用支持，以整合各种异步库，并不推荐任何单一库，因为它们都各有利弊。
 
-For more information on Asynchronous programming with Grails see the user guide for the https://async.grails.org[Grails Asynchronous Framework].
+有关Grails的异步编程更多信息，请参阅https://async.grails.org[Grails异步框架]的用户指南。

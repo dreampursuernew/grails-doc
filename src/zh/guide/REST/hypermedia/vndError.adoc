@@ -1,9 +1,8 @@
-https://github.com/blongden/vnd.error[Vnd.Error] is a standardised way of expressing an error response.
+[Vnd.Error] 是一种标准化的表达错误响应的方式。
 
-By default when a validation error occurs when attempting to POST new resources then the errors object will be sent back allow with a 422 respond code:
+默认情况下，在尝试使用 POST 方法创建新资源时如果发生验证错误，则将返回一个包含错误对象的响应，响应代码为422：
 
-[source,groovy]
-----
+```
 $ curl -i -H "Accept: application/json"  -H "Content-Type: application/json" -X POST -d "" http://localhost:8080/books
 
 HTTP/1.1 422 Unprocessable Entity
@@ -20,24 +19,21 @@ Content-Type: application/json;charset=ISO-8859-1
     }
   ]
 }
-----
+```
 
-If you wish to change the format to Vnd.Error then simply register `grails.rest.render.errors.VndErrorJsonRenderer` bean in `grails-app/conf/spring/resources.groovy`:
+如果您希望将格式更改为 Vnd.Error，只需在 `grails-app/conf/spring/resources.groovy` 中注册 `grails.rest.render.errors.VndErrorJsonRenderer` bean：
 
-
-[source,groovy]
-----
+```
 beans = {
     vndJsonErrorRenderer(grails.rest.render.errors.VndErrorJsonRenderer)
     // for Vnd.Error XML format
     vndXmlErrorRenderer(grails.rest.render.errors.VndErrorXmlRenderer)
 }
-----
+```
 
-Then if you alter the client request to accept Vnd.Error you get an appropriate response:
+然后，如果您修改客户端请求以接受 Vnd.Error，您将获得适当的响应：
 
-[source,groovy]
-----
+```
 $ curl -i -H "Accept: application/vnd.error+json,application/json" -H "Content-Type: application/json" -X POST -d "" http://localhost:8080/books
 HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
@@ -54,4 +50,4 @@ Content-Type: application/vnd.error+json;charset=ISO-8859-1
         }
     }
 ]
-----
+```

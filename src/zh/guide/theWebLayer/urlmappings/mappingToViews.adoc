@@ -1,17 +1,15 @@
-You can resolve a URL to a view without a controller or action involved. For example to map the root URL `/` to a GSP at the location `grails-app/views/index.gsp` you could use:
+您可以在不涉及控制器或动作的情况下解析URL以查看。例如，要将根URL“/”映射到位置为`grails-app/views/index.gsp`的GSP，您可以使用：
 
-[source,groovy]
-----
+```groovy
 static mappings = {
-    "/"(view: "/index")  // map the root URL
+    "/"(view: "/index")  // 将根URL映射
 }
-----
+```
 
-Alternatively if you need a view that is specific to a given controller you could use:
+或者，如果您需要一个特定于给定控制器的视图，您可以使用：
 
-[source,groovy]
-----
+```groovy
 static mappings = {
-   "/help"(controller: "site", view: "help") // to a view for a controller
+   "/help"(controller: "site", view: "help") // 针对控制器的视图
 }
-----
+```

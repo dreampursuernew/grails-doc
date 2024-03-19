@@ -1,1 +1,1 @@
-Grails applications can be deployed in a number of ways, each of which has its pros and cons.
+Grails 应用可以以多种方式部署，每种方式都有其优缺点。

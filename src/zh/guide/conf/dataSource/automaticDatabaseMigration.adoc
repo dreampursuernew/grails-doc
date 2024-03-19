@@ -1,16 +1,16 @@
-The `dbCreate` property of the `DataSource` definition is important as it dictates what Grails should do at runtime with regards to automatically generating the database tables from link:GORM.html[GORM] classes. The options are described in the <<dataSource,DataSource>> section:
+`DataSource`定义中的`dbCreate`属性非常重要，因为它决定了Grails在运行时如何自动生成数据库表格从link:GORM.html[GORM]类。选项在<<dataSource,DataSource>>部分中描述如下：
 
 * `create`
 * `create-drop`
 * `update`
 * `validate`
-* no value
+* 无值
 
-In <<environments,development>> mode `dbCreate` is by default set to "create-drop", but at some point in development (and certainly once you go to production) you'll need to stop dropping and re-creating the database every time you start up your server.
+在<<environments,development>>模式下，`dbCreate`默认设置为"create-drop"，但在开发的某个阶段（特别是当您转向生产环境时），您需要停止每次启动服务器时都删除和重新创建数据库。
 
-It's tempting to switch to `update` so you retain existing data and only update the schema when your code changes, but Hibernate's update support is very conservative. It won't make any changes that could result in data loss, and doesn't detect renamed columns or tables, so you'll be left with the old one and will also have the new one.
+虽然很诱人去切换到`update`，以便保留现有数据并仅在代码更改时更新架构，但Hibernate的更新支持非常保守。它不会做出任何可能导致数据丢失的更改，并且不会检测重命名的列或表，因此您将保留旧的列或表，并且也会有新的列或表。
 
-Grails supports migrations with Liquibase or Flyway via plugins.
+Grails支持通过插件使用Liquibase或Flyway进行迁移。
 
 * http://plugins.grails.org/plugin/grails/database-migration[Database Migration]
 * http://plugins.grails.org/plugin/saw303/org.grails.plugins%3Agrails-flyway[Flyway]

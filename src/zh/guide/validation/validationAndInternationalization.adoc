@@ -1,102 +1,97 @@
-Another important thing to note about errors in Grails is that error messages are not hard coded anywhere. The {springapi}org/springframework/validation/FieldError.html[FieldError] class in Spring resolves messages from message bundles using Grails' link:i18n.html[i18n] support.
+在Grails中关于错误的另一个重要事项是错误消息没有硬编码在任何地方。Spring中的{springapi} org/springframework/validation/FieldError.html [FieldError]类使用Grails的link:i18n.html [i18n]支持从消息包中解析消息。
 
+约束和消息代码
 
-==== Constraints and Message Codes
+这些代码本身是按照一个约定来规定的。例如，考虑我们之前看过的约束：
 
-
-The codes themselves are dictated by a convention. For example consider the constraints we looked at earlier:
-
-[source,groovy]
+[source，groovy]
 ----
-package com.mycompany.myapp
+包com.mycompany.myapp
 
-class User {
+类User {
     ...
-
+    
     static constraints = {
-        login size: 5..15, blank: false, unique: true
-        password size: 5..15, blank: false
-        email email: true, blank: false
+        login size: 5..15，blank: false，unique: true
+        password size: 5..15，blank: false
+        email email: true，blank: false
         age min: 18
     }
 }
 ----
 
-If a constraint is violated, Grails looks by convention for a message code: 
+如果违反了约束，Grails按照约定寻找消息代码：
 
-[cols=2*,options="header"]
+[cols=2*，选项="header"]
 |===
-|Constraint
-|Error Code
+|约束
+|错误代码
 
 |link:../ref/Constraints/blank.html[blank]
-|`className.propertyName.blank`
+|'className.propertyName.blank'
 
 |link:../ref/Constraints/creditCard.html[creditCard]
-|`className.propertyName.creditCard.invalid`
+|'className.propertyName.creditCard.invalid'
 
 |link:../ref/Constraints/email.html[email]
-|`className.propertyName.email.invalid`
+|'className.propertyName.email.invalid'
 
 |link:../ref/Constraints/inList.html[inList]
-|`className.propertyName.not.inList`
+|'className.propertyName.not.inList'
 
 |link:../ref/Constraints/matches.html[matches]
-|`className.propertyName.matches.invalid`
+|'className.propertyName.matches.invalid'
 
 |link:../ref/Constraints/max.html[max]
-|`className.propertyName.max.exceeded`
+|'className.propertyName.max.exceeded'
 
 |link:../ref/Constraints/maxSize.html[maxSize]
-|`className.propertyName.maxSize.exceeded`
+|'className.propertyName.maxSize.exceeded'
 
 |link:../ref/Constraints/min.html[min]
-|`className.propertyName.min.notmet`
+|'className.propertyName.min.notmet'
 
 |link:../ref/Constraints/minSize.html[minSize]
-|`className.propertyName.minSize.notmet`
+|'className.propertyName.minSize.notmet'
 
 |link:../ref/Constraints/notEqual.html[notEqual]
-|`className.propertyName.notEqual`
+|'className.propertyName.notEqual'
 
 |link:../ref/Constraints/nullable.html[nullable]
-|`className.propertyName.nullable`
+|'className.propertyName.nullable'
 
 |link:../ref/Constraints/range.html[range]
-|`className.propertyName.range.toosmall` or `className.propertyName.range.toobig`
+|'className.propertyName.range.toosmall'或'className.propertyName.range.toobig'
 
 |link:../ref/Constraints/size.html[size]
-|`className.propertyName.size.toosmall` or `className.propertyName.size.toobig`
+|'className.propertyName.size.toosmall'或'className.propertyName.size.toobig'
 
 |link:../ref/Constraints/unique.html[unique]
-|`className.propertyName.unique`
+|'className.propertyName.unique'
 
 |link:../ref/Constraints/url.html[url]
-|`className.propertyName.url.invalid`
+|'className.propertyName.url.invalid'
 
 |link:../ref/Constraints/validator.html[validator]
-|`classname.propertyName.` + String returned by Closure
+|'classname.propertyName.'+ 闭包返回的字符串
 
 |===
+在`blank`约束的情况下，这将是`user.login.blank`，因此您需要在`grails-app/i18n/messages.properties`文件中添加类似以下的消息：
 
-In the case of the `blank` constraint this would be `user.login.blank` so you would need a message such as the following in your `grails-app/i18n/messages.properties` file:
-
-[source,groovy]
+[source，groovy]
 ----
-user.login.blank=Your login name must be specified!
+user.login.blank=您必须指定登录名！
 ----
 
-The class name is looked for both with and without a package, with the packaged version taking precedence. So for example, `com.mycompany.myapp.User.login.blank` will be used before `user.login.blank`. This allows for cases where your domain class message codes clash with a plugin's.
+类名将在有包和无包的情况下进行查找，有包的版本将优先。例如，`com.mycompany.myapp.User.login.blank`将在`user.login.blank`之前使用。这允许在您的领域类消息代码与插件的消息代码冲突的情况下进行处理。
 
-For a reference on what codes are for which constraints refer to the reference guide for each constraint (e.g. link:../ref/Constraints/blank.html[blank]).
+要了解哪些约束对应哪些代码，请参考每个约束的参考指南（例如 link:../ref/Constraints/blank.html[blank]）。
 
+显示消息
 
-==== Displaying Messages
+链接：{gspdocs}/ref/Tags/renderErrors.html[renderErrors] 标记将使用链接：{gspdocs}/ref/Tags/message.html[message] 标记自动查找消息。如果您需要更多渲染控制，您可以自行处理：
 
-
-The link:{gspdocs}/ref/Tags/renderErrors.html[renderErrors] tag will automatically look up messages for you using the link:{gspdocs}/ref/Tags/message.html[message] tag. If you need more control of rendering you can handle this yourself:
-
-[source,xml]
+[source，xml]
 ----
 <g:hasErrors bean="${user}">
   <ul>
@@ -107,5 +102,4 @@ The link:{gspdocs}/ref/Tags/renderErrors.html[renderErrors] tag will automatical
 </g:hasErrors>
 ----
 
-In this example within the body of the link:{gspdocs}/ref/Tags/eachError.html[eachError] tag we use the link:{gspdocs}/ref/Tags/message.html[message] tag in combination with its `error` argument to read the message for the given error.
-
+在这个例子中，在链接：{gspdocs}/ref/Tags/eachError.html[eachError] 标记的主体内，我们使用链接：{gspdocs}/ref/Tags/message.html[message] 标记以及其`错误`参数来读取给定错误的消息。

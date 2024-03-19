@@ -1,8 +1,8 @@
-Grails supports setting of bean properties via link:conf.html[configuration].
+Grails支持通过link:conf.html[配置]设置bean属性。
 
-You define a `beans` block with the names of beans and their values:
+您可以使用bean的名称和值在`beans`块中定义它们：
 
-[source,groovy]
+[source，groovy]
 ----
 beans {
     bookService {
@@ -11,16 +11,16 @@ beans {
 }
 ----
 
-The general format is:
+通用格式是：
 
-[source,groovy]
+[source，groovy]
 ----
-<<bean name>>.<<property name>> = <<value>>
+<<bean名称>>。<<属性名称>> = <<值>>
 ----
 
-The same configuration in a Java properties file would be:
+在Java属性文件中相同的配置将是：
 
-[source,groovy]
+[source，groovy]
 ----
-beans.bookService.webServiceURL=http://www.amazon.com
+beans.bookService.webServiceURL = http://www.amazon.com
 ----

@@ -1,15 +1,13 @@
+显示错误
 
-==== Displaying Errors
-
-
-Typically if you get a validation error you redirect back to the view for rendering. Once there you need some way of displaying errors. Grails supports a rich set of tags for dealing with errors. To render the errors as a list you can use link:{gspdocs}/ref/Tags/renderErrors.html[renderErrors]:
+通常，如果出现验证错误，您将重定向回视图进行呈现。一旦在那里，你需要一些方法来显示错误。Grails支持一组丰富的标签来处理错误。要将错误渲染为列表，您可以使用link:{gspdocs}/ref/Tags/renderErrors.html[renderErrors]：
 
 [source,xml]
 ----
 <g:renderErrors bean="${user}" />
 ----
 
-If you need more control you can use link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors] and link:{gspdocs}/ref/Tags/eachError.html[eachError]:
+如果您需要更多控制，可以使用link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors]和link:{gspdocs}/ref/Tags/eachError.html[eachError]:
 
 [source,xml]
 ----
@@ -23,10 +21,9 @@ If you need more control you can use link:{gspdocs}/ref/Tags/hasErrors.html[hasE
 ----
 
 
-==== Highlighting Errors
+突出显示错误
 
-
-It is often useful to highlight using a red box or some indicator when a field has been incorrectly input. This can also be done with the link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors] by invoking it as a method. For example:
+当字段被错误输入时，通常会使用红框或某种指示符进行突出显示。这也可以通过使用link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors]作为方法来实现。例如：
 
 [source,xml]
 ----
@@ -35,17 +32,16 @@ It is often useful to highlight using a red box or some indicator when a field h
 </div>
 ----
 
-This code checks if the `login` field of the `user` bean has any errors and if so it adds an `errors` CSS class to the `div`, allowing you to use CSS rules to highlight the `div`.
+此代码检查`user` bean的`login`字段是否有任何错误，如果有，则向`div`添加`errors` CSS类，允许您使用CSS规则来突出显示`div`。
 
 
-==== Retrieving Input Values
+检索输入值
 
-
-Each error is actually an instance of the {springapi}org/springframework/validation/FieldError.html[FieldError] class in Spring, which retains the original input value within it. This is useful as you can use the error object to restore the value input by the user using the link:../ref/Tags/fieldValue.html[fieldValue] tag:
+每个错误实际上是Spring中的{springapi}org/springframework/validation/FieldError.html[FieldError]类的一个实例，并且在内部保留了原始输入值。这很有用，因为您可以使用错误对象来使用link:../ref/Tags/fieldValue.html[fieldValue]标记来恢复用户输入的值：
 
 [source,xml]
 ----
 <input type="text" name="login" value="${fieldValue(bean:user,field:'login')}"/>
 ----
 
-This code will check for an existing `FieldError` in the `User` bean and if there is obtain the originally input value for the `login` field.
+此代码将检查`User` bean中是否存在`FieldError`，如果存在，则获取`login`字段的最初输入值。

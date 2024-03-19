@@ -1,1 +1,1 @@
-Grails is an open source project with an active community and we rely heavily on that community to help make Grails better. As such, there are various ways in which people can contribute to Grails. One of these is by link:plugins.html[writing useful plugins] and making them publicly available. In this chapter, we'll look at some of the other options.
+Grails是一个开源项目，拥有一个活跃的社区，我们在很大程度上依赖这个社区来帮助改进Grails。因此，有很多方式可以让人们为Grails做出贡献。其中一种方式是通过编写有用的插件并将其公开发布。在本章中，我们将看一些其他选项。

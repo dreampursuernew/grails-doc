@@ -1,5 +1,5 @@
-REST is not really a technology in itself, but more an architectural pattern. REST is very simple and just involves using plain XML or JSON as a communication medium, combined with URL patterns that are "representational" of the underlying system, and HTTP methods such as GET, PUT, POST and DELETE.
+REST本身并不是一种技术，而更多是一种架构模式。REST非常简单，只涉及使用普通的XML或JSON作为通信媒介，结合URL模式，这些模式代表了底层系统，以及HTTP方法，如GET、PUT、POST和DELETE。
 
-Each HTTP method maps to an action type. For example GET for retrieving data, POST for creating data, PUT for updating and so on.
+每个HTTP方法映射到一个动作类型。例如，用GET来检索数据，用POST来创建数据，用PUT来更新等等。
 
-Grails includes flexible features that make it easy to create RESTful APIs. Creating a RESTful resource can be as simple as one line of code, as demonstrated in the next section.
+Grails包含灵活的功能，使得创建RESTful API变得很容易。创建一个RESTful资源可以简单到只需要一行代码，如在下一节中所演示的那样。

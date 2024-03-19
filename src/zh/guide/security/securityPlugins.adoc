@@ -1,1 +1,1 @@
-If you need more advanced functionality beyond simple authentication such as authorization, roles etc. then you should consider using the spring security core plugin.
+如果您需要更高级的功能，比如授权、角色等，超出了简单的身份验证，那么您应该考虑使用Spring Security核心插件。

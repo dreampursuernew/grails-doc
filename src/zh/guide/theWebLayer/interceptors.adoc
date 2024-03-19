@@ -1,31 +1,31 @@
-Grails provides standalone Interceptors using the link:../ref/Command%20Line/create-interceptor.html[create-interceptor] command:
+Grails提供了独立的拦截器，使用link:../ref/Command%20Line/create-interceptor.html[create-interceptor]命令：
 
-[source,bash]
+[source，bash]
 ----
 $ grails create-interceptor MyInterceptor
 ----
 
-The above command will create an Interceptor in the `grails-app/controllers` directory with the following default contents:
+上述命令将在`grails-app/controllers`目录中创建一个拦截器，其默认内容如下：
 
-[source,groovy]
+[source，groovy]
 ----
 class MyInterceptor {
 
-  boolean before() { true }
+  boolean before() { true }
 
-  boolean after() { true }
+  boolean after() { true }
 
-  void afterView() {
-    // no-op
-  }
+  void afterView() {
+    // 空操作
+  }
 
 }
 ----
 
 
-==== Interceptors vs Filters
+拦截器 vs 过滤器
 
 
-In versions of Grails prior to Grails 3.0, Grails supported the notion of filters. These are still supported for backwards compatibility but are considered deprecated.
+在Grails 3.0之前的版本中，Grails支持过滤器的概念。这些过滤器仍然受到支持以确保向后兼容，但被视为过时。
 
-The new interceptors concept in Grails 3.0 is superior in a number of ways, most significantly interceptors can use Groovy's `CompileStatic` annotation to optimize performance (something which is often critical as interceptors can be executed for every request.)
+Grails 3.0版本中的新拦截器概念在许多方面优于过滤器，最显著的是拦截器可以使用Groovy的`CompileStatic`注解来优化性能（这通常是至关重要的，因为拦截器可能会被执行多次请求。）"

@@ -1,4 +1,4 @@
-As mentioned previously the `grails` command uses an embedded version of Gradle and certain Grails commands that existed in previous versions of Grails map onto their Gradle equivalents. The following table shows which Grails command invoke which Gradle task:
+如前所述，`grails`命令使用了一个嵌入式版本的Gradle和一些在之前Grails版本中存在的特定Grails命令映射到它们的Gradle等效项上。以下表格显示了哪些Grails命令调用了哪些Gradle任务：
 
 [format="csv", options="header"]
 |===
@@ -14,36 +14,33 @@ test-app --integration,integrationTest
 war,assemble
 |===
 
-You can invoke any of these Grails commands using their Gradle equivalents if you prefer:
+如果你愿意，你可以使用它们的Gradle等效项来调用任何这些Grails命令：
 
 [source,bash]
 ----
 $ gradle test
 ----
 
-Note however that you will need to use a version of Gradle compatible with Grails 3.1 (Gradle 2.2 or above). If you wish to invoke a Gradle task using the version of Gradle used by Grails you can do so with the `grails` command:
+然而，请注意，你需要使用与Grails 3.1兼容的Gradle版本（Gradle 2.2或以上）。如果你希望使用Grails使用的Gradle版本来调用一个Gradle任务，你可以使用`grails`命令：
 
 [source,bash]
 ----
 $ grails gradle compileGroovy
 ----
 
-However, it is recommended you do this via interactive mode, as it greatly speeds up execution and provides TAB completion for the available Gradle tasks:
+然而，建议你通过交互模式来执行此操作，因为它可以大大加快执行速度并为可用的Gradle任务提供TAB补全：
 
 [source,bash]
 ----
 $ grails 
-| Enter a command name to run. Use TAB for completion:
+| 输入要运行的命令名称。使用TAB来补全：
  grails> gradle compileGroovy
  ...
 ----
 
-To find out what Gradle tasks are available without using interactive mode TAB completion you can use the Gradle `tasks` task:
+要在不使用交互模式TAB补全的情况下查看可用的Gradle任务，你可以使用Gradle的`tasks`任务：
 
 [source,bash]
 ----
 gradle tasks
 ----
-
-
-

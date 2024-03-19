@@ -1,19 +1,19 @@
-http://gsp.grails.org[Groovy Servers Pages] (or GSP for short) is Grails' view technology. It is designed to be familiar for users of technologies such as ASP and JSP, but to be far more flexible and intuitive.
+"Groovy Servers Pages（简称GSP）是Grails的视图技术。它旨在为ASP和JSP等技术的用户提供熟悉的界面，但要更加灵活和直观。
 
-TIP: Although GSP can render any format, not just HTML, it is more designed around rendering markup. If you are looking for a way to simplify JSON responses take a look at link:webServices.html#jsonViews[JSON Views].
+提示：虽然GSP可以呈现任何格式，而不仅仅是HTML，但它更多地设计用于呈现标记。如果您正在寻找一种简化JSON响应的方法，请查看link:webServices.html#jsonViews[JSON Views]。
 
-GSPs live in the `grails-app/views` directory and are typically rendered automatically (by convention) or with the link:../ref/Controllers/render.html[render] method such as:
+GSP存放在`grails-app/views`目录中，通常会自动渲染（按照约定）或使用link:../ref/Controllers/render.html[render]方法进行渲染，例如：
 
 [source,groovy]
 ----
 render(view: "index")
 ----
 
-A GSP is typically a mix of mark-up and GSP tags which aid in view rendering.
+GSP通常是标记和GSP标记的混合，帮助进行视图渲染。
 
-NOTE: Although it is possible to have Groovy logic embedded in your GSP and doing this will be covered in this document, the practice is strongly discouraged. Mixing mark-up and code is a *bad* thing and most GSP pages contain no code and needn't do so.
+注意：虽然可能会将Groovy逻辑嵌入到您的GSP中，并且本文档将涵盖如何做到这一点，但强烈建议不要这样做。混合标记和代码是不好的事情，大多数GSP页面不包含代码，也不需要包含代码。
 
-A GSP typically has a "model" which is a set of variables that are used for view rendering. The model is passed to the GSP view from a controller. For example consider the following controller action:
+GSP通常有一个“模型”，这是一组用于视图渲染的变量。模型是从控制器传递给GSP视图的。例如，请考虑以下控制器操作：
 
 [source,groovy]
 ----
@@ -22,13 +22,13 @@ def show() {
 }
 ----
 
-This action will look up a `Book` instance and create a model that contains a key called `book`. This key can then be referenced within the GSP view using the name `book`:
+此操作将查找`Book`实例并创建一个包含名为`book`的键的模型。然后可以在GSP视图中使用名称`book`引用此键：
 
 [source,groovy]
 ----
 ${book.title}
 ----
 
-WARNING: Embedding data received from user input has the risk of making your application vulnerable to an Cross Site Scripting (XSS) attack. Please read the documentation on link:security.html#xssPrevention[XSS prevention] for information on how to prevent XSS attacks.
+警告：嵌入从用户输入接收的数据存在使您的应用程序容易受到跨站脚本（XSS）攻击的风险。请阅读有关如何防止XSS攻击的文档 link:security.html#xssPrevention[XSS prevention]。
 
-For more information on using GSP please refer to the http://gsp.grails.org[dedicated GSP documentation].
+有关使用GSP的更多信息，请参考 http://gsp.grails.org[专用GSP文档]。"

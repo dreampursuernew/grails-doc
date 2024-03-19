@@ -1,44 +1,34 @@
-Grails artefacts are automatically augmented with certain traits at compile time.
+Grails构件在编译时自动增加某些特征。
 
-
-==== Domain Class Traits
-
+==== 领域类Trait
 
 * {apiDocs}grails/artefact/DomainClass.html[grails.artefact.DomainClass]
 * {apiDocs}grails/web/databinding/WebDataBinding.html[grails.web.databinding.WebDataBinding]
 * {gormApiDocs}/org/grails/datastore/gorm/GormEntity.html[org.grails.datastore.gorm.GormEntity]
 * {gormApiDocs}/org/grails/datastore/gorm/GormValidateable.html[org.grails.datastore.gorm.GormValidateable]
 
-
-==== Controller Traits
+==== 控制器Trait
 
 * {gspApiDocs}grails/artefact/gsp/TagLibraryInvoker.html[grails.artefact.gsp.TagLibraryInvoker]
 * {asyncApiDocs}grails/artefact/AsyncController.html[grails.artefact.AsyncController]
 * {apiDocs}grails/artefact/controller/RestResponder.html[grails.artefact.controller.RestResponder]
 * {apiDocs}grails/artefact/Controller.html[grails.artefact.Controller]
 
-
-==== Interceptor Trait
+==== 拦截器Trait
 
 * {apiDocs}grails/artefact/Interceptor.html[grails.artefact.Interceptor]
 
-
-==== Tag Library Trait
+==== 标签库Trait
 
 * {gspApiDocs}grails/artefact/TagLibrary.html[grails.artefact.TagLibrary]
 
+以下是框架提供的其他Trait列表。Javadocs提供了与每个Trait相关的更多方法和属性的详细信息。
 
-Below is a list of other traits provided by the framework.  The javadocs provide more detail about methods and properties related to each trait.
-
-[format="csv", options="header"]
-|===
-
-*Trait*,*Brief Description*
-{apiDocs}grails/web/api/WebAttributes.html[grails.web.api.WebAttributes],Common Web Attributes
-{apiDocs}grails/web/api/ServletAttributes.html[grails.web.api.ServletAttributes],Servlet API Attributes
-{apiDocs}grails/web/databinding/DataBinder.html[grails.web.databinding.DataBinder],Data Binding API
-{apiDocs}grails/artefact/controller/support/RequestForwarder.html[grails.artefact.controller.support.RequestForwarder],Request Forwarding API
-{apiDocs}grails/artefact/controller/support/ResponseRedirector.html[grails.artefact.controller.support.ResponseRedirector],Response Redirecting API
-{apiDocs}grails/artefact/controller/support/ResponseRenderer.html[grails.artefact.controller.support.ResponseRenderer],Response Rendering API
-{apiDocs}grails/validation/Validateable.html[grails.validation.Validateable],Validation API
-|===
+|Trait|简要描述|
+|apiDocs}grails/web/api/WebAttributes.html[grails.web.api.WebAttributes]|通用Web属性|
+|{apiDocs}grails/web/api/ServletAttributes.html[grails.web.api.ServletAttributes]|Servlet API属性|
+|{apiDocs}grails/web/databinding/DataBinder.html[grails.web.databinding.DataBinder]|数据绑定API|
+|{apiDocs}grails/artefact/controller/support/RequestForwarder.html[grails.artefact.controller.support.RequestForwarder]|请求转发API|
+|{apiDocs}grails/artefact/controller/support/ResponseRedirector.html[grails.artefact.controller.support.ResponseRedirector]|响应重定向API|
+|{apiDocs}grails/artefact/controller/support/ResponseRenderer.html[grails.artefact.controller.support.ResponseRenderer]|响应渲染API|
+|{apiDocs}grails/validation/Validateable.html[grails.validation.Validateable]|验证API|

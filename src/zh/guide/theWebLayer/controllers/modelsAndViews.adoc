@@ -1,8 +1,6 @@
+==== 返回模型
 
-==== Returning the Model
-
-
-A model is a Map that the view uses when rendering. The keys within that Map correspond to variable names accessible by the view. There are a couple of ways to return a model. First, you can explicitly return a Map instance:
+模型是视图在渲染时使用的Map。在该Map中的键对应于视图可访问的变量名。有几种方法可以返回一个模型。首先，你可以显式地返回一个Map实例：
 
 [source,groovy]
 ----
@@ -11,35 +9,33 @@ def show() {
 }
 ----
 
-NOTE: The above does _not_ reflect what you should use with the scaffolding views - see the link:scaffolding.html[scaffolding section] for more details.
+注意：上述内容 _并不_ 反映您应该在脚手架视图中使用的内容-请查看链接：scaffolding.html[scaffolding部分]了解更多详情。
 
-A more advanced approach is to return an instance of the Spring {springapi}org/springframework/web/servlet/ModelAndView.html[ModelAndView] class:
+一个更高级的方法是返回Spring {springapi}org/springframework/web/servlet/ModelAndView.html[ModelAndView]类的实例：
 
 [source,groovy]
 ----
 import org.springframework.web.servlet.ModelAndView
 
 def index() {
-    // get some books just for the index page, perhaps your favorites
+    // 为首页获取一些书籍，也许是您的收藏夹内容
     def favoriteBooks = ...
 
-    // forward to the list view to show them
+    // 转发到列表视图以展示它们
     return new ModelAndView("/book/list", [ bookList : favoriteBooks ])
 }
 ----
 
-One thing to bear in mind is that certain variable names can not be used in your model:
+需要记住的一件事是，某些变量名不能在您的模型中使用：
 
 * `attributes`
 * `application`
 
-Currently, no error will be reported if you do use them, but this will hopefully change in a future version of Grails.
+目前，如果您使用它们，系统不会报告错误，但希望在Grails的将来版本中会更改。
 
+==== 选择视图
 
-==== Selecting the View
-
-
-In both of the previous two examples there was no code that specified which <<gsp,view>> to render. So how does Grails know which one to pick? The answer lies in the conventions. Grails will look for a view at the location `grails-app/views/book/show.gsp` for this `show` action:
+在前面的两个示例中，没有指定要渲染的 <<gsp,视图>> 的代码。那么Grails如何知道应该选择哪一个？答案在于约定。Grails会在`grails-app/views/book/show.gsp`位置查找该`show`动作的视图：
 
 [source,groovy]
 ----
@@ -50,7 +46,7 @@ class BookController {
 }
 ----
 
-To render a different view, use the link:../ref/Controllers/render.html[render] method:
+要渲染不同的视图，使用链接:../ref/Controllers/render.html[render]方法：
 
 [source,groovy]
 ----
@@ -60,7 +56,7 @@ def show() {
 }
 ----
 
-In this case Grails will attempt to render a view at the location `grails-app/views/book/display.gsp`. Notice that Grails automatically qualifies the view location with the `book` directory of the `grails-app/views` directory. This is convenient, but to access shared views, you use an absolute path instead of a relative one:
+在这种情况下，Grails将尝试在`grails-app/views/book/display.gsp`位置渲染一个视图。注意，Grails会自动使用`grails-app/views`目录中的`book`目录对视图位置进行限定。这很方便，但要访问共享视图，您应该使用绝对路径而不是相对路径：
 
 [source,groovy]
 ----
@@ -70,23 +66,22 @@ def show() {
 }
 ----
 
-In this case Grails will attempt to render a view at the location `grails-app/views/shared/display.gsp`.
+在这种情况下，Grails将尝试在`grails-app/views/shared/display.gsp`位置渲染一个视图。
 
-Grails also supports JSPs as views, so if a GSP isn't found in the expected location but a JSP is, it will be used instead.
+Grails还支持JSP作为视图，因此如果未在预期位置找到GSP但找到了JSP，它将使用JSP。
 
-[NOTE]
-====
-Unlike GSPs, JSPs must be located in the directory path `/src/main/webapp/WEB-INF/grails-app/views`.
-
-Additionally, to ensure JSPs work as intended, don't forget to include the required dependencies for JSP and JSTL implementations in your `build.gradle` file.
+[注意]
 ====
 
-==== Selecting Views For Namespaced Controllers
+与GSP不同，JSP必须位于目录路径`/src/main/webapp/WEB-INF/grails-app/views`中。
 
+另外，为确保JSP正常工作，请不要忽略在您的`build.gradle`文件中包含JSP和JSTL实现所需的依赖项。
 
-If a controller defines a namespace for itself with the <<namespacedControllers,namespace>> property that will affect the root directory in which Grails will look for views which are specified with a relative path.  The default root directory for views rendered by a namespaced controller is `grails-app/views/<namespace name>/<controller name>/`.  If the view is not found in the namespaced directory then Grails will fallback to looking for the view in the non-namespaced directory.
+==== 为有命名空间的控制器选择视图
 
-See the example below.
+如果控制器使用<<namespacedControllers,namespace>>属性为自身定义了命名空间，那将影响Grails在何处查找使用相对路径指定的视图的根目录。以带有命名空间的控制器渲染的视图的默认根目录为`grails-app/views/<命名空间名称>/<控制器名称>/`。如果在有命名空间的目录中找不到视图，那么Grails将会回退到非命名空间目录中查找视图。
+
+请参阅下面的示例。
 
 [source,groovy]
 ----
@@ -94,48 +89,39 @@ class ReportingController {
     static namespace = 'business'
 
     def humanResources() {
-        // This will render grails-app/views/business/reporting/humanResources.gsp
-        // if it exists.
+        // 如果存在，则将呈现grails-app/views/business/reporting/humanResources.gsp
+        // 如果grails-app/views/business/reporting/humanResources.gsp不存在，则会回退到grails-app/views/reporting/humanResources.gsp
 
-        // If grails-app/views/business/reporting/humanResources.gsp does not
-        // exist the fallback will be grails-app/views/reporting/humanResources.gsp.
-
-        // The namespaced GSP will take precedence over the non-namespaced GSP.
-
+        // 有命名空间的GSP将优先于非命名空间的GSP。
         [numberOfEmployees: 9]
     }
 
 
+
     def accountsReceivable() {
-        // This will render grails-app/views/business/reporting/numberCrunch.gsp
-        // if it exists.
+        // 如果存在则将呈现grails-app/views/business/reporting/numberCrunch.gsp
+        // 如果grails-app/views/business/reporting/numberCrunch.gsp不存在，则会回退到grails-app/views/reporting/numberCrunch.gsp
 
-        // If grails-app/views/business/reporting/numberCrunch.gsp does not
-        // exist the fallback will be grails-app/views/reporting/numberCrunch.gsp.
-
-        // The namespaced GSP will take precedence over the non-namespaced GSP.
-
+        // 有命名空间的GSP将优先于非命名空间的GSP。
         render view: 'numberCrunch', model: [numberOfEmployees: 13]
     }
 }
 ----
 
+==== 渲染响应
 
-==== Rendering a Response
-
-
-Sometimes it's easier (for example with Ajax applications) to render snippets of text or code to the response directly from the controller. For this, the highly flexible `render` method can be used:
+有时（例如在Ajax应用程序中），直接从控制器向响应中渲染文本或代码片段会更容易。为此，可以使用非常灵活的`render`方法：
 
 [source,groovy]
 ----
 render "Hello World!"
 ----
 
-The above code writes the text "Hello World!" to the response. Other examples include:
+上述代码将文本“Hello World!”写入响应。其他示例包括：
 
 [source,groovy]
 ----
-// write some markup
+// 写一些标记
 render {
    for (b in books) {
       div(id: b.id, b.title)
@@ -145,23 +131,23 @@ render {
 
 [source,groovy]
 ----
-// render a specific view
+// 渲染特定视图
 render(view: 'show')
 ----
 
 [source,groovy]
 ----
-// render a template for each item in a collection
+// 为集合中的每个项目渲染模板
 render(template: 'book_template', collection: Book.list())
 ----
 
 [source,groovy]
 ----
-// render some text with encoding and content type
+// 以编码和内容类型渲染一些文本
 render(text: "<xml>some xml</xml>", contentType: "text/xml", encoding: "UTF-8")
 ----
 
-If you plan on using Groovy's `MarkupBuilder` to generate HTML for use with the `render` method be careful of naming clashes between HTML elements and Grails tags, for example:
+如果您打算使用Groovy的`MarkupBuilder`生成与`render`方法一起使用的HTML，请注意HTML元素和Grails标记之间的命名冲突，例如：
 
 [source,groovy]
 ----
@@ -186,7 +172,7 @@ def login() {
 }
 ----
 
-This will actually <<tagsAsMethodCalls,call the form tag>> (which will return some text that will be ignored by the `MarkupBuilder`). To correctly output a `<form>` element, use the following:
+实际上这将 <<tagsAsMethodCalls,调用form标签>>（这将返回一些文本，`MarkupBuilder`将忽略）。要正确输出`<form>`元素，请使用以下方式：
 
 [source,groovy]
 ----

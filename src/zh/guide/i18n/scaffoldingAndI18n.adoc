@@ -1,20 +1,18 @@
-Grails link:scaffolding.html[scaffolding] templates for controllers and views are fully i18n-aware. The GSPs use the link:{gspdocs}/ref/Tags/message.html[message] tag for labels, buttons etc. and controller `flash` messages use i18n to resolve locale-specific messages.
+Grails的`scaffolding.html[scaffolding]`模板对控制器和视图完全支持国际化。GSP使用`link:{gspdocs}/ref/Tags/message.html[message]`标签来为标签、按钮等添加标签，而控制器的`flash`消息使用国际化来解析特定于区域设置的消息。
 
-The scaffolding includes locale specific labels for domain classes and domain fields. For example, if you have a `Book` domain class with a `title` field:
+模板包括特定于区域设置的域类和域字段的标签。例如，如果您有一个带有`title`字段的`Book`域类：
 
-[source,groovy]
-----
+```groovy
 class Book {
     String title
 }
-----
+```
 
-The scaffolding will use labels with the following keys:
+模板将使用以下键的标签：
 
-[source,groovy]
-----
-book.label = Libro
-book.title.label = Título del libro
-----
+```groovy
+book.label = 图书
+book.title.label = 书名
+```
 
-You can use this property pattern if you'd like or come up with one of your own. There is nothing special about the use of the word `label` as part of the key other than it's the convention used by the scaffolding.
+如果您愿意，您也可以使用这种属性模式，或者自己想出一种。除了这个`label`作为键的惯例之外，没有任何特殊之处，因为这就是模板使用的约定。

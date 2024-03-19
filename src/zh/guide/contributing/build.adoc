@@ -1,109 +1,103 @@
-If you're interested in contributing fixes and features to any part of grails, you will have to learn how to get hold of the project's source, build it and test it with your own applications. Before you start, make sure you have:
+如果您有兴趣为grails的任何部分贡献修复和功能，您将需要学习如何获取项目的源代码，构建项目并使用您自己的应用程序进行测试。在开始之前，请确保您具有以下内容：
 
-* A JDK (11 or above)
-* A git client
+* JDK（11或以上）
+* git客户端
 
-Once you have all the pre-requisite packages installed, the next step is to download the Grails source code, which is hosted at http://github.com[GitHub] in several repositories owned by the http://github.com/grails["grails" GitHub user]. This is a simple case of cloning the repository you're interested in. For example, to get the core framework run:
+一旦您安装了所有先决条件包，下一步是下载Grails源代码，该源代码托管在http://github.com[GitHub]中，由http://github.com/grails[\"grails\" GitHub用户]拥有多个存储库。这只是克隆您感兴趣的存储库的一个简单例子。例如，要获取核心框架，请运行：
 
 [source,groovy]
 ----
 git clone http://github.com/grails/grails-core.git
 ----
 
-This will create a "grails-core" directory in your current working directory containing all the project source files. The next step is to get a Grails installation from the source.
+这将在您当前工作目录中创建一个“grails-core”目录，其中包含所有项目源文件。下一步是从源中获取Grails安装。
 
+=== 创建Grails安装
 
-=== Creating a Grails installation
-
-
-If you look at the project structure, you'll see that it doesn't look much like a standard `GRAILS_HOME` installation. But, it's very simple to turn it into one. Just run this from the root directory of the project:
+如果您查看项目结构，您会发现它看起来并不像一个标准的`GRAILS_HOME`安装。但是，简单将其变为一个标准。只需从项目的根目录运行以下命令：
 
 [source,groovy]
 ----
 ./gradlew install
 ----
 
-This will fetch all the standard dependencies required by Grails and then build a `GRAILS_HOME` installation. Note that this target skips the extensive collection of Grails test classes, which can take some time to complete.
+这将获取Grails所需的所有标准依赖项，然后构建一个`GRAILS_HOME`安装。请注意，该目标跳过了大量的Grails测试类集合，这可能需要一些时间完成。
 
-Once the above command has finished, simply set the `GRAILS_HOME` environment variable to the checkout directory and add the "bin" directory to your path. When you next type `grails` command to run, you'll be using the version you just built.
+完成以上命令后，只需将`GRAILS_HOME`环境变量设置为检出目录，并将“bin”目录添加到您的路径中。当您下次键入`grails`命令运行时，您将使用您刚刚构建的版本。
 
-If you are using http://sdkman.io[SDKMAN] then that can also be used to work with this local installation via the following:
+如果您使用http://sdkman.io[SDKMAN]，则还可以通过以下方式使用本地安装：
 
 [source,groovy]
 ----
 sdk install grails dev /path/to/grails-core
 ----
 
-You will also need to publish your local installation to your local maven.
+您还需要将本地安装发布到本地maven。
 ----
 ./gradlew pTML
 ----
 
-Now you will have a dev version in your local which you can use to test your features.
+现在，您将在本地拥有一个dev版本，可以用来测试您的功能。
 
+=== 运行测试套件
 
-=== Running the test suite
-
-
-All you have to do to run the full suite of tests is:
+要运行完整的测试套件，您只需执行以下操作：
 
 [source,groovy]
 ----
 ./gradlew test
 ----
 
-These will take a while (15-30 mins), so consider running individual tests using the command line. For example, to run the test spec `BinaryPluginSpec` simply execute the following command:
+这将需要一些时间（15-30分钟），因此考虑使用命令行运行单个测试。例如，要运行测试规范`BinaryPluginSpec`，只需执行以下命令：
+
 [source,groovy]
 ----
 ./gradlew :grails-core:test --tests *.BinaryPluginSpec
 ----
 
-Note that you need to specify the sub-project that the test case resides in, because the top-level "test" target won't work....
+请注意，您需要指定测试用例所在的子项目，因为顶级“test”目标将无法正常工作。...
 
+=== 在IntelliJ IDEA中开发
 
-=== Developing in IntelliJ IDEA
+您需要运行以下gradle任务：
 
-
-You need to run the following gradle task:
 [source,groovy]
 ----
 ./gradlew idea
 ----
 
-Then open the project file which is generated in IDEA. Simple!
+然后在生成的IDEA中打开项目文件。简单！
 
+=== 在STS / Eclipse中开发
 
-=== Developing in STS / Eclipse
+您需要运行以下gradle任务：
 
-
-You need to run the following gradle task:
 [source,groovy]
 ----
 ./gradlew cleanEclipse eclipse
 ----
 
-Before importing projects to STS do the following action:
+在将项目导入STS之前，执行以下操作：
 
-* Edit grails-scripts/.classpath and remove the line "<classpathentry kind="src" path="../scripts"/>".
+* 编辑grails-scripts/.classpath并删除“<classpathentry kind=\"src\" path=\"../scripts\"/>”这一行。
 
-Use "Import->General->Existing Projects into Workspace" to import all projects to STS. There will be a few build errors. To fix them do the following:
+使用“Import->General->Existing Projects into Workspace”将所有项目导入STS。可能会出现一些构建错误。要修复这些错误，请执行以下操作：
 
-* Add the springloaded-core JAR file in $GRAILS_HOME/lib/org.springsource.springloaded/springloaded-core/jars to grails-core's classpath.
-* Remove "src/test/groovy" from grails-plugin-testing's source path GRECLIPSE-1067
-* Add the jsp-api JAR file in $GRAILS_HOME/lib/javax.servlet.jsp/jsp-api/jars to the classpath of grails-web
-* Fix the source path of grails-scripts. Add linked source folder linking to "../scripts". If you get build errors in grails-scripts, do "../gradlew cleanEclipse eclipse" in that directory and edit the .classpath file again (remove the line "<classpathentry kind="src" path="../scripts"/>"). Remove possible empty "scripts" directory under grails-scripts if you are not able to add the linked folder.
-* Do a clean build for the whole workspace.
-* To use Eclipse GIT scm team provider: Select all projects (except "Servers") in the navigation and right click -> Team -> Share project (not "Share projects"). Choose "Git". Then check "Use or create repository in parent folder of project" and click "Finish".
-* Get the recommended code style settings from the http://grails.1312388.n4.nabble.com/Grails-development-code-style-IDE-formatting-settings-tp3854216p3854216.html[mailing list thread] (final style not decided yet, currently http://grails.1312388.n4.nabble.com/attachment/3854262/0/profile.xml[profile.xml]). Import the code style xml file to STS in Window->Preferences->Java->Code Style->Formatter->Import . Grails code uses spaces instead of tabs for indenting.
+* 将springloaded-core JAR文件添加到$GRAILS_HOME/lib/org.springsource.springloaded/springloaded-core/jars到grails-core的classpath。
+* 从grails-plugin-testing的源路径GRECLIPSE-1067中删除“src/test/groovy”。
+* 将jsp-api JAR文件添加到$GRAILS_HOME/lib/javax.servlet.jsp/jsp-api/jars到grails-web的classpath。
+* 修复grails-scripts的源路径。添加链接的源文件夹链接到“../scripts”。
+* 执行整个工作区的清除构建。
+* 使用Eclipse GIT scm团队提供程序：选择导航中的所有项目（除了\"Servers\"）右键单击-> Team -> Share project（而不是\"Share projects\"）。选择“Git”。然后选中“在项目的父文件夹中使用或创建存储库”并点击“完成”。
+* 从邮件列表线程http://grails.1312388.n4.nabble.com/Grails-development-code-style-IDE-formatting-settings-tp3854216p3854216.html[获得推荐的代码样式设置]（最终样式尚未确定，当前为http://grails.1312388.n4.nabble.com/attachment/3854262/0/profile.xml[profile.xml]）。在STS中导入代码样式xml文件Window->Preferences->Java->Code Style->Formatter->Import。Grails代码使用空格而不是制表符进行缩进。
 
+=== 调试Grails或Grails应用程序
 
-=== Debugging Grails or a Grails application
+要开启调试，请运行：
 
-
-To enable debugging, run:
 [source,groovy]
 ----
 ./gradlew bootRun --debug-jvm
 ----
 
-By default Grails forks a JVM to run the application in. The `-debug-jvm` argument causes the debugger to be associated with the forked JVM.
+默认情况下，Grails会fork一个JVM来运行应用程序。`-debug-jvm`参数将使调试器与forked JVM相关联。

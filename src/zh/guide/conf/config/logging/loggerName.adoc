@@ -1,60 +1,35 @@
-Grails artifacts (controllers, services ...) get injected a `log` property automatically.
+Grails工件（控制器，服务...）会自动注入一个`log`属性。
 
-Prior to Grails 3.3.0, the name of the
-logger for Grails Artifact followed the convention `grails.app.<type>.<className>`, where type is the
-type of the artifact, for example, `controllers` or `services`, and `className` is the fully
-qualified name of the artifact.
+在Grails 3.3.0之前，Grails工件的日志记录器名称遵循约定`grails.app.<type>.<className>`，其中type是工件的类型，例如，`controllers`或`services`，`className`是工件的完全限定名称。
 
-Grails 3.3.x simplifies logger names. The next examples illustrate the changes:
+Grails 3.3.x简化了日志记录器名称。下面的示例说明了更改：
 
-`BookController.groovy` located at `grails-app/controllers/com/company` NOT annotated with `http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`
+未注解为`http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`的位于`grails-app/controllers/com/company`中的`BookController.groovy`：
 
-[cols="2*"]
-|===
-|**Logger Name (Grails 3.3.x or higher)**
-|**Logger Name (Grails 3.2.x or lower)**
-|`com.company.BookController`
-|`grails.app.controllers.com.company.BookController`
-|===
+|===|  
+|**日志记录器名称（Grails 3.3.x或更高版本）**|**日志记录器名称（Grails 3.2.x或更低版本）|  
+|`com.company.BookController`|`grails.app.controllers.com.company.BookController`|
 
+已注解为`http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`的位于`grails-app/controllers/com/company`中的`BookController.groovy`：
 
-`BookController.groovy` located at `grails-app/controllers/com/company` annotated with `http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`
+|===|  
+|**日志记录器名称（Grails 3.3.x或更高版本）**|**日志记录器名称（Grails 3.2.x或更低版本）|  
+|`com.company.BookController`|`com.company.BookController`|
 
-[cols="2*"]
-|===
-|**Logger Name (Grails 3.3.x or higher)**
-|**Logger Name (Grails 3.2.x or lower)**
-|`com.company.BookController`
-|`com.company.BookController`
-|===
+未注解为`http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`的位于`grails-app/services/com/company`中的`BookService.groovy`：
 
+|===|  
+|**日志记录器名称（Grails 3.3.x或更高版本）**|**日志记录器名称（Grails 3.2.x或更低版本）|  
+|`com.company.BookService`|`grails.app.services.com.company.BookService`|
 
-`BookService.groovy` located at `grails-app/services/com/company` NOT annotated with `http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`
+已注解为`http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`的位于`grails-app/services/com/company`中的`BookService.groovy`：
 
-[cols="2*"]
-|===
-|**Logger Name (Grails 3.3.x or higher)**
-|**Logger Name (Grails 3.2.x or lower)**
-|`com.company.BookService`
-|`grails.app.services.com.company.BookService`
-|===
+|===|  
+|**日志记录器名称（Grails 3.3.x或更高版本）**|**日志记录器名称（Grails 3.2.x或更低版本）|  
+|`com.company.BookService`|`com.company.BookService`|
 
-`BookService.groovy` located at `grails-app/services/com/company` annotated with `http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`
+已注解为`http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`的位于`src/main/groovy/com/company`中的`BookDetail.groovy`：
 
-[cols="2*"]
-|===
-|**Logger Name (Grails 3.3.x or higher)**
-|**Logger Name (Grails 3.2.x or lower)**
-|`com.company.BookService`
-|`com.company.BookService`
-|===
-
-`BookDetail.groovy` located at `src/main/groovy/com/company` annotated with `http://docs.groovy-lang.org/latest/html/gapi/groovy/util/logging/Slf4j.html[@Slf4j]`
-
-[cols="2*"]
-|===
-|**Logger Name (Grails 3.3.x or higher)**
-|**Logger Name (Grails 3.2.x or lower)**
-|`com.company.BookDetail`
-|`com.company.BookDetail`
-|===
+|===|  
+|**日志记录器名称（Grails 3.3.x或更高版本）**|**日志记录器名称（Grails 3.2.x或更低版本）|  
+|`com.company.BookDetail`|`com.company.BookDetail`|

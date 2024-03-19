@@ -1,21 +1,17 @@
-A common requirement with a REST API is to expose different versions at the same time. There are a few ways this can be achieved in Grails.
+在REST API中的一个常见需求是同时公开不同版本。在Grails中有几种实现这一目标的方式。
 
+使用URI进行版本控制
 
-==== Versioning using the URI
+常见的方法是使用URI来为API版本化（尽管这种方法不如超媒体方法受欢迎）。例如，您可以定义以下URL映射：
 
-
-A common approach is to use the URI to version APIs (although this approach is discouraged in favour of Hypermedia). For example, you can define the following URL mappings:
-
-[source,groovy]
-----
+```groovy
 "/books/v1"(resources:"book", namespace:'v1')
 "/books/v2"(resources:"book", namespace:'v2')
-----
+```
 
-That will match the following controllers:
+这将匹配以下控制器：
 
-[source,groovy]
-----
+```groovy
 package myapp.v1
 
 class BookController {
@@ -27,52 +23,43 @@ package myapp.v2
 class BookController {
     static namespace = 'v2'
 }
-----
+```
 
-This approach has the disadvantage of requiring two different URI namespaces for your API.
+这种方法的缺点是需要使用两个不同的URI命名空间来代表您的API。
 
+使用Accept-Version标头进行版本控制
 
-==== Versioning with the Accept-Version header
+作为一种替代方法，Grails支持从客户端传递`Accept-Version`标头。例如，您可以定义以下URL映射：
 
-
-As an alternative Grails supports the passing of an `Accept-Version` header from clients. For example you can define the following URL mappings:
-
-[source,groovy]
-----
+```groovy
 "/books"(version:'1.0', resources:"book", namespace:'v1')
 "/books"(version:'2.0', resources:"book", namespace:'v2')
-----
+```
 
+然后在客户端简单地通过`Accept-Version`标头传递需要的版本：
 
-Then in the client simply pass which version you need using the `Accept-Version` header:
-
-[source,bash]
-----
+```bash
 $ curl -i -H "Accept-Version: 1.0" -X GET http://localhost:8080/books
-----
+```
 
+使用超媒体/媒体类型进行版本控制
 
-==== Versioning using Hypermedia / Mime Types
+另一种版本控制的方式是使用媒体类型定义来声明您的自定义媒体类型的版本（有关超媒体概念的更多信息，请参阅“超媒体作为应用程序状态引擎”部分）。例如，在`application.groovy`中，您可以为资源声明一个包含版本参数（'v'参数）的自定义媒体类型：
 
-
-Another approach to versioning is to use Mime Type definitions to declare the version of your custom media types (see the section on "Hypermedia as the Engine of Application State" for more information about Hypermedia concepts). For example, in `application.groovy` you can declare a custom Mime Type for your resource that includes a version parameter (the 'v' parameter):
-
-[source,groovy]
-----
+```groovy
 grails.mime.types = [
     all: '*/*',
     book: "application/vnd.books.org.book+json;v=1.0",
     bookv2: "application/vnd.books.org.book+json;v=2.0",
     ...
-}
-----
+]
+```
 
-WARNING: It is critical that place your new mime types after the 'all' Mime Type because if the Content Type of the request cannot be established then the first entry in the map is used for the response. If you have your new Mime Type at the top then Grails will always try and send back your new Mime Type if the requested Mime Type cannot be established.
+要确保将新的媒体类型放在'所有'媒体类型之后，以防请求的内容类型无法确定，则映射中的第一个条目用于响应。如果您将新的媒体类型放在顶部，则Grails将始终尝试在请求的媒体类型无法确定时发送回您的新的媒体类型。
 
-Then override the renderer (see the section on "Customizing Response Rendering" for more information on custom renderers) to send back the custom Mime Type in `grails-app/conf/spring/resourses.groovy`:
+然后，覆盖渲染器（有关自定义渲染器的更多信息，请参阅“自定义响应渲染”部分），发送自定义媒体类型的重要步骤在`grails-app/conf/spring/resourses.groovy`：
 
-[source,groovy]
-----
+```groovy
 import grails.rest.render.json.*
 import grails.web.mime.*
 
@@ -80,23 +67,20 @@ beans = {
     bookRendererV1(JsonRenderer, myapp.v1.Book, new MimeType("application/vnd.books.org.book+json", [v:"1.0"]))
     bookRendererV2(JsonRenderer, myapp.v2.Book, new MimeType("application/vnd.books.org.book+json", [v:"2.0"]))
 }
-----
+```
 
-Then update the list of acceptable response formats in your controller:
+然后在您的控制器中更新可接受的响应格式列表：
 
-[source,groovy]
-----
+```groovy
 class BookController extends RestfulController {
     static responseFormats = ['json', 'xml', 'book', 'bookv2']
 
     // ...
 }
-----
+```
 
+然后使用`Accept`标头指定您需要的版本，使用媒体类型：
 
-Then using the `Accept` header you can specify which version you need using the Mime Type:
-
-[source,groovy]
-----
+```groovy
 $ curl -i -H "Accept: application/vnd.books.org.book+json;v=1.0" -X GET http://localhost:8080/books
-----
+```

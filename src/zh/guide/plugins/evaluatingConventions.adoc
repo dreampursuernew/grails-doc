@@ -1,42 +1,42 @@
-Before looking at providing runtime configuration based on conventions you first need to understand how to evaluate those conventions from a plugin. Every plugin has an implicit `application` variable which is an instance of the {apiDocs}grails/core/GrailsApplication.html[GrailsApplication] interface.
+在考虑基于约定提供运行时配置之前，您首先需要了解如何从插件中评估这些约定。每个插件都有一个隐式的“application”变量，它是{apiDocs}grails/core/GrailsApplication.html[GrailsApplication]接口的一个实例。
 
-The `GrailsApplication` interface provides methods to evaluate the conventions within the project and internally stores references to all artifact classes within your application.
+“GrailsApplication”接口提供了评估项目中约定的方法，并在内部存储了应用程序中所有工件类的引用。
 
-Artifacts implement the {apiDocs}grails/core/GrailsClass.html[GrailsClass] interface, which represents a Grails resource such as a controller or a tag library. For example to get all `GrailsClass` instances you can do:
+工件实现了{apiDocs}grails/core/GrailsClass.html[GrailsClass]接口，代表了Grails资源，如控制器或标签库。例如，要获取所有“GrailsClass”实例，您可以执行以下操作：
 
-[source,groovy]
+[source, groovy]
 ----
 for (grailsClass in application.allClasses) {
     println grailsClass.name
 }
 ----
 
-`GrailsApplication` has a few "magic" properties to narrow the type of artefact you are interested in. For example to access controllers you can use:
+“GrailsApplication”具有一些“魔术”属性，可以缩小你感兴趣的工件类型的范围。例如，要访问控制器，可以使用：
 
-[source,groovy]
+[source, groovy]
 ----
 for (controllerClass in application.controllerClasses) {
     println controllerClass.name
 }
 ----
 
-The dynamic method conventions are as follows:
+动态方法约定如下：
 
-* `*Classes` - Retrieves all the classes for a particular artefact name. For example `application.controllerClasses`.
-* `get*Class` - Retrieves a named class for a particular artefact. For example `application.getControllerClass("PersonController")`
-* `is*Class` - Returns `true` if the given class is of the given artefact type. For example `application.isControllerClass(PersonController)`
+* `*Classes` - 检索特定工件名称下的所有类。例如 `application.controllerClasses`。
+* `get*Class` - 检索特定工件的命名类。例如 `application.getControllerClass("PersonController")`
+* `is*Class` - 如果给定类属于给定工件类型，则返回`true`。例如 `application.isControllerClass(PersonController)`
 
-The `GrailsClass` interface has a number of useful methods that let you further evaluate and work with the conventions. These include:
+“GrailsClass”接口具有许多有用的方法，让您进一步评估和处理约定。其中包括：
 
-* `getPropertyValue` - Gets the initial value of the given property on the class
-* `hasProperty` - Returns `true` if the class has the specified property
-* `newInstance` - Creates a new instance of this class.
-* `getName` -  Returns the logical name of the class in the application without the trailing convention part if applicable
-* `getShortName` - Returns the short name of the class without package prefix
-* `getFullName` - Returns the full name of the class in the application with the trailing convention part and with the package name
-* `getPropertyName` - Returns the name of the class as a property name
-* `getLogicalPropertyName` - Returns the logical property name of the class in the application without the trailing convention part if applicable
-* `getNaturalName` - Returns the name of the property in natural terms (e.g. 'lastName' becomes 'Last Name')
-* `getPackageName` - Returns the package name
+* `getPropertyValue` - 获取类上指定属性的初始值
+* `hasProperty` - 如果类具有指定的属性，则返回`true`
+* `newInstance` - 创建此类的新实例。
+* `getName` - 返回应用程序中类的逻辑名称，如果适用，则不包含尾随约定部分
+* `getShortName` - 返回不带包前缀的类的短名称
+* `getFullName` - 返回应用程序中类的完整名称，包含尾随约定部分和包名
+* `getPropertyName` - 以属性名称的形式返回类的名称
+* `getLogicalPropertyName` - 返回应用程序中类的逻辑属性名称，如果适用，则不包含尾随约定部分
+* `getNaturalName` - 以自然术语返回属性的名称（例如，“lastName”变为“Last Name”）
+* `getPackageName` - 返回包名
 
-For a full reference refer to the {apiDocs}grails/core/GrailsClass.html[javadoc API].
+有关完整参考，请参阅{apiDocs}grails/core/GrailsClass.html[javadoc API]。

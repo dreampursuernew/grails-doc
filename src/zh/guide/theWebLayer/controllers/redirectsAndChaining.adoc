@@ -1,10 +1,8 @@
-==== Redirects
+重定向
 
+操作可以使用链接来重定向:../ref/Controllers/redirect.html[redirect] 控制器方法：
 
-Actions can be redirected using the link:../ref/Controllers/redirect.html[redirect] controller method:
-
-[source,groovy]
-----
+```groovy
 class OverviewController {
 
     def login() {}
@@ -17,80 +15,72 @@ class OverviewController {
         ...
     }
 }
-----
+```
 
-Internally the link:../ref/Controllers/redirect.html[redirect] method uses the {javaee}javax/servlet/http/HttpServletResponse.html[HttpServletResponse] object's `sendRedirect` method.
+内部链接link:../ref/Controllers/redirect.html[redirect] 方法使用了{javaee}javax/servlet/http/HttpServletResponse.html[HttpServletResponse] 对象的 `sendRedirect` 方法。
 
-The `redirect` method expects one of:
+`redirect` 方法预期以下之一：
 
-* The name of an action (and controller name if the redirect isn't to an action in the current controller):
+- 一个操作的名称（如果重定向不是一个当前控制器中的操作）：
 
-[source,groovy]
-----
-// Also redirects to the index action in the home controller
+```groovy
+// 也重定向到home控制器中的index操作
 redirect(controller: 'home', action: 'index')
-----
+```
 
-*  A URI for a resource relative the application context path:
+- 应用程序上下文路径中的资源的URI：
 
-[source,groovy]
-----
-// Redirect to an explicit URI
+```groovy
+// 重定向到显式URI
 redirect(uri: "/login.html")
-----
+```
 
-* Or a full URL:
+- 或一个完整的URL：
 
-[source,groovy]
-----
-// Redirect to a URL
+```groovy
+// 重定向到一个URL
 redirect(url: "http://grails.org")
-----
+```
 
-* A link:GORM.html[domain class] instance:
+- 一个link:GORM.html[domain class] 实例：
 
-[source,groovy]
-----
-// Redirect to the domain instance
-Book book = ... // obtain a domain instance
+```groovy
+// 重定向到域实例
+Book book = ... // 获得一个域实例
 redirect book
-----
+```
 
-In the above example Grails will construct a link using the domain class `id` (if present).
+在上面的例子中，Grails会使用域类的`id`（如果存在）构建链接。
 
-Parameters can optionally be passed from one action to the next using the `params` argument of the method:
+可以选择通过方法的`params`参数将参数从一个操作传递到下一个操作：
 
-[source,groovy]
-----
+```groovy
 redirect(action: 'myaction', params: [myparam: "myvalue"])
-----
+```
 
-These parameters are made available through the link:../ref/Controllers/params.html[params] dynamic property that accesses request parameters. If a parameter is specified with the same name as a request parameter, the request parameter is overridden and the controller parameter is used.
+这些参数通过link:../ref/Controllers/params.html[params] 动态属性可用，该属性访问请求参数。如果指定了与请求参数相同名称的参数，请求参数会被覆盖，并使用控制器参数。
 
-Since the `params` object is a Map, you can use it to pass the current request parameters from one action to the next:
+因为`params`对象是一个Map，你可以使用它将当前请求参数从一个操作传递到下一个操作：
 
-[source,groovy]
-----
+```groovy
 redirect(action: "next", params: params)
-----
+```
 
-Finally, you can also include a fragment in the target URI:
+最后，您也可以在目标URI中包含一个片段：
 
-[source,groovy]
-----
+```groovy
 redirect(controller: "test", action: "show", fragment: "profile")
-----
+```
 
-which will (depending on the URL mappings) redirect to something like "/myapp/test/show#profile".
+这将根据URL映射重定向到类似`/myapp/test/show#profile`的内容。
 
+链接
 
-==== Chaining
+链
 
+操作也可以链接。链接允许从一个操作保留模型到下一个。例如，在此操作中调用`first`操作：
 
-Actions can also be chained. Chaining allows the model to be retained from one action to the next. For example calling the `first` action in this action:
-
-[source,groovy]
-----
+```groovy
 class ExampleChainController {
 
     def first() {
@@ -105,19 +95,17 @@ class ExampleChainController {
         [three: 3])
     }
 }
-----
+```
 
-results in the model:
+这将产生模型：
 
-[source,groovy]
-----
+```groovy
 [one: 1, two: 2, three: 3]
-----
+```
 
-The model can be accessed in subsequent controller actions in the chain using the `chainModel` map. This dynamic property only exists in actions following the call to the `chain` method:
+模型可以在链中的后续控制器操作中使用`chainModel`映射。此动态属性仅存在于调用`chain`方法后的操作中：
 
-[source,groovy]
-----
+```groovy
 class ChainController {
 
     def nextInChain() {
@@ -125,13 +113,12 @@ class ChainController {
         ...
     }
 }
-----
+```
 
-Like the `redirect` method you can also pass parameters to the `chain` method:
+与`redirect`方法类似，您也可以将参数传递给`chain`方法：
 
-[source,groovy]
-----
+```groovy
 chain(action: "action1", model: [one: 1], params: [myparam: "param1"])
-----
+```
 
-NOTE: The chain method uses the HTTP session and hence should only be used if your application is stateful.
+注意：`chain` 方法使用HTTP会话，因此只能在应用程序具有状态时使用。

@@ -1,32 +1,28 @@
+=== 类型转换方法
 
-=== Type Conversion Methods
-
-
-If you prefer to avoid the overhead of link:theWebLayer.html#dataBinding[data binding] and simply want to convert incoming parameters (typically Strings) into another more appropriate type the link:../ref/Controllers/params.html[params] object has a number of convenience methods for each type:
+如果你想避免link:theWebLayer.html#dataBinding[数据绑定]的开销，只想将传入参数（通常是字符串）转换为另一种更合适的类型，link:../ref/Controllers/params.html[params]对象针对每种类型提供了一些方便的转换方法：
 
 [source,groovy]
 ----
 def total = params.int('total')
 ----
 
-The above example uses the `int` method, and there are also methods for `boolean`, `long`, `char`, `short` and so on. Each of these methods is null-safe and safe from any parsing errors, so you don't have to perform any additional checks on the parameters.
+上面的例子使用了`int`方法，还有`boolean`、`long`、`char`、`short`等方法。每个方法都是安全的，可以避免空指针异常和解析错误，因此您不需要对参数进行任何额外的检查。
 
-Each of the conversion methods allows a default value to be passed as an optional second argument.  The default value will be returned if a corresponding entry cannot be found in the map or if an error occurs during the conversion.  Example:
+每个转换方法允许将默认值作为可选的第二个参数传递。如果在映射中找不到相应的条目，或者在转换过程中发生错误，将返回默认值。例如：
 
 [source,groovy]
 ----
 def total = params.int('total', 42)
 ----
 
-These same type conversion methods are also available on the `attrs` parameter of GSP tags.
+相同的类型转换方法也适用于GSP标签的`attrs`参数。
 
+=== 处理多个参数
 
-=== Handling Multi Parameters
+一个常见的用例是处理相同名称的多个请求参数。例如，您可能会得到一个查询字符串，如`?name=Bob&name=Judy`。
 
-
-A common use case is dealing with multiple request parameters of the same name. For example you could get a query string such as `?name=Bob&name=Judy`.
-
-In this case dealing with one parameter and dealing with many has different semantics since Groovy's iteration mechanics for `String` iterate over each character. To avoid this problem the link:../ref/Controllers/params.html[params] object provides a `list` method that always returns a list:
+在这种情况下，处理一个参数和处理多个参数具有不同的语义，因为Groovy对于`String`的迭代机制会遍历每个字符。为了避免这个问题，link:../ref/Controllers/params.html[params]对象提供了一个`list`方法，它总是返回一个列表：
 
 [source,groovy]
 ----

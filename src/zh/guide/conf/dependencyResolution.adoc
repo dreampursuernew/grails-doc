@@ -1,1 +1,1 @@
-Dependency resolution is handled by the http://gradle.org[Gradle build tool], all dependencies are defined in the `build.gradle` file. Refer to the link:commandLine.html#gradleBuild[Gradle user guide] for more information.
+依赖解析由http://gradle.org[Gradle构建工具]处理，在`build.gradle`文件中定义了所有依赖关系。有关更多信息，请参考链接：commandLine.html#gradleBuild[Gradle用户指南]。

@@ -1,15 +1,15 @@
-Domain classes are core to any business application. They hold state about business processes and hopefully also implement behavior. They are linked together through relationships; one-to-one, one-to-many, or many-to-many.
+领域类是任何业务应用程序的核心。它们保存有关业务流程的状态，希翼也实现行为。它们通过关系相互连接; 一对一、一对多或多对多。
 
-GORM is Grails' object relational mapping (ORM) implementation. Under the hood it uses Hibernate (a very popular and flexible open source ORM solution) and thanks to the dynamic nature of Groovy with its static and dynamic typing, along with the convention of Grails, there is far less configuration involved in creating Grails domain classes.
+GORM是Grails的对象关系映射（ORM）实现。在底层，它使用Hibernate（一个非常流行和灵活的开源ORM解决方案），并且由于Groovy的动态性质，静态和动态类型以及Grails的约定，创建Grails领域类时涉及的配置要少得多。
 
-You can also write Grails domain classes in Java. See the section on Hibernate Integration for how to write domain classes in Java but still use dynamic persistent methods. Below is a preview of GORM in action:
+您也可以用Java编写Grails领域类。查看有关如何在Java中编写领域类但仍然使用动态持久方法的“Hibernate集成”部分。以下是GORM实际操作的预览:
 
-[source,groovy]
+[source, groovy]
 ----
 def book = Book.findByTitle("Groovy in Action")
 
 book
-  .addToAuthors(name:"Dierk Koenig")
-  .addToAuthors(name:"Guillaume LaForge")
-  .save()
+.addToAuthors(name:"Dierk Koenig")
+.addToAuthors(name:"Guillaume LaForge")
+.save()
 ----

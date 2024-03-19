@@ -1,21 +1,19 @@
+==== 程序化文件上传
 
-==== Programmatic File Uploads
-
-
-Grails supports file uploads using Spring's {springapi}org/springframework/web/multipart/MultipartHttpServletRequest.html[MultipartHttpServletRequest] interface. The first step for file uploading is to create a multipart form like this:
+Grails支持使用Spring的{springapi}org/springframework/web/multipart/MultipartHttpServletRequest.html[MultipartHttpServletRequest]接口进行文件上传。文件上传的第一步是创建一个类似于以下的多部分表单：
 
 [source,xml]
 ----
-Upload Form: <br />
-    <g:uploadForm action="upload">
-        <input type="file" name="myFile" />
-        <input type="submit" />
+上传表单：<br />
+    <g:uploadForm action=\"upload\">
+        <input type=\"file\" name=\"myFile\" />
+        <input type=\"submit\" />
     </g:uploadForm>
 ----
 
-The `uploadForm` tag conveniently adds the `enctype="multipart/form-data"` attribute to the standard `<g:form>` tag.
+`uploadForm`标签方便地将`enctype=\"multipart/form-data\"`属性添加到标准的`<g:form>`标签中。
 
-There are then a number of ways to handle the file upload. One is to work with the Spring {springapi}org/springframework/web/multipart/MultipartFile.html[MultipartFile] instance directly:
+然后有许多处理文件上传的方法。一种方法是直接使用Spring {springapi}org/springframework/web/multipart/MultipartFile.html[MultipartFile]实例进行操作：
 
 [source,groovy]
 ----
@@ -32,13 +30,11 @@ def upload() {
 }
 ----
 
-This is convenient for doing transfers to other destinations and manipulating the file directly as you can obtain an `InputStream` and so on with the {springapi}org/springframework/web/multipart/MultipartFile.html[MultipartFile] interface.
+这对于将文件传输到其他目的地并直接操作文件非常方便，因为您可以使用{springapi}org/springframework/web/multipart/MultipartFile.html[MultipartFile]接口获取`InputStream`等内容。
 
+==== 数据绑定进行文件上传
 
-==== File Uploads through Data Binding
-
-
-File uploads can also be performed using data binding. Consider this `Image` domain class:
+也可以使用数据绑定来执行文件上传。考虑这个`Image`领域类：
 
 [source,groovy]
 ----
@@ -46,22 +42,22 @@ class Image {
     byte[] myFile
 
     static constraints = {
-        // Limit upload file size to 2MB
+        // 将上传文件大小限制为2MB
         myFile maxSize: 1024 * 1024 * 2
     }
 }
 ----
 
-If you create an image using the `params` object in the constructor as in the example below, Grails will automatically bind the file's contents as a `byte[]` to the `myFile` property:
+如果您在构造函数中使用`params`对象创建图像，如下面的示例，Grails将自动将文件内容绑定为`byte[]`到`myFile`属性：
 
 [source,groovy]
 ----
 def img = new Image(params)
 ----
 
-It's important that you set the link:../ref/Constraints/size.html[size] or link:../ref/Constraints/maxSize.html[maxSize] constraints, otherwise your database may be created with a small column size that can't handle reasonably sized files. For example, both H2 and MySQL default to a blob size of 255 bytes for `byte[]` properties.
+您应该设置link:../ref/Constraints/size.html[size]或link:../ref/Constraints/maxSize.html[maxSize]约束，否则您的数据库可能会创建带有无法容纳合理大小文件的小列大小。例如，H2和MySQL默认将`byte[]`属性的blob大小设置为255字节。
 
-It is also possible to set the contents of the file as a string by changing the type of the `myFile` property on the image to a String type:
+还可以通过将图像上的`myFile`属性的类型更改为String类型，将文件的内容设置为字符串：
 
 [source,groovy]
 ----
@@ -70,16 +66,16 @@ class Image {
 }
 ----
 
-==== Increase Upload Max File Size
+==== 增加上传的最大文件大小
 
-Grails default size for file uploads is 128000 (~128KB). When this limit is exceeded you'll see the following exception:
+Grails的文件上传默认大小为128000（约128KB）。当超过此限制时，您将看到以下异常：
 
 [source,java]
 ----
 org.springframework.web.multipart.MultipartException: Could not parse multipart servlet request; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException
 ----
 
-You can configure the limit in your `application.yml` as follows:
+您可以在您的`application.yml`中配置限制如下：
 
 [source,yml]
 .grails-app/conf/application.yml
@@ -91,12 +87,12 @@ grails:
             maxRequestSize: 2000000
 ----
 
-`maxFileSize` = The maximum size allowed for uploaded files.
+`maxFileSize` = 允许上传文件的最大大小。
 
-`maxRequestSize` =  The maximum size allowed for multipart/form-data requests.
+`maxRequestSize` = 允许multipart/form-data请求的最大大小。
 
-You should keep in mind https://www.owasp.org/index.php/Unrestricted_File_Upload[OWASP recommendations - Unrestricted File Upload]
+请谨记https://www.owasp.org/index.php/Unrestricted_File_Upload[OWASP建议-无限制文件上传]
 
-NOTE: Limit the file size to a maximum value in order to prevent denial of service attacks.
+注意：限制文件大小到最大值以防止拒绝服务攻击。
 
-These limits exist to prevent DoS attacks and to enforce overall application performance
+这些限制存在是为了防止DoS攻击并强制执行整体应用程序性能。

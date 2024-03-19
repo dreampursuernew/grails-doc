@@ -1,44 +1,39 @@
-Typically your model may involve one or many domain instances. JSON views provide a render method for rendering these.
+通常，您的模型可能涉及一个或多个领域实例。JSON视图提供了一个渲染方法来呈现这些内容。
 
-For example given the following domain class:
+例如，给定以下领域类：
 
-[source,groovy]
-----
+```groovy
 class Book {
     String title
 }
-----
+```
 
-And the following template:
+和以下模板：
 
-[source,groovy]
-----
+```groovy
 model {
     Book book
 }
 
 json g.render(book)
-----
+```
 
-The resulting output is:
+生成的输出是：
 
-[source,groovy]
-----
+```groovy
 {id:1, title:"The Stand"}
-----
+```
 
-You can customize the rendering by including or excluding properties:
+您可以通过包含或排除属性来自定义渲染：
 
-[source,groovy]
-----
+```groovy
 json g.render(book, [includes:['title']])
-----
+```
 
-Or by providing a closure to add additional JSON output:
+或通过提供一个闭包来添加额外的JSON输出：
 
-[source,groovy]
-----
+```groovy
 json g.render(book) {
     pages 1000
 }
-----
+```

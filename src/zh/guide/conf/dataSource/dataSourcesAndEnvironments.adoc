@@ -1,22 +1,19 @@
-The previous example configuration assumes you want the same config for all environments: production, test, development etc.
+上面的示例配置假定您希望所有环境（生产、测试、开发等）使用相同的配置。
 
-Grails' DataSource definition is "environment aware", however, so you can do:
+Grails的DataSource定义是“环境感知的”，因此您可以这样做：
 
-[source,groovy]
-----
 dataSource {
     pooled = true
     driverClassName = "com.mysql.jdbc.Driver"
     dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-    // other common settings here
+    // 其他常见设置在此处
 }
 
 environments {
     production {
         dataSource {
             url = "jdbc:mysql://liveip.com/liveDb"
-            // other environment-specific settings here
+            // 其他环境特定的设置在此处
         }
     }
 }
-----

@@ -1,4 +1,4 @@
-Grails {version} ships with the following dependency upgrades:
+Grails {version}随附以下依赖项升级：
 
 * Groovy 3.0.11
 * Micronaut 3
@@ -9,4 +9,3 @@ Grails {version} ships with the following dependency upgrades:
 * Gradle 7.6.1
 * Spock 2.1-groovy-3.0
 * Grails Testing Support 3
-

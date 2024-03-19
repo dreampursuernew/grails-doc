@@ -1,7 +1,6 @@
-If you want even more control of the rendering or prefer to use your own marshalling techniques then you can implement your own `Renderer` instance. For example below is a simple implementation that customizes the rendering of the `Book` class:
+如果您想要更多地控制呈现或者偏好使用自己的编组技术，那么您可以实现自己的`Renderer`实例。 下面是一个简单的实现示例，定制了`Book`类的呈现：
 
-[source,groovy]
-----
+```groovy
 package myapp
 import grails.rest.render.*
 import grails.web.mime.MimeType
@@ -18,42 +17,37 @@ class BookXmlRenderer extends AbstractRenderer<Book> {
         xml.book(id: object.id, title:object.title)
     }
 }
-----
+```
 
-The `AbstractRenderer` super class has a constructor that takes the class that it renders and the `MimeType`(s) that are accepted (via the ACCEPT header or file extension) for the renderer.
+`AbstractRenderer` 超类具有一个构造函数，接受要呈现的类和接受的`MimeType`（通过 ACCEPT 头或文件扩展名）的渲染器。
 
-To configure this renderer, simply add it is a bean to `grails-app/conf/spring/resources.groovy`:
+要配置此呈现器，只需将其添加为一个 bean 到 `grails-app/conf/spring/resources.groovy`：
 
-[source,groovy]
-----
+```groovy
 beans = {
     bookRenderer(myapp.BookXmlRenderer)
 }
-----
+```
 
-The result will be that all `Book` instances will be rendered in the following format:
+结果是所有`Book`实例将以以下格式呈现：
 
-[source,groovy]
-----
+```groovy
 <book id="1" title="The Stand"/>
-----
+```
 
-NOTE: If you change the rendering to a completely different format like the above, then you also need to change the binding if you plan to support POST and PUT requests. Grails will not automatically know how to bind data from a custom XML format to a domain class otherwise. See the section on "Customizing Binding of Resources" for further information.
+注意：如果将呈现更改为像上面的完全不同的格式，则还需要更改绑定，如果计划支持 POST 和 PUT 请求。 否则 Grails 将无法自动了解如何从自定义 XML 格式将数据绑定到域类中。 有关更多信息，请参阅“自定义资源绑定”部分。
 
+容器呈现器
 
-==== Container Renderers
+`grails.rest.render.ContainerRenderer` 是一个用于呈现对象容器（列表、映射、集合等）响应的呈现器。 该接口与`Renderer`接口几乎相同，只是添加了`getComponentType()`方法，该方法应返回“包容”的类型。 例如：
 
-
-A `grails.rest.render.ContainerRenderer` is a renderer that renders responses for containers of objects (lists, maps, collections etc.). The interface is largely the same as the `Renderer` interface except for the addition of the `getComponentType()` method, which should return the "contained" type. For example:
-
-[source,groovy]
-----
+```groovy
 class BookListRenderer implements ContainerRenderer<List, Book> {
     Class<List> getTargetType() { List }
     Class<Book> getComponentType() { Book }
-    MimeType[] getMimeTypes() { [ MimeType.XML] as MimeType[] }
+    MimeType[] getMimeTypes() { [MimeType.XML] as MimeType[] }
     void render(List object, RenderContext context) {
         ....
     }
 }
-----
+```

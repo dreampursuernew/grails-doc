@@ -1,5 +1,5 @@
-The Spring Security plugins are built on the https://spring.io/projects/spring-security[Spring Security] project which provides a flexible, extensible framework for building all sorts of authentication and authorization schemes. The plugins are modular so you can install just the functionality that you need for your application. The Spring Security plugins are the official security plugins for Grails and are actively maintained and supported.
+Spring Security插件是建立在Spring Security项目上的，该项目提供了一个灵活、可扩展的框架，用于构建各种认证和授权方案。这些插件是模块化的，因此您可以只安装您的应用程序所需的功能。Spring Security插件是Grails的官方安全插件，并且得到积极维护和支持。
 
-There is a https://plugins.grails.org/plugin/grails/spring-security-core[Spring Security Core] plugin which supports form-based authentication, encrypted/salted passwords, HTTP Basic authentication, etc. and secondary dependent plugins provide alternate functionality such as https://plugins.grails.org/plugin/grails/spring-security-acl[ACL support], https://plugins.grails.org/plugin/grails/spring-security-cas[single sign-on with Jasig CAS], https://plugins.grails.org/plugin/grails/spring-security-ldap[LDAP authentication], https://plugins.grails.org/plugin/grails/spring-security-kerberos[Kerberos authentication], and a plugin providing https://plugins.grails.org/plugin/grails/spring-security-ui[user interface extensions] and security workflows.
+有一个Spring Security Core插件，支持基于表单的认证、加密/盐加密密码、HTTP基本认证等，以及辅助依赖插件提供了其他功能，如ACL支持、与Jasig CAS的单点登录、LDAP认证、Kerberos认证，以及一个提供用户界面扩展和安全工作流的插件。
 
-See the https://plugins.grails.org/plugin/grails/spring-security-core[Spring Security Core] plugin page for basic information and https://grails.github.io/grails-spring-security-core/latest/index.html[user guide] for detailed information.
+查看Spring Security Core插件页面获取基本信息，查看用户指南获取详细信息。

@@ -1,140 +1,117 @@
+==== 简单变量
 
-==== Simple Variables
+前一节演示了如何将简单的URL映射到具体的"标记"上。在URL映射中，标记是每个斜杠'/'之间的字符序列。具体的标记是明确定义的，比如`/product`。然而，在许多情况下，在运行时你不知道特定标记的值是什么。这种情况下，你可以在URL中使用变量占位符，例如：
 
-
-The previous section demonstrated how to map simple URLs with concrete "tokens". In URL mapping speak tokens are the sequence of characters between each slash, '/'. A concrete token is one which is well defined such as as `/product`. However, in many circumstances you don't know what the value of a particular token will be until runtime. In this case you can use variable placeholders within the URL for example:
-
-[source,groovy]
-----
+```groovy
 static mappings = {
   "/product/$id"(controller: "product")
 }
-----
+```
 
-In this case by embedding a $id variable as the second token Grails will automatically map the second token into a parameter (available via the link:../ref/Controllers/params.html[params] object) called `id`. For example given the URL `/product/MacBook`, the following code will render "MacBook" to the response:
+在这种情况下，通过将$id变量嵌入为第二个标记，Grails会自动将第二个标记映射到一个参数（可以通过`params`对象获得）。例如，给定URL`/product/MacBook`，以下代码将在响应中呈现"MacBook"：
 
-[source,groovy]
-----
+```groovy
 class ProductController {
      def index() { render params.id }
 }
-----
+```
 
-You can of course construct more complex examples of mappings. For example the traditional blog URL format could be mapped as follows:
+当然，你可以构造更复杂的映射示例。例如，传统的博客URL格式可以映射如下：
 
-[source,groovy]
-----
+```groovy
 static mappings = {
    "/$blog/$year/$month/$day/$id"(controller: "blog", action: "show")
 }
-----
+```
 
-The above mapping would let you do things like:
+上述映射可让你做诸如：
 
-[source]
-----
+```
 /graemerocher/2007/01/10/my_funky_blog_entry
-----
+```
 
-The individual tokens in the URL would again be mapped into the link:../ref/Controllers/params.html[params] object with values available for `year`, `month`, `day`, `id` and so on.
+URL中的每个标记再次映射到`params`对象，可用于`year`、`month`、`day`、`id`等值。
 
+==== 动态控制器和动作名称
 
-==== Dynamic Controller and Action Names
+变量还可以用于动态构建控制器和动作名称。实际上，默认的Grails URL映射使用了这种技术：
 
-
-Variables can also be used to dynamically construct the controller and action name. In fact the default Grails URL mappings use this technique:
-
-[source,groovy]
-----
+```groovy
 static mappings = {
     "/$controller/$action?/$id?"()
 }
-----
+```
 
-Here the name of the controller, action and id are implicitly obtained from the variables `controller`, `action` and `id` embedded within the URL.
+在这里，控制器、动作和id的名称隐式地从嵌入在URL中的`controller`、`action`和`id`变量中获得。
 
-You can also resolve the controller name and action name to execute dynamically using a closure:
+你还可以通过闭包解析控制器名称和动作名称以动态执行：
 
-[source,groovy]
-----
+```groovy
 static mappings = {
     "/$controller" {
         action = { params.goHere }
     }
 }
-----
+```
 
+==== 可选变量
 
-==== Optional Variables
+默认映射的另一个特征是在变量末尾附加`?`来使其成为可选标记。在进一步的示例中，这种技术可以应用于博客URL映射以获得更灵活的链接：
 
-
-Another characteristic of the default mapping is the ability to append a ? at the end of a variable to make it an optional token. In a further example this technique could be applied to the blog URL mapping to have more flexible linking:
-
-[source,groovy]
-----
+```groovy
 static mappings = {
     "/$blog/$year?/$month?/$day?/$id?"(controller:"blog", action:"show")
 }
-----
+```
 
-With this mapping all of these URLs would match with only the relevant parameters being populated in the link:../ref/Controllers/params.html[params] object:
+通过这种映射，所有这些URL都将匹配，并且仅相关参数将填充在`params`对象中：
 
-----
+```
 /graemerocher/2007/01/10/my_funky_blog_entry
 /graemerocher/2007/01/10
 /graemerocher/2007/01
 /graemerocher/2007
 /graemerocher
-----
+```
 
+==== 可选文件扩展名
 
-==== Optional File Extensions
+如果你希望捕获特定路径的扩展名，则存在一种特殊情况的映射：
 
-
-If you wish to capture the extension of a particular path, then a special case mapping exists:
-
-[source,groovy]
-----
+```groovy
 "/$controller/$action?/$id?(.$format)?"()
-----
+```
 
-By adding the `(.$format)?` mapping you can access the file extension using the `response.format` property in a controller:
+通过添加`(.$format)?`映射，你可以在控制器中使用`response.format`属性来访问文件扩展名：
 
-[source,groovy]
-----
+```groovy
 def index() {
-    render "extension is ${response.format}"
+    render "扩展名是 ${response.format}"
 }
-----
+```
 
+==== 任意变量
 
-==== Arbitrary Variables
+你还可以通过在传递给映射的块中设置它们来将任意参数从URL映射传递到控制器：
 
-
-You can also pass arbitrary parameters from the URL mapping into the controller by just setting them in the block passed to the mapping:
-
-[source,groovy]
-----
+```groovy
 "/holiday/win" {
      id = "Marrakech"
      year = 2007
 }
-----
+```
 
-This variables will be available within the link:../ref/Controllers/params.html[params] object passed to the controller.
+这些变量将在传递给控制器的`params`对象中可用。
 
+==== 动态解析变量
 
-==== Dynamically Resolved Variables
+硬编码的任意变量很有用，但有时你需要根据运行时因素计算变量名称。通过将一个块分配给变量名也是可以的：
 
-
-The hard coded arbitrary variables are useful, but sometimes you need to calculate the name of the variable based on runtime factors. This is also possible by assigning a block to the variable name:
-
-[source,groovy]
-----
+```groovy
 "/holiday/win" {
      id = { params.id }
-     isEligible = { session.user != null } // must be logged in
+     isEligible = { session.user != null } // 必须已登录
 }
-----
+```
 
-In the above case the code within the blocks is resolved when the URL is actually matched and hence can be used in combination with all sorts of logic.
+在上述情况下，块内的代码在URL实际匹配时解析，因此可以与各种逻辑结合使用。

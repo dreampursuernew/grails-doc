@@ -1,12 +1,12 @@
-URL mappings can also be configured to map based on the HTTP method (GET, POST, PUT or DELETE). This is very useful for RESTful APIs and for restricting mappings based on HTTP method.
+URL映射也可以根据HTTP方法（GET，POST，PUT或DELETE）进行配置。这对于RESTful API和基于HTTP方法限制映射非常有用。
 
-As an example the following mappings provide a RESTful API URL mappings for the `ProductController`:
+作为示例，以下映射为`ProductController`提供了一个RESTful API URL映射：
 
-[source,groovy]
+[来源，Groovy]
 ----
-static mappings = {
+静态映射 = {
    "/product/$id"(controller:"product", action: "update", method: "PUT") 
 }
 ----
 
-Note that if you specify a HTTP method other than GET in your URL mapping, you also have to specify it when creating the corresponding link by passing the `method` argument to `g:link` or `g:createLink` to get a link of the desired format.
+请注意，如果在您的URL映射中指定了除GET之外的HTTP方法，那么在创建相应的链接时，您还必须通过将`method`参数传递给`g:link`或`g:createLink`来指定它以获取所需格式的链接。

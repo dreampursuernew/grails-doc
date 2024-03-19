@@ -1,38 +1,36 @@
+在视图中阅读消息
 
-==== Reading Messages in the View
-
-
-The most common place that you need messages is inside the view. Use the link:{gspdocs}/ref/Tags/message.html[message] tag for this:
+您最常需要消息的地方就是在视图中。使用link:{gspdocs}/ref/Tags/message.html[message]标签来实现：
 
 [source,xml]
 ----
-<g:message code="my.localized.content" />
+<g:message code=\"my.localized.content\" />
 ----
 
-As long as you have a key in your `messages.properties` (with appropriate locale suffix) such as the one below then Grails will look up the message:
+只要您在`messages.properties`中有一个键（带有适当的区域语言后缀），例如下面的这个，Grails就会查找消息：
 
 [source,groovy]
 ----
 my.localized.content=Hola, me llamo John. Hoy es domingo.
 ----
 
-Messages can also include arguments, for example:
+消息还可以包含参数，例如：
 
 [source,xml]
 ----
-<g:message code="my.localized.content" args="${ ['Juan', 'lunes'] }" />
+<g:message code=\"my.localized.content\" args=\"${ ['Juan', 'lunes'] }\" />
 ----
 
-The message declaration specifies positional parameters which are dynamically specified:
+消息声明指定了动态指定的位置参数：
 
 [source,groovy]
 ----
 my.localized.content=Hola, me llamo {0}. Hoy es {1}.
 ----
 
-==== Reading Messages in Grails Artifacts with MessageSource
+在Grails工件中使用MessageSource阅读消息
 
-In a Grails artifact, you can inject `messageSource` and use the method `getMessage` with the arguments: message code, message arguments, default message and locale to retrieve a message.
+在Grails工件中，您可以注入`messageSource`并使用方法`getMessage`来检索消息的参数：消息代码，消息参数，默认消息和区域设置。
 
 [source,groovy]
 ----
@@ -48,24 +46,24 @@ class MyappController {
     }
 ----
 
-==== Reading Messages in Controllers and Tag Libraries with the Message Tag
+在控制器和标签库中使用消息标签阅读消息
 
-Additionally, you can read a message inside Controllers and Tag Libraries with the link:http://gsp.grails.org/latest/ref/Tags/message.html[Message Tag]. However, using the message tag relies on GSP support which a Grails application may not necessarily have; e.g. a rest application.
+此外，您还可以在控制器和标签库中使用link:http://gsp.grails.org/latest/ref/Tags/message.html[Message Tag]来读取消息。然而，使用消息标签依赖于GSP支持，这并不是每个Grails应用程序都必然具有；例如一个rest应用程序。
 
-In a controller, you can invoke tags as methods.
+在控制器中，您可以将标签调用为方法。
 
 [source,groovy]
 ----
 def show() {
-    def msg = message(code: "my.localized.content", args: ['Juan', 'lunes'])
+    def msg = message(code: \"my.localized.content\", args: ['Juan', 'lunes'])
 }
 ----
 
-The same technique can be used in link:theWebLayer.html#taglibs[tag libraries], but if your tag library uses a custom link:theWebLayer.html#namespaces[namespace] then you must prefix the call with `g.`:
+相同的技术也可以在link:theWebLayer.html#taglibs[标签库]中使用，但是如果您的标签库使用了自定义链接:theWebLayer.html#namespaces[命名空间]，那么您必须在调用之前加上`g.`：
 
 [source,groovy]
 ----
 def myTag = { attrs, body ->
-    def msg = g.message(code: "my.localized.content", args: ['Juan', 'lunes'])
+    def msg = g.message(code: \"my.localized.content\", args: ['Juan', 'lunes'])
 }
 ----

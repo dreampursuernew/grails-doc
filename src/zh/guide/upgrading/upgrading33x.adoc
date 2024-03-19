@@ -1,8 +1,8 @@
-### Bump up Grails Version
+### 升级 Grails 版本
 
-You will need to upgrade your Grails version defined in `gradle.properties`.
+你需要升级 `gradle.properties` 中定义的 Grails 版本。
 
-Grails 3 app's `gradle.properties`
+Grails 3 应用的 `gradle.properties`
 
 [source, properties]
 .gradle.properties
@@ -12,9 +12,9 @@ grailsVersion=3.3.8
 ...
 ----
 
-Grails 4 app's `gradle.properties`
+Grails 4 应用的 `gradle.properties`
 
-[source,groovy,subs="attributes"]
+[source, groovy, subs="attributes"]
 .gradle.properties
 ----
 ...
@@ -22,11 +22,11 @@ grailsVersion=4.0.4
 ...
 ----
 
-### Bump up GORM Version
+### 升级 GORM 版本
 
-If you were using http://gorm.grails.org[GORM], you will need to update the version defined in `gradle.properties`.
+如果你使用了 [GORM](http://gorm.grails.org)，你需要更新 `gradle.properties` 中定义的版本。
 
-Grails 3 app's `gradle.properties`
+Grails 3 应用的 `gradle.properties`
 
 [source, properties]
 .gradle.properties
@@ -36,7 +36,7 @@ gormVersion=6.1.10.RELEASE
 ...
 ----
 
-Grails 4 app's `gradle.properties`
+Grails 4 应用的 `gradle.properties`
 
 [source, properties]
 .gradle.properties
@@ -46,9 +46,9 @@ gormVersion=7.0.4
 ...
 ----
 
-### Move GORM DSL Entries to runtime.groovy
+### 将 GORM DSL 条目移到 runtime.groovy
 
-GORM DSL entries should be move to `runtime.groovy`. For instance, using following GORM configuration in the `application.groovy` is not supported and will break the application:
+GORM DSL 条目应该移到 `runtime.groovy`。例如，在 `application.groovy` 中使用以下 GORM 配置是不受支持的，会导致应用程序崩溃：
 
 [source, groovy]
 ----
@@ -57,21 +57,21 @@ grails.gorm.default.mapping = {
 }
 ----
 
-### Spring 5 and Spring Boot 2.1
+### Spring 5 和 Spring Boot 2.1
 
-Grails 4.0 is built on Spring 5 and Spring Boot 2.1. See the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide[migration guide] and https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.1-Release-Notes[release notes] if you are using Spring specific features.
+Grails 4.0 是基于 Spring 5 和 Spring Boot 2.1 构建的。如果你使用了 Spring 特定功能，请查看迁移指南和发布说明。
 
-### Hibernate 5.4 and GORM 7.x
+### Hibernate 5.4 和 GORM 7.x
 
-Grails 4.x supports a minimum version of Hibernate 5.4 and GORM 7.x. Several changes have been made to GORM to support the newer version of Hibernate and simplify GORM itself.
+Grails 4.x 支持 Hibernate 5.4 和 GORM 7.x 的最低版本。为了支持更新版本的 Hibernate 并简化 GORM 本身，已经做了几个更改。
 
-The details of these changes are covered in the http://gorm.grails.org/7.0.x/hibernate/manual/index.html#upgradeNotes[GORM upgrade documentation].
+有关这些更改的详细信息请参阅 GORM 升级文档。
 
-### Spring Boot 2.1 Actuator
+### Spring Boot 2.1 执行器
 
-Please check the https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html[Spring Boot Actuator] documentation since it has changed substantially from Spring Boot 1.5 the version Grails 3.x used.
+请查阅 Spring Boot 执行器文档，因为与 Grails 3.x 使用的版本相比，它已经发生了重大变化。
 
-If you had configuration such as:
+如果你有以下配置：
 
 [source, yml]
 .grails-app/conf/application.yml - Grails 3.3.x
@@ -83,7 +83,7 @@ endpoints:
         unique-names: true
 ----
 
-replace it with:
+请将其替换为：
 
 [source, yml]
 .grails-app/conf/application.yml - Grails 4.x
@@ -96,11 +96,11 @@ management:
         enabled-by-default: false
 ----
 
-### Spring Boot Developer Tools and Spring Loaded
+### Spring Boot 开发者工具和 Spring Loaded
 
-Previous versions of Grails used a reloading agent called https://github.com/spring-projects/spring-loaded[Spring Loaded]. Since this library is no longer maintained and does not support Java 11 support for Spring Loaded has been removed.
+之前的 Grails 版本使用了一个叫做 Spring Loaded 的重载代理。由于该库不再维护，并且不支持 Java 11，因此已经删除了对 Spring Loaded 的支持。
 
-As a replacement, Grails 4 applications include https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html[Spring Boot Developer Tools] dependencies in the `build.gradle` build script. If you are migrating a Grails 3.x app, please include the following set of dependencies:
+作为替代，Grails 4 应用程序在 `build.gradle` 构建脚本中包含了 Spring Boot 开发者工具的依赖项。如果你要迁移一个 Grails 3.x 应用程序，请包含以下一组依赖项：
 
 [source, groovy]
 .build.gradle
@@ -125,7 +125,7 @@ dependencies {
 .
 ----
 
-Also you should configure the necessary excludes for Spring Developer Tools in `application.yml`:
+此外，你应该在 `application.yml` 中为 Spring 开发者工具配置必要的排除项：
 
 [source,yaml]
 ----
@@ -138,16 +138,15 @@ spring:
                 - grails-app/conf/**
 ----
 
-The above configuration prevents the server from restarting when views or message bundles are changed.
+上述配置可以防止在更改视图或消息束时重新启动服务器。
 
-NOTE: You can use Spring Developer Tools in combination with a browser extension such as the https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei[Chrome LiveReload extension] to get automatic browser
-refresh when you change anything in your Grails application.
+注意：你可以使用 Spring 开发者工具与浏览器扩展（例如 Chrome 的 LiveReload 扩展）结合使用，以在更改 Grails 应用程序中的任何内容时自动刷新浏览器。
 
-### Spring Boot Gradle Plugin Changes
+### Spring Boot Gradle 插件更改
 
-Grails 4 is built on top of Spring Boot 2.1. Grails 3 apps were built on top of Spring Boot 1.x.
+Grails 4 是基于 Spring Boot 2.1 构建的。Grails 3 应用程序是基于 Spring Boot 1.x 构建的。
 
-Your Grails 3 app's `build.gradle` may have such configuration:
+你的 Grails 3 应用程序的 `build.gradle` 可能有这样的配置：
 
 [source, groovy]
 .build.gradle
@@ -158,9 +157,9 @@ bootRun {
 }
 ----
 
-Grails 4 apps are built on top of Spring Boot 2.1. Starting from Spring Boot 2.0, the `addResources` property no longer exists. Instead, you need to set the sourceResources property to the source set that you want to use. Typically that’s `sourceSets.main`. This is described in the https://docs.spring.io/spring-boot/docs/2.0.0.M3//gradle-plugin/reference/html/#running-your-application-reloading-resources[Spring Boot Gradle plugin’s documentation].
+Grails 4 应用程序是基于 Spring Boot 2.1 构建的。从 Spring Boot 2.0 开始，`addResources` 属性不再存在。相反，你需要将 `sourceResources` 属性设置为你想要使用的源集。通常是 `sourceSets.main`。这在 Spring Boot Gradle 插件文档中有描述。
 
-Your Grails 4 app's `build.gradle` can be configured:
+你的 Grails 4 应用程序的 `build.gradle` 可以配置为：
 
 [source, groovy]
 .build.gradle
@@ -172,78 +171,15 @@ bootRun {
 ----
 
 
-### Building executable jars for Grails Plugins
+### 为 Grails 插件构建可执行的 JAR 包
 
-https://spring.io/blog/2017/04/05/spring-boot-s-new-gradle-plugin[Spring Boot's new Gradle Plugin]:
+Spring Boot 2.1 包含了对 H2 数据库 Web 控制台的原生支持。由于这已经包含在 Spring Boot 中，因此相应的功能已从 Grails 中移除。因此，H2 控制台现在可用于 `/h2-console`，而不是之前的 `/dbconsole`。有关更多信息，请参阅 Spring Boot 文档中关于使用 H2 Web 控制台的部分。
 
-> The bootRepackage task has been replaced with bootJar and bootWar tasks for building executable jars and wars respectively. Both tasks extend their equivalent standard Gradle jar or war task, giving you access to all of the usual configuration options and behaviour.
+### 升级 Hibernate
 
-If you had configuration such as:
+如果你在 Grails 3 应用程序中使用 GORM 来实现 Hibernate，你需要升级到 Hibernate 5.4。
 
-[source, groovy]
-.build.gradle | Grails 3
-----
-// enable if you wish to package this plugin as a standalone application
-bootRepackage.enabled = false
-----
-
-replace it with:
-
-[source, groovy]
-.build.gradle | Grails 4
-----
-// enable if you wish to package this plugin as a standalone application
-bootJar.enabled = false
-----
-
-### Upgrading to Gradle 5
-
-Grails 3 apps by default used http://gradle.org[Gradle] 3.5. Grails 4 apps use Gradle 5.
-
-To upgrade to Gradle 5 execute: 
-
-[source, bash]
-----
-./gradlew wrapper --gradle-version 5.0
-----
-
-Due to changes in Gradle 5, https://docs.gradle.org/current/userguide/upgrading_version_4.html#rel5.0:pom_compile_runtime_separation[transitive dependencies are no longer resolved] for plugins. If your project makes use of a plugin that has transitive dependencies, you will need to add those explicitly to your `build.gradle` file.
-
-If you customized your app's build, other migrations may be necessary. Please check
-https://docs.gradle.org/current/userguide/upgrading_version_4.html[Gradle Upgrading your build] documentation. Especially notice, that default Gradle daemon now starts with 512MB of heap instead of 1GB. Please check https://docs.gradle.org/current/userguide/upgrading_version_4.html#rel5.0:default_memory_settings[Default memory settings changed] documentation.
-
-### Groovy language update to 2.5.6
-
-Keep in mind, that with grails 4.0.x there is a minor groovy language upgrade (e.g. 3.3.9. used groovy 2.4.x), which requires a couple of changes, that are immediately obvious when trying to compile your source code. However there are also issues with changed implementations of core linkedlist functions! Check an overview of the breaking changes here: https://groovy-lang.org/releasenotes/groovy-2.5.html#Groovy2.5releasenotes-Breakingchanges[Breaking changes of Groovy 2.5]
-
-#### Removed date helper functions
-
-Most common issue is that date util functions have been moved to individual project, e.g new Date().format("ddMMyyyy") no longer works without adding:
-
-[source, groovy]
-.build.gradle
-----
-dependencies {
-    implementation "org.codehaus.groovy:groovy-dateutil:3.0.4"
-}
-----
-
-#### Changed linked list method implementations
-
-Check whether you are using the groovy version of linkedlist implementations:
-
-* `[].pop()` - will no longer remove the last, but the first element of the list. Replace it with `[].removeLast()` is recommended.
-* `[].push(..)` - will no longer add to the end, but to the beginning of the list. Replace it with `[].add(..)` is recommended.
-
-### H2 Web Console
-
-Spring Boot 2.1 includes native support for the H2 database web console. Since this is already included in Spring Boot the equivalent feature has been removed from Grails. The H2 console is therefore now available at `/h2-console` instead of the previous URI of `/dbconsole`. See https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-sql-h2-console[Using H2’s Web Console] in the Spring Boot documentation for more information.
-
-### Upgrade Hibernate
-
-If you were using GORM for Hibernate implementation in your Grails 3 app, you will need to upgrade to Hibernate 5.4.
-
-A Grails 3 `build.gradle` such as:
+类似于以下的 Grails 3 `build.gradle`：
 
 [source, groovy]
 .build.gradle
@@ -255,7 +191,7 @@ dependencies {
 }
 ----
 
-will be in Grails 4:
+将在 Grails 4 中变为：
 
 [source, groovy]
 .build.gradle
@@ -268,12 +204,11 @@ dependencies {
 ----
 
 
+### 迁移到 Geb 2.3
 
-### Migrating to Geb 2.3
+Geb 1.1.x（与 JDK 1.7 兼容的版本）是 Grails 3 默认附带的版本。Grails 4 不再与 Java 1.7 兼容。你应该迁移到 Geb 2.3。
 
-Geb 1.1.x (a JDK 1.7 compatible version) was the version shipped by default with Grails 3. Grails 4 is no longer compatible with Java 1.7. You should migrate to Geb 2.3.
-
-In Grails 3, if your build.gradle looks like:
+在 Grails 3 中，如果你的 build.gradle 如下所示：
 
 [source, groovy]
 .build.gradle
@@ -285,7 +220,7 @@ dependencies {
 }
 ----
 
-In Grails 4, you should replace it with:
+在 Grails 4 中，你应该将其替换为：
 
 [source, groovy]
 .build.gradle
@@ -349,13 +284,13 @@ geckodriverVersion=0.23.0 // <3>
 seleniumSafariDriverVersion=3.14.0
 ----
 
-<1> Includes https://plugins.gradle.org/plugin/com.energizedwork.webdriver-binaries[Webdriver binaries Gradle plugin].
-<2> Set the appropriate http://chromedriver.chromium.org[Webdriver for Chrome version].
-<3> Set the appropriate https://github.com/mozilla/geckodriver/releases[Webdriver for Firefox version].
-<4> Includes the https://github.com/grails3-plugins/geb[Grails Geb Plugin dependency] which has a transitive dependency to `geb-spock`. This is the dependency necessary to work with http://www.gebish.org[Geb] and Spock.
-<5> Selenium and different driver dependencies.
+<1> 包含 [Webdriver binaries Gradle plugin](https://plugins.gradle.org/plugin/com.energizedwork.webdriver-binaries)。
+<2> 设置适当的 [Chrome 版本的 Webdriver](http://chromedriver.chromium.org)。
+<3> 设置适当的 [Firefox 版本的 Webdriver](https://github.com/mozilla/geckodriver/releases)。
+<4> 包括 [Grails Geb Plugin 依赖项](https://github.com/grails3-plugins/geb)，它具有对 `geb-spock` 的传递依赖。这是与 Geb 和 Spock 一起使用所必需的依赖项。
+<5> Selenium 和不同的驱动程序依赖项。
 
-Create also a http://www.gebish.org/manual/current/#configuration[Geb Configuration] file at `src/integration-test/resources/GebConfig.groovy`.
+还要在 `src/integration-test/resources/GebConfig.groovy` 中创建 [Geb 配置](http://www.gebish.org/manual/current/#configuration) 文件。
 
 [source, groovy]
 .src/integration-test/resources/GebConfig.groovy
@@ -405,13 +340,13 @@ environments {
 
 
 
-### Deprecated classes
+### 已弃用的类
 
 
-The following classes, which were deprecated in Grails 3.x, have been removed in Grails 4. Please, check the list below to find a suitable replacement:
+以下在 Grails 3.x 中已弃用的类在 Grails 4 中已被移除。请检查以下列表，找到适当的替代方案：
 
 |===
-| Removed Class | Alternative
+| 已移除的类 | 替代方案
 | `org.grails.datastore.gorm.validation.constraints.UniqueConstraint` |
 `org.grails.datastore.gorm.validation.constraints.builtin.UniqueConstraint`
 | `grails.util.BuildScope` |
@@ -421,19 +356,19 @@ The following classes, which were deprecated in Grails 3.x, have been removed in
 | `grails.transaction.Rollback` | `grails.gorm.transactions.Rollback`
 | `grails.transaction.Transactional` | `grails.gorm.transactions.Transactional`
 | `org.grails.config.FlatConfig` |
-| `org.grails.core.metaclass.MetaClassEnhancer` | Use traits instead.
+| `org.grails.core.metaclass.MetaClassEnhancer` | 使用 traits 替代。
 | `org.grails.core.util.ClassPropertyFetcher` | `org.grails.datastore.mapping.reflect.ClassPropertyFetcher`
 | `org.grails.transaction.transform.TransactionalTransform` | `org.grails.datastore.gorm.transactions.transform.TransactionalTransform`
 | `grails.core.ComponentCapableDomainClass` |
-| `grails.core.GrailsDomainClassProperty` | Use the `org.grails.datastore.mapping.model.MappingContext` API instead
+| `grails.core.GrailsDomainClassProperty` | 使用 `org.grails.datastore.mapping.model.MappingContext` API。
 | `org.grails.core.DefaultGrailsDomainClassProperty` |
 | `org.grails.core.MetaGrailsDomainClassProperty` |
-| `org.grails.core.support.GrailsDomainConfigurationUtil` | Use the `org.grails.datastore.mapping.model.MappingContext` and `org.grails.datastore.mapping.model.MappingFactory` APIs instead
+| `org.grails.core.support.GrailsDomainConfigurationUtil` | 使用 `org.grails.datastore.mapping.model.MappingContext` 和 `org.grails.datastore.mapping.model.MappingFactory` APIs。
 | `org.grails.plugins.domain.DomainClassPluginSupport` |
 | `org.grails.plugins.domain.support.GormApiSupport` |
-| `org.grails.plugins.domain.support.GrailsDomainClassCleaner` | Handled by `org.grails.datastore.mapping.model.MappingContext` now
-| `grails.validation.AbstractConstraint` | Use `org.grails.datastore.gorm.validation.constraints.AbstractConstraint` instead
-| `grails.validation.AbstractVetoingConstraint` | `org.grails.datastore.gorm.validation.constraints.AbstractVetoingConstraint`
+| `org.grails.plugins.domain.support.GrailsDomainClassCleaner` | 现在由 `org.grails.datastore.mapping.model.MappingContext` 处理。
+| `grails.validation.AbstractConstraint` | 使用 `org.grails.datastore.gorm.validation.constraints.AbstractConstraint`。
+| `grails.validation.AbstractVetoingConstraint` | `org.grails.datastore.gorm.validation.constraints.AbstractVetoingConstraint`
 | `grails.validation.CascadingValidator` | `grails.gorm.validation.CascadingValidator`
 | `grails.validation.ConstrainedProperty` | `grails.gorm.validation.ConstrainedProperty`
 | `grails.validation.Constraint` | `grails.gorm.validation.Constraint`
@@ -462,21 +397,21 @@ The following classes, which were deprecated in Grails 3.x, have been removed in
 | `org.grails.validation.SizeConstraint` | `org.grails.datastore.gorm.validation.constraints.SizeConstraint`
 | `org.grails.validation.UrlConstraint` | `org.grails.datastore.gorm.validation.constraints.UrlConstraint`
 | `org.grails.validation.ValidatorConstraint` | `org.grails.datastore.gorm.validation.constraints.ValidatorConstraint`
-| `org.grails.validation.routines.DomainValidator` | Replaced by newer version of commons-validation
-| `org.grails.validation.routines.InetAddressValidator` | Replaced by newer version of commons-validation
-| `org.grails.validation.routines.RegexValidator` | Replaced by newer version of commons-validation
-| `org.grails.validation.routines.ResultPair` | Replaced by newer version of commons-validation
-| `org.grails.validation.routines.UrlValidator` | Replaced by newer version of commons-validation
+| `org.grails.validation.routines.DomainValidator` | 使用更新的 commons-validation 版本
+| `org.grails.validation.routines.InetAddressValidator` | 使用更新的 commons-validation 版本
+| `org.grails.validation.routines.RegexValidator` | 使用更新的 commons-validation 版本
+| `org.grails.validation.routines.ResultPair` | 使用更新的 commons-validation 版本
+| `org.grails.validation.routines.UrlValidator` | 使用更新的 commons-validation 版本
 | `grails.web.JSONBuilder`| `groovy.json.StreamingJsonBuilder`
 |===
 
 ### Grails-Java8
 
-For those who have added a dependency on the `grails-java8` plugin, all you should need to do is simply remove the dependency. All of the classes in the plugin have been moved out to their respective projects.
+如果您已添加依赖于 `grails-java8` 插件，则只需删除该依赖即可。插件中的所有类都已移出到各自的项目中。
 
 ### Profiles Deprecation
 
-A few of the profiles supported in Grails 3.x will no longer be maintained going forward and as a result it is no longer possible to create applications when them in the shorthand form. When upgrading existing projects, it will be necessary to supply the version for these profiles.
+在 Grails 3.x 中支持的一些配置文件将不再继续维护，因此在缩写形式中创建应用程序将不再可能。在升级现有项目时，必须为这些配置文件提供版本号。
 
 * `org.grails.profiles:angularjs` -> `org.grails.profiles:angularjs:1.1.2`
 * `org.grails.profiles:webpack` -> `org.grails.profiles:webpack:1.1.6`
@@ -484,4 +419,5 @@ A few of the profiles supported in Grails 3.x will no longer be maintained going
 
 ### Scheduled Methods
 
-In Grails 3 no configuration or additional changes were necessary to use the Spring `@Scheduled` annotation. In Grails 4 you must apply the `@EnableScheduling` annotation to your application class in order for scheduling to work.
+在 Grails 3 中，要使用 Spring 的 `@Scheduled` 注解，不需要任何配置或额外的更改。在 Grails 4 中，您必须在应用程序类中应用 `@EnableScheduling` 注解，以使调度工作。
+

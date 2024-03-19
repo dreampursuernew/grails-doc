@@ -1,48 +1,41 @@
-Spring Boot provides CORS support out of the box, but it is difficult to configure in a Grails application due to the way UrlMappings are used instead of annotations that define URLs. Starting with Grails 3.2.1, we have added a way to configure CORS that makes sense in a Grails application.
+Spring Boot提供了开箱即用的CORS支持，但由于UrlMappings的使用方式与定义URL的注释不同，在Grails应用程序中配置起来很困难。从Grails 3.2.1开始，我们已经添加了一种在Grails应用程序中合理配置CORS的方法。
 
-Once enabled, the default setting is "wide open".
+一旦启用，默认设置是“完全开放”的。
 
-[source,yaml]
-.application.yml
-----
+在`application.yml`文件中添加以下配置：
+
+```yaml
 grails:
     cors:
         enabled: true
-----
+```
 
-That will produce a mapping to all urls `/**` with:
+这将为所有URL `/**` 创建映射，并具有以下设置：
 
-[width="40%"]
-|=======
-|allowedOrigins |`['*']`
-|allowedMethods |`['*']`
-|allowedHeaders |`['*']`
-|exposedHeaders |`null`
-|maxAge         |`1800`
-|allowCredentials |false
-|=======
+|允许来源|`['*']`|
+|允许方法|`['*']`|
+|允许头部|`['*']`|
+|暴露头部|`null`|
+|最大年龄|`1800`|
+|允许凭证|false|
 
-Some of these settings come directly from Spring Boot and can change in future versions. See {springapi}/org/springframework/web/cors/CorsConfiguration.html#applyPermitDefaultValues[Spring CORS Configuration Documentation]
+这些设置中的一些直接来自于Spring Boot，并可能在未来版本中更改。可查看Spring CORS配置文档以了解更多信息。
 
-All of those settings can be easily overridden.
+所有这些设置都可以很容易地被覆盖。可以像以下这样覆盖默认设置：
 
-[source,yaml]
-.application.yml
-----
+```yaml
 grails:
     cors:
         enabled: true
         allowedOrigins:
             - http://localhost:5000
-----
+```
 
-In the example above, the `allowedOrigins` setting will replace `[*]`.
+在上面的示例中，`allowedOrigins`设置将替换`[*]`。
 
-You can also configure different URLs.
+还可以配置不同的URL。例如：
 
-[source,yaml]
-.application.yml
-----
+```yaml
 grails:
     cors:
         enabled: true
@@ -52,33 +45,27 @@ grails:
             '[/api/**]':
                 allowedOrigins:
                     - http://localhost:5000
-                # Other configurations not specified default to the global config
-----
+```
 
-Note that the mapping key must be made with bracket notation (see https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-Configuration-Binding#map-based-binding), which is a breaking change between Spring Boot 1.5 (Grails 3) and Spring Boot 2 (Grails 4).
+请注意，映射键必须使用方括号表示，这是Spring Boot 1.5（Grails 3）和Spring Boot 2（Grails 4）之间的一个重大变化。
 
-WARNING: Specifying at least one mapping will disable the creation of the global mapping (`/**`). If you wish to keep that setting, you should specify it along with your other mappings.
+警告：指定至少一个映射将禁用全局映射（`/**`）的创建。如果希望保留该设置，应在其他映射之前指定它。
 
-The settings above will produce a single mapping of `/api/**` with the following settings:
+以上设置将生成一个具有以下设置的单个映射`/api/**`：
 
-[width="40%"]
-|=======
-|allowedOrigins |`['http://localhost:5000']`
-|allowedMethods |`['*']`
-|allowedHeaders |`['Content-Type']`
-|exposedHeaders |`null`
-|maxAge         |`1800`
-|allowCredentials |false
-|=======
+|允许来源|`['http://localhost:5000']`|
+|允许方法|`['*']`|
+|允许头部|`['Content-Type']`|
+|暴露头部|`null`|
+|最大年龄|`1800`|
+|允许凭证|false|
 
-If you don't wish to override any of the default settings, but only want to specify URLs, you can do so like this example:
+如果您不希望覆盖任何默认设置，但只想指定URL，可以像以下示例那样操作：
 
-[source,yaml]
-.application.yml
-----
+```yaml
 grails:
     cors:
         enabled: true
         mappings:
             '[/api/**]': inherit
-----
+```

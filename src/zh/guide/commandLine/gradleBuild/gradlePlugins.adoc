@@ -1,6 +1,6 @@
-When you create a new project with the link:../ref/Command%20Line/create-app.html[create-app] command, a default `settings.gradle`, `buildSrc` and `build.gradle` is created. The default `build.gradle` configures the build with a set of Gradle plugins that allow Gradle to build the Grails project:
+当您使用链接：../ref/Command%20Line/create-app.html[create-app]命令创建新项目时，会创建默认的 `settings.gradle`、 `buildSrc` 和 `build.gradle` 文件。默认的 `build.gradle` 配置了一组 Gradle 插件，使 Gradle 能够构建 Grails 项目：
 
-[source,groovy]
+[source, groovy]
 ----
 plugins {
     id "groovy"
@@ -15,19 +15,16 @@ plugins {
 }
 ----
 
-The default plugins are as follows:
-* `groovy` - The Groovy plugin add support for Groovy projects. It can deal with Groovy code mixed with Groovy and Java. Read More: https://docs.gradle.org/{gradleVersion}/userguide/groovy_plugin.html[The Groovy Plugin]
-* `com.github.erdi.webdriver-binaries` - A plugin that downloads and caches WebDriver binaries specific to the OS the build runs on. Read More at https://github.com/erdi/webdriver-binaries-gradle-plugin/blob/master/README.md[GitHub README]
-* `war` - The https://docs.gradle.org/{gradleVersion}/userguide/war_plugin.html[The WAR plugin] changes the packaging so that Gradle creates as WAR file from your application. You can comment out this plugin if you wish to create only a runnable JAR file for standalone deployment.
-* `idea` - The IDEA plugin generates files that are used by http://www.jetbrains.com/idea/[IntelliJ IDEA], thus making it possible to open the project from IDEA. Read More: https://docs.gradle.org/{gradleVersion}/userguide/idea_plugin.html[The IDEA Plugin]
-* `com.bertramlabs.asset-pipeline` - The https://grails.org/plugins.html#plugin/asset-pipeline[asset pipeline] plugin enables the compilation of static assets (JavaScript, CSS etc.)
-* `application` - The Application plugin facilitates creating an executable JVM application. Read More: https://docs.gradle.org/{gradleVersion}/userguide/application_plugin.html[The Application Plugin]
-* `eclipse` - The Eclipse plugins generate files that are used by the http://eclipse.org/[Eclipse IDE], thus making it possible to import the project into Eclipse (File - Import... - Existing Projects into Workspace). Read More: https://docs.gradle.org/{gradleVersion}/userguide/eclipse_plugin.html[The Eclipse Plugin]
+默认插件包括：
+* `groovy` - Groovy 插件为 Groovy 项目提供支持。它可以处理混合 Groovy 和 Java 代码的情况。详细信息请参阅：https://docs.gradle.org/{gradleVersion}/userguide/groovy_plugin.html[The Groovy Plugin]
+* `com.github.erdi.webdriver-binaries` - 一个插件，用于下载和缓存特定于构建操作系统的 WebDriver 二进制文件。请阅读更多信息：https://github.com/erdi/webdriver-binaries-gradle-plugin/blob/master/README.md[GitHub README]
+* `war` - https://docs.gradle.org/{gradleVersion}/userguide/war_plugin.html[WAR 插件] 更改打包方式，使 Gradle 从应用程序创建 WAR 文件。如果您只想创建可运行的 JAR 文件以供独立部署，可以注释掉此插件。
+* `idea` - IDEA 插件生成用于 http://www.jetbrains.com/idea/[IntelliJ IDEA] 的文件，从而可以从 IDEA 中打开项目。详细信息请查看：https://docs.gradle.org/{gradleVersion}/userguide/idea_plugin.html[The IDEA Plugin]
+* `com.bertramlabs.asset-pipeline` - https://grails.org/plugins.html#plugin/asset-pipeline[asset pipeline] 插件使得静态资源（JavaScript、CSS 等）的编译成为可能
+* `application` - Application 插件有助于创建可执行的 JVM 应用程序。详细信息请查看：https://docs.gradle.org/{gradleVersion}/userguide/application_plugin.html[The Application Plugin]
+* `eclipse` - Eclipse 插件生成用于 http://eclipse.org/[Eclipse IDE] 的文件，从而使将项目导入 Eclipse 成为可能（文件 - 导入... - 已有的项目导入工作区）。详细信息请查看：https://docs.gradle.org/{gradleVersion}/userguide/eclipse_plugin.html[The Eclipse Plugin]
 
-Many of these are built in plugins provided by Gradle or third party plugins. The Gradle plugins that Grails provides are as follows:
-
-* `org.grails.grails-gsp` - The Grails GSP plugin adds pre-compilation of GSP files for production deployments.
-* `org.grails.grails-plugin` - A plugin for Gradle for building Grails plugins.
-* `org.grails.grails-web` - The Grails Web gradle plugin configures Gradle to understand the Grails conventions and directory structure.
-
-
+其中许多是由 Gradle 或第三方提供的内置插件。Grails 提供的 Gradle 插件包括：
+* `org.grails.grails-gsp` - Grails GSP 插件为生产部署添加了 GSP 文件的预编译功能。
+* `org.grails.grails-plugin` - 用于构建 Grails 插件的 Gradle 插件。
+* `org.grails.grails-web` - Grails Web gradle 插件配置 Gradle 以理解 Grails 的约定和目录结构。

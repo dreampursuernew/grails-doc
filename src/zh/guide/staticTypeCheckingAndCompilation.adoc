@@ -1,17 +1,17 @@
-Groovy is a dynamic language and by default Groovy uses a dynamic dispatch mechanism to carry out method calls and property access.  This dynamic dispatch mechanism provides a lot of flexibility and power to the language.  For example, it is possible to dynamically add methods to classes at runtime and it is possible to dynamically replace existing methods at runtime.  Features like these are important and provide a lot of power to the language.  However, there are times when you may want to disable this dynamic dispatch in favor of a more static dispatch mechanism and Groovy provides a way to do that.  The way to tell the Groovy compiler that a particular class should compiled statically is to mark the class with the http://docs.groovy-lang.org/docs/latest/html/api/groovy/transform/CompileStatic.html[groovy.transform.CompileStatic] annotation as shown below.
+Groovy是一种动态语言，默认情况下Groovy使用动态调度机制来执行方法调用和属性访问。这种动态调度机制为语言提供了很多灵活性和强大性。例如，可以在运行时动态向类中添加方法，也可以在运行时动态替换现有方法。这些功能非常重要，为语言提供了很多力量。然而，有时候您可能希望禁用这种动态调度，而选择更静态的调度机制，Groovy提供了一种方法来实现这一点。告诉Groovy编译器特定类应该进行静态编译的方法是为该类标记 http://docs.groovy-lang.org/docs/latest/html/api/groovy/transform/CompileStatic.html[groovy.transform.CompileStatic] 注解，示例如下。
 
-[source,groovy]
+[源，groovy]
 ----
 import groovy.transform.CompileStatic
 
 @CompileStatic
 class MyClass {
 
-    // this class will be statically compiled...
+    // 这个类将进行静态编译...
 
 }
 ----
 
-See http://docs.groovy-lang.org/latest/html/documentation/#_static_compilation[these notes on Groovy static compilation] for more details on how `CompileStatic` works and why you might want to use it.
+更多关于`CompileStatic`如何工作以及为什么您可能希望使用它的详细信息，请参阅 http://docs.groovy-lang.org/latest/html/documentation/#_static_compilation[这些关于Groovy静态编译的注释]。
 
-One limitation of using `CompileStatic` is that when you use it you give up access to the power and flexibility offered by dynamic dispatch.  For example, in Grails you would not be able to invoke a GORM dynamic finder from a class that is marked with `CompileStatic` because the compiler cannot verify that the dynamic finder method exists, because it doesn't exist at compile time.  It may be that you want to take advantage of Groovy's static compilation benefits without giving up access to dynamic dispatch for Grails specific things like dynamic finders and this is where {apiDocs}grails/compiler/GrailsCompileStatic.html[grails.compiler.GrailsCompileStatic] comes in.  `GrailsCompileStatic` behaves just like `CompileStatic` but is aware of certain Grails features and allows access to those specific features to be accessed dynamically.
+使用`CompileStatic`的一项限制是，当您使用它时，放弃了动态调度提供的力量和灵活性。例如，在Grails中，您无法从标记有`CompileStatic`的类中调用GORM动态查找器，因为编译器无法验证动态查找器方法是否存在，因为它在编译时不存在。也许您希望利用Groovy的静态编译优势，而不放弃对Grails特定功能（如动态查找器）的动态调度访问，这就是{apiDocs}grails/compiler/GrailsCompileStatic.html[grails.compiler.GrailsCompileStatic] 的作用。`GrailsCompileStatic`的行为与`CompileStatic`类似，但它了解某些Grails特性，并允许访问这些特定功能以进行动态访问。

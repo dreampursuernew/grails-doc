@@ -1,30 +1,5 @@
-The default URL Mapping mechanism supports camel case names in the URLs.  The default URL for accessing an action named `addNumbers` in a controller named `MathHelperController` would be something like `/mathHelper/addNumbers`.  Grails allows for the customization of this pattern and provides an implementation which replaces the camel case convention with a hyphenated convention that would support URLs like `/math-helper/add-numbers`.  To enable hyphenated URLs assign a value of "hyphenated" to the `grails.web.url.converter` property in `grails-app/conf/application.groovy`.
+默认的URL映射机制支持URL中的驼峰命名方式。在名为`MathHelperController`的控制器中访问名为`addNumbers`的操作的默认URL将类似于`/mathHelper/addNumbers`。Grails允许自定义这种模式，并提供了一种实现，可以用连字符代替驼峰命名约定，支持像`/math-helper/add-numbers`这样的URL。要启用连字符URL，请将值“hyphenated”分配给`grails-app/conf/application.groovy`中的`grails.web.url.converter`属性。
 
-[source,groovy]
-.grails-app/conf/application.groovy
-----
-grails.web.url.converter = 'hyphenated'
-----
+可通过提供实现{apiDocs}grails/web/UrlConverter.html[UrlConverter]接口的类并将该类的实例附加到Spring应用上下文中，使用`grails.web.UrlConverter.BEAN_NAME`作为bean名称，插入任意策略。如果Grails在上下文中找到一个带有该名称的bean，则将其用作默认转换器，无需将值分配给`grails.web.url.converter`配置属性。
 
-Arbitrary strategies may be plugged in by providing a class which implements the {apiDocs}grails/web/UrlConverter.html[UrlConverter] interface and adding an instance of that class to the Spring application context with the bean name of `grails.web.UrlConverter.BEAN_NAME`.  If Grails finds a bean in the context with that name, it will be used as the default converter and there is no need to assign a value to the `grails.web.url.converter` config property.
-
-[source,groovy]
-.src/main/groovy/com/myapplication/MyUrlConverterImpl.groovy
-----
-package com.myapplication
-
-class MyUrlConverterImpl implements grails.web.UrlConverter {
-
-    String toUrlElement(String propertyOrClassName) {
-        // return some representation of a property or class name that should be used in URLs...
-    }
-}
-----
-
-[source,groovy]
-.grails-app/conf/spring/resources.groovy
-----
-beans = {
-    "${grails.web.UrlConverter.BEAN_NAME}"(com.myapplication.MyUrlConverterImpl)
-}
-----
+在`src/main/groovy/com/myapplication/MyUrlConverterImpl.groovy`中提供了一个示例代码，演示了如何实现自定义的URL转换器，并在`grails-app/conf/spring/resources.groovy`中配置将其添加到Spring应用程序上下文中。

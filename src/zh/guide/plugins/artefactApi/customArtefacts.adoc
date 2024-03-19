@@ -1,23 +1,22 @@
-Plugins can easily provide their own artefacts so that they can easily find out what implementations are available and take part in reloading. All you need to do is create an `ArtefactHandler` implementation and register it in your main plugin class:
+插件可以轻松提供自己的构件，以便他们可以轻松找到可用的实现并参与重新加载。您只需要创建一个`ArtefactHandler`实现并将其注册在您的主要插件类中：
 
-[source,groovy]
-----
+```groovy
 class MyGrailsPlugin {
     def artefacts = [ org.somewhere.MyArtefactHandler ]
     ...
 }
-----
+```
 
-The `artefacts` list can contain either handler classes (as above) or instances of handlers.
+`artefacts`列表可以包含处理程序类（如上所示）或处理程序的实例。
 
-So, what does an artefact handler look like? Well, put simply it is an implementation of the {apiDocs}grails/core/ArtefactHandler.html[ArtefactHandler] interface. To make life a bit easier, there is a skeleton implementation that can readily be extended: {apiDocs}grails/core/ArtefactHandlerAdapter.html[ArtefactHandlerAdapter].
+那么，什么是构件处理程序？简单地说，它是{apiDocs}grails/core/ArtefactHandler.html[ArtefactHandler]接口的实现。为了让生活变得更轻松一些，有一个可以轻松扩展的基本实现：{apiDocs}grails/core/ArtefactHandlerAdapter.html[ArtefactHandlerAdapter]。
 
-In addition to the handler itself, every new artefact needs a corresponding wrapper class that implements {apiDocs}grails/core/GrailsClass.html[GrailsClass]. Again, skeleton implementations are available such as {apiDocs}org/grails/core/AbstractInjectableGrailsClass.html[AbstractInjectableGrailsClass], which is particularly useful as it turns your artefact into a Spring bean that is auto-wired, just like controllers and services.
+除了处理程序本身，每个新的构件都需要一个相应的包装器类，该类实现了{apiDocs}grails/core/GrailsClass.html[GrailsClass]。同样，可用骨架实现，例如{apiDocs}org/grails/core/AbstractInjectableGrailsClass.html[AbstractInjectableGrailsClass]，这对您的构件非常有用，因为它将其转换为一个自动装配的Spring bean，就像控制器和服务一样。
 
-The best way to understand how both the handler and wrapper classes work is to look at the Quartz plugin:
+理解处理程序和包装器类如何工作的最佳方式是查看Quartz插件：
 
-* https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/GrailsJobClass.java[GrailsJobClass]
-* https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/DefaultGrailsJobClass.java[DefaultGrailsJobClass]
-* https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/JobArtefactHandler.groovy[JobArtefactHandler]
+- [GrailsJobClass](https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/GrailsJobClass.java)
+- [DefaultGrailsJobClass](https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/DefaultGrailsJobClass.java)
+- [JobArtefactHandler](https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/JobArtefactHandler.groovy)
 
-Another example is the http://github.com/pledbrook/grails-shiro[Shiro plugin] which adds a realm artefact.
+另一个例子是[Shiro插件](http://github.com/pledbrook/grails-shiro)，它添加了一个领域构件。

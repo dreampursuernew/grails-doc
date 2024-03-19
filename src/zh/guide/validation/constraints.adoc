@@ -1,7 +1,6 @@
-Within a domain class link:../ref/Domain%20Classes/constraints.html[constraints] are defined with the constraints property that is assigned a code block:
+在领域类中，[constraints]是使用约束属性通过分配一个代码块来定义的：
 
-[source,groovy]
-----
+```groovy
 class User {
     String login
     String password
@@ -12,12 +11,11 @@ class User {
       ...
     }
 }
-----
+```
 
-You then use method calls that match the property name for which the constraint applies in combination with named parameters to specify constraints:
+然后，您可以使用与约束适用的属性名称匹配的方法调用，以及命名参数来指定约束：
 
-[source,groovy]
-----
+```groovy
 class User {
     ...
 
@@ -28,36 +26,32 @@ class User {
         age min: 18
     }
 }
-----
+```
 
-In this example we've declared that the `login` property must be between 5 and 15 characters long, it cannot be blank and must be unique. We've also applied other constraints to the `password`, `email` and `age` properties.
+在这个例子中，我们声明了`login`属性必须在5到15个字符之间，不能为空并且必须是唯一的。我们还应用了其他约束到`password`，`email`和`age`属性。
 
-NOTE: By default, all domain class properties are not nullable (i.e. they have an implicit `nullable: false` constraint).
+注意：默认情况下，所有领域类属性都不可为空（即具有隐式的`nullable: false`约束）。
 
-A complete reference for the available constraints can be found in the Quick Reference section under the Constraints heading.
+可在快速参考部分的约束标题下找到可用约束的完整参考。
 
-Note that constraints are only evaluated once which may be relevant for a constraint that relies on a value like an instance of `java.util.Date`.
+请注意，约束只评估一次，这对于依赖于值的约束（例如`java.util.Date`的实例）可能是相关的。
 
-[source,groovy]
-----
+```groovy
 class User {
     ...
 
     static constraints = {
-        // this Date object is created when the constraints are evaluated, not
-        // each time an instance of the User class is validated.
+        // 当评估约束时，此Date对象被创建，而不是每次验证User类的实例时。
         birthDate max: new Date()
     }
 }
-----
+```
 
+=== 警告 - 从约束引用领域类属性
 
-=== A word of warning - referencing domain class properties from constraints
+很容易尝试从静态约束块中引用实例变量，但在Groovy（或Java）中这是不合法的。 如果这样做，您将因此受到`MissingPropertyException`。 例如，您可能尝试
 
-
-It's very easy to attempt to reference instance variables from the static constraints block, but this isn't legal in Groovy (or Java). If you do so, you will get a `MissingPropertyException` for your trouble. For example, you may try
-[source,groovy]
-----
+```groovy
 class Response {
     Survey survey
     Answer answer
@@ -67,12 +61,11 @@ class Response {
         answer blank: false, inList: survey.answers
     }
 }
-----
+```
 
-See how the `inList` constraint references the instance property `survey`? That won't work. Instead, use a custom link:../ref/Constraints/validator.html[validator]:
+看到`inList`约束如何引用实例属性`survey`？ 这不起作用。 相反，请使用一个自定义[验证程序]：
 
-[source,groovy]
-----
+```groovy
 class Response {
     ...
     static constraints = {
@@ -80,6 +73,6 @@ class Response {
         answer blank: false, validator: { val, obj -> val in obj.survey.answers }
     }
 }
-----
+```
 
-In this example, the `obj` argument to the custom validator is the domain _instance_ that is being validated, so we can access its `survey` property and return a boolean to indicate whether the new value for the `answer` property, `val`, is valid.
+在这个例子中，自定义验证程序的`obj`参数是正在验证的领域_实例_，所以我们可以访问它的`survey`属性并返回一个布尔值，指示`answer`属性的新值`val`是否有效。

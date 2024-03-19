@@ -1,6 +1,6 @@
-### Bump up Grails Version
+### 升级 Grails 版本
 
-You will need to upgrade your Grails version defined in `gradle.properties` as:
+您需要升级 `gradle.properties` 中定义的 Grails 版本如下：
 
 [source,groovy,subs="attributes"]
 .gradle.properties
@@ -12,11 +12,11 @@ grailsVersion=5.2.0
 
 ### Apache Groovy 3.0.7
 
-Grails 5.1.1 provide support for Groovy 3. We would recommend you to please check the https://groovy-lang.org/releasenotes/groovy-3.0.html[Release notes for Groovy 3] to update your application in case you are using a specific feature which might not work in Groovy 3.
+Grails 5.1.1 提供了对 Groovy 3 的支持。我们建议您查看 https://groovy-lang.org/releasenotes/groovy-3.0.html[Groovy 3 的发布说明]，以更新您的应用程序，以防您使用的特定功能在 Groovy 3 中不起作用。
 
-Define groovyVersion in `gradle.properties` to force the application to use Groovy 3.
+在 `gradle.properties` 中定义 groovyVersion 强制应用程序使用 Groovy 3。
 
-Grails 5.1 app's `gradle.properties`
+Grails 5.1 应用程序的 `gradle.properties`
 
 [source, properties]
 .gradle.properties
@@ -26,9 +26,9 @@ groovyVersion=3.0.7
 ...
 ----
 
-### Bump up GORM Version
+### 升级 GORM 版本
 
-If you were using http://gorm.grails.org[GORM], you will need to update the version defined in `gradle.properties` as:
+如果您使用了 GORM，请将 `gradle.properties` 中定义的版本更新为：
 
 [source, properties]
 .gradle.properties
@@ -38,9 +38,9 @@ gormVersion=7.2.0
 ...
 ----
 
-### Bump up gradle version
+### 升级 gradle 版本
 
-Grails 5.2.x uses gradle 7.2
+Grails 5.2.x 使用 gradle 7.2
 
 [source, properties]
 .gradle-wrapper.properties
@@ -50,45 +50,45 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.2-bin.zip
 ...
 ----
 
-Also you can run this command
+您也可以运行以下命令
 
 [source, properties]
 ----
 ./gradlew wrapper --gradle-version 7.2
 ----
 
-### GORM for MonogDB Sync Driver
+### GORM for MonogDB 同步驱动
 
-The GORM for MongoDB is updated to support latest mongodb-driver-sync. If you are using GORM for MongoDB and doing something specific to MongoDB Driver or low level Mongo API then you might want to take a look at https://mongodb.github.io/mongo-java-driver/4.0/upgrading/[Upgrading to the 4.0 Driver]
+GORM for MongoDB 已更新以支持最新的 mongodb-driver-sync。如果您正在使用 GORM for MongoDB 并对 MongoDB 驱动程序或低级别 Mongo API 进行了特定操作，则可能需要查看 https://mongodb.github.io/mongo-java-driver/4.0/upgrading/[升级至 4.0 驱动程序]。
 
-### Bump up Asset Pipeline plugin version
+### 升级 Asset Pipeline 插件版本
 
-The previous version of asset-pipeline is not supported with Grails 5.0 as it is compiled with a version of Groovy which is binary incompatible with Groovy 3. So, please update the plugin version to 3.2.4.
+之前的 asset-pipeline 版本不支持 Grails 5.0，因为它是使用与 Groovy 3 不兼容的版本编译的。因此，请将插件版本更新为 3.2.4。
 
-### Disabled StringCharArrayAccessor by default
+### 默认禁用 StringCharArrayAccessor
 
-The previous version of Grails use the `StringCharArrayAccessor` which is enabled by default and provides optimized access to `java.lang.String` internals. In Grails 5.0 it is disabled by default but you can enable it by setting a system property with name `stringchararrayaccessor.disabled` and value `false`.
+之前的 Grails 版本使用 `StringCharArrayAccessor`，默认启用并提供对 `java.lang.String` 内部的优化访问。在 Grails 5.0 中，默认情况下已禁用它，但您可以通过设置一个名为 `stringchararrayaccessor.disabled` 的系统属性并将其值设置为 `false` 来启用它。
 
-NOTE: Enabling StringCharArrayAccessor would show IllegalReflectiveAccess warnings as it uses reflection to do the optimizations.
+注意：启用 StringCharArrayAccessor 将显示非法反射访问警告，因为它使用反射来进行优化。
 
-### Changes in profile.yml and feature.yml files in Grails Profiles
+### Grails Profiles 中 profile.yml 和 feature.yml 文件的更改
 
-The format of how dependencies are defined in features and profiles has been changed. See the section on link:profiles.html[Application Profiles] for more information.
+定义依赖项的方式在功能和配置文件中的更改了。有关更多信息，请参阅 [Application Profiles](link:profiles.html) 章节。
 
-### Deprecation of dot navigation of Grails configuration
+### Grails 配置的点导航已弃用
 
-In order to reduce complexity, improve performance, and increase maintainability, accessing configuration through dot notation (config.a.b.c) has been deprecated. This functionality will be removed in a future release.
+为了减少复杂性、提高性能和增加可维护性，已弃用了通过点符号（config.a.b.c）访问配置的方法。这个功能将在将来的版本中被移除。
 
-Also, you would see a warning message if you are accessing configuration through the dot notation.
+如果您通过点符号访问配置，还会看到警告消息。
 
-The recommended way to access configuration is:
+推荐的访问配置的方式是：
 
 [source,groovy]
 ----
 grailsApplication.config.getProperty("hola", String.class)
 ----
 
-### Deprecated Classes
+### 弃用的类
 
 * {apiDocs}org/grails/config/NavigableMap.html[org.grails.config.NavigableMap]
 * {apiDocs}org/grails/config/NavigableMapConfig.html[org.grails.config.NavigableMapConfig]
@@ -96,25 +96,25 @@ grailsApplication.config.getProperty("hola", String.class)
 
 ### Spring 5.3
 
-Grails 5.0.0.RC1 is built on Spring 5.3.2 See the https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x#upgrading-to-version-53[Upgrading to Spring 5.3]  if you are using Spring specific features.
+Grails 5.0.0.RC1 是建立在 Spring 5.3.2 之上的。如果您正在使用 Spring 特定的功能，请查看 [升级至 Spring 5.3](https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x#upgrading-to-version-53)。
 
 ### Spring Boot 2.4
 
-Grails 5.1.1 updates to Spring Boot 2.6. Please check https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6-Release-Notes[Spring Boot 2.6 Release Notes] for more information.
+Grails 5.1.1 更新到了 Spring Boot 2.6。请查看 [Spring Boot 2.6 发布说明](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6-Release-Notes) 获取更多信息。
 
 ### Micronaut 3.2.0
 
-Grails 5.1.1 is shipped with Micronaut 3.2.0. Please check the https://docs.micronaut.io/3.2.0/guide/index.html#upgrading[Upgrading to Micronaut 3.x] if you are using a specific feature.
+Grails 5.1.1 附带了 Micronaut 3.2.0。如果您正在使用特定功能，请查看 [升级至 Micronaut 3.x](https://docs.micronaut.io/3.2.0/guide/index.html#upgrading)。
 
 ### Micronaut for Spring 4.0.1
 
-Grails 5.1.1 is updated to Micronaut for Spring 4.0.1, please check out https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.0.1[release notes] for more information.
+Grails 5.1.1 已更新为 Micronaut for Spring 4.0.1，请查看 [发布说明](https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.0.1) 获取更多信息。
 
 ### Gradle 7.x
 
-#### Compile dependency configuration as well as others have been removed from Gradle 7.x. In previous version they were deprecated.
+#### 在 Gradle 7.x 中已删除了编译依赖配置以及其他配置。在先前版本中，它们已被弃用。
 
-Replace configurations:
+替换配置：
 [source, properties]
 .build.gradle
 ----
@@ -125,14 +125,14 @@ Replace configurations:
 ...
 ----
 
-NOTE: More information in Gradle upgrade docs https://docs.gradle.org/current/userguide/upgrading_version_6.html#sec:configuration_removal[Gradle upgrade docs]
+注意：有关更多信息，请参阅 Gradle 升级文档 https://docs.gradle.org/current/userguide/upgrading_version_6.html#sec:configuration_removal[Gradle 升级文档]
 
-#### Plugins in multi-project setup
+#### 多项目设置中的插件
 
-If you have grails plugins as part of multi-project builds you should also replace the `compile` with `implementation` configuration.
+如果您在多项目构建的一部分中有 Grails 插件，则还应将 `compile` 替换为 `implementation` 配置。
 
-Additionally if your main application relied on the dependencies declared by the plugin you need to apply further changes.
+此外，如果您的主应用程序依赖于插件声明的依赖项，则需要进行进一步的更改。
 
-To make the dependencies available again you have to declare them with `api` configuration. You also have to apply the `java-library` gradle plugin in your plugin project.
+为了再次使依赖项可用，您必须使用 `api` 配置声明它们。您还必须在插件项目中应用 `java-library` gradle 插件。
 
-NOTE: More information https://docs.gradle.org/current/userguide/java_library_plugin.html[gradle java-library-plugin]
+注意：更多信息 https://docs.gradle.org/current/userguide/java_library_plugin.html[gradle java-library-plugin]

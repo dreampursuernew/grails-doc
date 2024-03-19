@@ -1,10 +1,8 @@
-A common pattern in Grails is to use link:theWebLayer.html#commandObjects[Command Objects] for validating user-submitted data and then copy the properties of the command object to the relevant domain classes. This often means that your command objects and domain classes share properties and their constraints. You could manually copy and paste the constraints between the two, but that's a very error-prone approach. Instead, make use of Grails' global constraints and import mechanism.
+在Grails中常见的模式是使用链接:theWebLayer.html#commandObjects[命令对象]来验证用户提交的数据，然后将命令对象的属性复制到相关的领域类中。这通常意味着您的命令对象和领域类共享属性和它们的约束。您可以手动在两者之间复制和粘贴约束，但这是一种非常容易出错的方法。相反，利用Grails的全局约束和导入机制。
 
+全局约束
 
-=== Global Constraints
-
-
-In addition to defining constraints in domain classes, command objects and <<validationNonDomainAndCommandObjectClasses,other validateable classes>>, you can also define them in `grails-app/conf/runtime.groovy`:
+除了在领域类、命令对象和<<validationNonDomainAndCommandObjectClasses,其他可验证类>>中定义约束外，您还可以在`grails-app/conf/runtime.groovy`中定义它们：
 
 [source,groovy]
 ----
@@ -14,7 +12,7 @@ grails.gorm.default.constraints = {
 }
 ----
 
-These constraints are not attached to any particular classes, but they can be easily referenced from any validateable class:
+这些约束没有附加到任何特定的类，但可以很容易地从任何可验证类中引用：
 
 [source,groovy]
 ----
@@ -27,17 +25,15 @@ class User {
 }
 ----
 
-Note the use of the `shared` argument, whose value is the name of one of the constraints defined in `grails.gorm.default.constraints`. Despite the name of the configuration setting, you can reference these shared constraints from any validateable class, such as command objects.
+请注意使用`shared`参数，其值是在`grails.gorm.default.constraints`中定义的约束之一的名称。尽管配置设置的名称是这样的，您可以从任何可验证类引用这些共享约束，例如命令对象。
 
-The '*' constraint is a special case: it means that the associated constraints ('nullable' and 'size' in the above example) will be applied to all properties in all validateable classes. These defaults can be overridden by the constraints declared in a validateable class.
+'*'约束是一个特殊情况：它意味着关联的约束（上面示例中的'nullable'和'size'）将应用于所有可验证类中的所有属性。这些默认值可以被可验证类中声明的约束覆盖。
 
+导入约束
 
-=== Importing Constraints
+Grails 2引入了一种替代的共享约束方法，允许您将一个类中的一组约束导入到另一个类中。
 
-
-Grails 2 introduced an alternative approach to sharing constraints that allows you to import a set of constraints from one class into another.
-
-Let's say you have a domain class like so:
+假设您有一个领域类如下：
 
 [source,groovy]
 ----
@@ -54,7 +50,7 @@ class User {
 }
 ----
 
-You then want to create a command object, `UserCommand`, that shares some of the properties of the domain class and the corresponding constraints. You do this with the `importFrom()` method:
+然后您想要创建一个命令对象 `UserCommand`，它共享领域类的一些属性和相应的约束。您可以使用 `importFrom()` 方法来做到这一点：
 
 [source,groovy]
 ----
@@ -73,9 +69,9 @@ class UserCommand {
 }
 ----
 
-This will import all the constraints from the `User` domain class and apply them to `UserCommand`. The import will ignore any constraints in the source class (`User`) that don't have corresponding properties in the importing class (`UserCommand`). In the above example, only the 'firstName' and 'lastName' constraints will be imported into `UserCommand` because those are the only properties shared by the two classes.
+这将从 `User` 领域类导入所有约束，并将它们应用于 `UserCommand`。导入将忽略源类（`User`）中没有相应属性的任何约束，而不会应用到导入类（`UserCommand`）中。在上面的示例中，只有 'firstName' 和 'lastName' 的约束将被导入到 `UserCommand` 中，因为这两个类共享的唯一属性。
 
-If you want more control over which constraints are imported, use the `include` and `exclude` arguments. Both of these accept a list of simple or regular expression strings that are matched against the property names in the source constraints. So for example, if you only wanted to import the 'lastName' constraint you would use:
+如果您想要更多控制哪些约束被导入，可以使用 `include` 和 `exclude` 参数。这两个参数接受一个简单或正则表达式字符串列表，匹配源约束中的属性名称。例如，如果您只想导入 'lastName' 的约束，您可以使用：
 
 [source,groovy]
 ----
@@ -86,7 +82,7 @@ static constraints = {
 }
 ----
 
-or if you wanted all constraints that ended with 'Name':
+或者如果您想要导入所有以 'Name' 结尾的约束：
 
 [source,groovy]
 ----
@@ -97,4 +93,4 @@ static constraints = {
 }
 ----
 
-Of course, `exclude` does the reverse, specifying which constraints should _not_ be imported.
+当然，`exclude` 则做相反的操作，指定不应该导入哪些约束。

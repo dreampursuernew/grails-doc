@@ -1,14 +1,12 @@
-Given two domain classes such as:
+给定两个领域类，例如：
 
-[source, groovy]
-----
+```groovy
 class Movie {
     String title
 }
-----
+```
 
-[source, groovy]
-----
+```groovy
 class Book {
     String title
 
@@ -16,12 +14,11 @@ class Book {
         datasource 'books'
     }
 }
-----
+```
 
-You can supply the desired data source to `@Transactional` or `@ReadOnly` annotations.
+您可以向`@Transactional`或`@ReadOnly`注解提供所需的数据源。
 
-[source, groovy]
-----
+```groovy
 import grails.gorm.transactions.ReadOnly
 import grails.gorm.transactions.Transactional
 import groovy.transform.CompileStatic
@@ -41,10 +38,9 @@ class BookService {
         book
     }
 }
-----
+```
 
-[source, groovy]
-----
+```groovy
 @CompileStatic
 class MovieService {
 
@@ -53,4 +49,4 @@ class MovieService {
         Movie.where {}.findAll()
     }
 }
-----
+```

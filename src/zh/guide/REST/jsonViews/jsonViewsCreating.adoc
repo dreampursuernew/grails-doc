@@ -1,6 +1,6 @@
-JSON views go into the `grails-app/views` directory and end with the `.gson` suffix. They are regular Groovy scripts and can be opened in any Groovy editor.
+JSON视图放入`grails-app/views`目录，并以`.gson`后缀结束。它们是常规Groovy脚本，可以在任何Groovy编辑器中打开。
 
-Example JSON view:
+示例JSON视图：
 
 [source,groovy]
 ----
@@ -9,18 +9,18 @@ json.person {
 }
 ----
 
-TIP: To open them in the Groovy editor in Intellij IDEA, double click on the file and when asked which file to associate it with, choose "Groovy"
+提示：要在Intellij IDEA的Groovy编辑器中打开它们，双击文件，当被询问要将其关联到哪个文件时，选择 "Groovy"
 
-The above JSON view produces:
+上述JSON视图产生：
 
 [source,json]
 ----
 {"person":{"name":"bob"}}
 ----
 
-There is an implicit `json` variable which is an instance of http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder].
+有一个隐含的`json`变量，它是http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]的实例。
 
-Example usages:
+示例用法：
 
 [source,groovy]
 ----
@@ -29,4 +29,4 @@ json { name "Bob" } == '{"name":"Bob"}'
 json([1,2,3]) { n it } == '[{"n":1},{"n":2},{"n":3}]'
 ----
 
-Refer to the API documentation on http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder] for more information about what is possible.
+有关更多关于可能性的信息，请参考http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]上的API文档。

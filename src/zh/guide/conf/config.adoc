@@ -1,142 +1,20 @@
-Configuration in Grails is generally split across 2 areas: build configuration and runtime configuration.
+Grails中的配置通常分为两个部分：构建配置和运行时配置。
 
-Build configuration is generally done via Gradle and the `build.gradle` file. Runtime configuration is by default specified in YAML in the `grails-app/conf/application.yml` file.
+构建配置通常通过Gradle和`build.gradle`文件来完成。运行时配置默认情况下在`grails-app/conf/application.yml`文件中指定。
 
-If you prefer to use Grails 2.0-style Groovy configuration then it is possible to specify configuration using Groovy's http://docs.groovy-lang.org/latest/html/documentation/#_configslurper[ConfigSlurper] syntax. Two Groovy configuration files are available: `grails-app/conf/application.groovy` and `grails-app/conf/runtime.groovy`:
+如果您喜欢使用Grails 2.0风格的Groovy配置，则可以使用Groovy的ConfigSlurper语法来指定配置。有两个Groovy配置文件可用：`grails-app/conf/application.groovy`和`grails-app/conf/runtime.groovy`：
 
-. Use `application.groovy` for configuration that doesn't depend on application classes
-. Use `runtime.groovy` for configuration that does depend on application classes
+- 使用`application.groovy`用于不依赖应用程序类的配置
+- 使用`runtime.groovy`用于依赖应用程序类的配置
 
-[NOTE]
-====
-This separation is necessary because configuration values defined in `application.groovy` are available to the Grails CLI, which needs to be able to load `application.groovy` before the application has been compiled. References to application classes in `application.groovy` will cause an exception when these commands are executed by the CLI:
-----
-Error occurred running Grails CLI: 
-startup failed:script14738267015581837265078.groovy: 13: unable to resolve class com.foo.Bar
-----
-====
+注意：这种分离是必要的，因为在`application.groovy`中定义的配置值在Grails CLI中是可用的，需要在应用程序编译之前加载`application.groovy`。在`application.groovy`中引用应用程序类将导致在CLI执行这些命令时出现异常。
 
-For Groovy configuration the following variables are available to the configuration script:
+对于Groovy配置，配置脚本可以使用以下变量：
+- userHome：运行Grails应用程序的帐户的主目录位置。
+- grailsHome：安装Grails的目录位置。如果设置了`GRAILS_HOME`环境变量，则使用它。
+- appName：显示在build.gradle中的应用程序名称。
+- appVersion：显示在build.gradle中的应用程序版本。
 
-[format="csv", options="header", separator="|"]
-|===
+要访问运行时配置设置，即在`application.yml`中定义的设置，可以使用可在控制器和标签库中作为变量使用的{apiDocs}grails/core/GrailsApplication.html[grailsApplication]对象。 GrailsApplication可以方便地注入到服务和其他Grails组件中。
 
-*Variable*|*Description*
-userHome|Location of the home directory for the account that is running the Grails application.
-grailsHome|Location of the directory where you installed Grails. If the `GRAILS_HOME` environment variable is set, it is used.
-appName|The application name as it appears in build.gradle.
-appVersion|The application version as it appears in build.gradle.
-|===
-
-For example:
-
-[source,groovy]
-----
-my.tmp.dir = "${userHome}/.grails/tmp"
-----
-
-
-=== Accessing Configuration with GrailsApplication
-
-If you want to read runtime configuration settings, i.e. those defined in `application.yml`, use the {apiDocs}grails/core/GrailsApplication.html[grailsApplication] object, which is available as a variable in controllers and tag libraries:
-
-[source,groovy]
-----
-class MyController {
-    def hello() {
-        def recipient = grailsApplication.config.getProperty('foo.bar.hello')
-
-        render "Hello ${recipient}"
-    }
-}
-----
-
-The `config` property of the `grailsApplication` object is an instance of the {apiDocs}grails/config/Config.html[Config] interface and provides a number of useful methods to read the configuration of the application.
-
-In particular, the `getProperty` method (seen above) is useful for efficiently retrieving configuration properties, while specifying the property type (the default type is String) and/or providing a default fallback value.
-
-[source,groovy]
-----
-class MyController {
-
-    def hello(Recipient recipient) {
-        //Retrieve Integer property 'foo.bar.max.hellos', otherwise use value of 5
-        def max = grailsApplication.config.getProperty('foo.bar.max.hellos', Integer, 5)
-
-        //Retrieve property 'foo.bar.greeting' without specifying type (default is String), otherwise use value "Hello"
-        def greeting = grailsApplication.config.getProperty('foo.bar.greeting', "Hello")
-
-        def message = (recipient.receivedHelloCount >= max) ?
-          "Sorry, you've been greeted the max number of times" :  "${greeting}, ${recipient}"
-        }
-
-        render message
-    }
-}
-----
-
-
-Notice that the `Config` instance is a merged configuration based on Spring's {springapi}org/springframework/context/annotation/PropertySource.html[PropertySource] concept and reads configuration from the environment, system properties and the local application configuration merging them into a single object.
-
-`GrailsApplication` can be easily injected into services and other Grails artifacts:
-
-[source,groovy]
-----
-import grails.core.*
-
-class MyService {
-    GrailsApplication grailsApplication
-
-    String greeting() {
-        def recipient = grailsApplication.config.getProperty('foo.bar.hello')
-        return "Hello ${recipient}"
-    }
-}
-----
-
-=== GrailsConfigurationAware Interface
-
-Accessing configuration dynamically at runtime can have a small effect on application performance. An alternative approach is to implement the {apiDocs}grails/core/support/GrailsConfigurationAware.html[GrailsConfigurationAware] interface, which provides a `setConfiguration` method that accepts the application configuration as a parameter when the class is initialized. You can then assign relevant configuration properties to instance properties on the class for later usage.
-
-The `Config` instance has the same properties and usage as the injected `GrailsApplication` config object. Here is the service class from the previous example, using `GrailsConfigurationAware` instead of injecting `GrailsApplication`:
-
-[source,groovy]
-----
-import grails.core.support.GrailsConfigurationAware
-
-class MyService implements GrailsConfigurationAware {
-
-    String recipient
-
-    String greeting() {
-        return "Hello ${recipient}"
-    }
-
-    void setConfiguration(Config config) {
-        recipient = config.getProperty('foo.bar.hello')
-    }
-
-}
-----
-
-=== Spring Value Annotation
-
-You can use Spring's {springapi}org/springframework/beans/factory/annotation/Value.html[Value] annotation to inject configuration values:
-
-[source,groovy]
-----
-import org.springframework.beans.factory.annotation.*
-
-class MyController {
-    @Value('${foo.bar.hello}')
-    String recipient
-
-    def hello() {
-        render "Hello ${recipient}"
-    }
-}
-----
-
-NOTE: In Groovy code you must use single quotes around the string for the value of the `Value` annotation otherwise it is interpreted as a GString not a Spring expression.
-
-As you can see, when accessing configuration settings you use the same dot notation as when you define them.
+您还可以使用Spring的@Value注解来注入配置值。在访问配置设置时，使用与定义它们时相同的点符号表示法。

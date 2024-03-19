@@ -1,19 +1,24 @@
-To create a simple mapping simply use a relative URL as the method name and specify named parameters for the controller and action to map to:
+要创建一个简单的映射，只需使用相对URL作为方法名，并为要映射到的控制器和操作指定命名参数：
 
+```
 [source,groovy]
 ----
 "/product"(controller: "product", action: "list")
 ----
+```
 
-In this case we've mapped the URL `/product` to the `list` action of the `ProductController`. Omit the action definition to map to the default action of the controller:
+在这种情况下，我们将URL“/product”映射到“ProductController”的“list”操作。省略操作定义以映射到控制器的默认操作：
 
+```
 [source,groovy]
 ----
 "/product"(controller: "product")
 ----
+```
 
-An alternative syntax is to assign the controller and action to use within a block passed to the method:
+另一种语法是将要使用的控制器和操作分配到传递给方法的块中：
 
+```
 [source,groovy]
 ----
 "/product" {
@@ -22,10 +27,11 @@ An alternative syntax is to assign the controller and action to use within a blo
 }
 ----
 
-Which syntax you use is largely dependent on personal preference. 
+您使用的语法在很大程度上取决于个人偏好。
 
-If you have mappings that all fall under a particular path you can group mappings with the `group` method:
+如果所有映射都属于特定路径，您可以使用“group”方法将映射分组：
 
+```
 [source,groovy]
 ----
 group "/product", {
@@ -33,9 +39,11 @@ group "/product", {
     "/htc"(controller:"product", id:"htc")
 }
 ----
+```
 
-You can also create nested `group` url mappings:
+您还可以创建嵌套的“group”URL映射：
 
+```
 [source,groovy]
 ----
 group "/store", {
@@ -44,13 +52,15 @@ group "/store", {
     }
 }
 ----
+```
 
+要将一个URI重写为另一个明确的URI（而不是控制器/操作对），可以做如下操作：
 
-To rewrite one URI onto another explicit URI (rather than a controller/action pair) do something like this:
-
+```
 [source,groovy]
 ----
 "/hello"(uri: "/hello.dispatch")
 ----
+```
 
-Rewriting specific URIs is often useful when integrating with other frameworks.
+重写特定的URI在与其他框架集成时经常很有用。

@@ -1,20 +1,18 @@
-URL Mappings also support named mappings, that is mappings which have a name associated with them. The name may be used to refer to a specific mapping when links are generated.
+URL映射还支持命名映射，即与名称关联的映射。当生成链接时，名称可用于引用特定映射。
 
-The syntax for defining a named mapping is as follows:
+定义命名映射的语法如下:
 
-[source,groovy]
-----
+```groovy
 static mappings = {
-   name <mapping name>: <url pattern> {
+   name <映射名称>: <URL模式> {
       // ...
    }
 }
-----
+```
 
-For example:
+例如:
 
-[source,groovy]
-----
+```groovy
 static mappings = {
     name personList: "/showPeople" {
         controller = 'person'
@@ -25,78 +23,68 @@ static mappings = {
         action = 'accountDetails'
     }
 }
-----
+```
 
-The mapping may be referenced in a link tag in a GSP.
+该映射可以在GSP中的链接标记中被引用。
 
-[source,xml]
-----
+```xml
 <g:link mapping="personList">List People</g:link>
-----
+```
 
-That would result in:
+这将导致:
 
-[source,xml]
-----
+```xml
 <a href="/showPeople">List People</a>
-----
+```
 
-Parameters may be specified using the params attribute.
+可以使用params属性指定参数。
 
-[source,xml]
-----
+```xml
 <g:link mapping="accountDetails" params="[acctNumber:'8675309']">
     Show Account
 </g:link>
-----
+```
 
-That would result in:
+这将导致:
 
-[source,xml]
-----
+```xml
 <a href="/details/8675309">Show Account</a>
-----
+```
 
-Alternatively you may reference a named mapping using the link namespace.
+另外，您可以使用link命名空间引用命名映射。
 
-[source,xml]
-----
+```xml
 <link:personList>List People</link:personList>
-----
+```
 
-That would result in:
+这将导致:
 
-[source,xml]
-----
+```xml
 <a href="/showPeople">List People</a>
-----
+```
 
-The link namespace approach allows parameters to be specified as attributes.
+链接命名空间方法允许参数作为属性指定。
 
-[source,xml]
-----
+```xml
 <link:accountDetails acctNumber="8675309">Show Account</link:accountDetails>
-----
+```
 
-That would result in:
+这将导致:
 
-[source,xml]
-----
+```xml
 <a href="/details/8675309">Show Account</a>
-----
+```
 
-To specify attributes that should be applied to the generated `href`, specify a `Map` value to the `attrs` attribute.  These attributes will be applied directly to the href, not passed through to be used as request parameters.
+要指定应应用于生成的`href`的属性，请将`Map`值指定为`attrs`属性。这些属性将直接应用于href，不会通过传递以用作请求参数。
 
-[source,xml]
-----
+```xml
 <link:accountDetails attrs="[class: 'fancy']" acctNumber="8675309">
     Show Account
 </link:accountDetails>
-----
+```
 
-That would result in:
+这将导致:
 
-[source,xml]
-----
+```xml
 <a href="/details/8675309" class="fancy">Show Account</a>
-----
+```

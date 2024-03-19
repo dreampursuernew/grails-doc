@@ -1,10 +1,10 @@
-==== Using the respond method to output JSON
+==== 使用respond方法输出JSON
 
-The `respond` method is the preferred way to return JSON and integrates with link:theWebLayer.html#contentNegotiation[Content Negotiation] and http://views.grails.org[JSON Views].
+`respond`方法是返回JSON的首选方式，并与<link:theWebLayer.html#contentNegotiation[内容协商]和http://views.grails.org[JSON Views]集成。
 
-The `respond` method provides content negotiation strategies to intelligently produce an appropriate response for the given client.
+`respond`方法提供内容协商策略，智能地为给定的客户端生成适当的响应。
 
-For example given the following controller and action:
+例如，给定以下控制器和操作：
 
 .grails-app/controllers/example/BookController.groovy
 [source,groovy]
@@ -18,30 +18,28 @@ class BookController {
 }
 ----
 
-The `respond` method will take the followings steps:
+`respond`方法将采取以下步骤：
 
-1. If the client `Accept` header specifies a media type (for example `application/json`) use that
-2. If the file extension of the URI (for example `/books.json`) includes a format defined in the `grails.mime.types` property of `grails-app/conf/application.yml` use the media type defined in the configuration
+1. 如果客户端的`Accept`头指定了媒体类型（例如`application/json`），则使用该媒体类型
+2. 如果URI的文件扩展名（例如`/books.json`）包含在`grails-app/conf/application.yml`的`grails.mime.types`属性中定义的格式，则使用配置中定义的媒体类型
 
-The `respond` method will then look for an appriopriate link:{apiDocs}grails/rest/render/Renderer.html[Renderer] for the object and the calculated media type from the link:{apiDocs}grails/rest/render/RendererRegistry.html[RendererRegistry].
+`respond`方法将寻找对象的适当的link:{apiDocs}grails/rest/render/Renderer.html[Renderer]以及link:{apiDocs}grails/rest/render/RendererRegistry.html[RendererRegistry]中计算的媒体类型。
 
-Grails includes a number of pre-configured `Renderer` implementations that will produce default representations of JSON responses for the argument passed to `respond`. For example going to the `/book.json` URI will produce JSON such as:
-
+Grails包含许多预配置的`Renderer`实现，将为传递给`respond`的参数生成默认的JSON响应表示。例如，访问`/book.json` URI会生成如下的JSON：
 
 [source,json]
 ----
 [
-    {id:1,"title":"The Stand"},
-    {id:2,"title":"Shining"}
+    {id:1, "title":"The Stand"},
+    {id:2, "title": "Shining"}
 ]
 ----
 
+==== 控制媒体类型的优先级
 
-==== Controlling the Priority of Media Types
+默认情况下，如果您定义一个控制器，就没有优先级关系确定要发送给客户端的格式，并且Grails假定您希望提供HTML作为响应类型。
 
-By default if you define a controller there is no priority in terms of which format is sent back to the client and Grails assumes you wish to serve HTML as a response type.
-
-However if your application is primarily an API, then you can specify the priorty using the `responseFormats` property:
+然而，如果您的应用程序主要是API，那么您可以使用`responseFormats`属性指定优先级：
 
 .grails-app/controllers/example/BookController.groovy
 [source,groovy]
@@ -56,30 +54,30 @@ class BookController {
 }
 ----
 
-In the above example Grails will respond by default with `json` if the media type to respond with cannot be calculated from the `Accept` header or file extension.
+在上面的示例中，如果无法从`Accept`头或文件扩展名中计算要返回的媒体类型，Grails将默认使用`json`进行响应。
 
-==== Using Views to Output JSON Responses
+==== 使用视图输出JSON响应
 
-If you define a view (either a GSP or a http://views.grails.org[JSON View]) then Grails will render the view when using the `respond` method by calculating a model from the argument passed to `respond`.
+如果定义了视图（无论是GSP还是http://views.grails.org[JSON View]），那么在使用`respond`方法时，Grails将通过从传递给`respond`的参数计算一个模型来呈现视图。
 
-For example, in the previous listing, if you were to define `grails-app/views/index.gson` and `grails-app/views/index.gsp` views, these would be used if the client requested `application/json` or `text/html` media types respectively. Thus allowing you to define a single backend capable of serving responses to a web browser or representing your application's API.
+例如，在上一个示例中，如果您定义了`grails-app/views/index.gson`和`grails-app/views/index.gsp`视图，那么分别在客户端请求`application/json`或`text/html`媒体类型时，这些视图将被使用。因此，您可以定义一个后端，可以为Web浏览器提供响应或表示应用程序的API。
 
-When rendering the view, Grails will calculate a model to pass to the view based on the type of the value passed to the `respond` method.
+在渲染视图时，Grails将根据传递给`respond`方法的值的类型计算要传递给视图的模型。
 
-The following table summarizes this convention:
+以下表总结了此规则：
 
 [cols="3*", options="header"]
 |===
-|Example|Argument Type|Calculated Model Variable
+|示例|参数类型|计算的模型变量
 |`respond Book.list()`|`java.util.List`|`bookList`
 |`respond( [] )`|`java.util.List`|`emptyList`
-|`respond Book.get(1)` |`example.Book`|`book`
-|`respond( [1,2] )` |`java.util.List`|`integerList`
-|`respond( [1,2] as Set )` |`java.util.Set`|`integerSet`
-|`respond( [1,2] as Integer[] )` |`Integer[]`|`integerArray`
+|`respond Book.get(1)`|`example.Book`|`book`
+|`respond( [1,2] )`|`java.util.List`|`integerList`
+|`respond( [1,2] as Set )`|`java.util.Set`|`integerSet`
+|`respond( [1,2] as Integer[] )`|`Integer[]`|`integerArray`
 |===
 
-Using this convention you can reference the argument passed to `respond` from within your view:
+使用此规则，您可以在视图中引用传递给`respond`的参数：
 
 .grails-app/views/book/index.gson
 [source,groovy]
@@ -91,39 +89,39 @@ json bookList, { Book book ->
 }
 ----
 
-You will notice that if `Book.list()` returns an empty list then the model variable name is translated to `emptyList`. This is by design and you should provide a default value in the view if no model variable is specified, such as the `List` in the example above:
+请注意，如果`Book.list()`返回一个空列表，则模型变量名称将被翻译为`emptyList`。这是经过设计的，如果未指定模型变量，则您应在视图中提供一个默认值，如上面示例中的`List`：
 
 .grails-app/views/book/index.gson
 [source,groovy]
 ----
-// defaults to an empty list
+// 默认为空列表
 @Field List<Book> bookList = []
 ...
 ----
 
-There are cases where you may wish to be more explicit and control the name of the model variable. For example if you have a domain inheritance hierarchy where a call to `list()` my return different child classes relying on automatic calculation may not be reliable.
+有些情况可能需要更明确地控制模型变量的名称。例如，如果您有一个领域继承层次结构，其中调用`list()`可能返回不同的子类，依赖自动计算可能是不可靠的。
 
-In this case you should pass the model directly using `respond` and a map argument:
+在这种情况下，您应该通过`respond`和一个map参数直接传递模型：
 
 [source,groovy]
 ----
 respond bookList: Book.list()
 ----
 
-TIP: When responding with any kind of mixed argument types in a collection, always use an explicit model name.
+提示：当使用集合中的任何类型的混合参数作出响应时，始终使用显式模型名称。
 
-If you simply wish to augment the calculated model then you can do so by passing a `model` argument:
+如果您只想增强计算的模型，则可以通过传递一个`model`参数来实现：
 
 [source,groovy]
 ----
 respond Book.list(), [model: [bookCount: Book.count()]]
 ----
 
-The above example will produce a model like `[bookList:books, bookCount:totalBooks]`, where the calculated model is combined with the model passed in the `model` argument.
+上面的示例将生成一个像`[bookList:books, bookCount:totalBooks]`的模型，其中计算的模型与传递给`model`参数的模型结合。
 
-==== Using the render method to output JSON
+==== 使用render方法输出JSON
 
-The `render` method can also be used to output JSON, but should only be used for simple cases that don't warrant the creation of a JSON view:
+`render`方法也可用于输出JSON，但应仅用于不需要创建JSON视图的简单情况：
 
 [source,groovy]
 ----
@@ -139,7 +137,7 @@ def list() {
 }
 ----
 
-In this case the result would be something along the lines of:
+在这种情况下，结果将类似于：
 
 [source,json]
 ----
@@ -149,6 +147,6 @@ In this case the result would be something along the lines of:
 ]
 ----
 
-NOTE: This technique for rendering JSON may be ok for very simple responses, but in general you should favour the use of link:webServices.html#jsonViews[JSON Views] and use the view layer rather than embedding logic in your application.
+注意：虽然这种渲染JSON的技术可能对非常简单的响应来说可以接受，但一般情况下，您应该更倾向于使用link:webServices.html#jsonViews[JSON Views]，并使用视图层而不是将逻辑嵌入到应用程序中。
 
-The same dangers with naming conflicts described above for XML also apply to JSON building.
+与上述XML的命名冲突相同的危险也适用于JSON构建。

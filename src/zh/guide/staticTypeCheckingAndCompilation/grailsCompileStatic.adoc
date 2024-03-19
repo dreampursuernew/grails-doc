@@ -1,17 +1,14 @@
-
 ==== GrailsCompileStatic
 
+`GrailsCompileStatic` 注解可以应用于类或类中的方法。
 
-The `GrailsCompileStatic` annotation may be applied to a class or methods within a class.
-
-[source,groovy]
-----
+```groovy
 import grails.compiler.GrailsCompileStatic
 
 @GrailsCompileStatic
 class SomeClass {
 
-    // all of the code in this class will be statically compiled
+    // 这个类中的所有代码都会被静态编译
 
     def methodOne() {
         // ...
@@ -25,17 +22,15 @@ class SomeClass {
         // ...
     }
 }
-----
+```
 
-
-[source,groovy]
-----
+```groovy
 import grails.compiler.GrailsCompileStatic
 
 class SomeClass {
 
-    // methodOne and methodThree will be statically compiled
-    // methodTwo will be dynamically compiled
+    // methodOne 和 methodThree 将被静态编译
+    // methodTwo 将被动态编译
 
     @GrailsCompileStatic
     def methodOne() {
@@ -51,21 +46,19 @@ class SomeClass {
         // ...
     }
 }
-----
+```
 
-It is possible to mark a class with `GrailsCompileStatic` and exclude specific methods by marking them with `GrailsCompileStatic` and specifying that the type checking should be skipped for that particular method as shown below.
+可以通过在类上标记`GrailsCompileStatic`并通过在特定方法上标记`GrailsCompileStatic`来排除特定方法，并指定该方法的类型检查应该被跳过，如下所示。
 
-
-[source,groovy]
-----
+```groovy
 import grails.compiler.GrailsCompileStatic
 import groovy.transform.TypeCheckingMode
 
 @GrailsCompileStatic
 class SomeClass {
 
-    // methodOne and methodThree will be statically compiled
-    // methodTwo will be dynamically compiled
+    // methodOne 和 methodThree 将被静态编译
+    // methodTwo 将被动态编译
 
     def methodOne() {
         // ...
@@ -80,8 +73,8 @@ class SomeClass {
         // ...
     }
 }
-----
+```
 
-Code that is marked with `GrailsCompileStatic` will all be statically compiled except for Grails specific interactions that cannot be statically compiled but that `GrailsCompileStatic` can identify as permissible for dynamic dispatch.  These include things like invoking dynamic finders and DSL code in configuration blocks like constraints and mapping closures in domain classes.
+使用`GrailsCompileStatic`标记的代码都会被静态编译，除了不能被静态编译的 Grails 特定交互，但是`GrailsCompileStatic`可以识别为可以进行动态分派的操作。这些包括像在约束和映射闭包中的领域类中调用动态查找器和 DSL 代码等配置块。
 
-Care must be taken when deciding to statically compile code.  There are benefits associated with static compilation but in order to take advantage of those benefits you are giving up the power and flexibility of dynamic dispatch.  For example if code is statically compiled it cannot take advantage of runtime metaprogramming enhancements which may be provided by plugins.
+在决定静态编译代码时需要小心。静态编译有其相关的优点，但为了利用这些优点，您需要放弃动态分派的权力和灵活性。例如，如果代码被静态编译，它将无法利用运行时元编程增强功能，这些功能可能由插件提供。"

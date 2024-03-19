@@ -1,1 +1,1 @@
-This section is for advanced users and those who are interested in how Grails integrates with and builds on the http://spring.io/[Spring Framework]. It is also useful for link:plugins.html[plugin developers] considering doing runtime configuration Grails.
+这一部分是为高级用户和那些对Grails如何与http://spring.io/[Spring Framework]集成和建立的感兴趣的人准备的。对于考虑对Grails进行运行时配置的link:plugins.html[插件开发人员]也很有用。

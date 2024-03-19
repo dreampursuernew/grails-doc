@@ -1,15 +1,13 @@
+创建一个控制器
 
-==== Creating a controller
-
-
-Controllers can be created with the link:../ref/Command%20Line/create-controller.html[create-controller] or link:../ref/Command%20Line/generate-controller.html[generate-controller] command. For example try running the following command from the root of a Grails project:
+控制器可以使用link:../ref/Command%20Line/create-controller.html[create-controller]或link:../ref/Command%20Line/generate-controller.html[generate-controller]命令进行创建。例如，尝试在Grails项目的根目录中运行以下命令：
 
 [source,bash]
 ----
 grails create-controller book
 ----
 
-The command will create a controller at the location `grails-app/controllers/myapp/BookController.groovy`:
+该命令将在位置`grails-app/controllers/myapp/BookController.groovy`创建一个控制器：
 
 [source,groovy]
 ----
@@ -21,17 +19,15 @@ class BookController {
 }
 ----
 
-where "myapp" will be the name of your application, the default package name if one isn't specified.
+在这里，“myapp”将是您的应用程序的名称，如果没有指定默认包名称的话。
 
-`BookController` by default maps to the /book URI (relative to your application root).
+`BookController`默认映射到/book URI（相对于您的应用程序根目录）。
 
-NOTE: The `create-controller` and `generate-controller` commands are just for convenience and you can just as easily create controllers using your favorite text editor or IDE
+注意：`create-controller`和`generate-controller`命令只是为了方便起见，您也可以使用您喜欢的文本编辑器或IDE轻松创建控制器。
 
+创建动作
 
-==== Creating Actions
-
-
-A controller can have multiple public action methods; each one maps to a URI:
+控制器可以有多个公共动作方法；每个动作方法映射到一个URI：
 
 [source,groovy]
 ----
@@ -39,25 +35,23 @@ class BookController {
 
     def list() {
 
-        // do controller logic
-        // create model
+        //执行控制器逻辑
+        //创建模型
 
         return model
     }
 }
 ----
 
-This example maps to the `/book/list` URI by default thanks to the property being named `list`.
+这个示例默认映射到/book/list URI，因为属性被命名为`list`。
 
+默认动作
 
-==== The Default Action
+控制器有一个概念，即默认URI映射到控制器的根URI，例如对于`BookController`，默认为/book。请求默认URI时调用的动作由以下规则决定：
 
-
-A controller has the concept of a default URI that maps to the root URI of the controller, for example `/book` for `BookController`. The action that is called when the default URI is requested is dictated by the following rules:
-
-* If there is only one action, it's the default
-* If you have an action named `index`, it's the default
-* Alternatively you can set it explicitly with the `defaultAction` property:
+* 如果只有一个动作，它就是默认的
+* 如果您有一个名为`index`的动作，则它是默认的
+* 或者您可以使用`defaultAction`属性明确设置它：
 
 [source,groovy]
 ----

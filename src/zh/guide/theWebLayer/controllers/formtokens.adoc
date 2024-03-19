@@ -1,11 +1,11 @@
-Grails has built-in support for handling duplicate form submissions using the "Synchronizer Token Pattern". To get started you define a token on the link:{gspdocs}/ref/Tags/form.html[form] tag:
+Grails内置支持使用“同步令牌模式”处理重复的表单提交。要开始使用，您需要在链接中定义一个令牌：{gspdocs}/ref/Tags/form.html[form] 标签：
 
 [source,xml]
 ----
-<g:form useToken="true" ...>
+<g:form useToken=\"true\" ...>
 ----
 
-Then in your controller code you can use the link:../ref/Controllers/withForm.html[withForm] method to handle valid and invalid requests:
+然后在您的控制器代码中，您可以使用链接：../ref/Controllers/withForm.html[withForm] 方法来处理有效和无效的请求：
 
 [source,groovy]
 ----
@@ -16,13 +16,13 @@ withForm {
 }
 ----
 
-If you only provide the link:../ref/Controllers/withForm.html[withForm] method and not the chained `invalidToken` method then by default Grails will store the invalid token in a `flash.invalidToken` variable and redirect the request back to the original page. This can then be checked in the view:
+如果您只提供了链接：../ref/Controllers/withForm.html[withForm] 方法而没有链接到链接“invalidToken”方法的话，默认情况下Grails会将无效的令牌存储在`flash.invalidToken`变量中，并将请求重定向回原始页面。然后可以在视图中进行检查：
 
 [source,xml]
 ----
-<g:if test="${flash.invalidToken}">
-  Don't click the button twice!
+<g:if test=\"${flash.invalidToken}\">
+  不要重复点击按钮！
 </g:if>
 ----
 
-WARNING: The link:../ref/Controllers/withForm.html[withForm] tag makes use of the link:../ref/Controllers/session.html[session] and hence requires session affinity or clustered sessions if used in a cluster.
+警告：链接：../ref/Controllers/withForm.html[withForm] 标签使用链接：../ref/Controllers/session.html[session]，因此需要会话关联或在集群中使用集群会话。
