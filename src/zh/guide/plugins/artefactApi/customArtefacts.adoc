@@ -15,8 +15,8 @@ class MyGrailsPlugin {
 
 理解处理程序和包装器类如何工作的最佳方式是查看Quartz插件：
 
-- [GrailsJobClass](https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/GrailsJobClass.java)
-- [DefaultGrailsJobClass](https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/DefaultGrailsJobClass.java)
-- [JobArtefactHandler](https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/JobArtefactHandler.groovy)
+- https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/GrailsJobClass.java[GrailsJobClass]
+- https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/DefaultGrailsJobClass.java[DefaultGrailsJobClass]
+- https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/JobArtefactHandler.groovy[JobArtefactHandler]
 
-另一个例子是[Shiro插件](http://github.com/pledbrook/grails-shiro)，它添加了一个领域构件。
+另一个例子是http://github.com/pledbrook/grails-shiro[Shiro插件]，它添加了一个领域构件。

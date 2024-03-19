@@ -19,6 +19,6 @@ server:
 
 还有其他相关的设置。更详细的参考资料：
 
-* [Spring Boot：嵌入式Web服务器-配置SSL](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-configure-ssl)
-* [Spring Boot：在Tomcat中启用多个连接器](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-enable-multiple-connectors-in-tomcat)
-* [Spring Boot：常见应用程序属性](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+* https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-configure-ssl[Spring Boot：嵌入式Web服务器-配置SSL]
+* https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-enable-multiple-connectors-in-tomcat[Spring Boot：在Tomcat中启用多个连接器]
+* https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html[Spring Boot：常见应用程序属性]

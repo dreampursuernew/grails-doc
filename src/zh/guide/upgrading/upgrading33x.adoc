@@ -24,7 +24,7 @@ grailsVersion=4.0.4
 
 ### 升级 GORM 版本
 
-如果你使用了 [GORM](http://gorm.grails.org)，你需要更新 `gradle.properties` 中定义的版本。
+如果你使用了 http://gorm.grails.org[GORM]，你需要更新 `gradle.properties` 中定义的版本。
 
 Grails 3 应用的 `gradle.properties`
 
@@ -284,13 +284,13 @@ geckodriverVersion=0.23.0 // <3>
 seleniumSafariDriverVersion=3.14.0
 ----
 
-<1> 包含 [Webdriver binaries Gradle plugin](https://plugins.gradle.org/plugin/com.energizedwork.webdriver-binaries)。
-<2> 设置适当的 [Chrome 版本的 Webdriver](http://chromedriver.chromium.org)。
-<3> 设置适当的 [Firefox 版本的 Webdriver](https://github.com/mozilla/geckodriver/releases)。
-<4> 包括 [Grails Geb Plugin 依赖项](https://github.com/grails3-plugins/geb)，它具有对 `geb-spock` 的传递依赖。这是与 Geb 和 Spock 一起使用所必需的依赖项。
+<1> 包含 https://plugins.gradle.org/plugin/com.energizedwork.webdriver-binaries[Webdriver binaries Gradle plugin]。
+<2> 设置适当的 http://chromedriver.chromium.org[Chrome 版本的 Webdriver]。
+<3> 设置适当的 https://github.com/mozilla/geckodriver/releases[Firefox 版本的 Webdriver]。
+<4> 包括 https://github.com/grails3-plugins/geb[Grails Geb Plugin 依赖项]，它具有对 `geb-spock` 的传递依赖。这是与 Geb 和 Spock 一起使用所必需的依赖项。
 <5> Selenium 和不同的驱动程序依赖项。
 
-还要在 `src/integration-test/resources/GebConfig.groovy` 中创建 [Geb 配置](http://www.gebish.org/manual/current/#configuration) 文件。
+还要在 `src/integration-test/resources/GebConfig.groovy` 中创建 http://www.gebish.org/manual/current/#configuration[Geb 配置] 文件。
 
 [source, groovy]
 .src/integration-test/resources/GebConfig.groovy
@@ -420,4 +420,3 @@ environments {
 ### Scheduled Methods
 
 在 Grails 3 中，要使用 Spring 的 `@Scheduled` 注解，不需要任何配置或额外的更改。在 Grails 4 中，您必须在应用程序类中应用 `@EnableScheduling` 注解，以使调度工作。
-

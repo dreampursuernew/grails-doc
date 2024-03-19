@@ -23,4 +23,3 @@ $ grails generate-all my.api.Book
 ----
 
 将生成一个生成JSON响应的REST端点，而不是CRUD HTML界面。此外，默认生成的功能和单元测试将测试REST端点。
-

@@ -73,7 +73,7 @@ GORM for MongoDB 已更新以支持最新的 mongodb-driver-sync。如果您正�
 
 ### Grails Profiles 中 profile.yml 和 feature.yml 文件的更改
 
-定义依赖项的方式在功能和配置文件中的更改了。有关更多信息，请参阅 [Application Profiles](link:profiles.html) 章节。
+定义依赖项的方式在功能和配置文件中的更改了。有关更多信息，请参阅 link:profiles.html[Application Profiles] 章节。
 
 ### Grails 配置的点导航已弃用
 
@@ -96,19 +96,19 @@ grailsApplication.config.getProperty("hola", String.class)
 
 ### Spring 5.3
 
-Grails 5.0.0.RC1 是建立在 Spring 5.3.2 之上的。如果您正在使用 Spring 特定的功能，请查看 [升级至 Spring 5.3](https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x#upgrading-to-version-53)。
+Grails 5.0.0.RC1 是建立在 Spring 5.3.2 之上的。如果您正在使用 Spring 特定的功能，请查看 https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x#upgrading-to-version-53[升级至 Spring 5.3]。
 
 ### Spring Boot 2.4
 
-Grails 5.1.1 更新到了 Spring Boot 2.6。请查看 [Spring Boot 2.6 发布说明](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6-Release-Notes) 获取更多信息。
+Grails 5.1.1 更新到了 Spring Boot 2.6。请查看 https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6-Release-Notes[Spring Boot 2.6 发布说明] 获取更多信息。
 
 ### Micronaut 3.2.0
 
-Grails 5.1.1 附带了 Micronaut 3.2.0。如果您正在使用特定功能，请查看 [升级至 Micronaut 3.x](https://docs.micronaut.io/3.2.0/guide/index.html#upgrading)。
+Grails 5.1.1 附带了 Micronaut 3.2.0。如果您正在使用特定功能，请查看 https://docs.micronaut.io/3.2.0/guide/index.html#upgrading[升级至 Micronaut 3.x]。
 
 ### Micronaut for Spring 4.0.1
 
-Grails 5.1.1 已更新为 Micronaut for Spring 4.0.1，请查看 [发布说明](https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.0.1) 获取更多信息。
+Grails 5.1.1 已更新为 Micronaut for Spring 4.0.1，请查看 https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.0.1[发布说明] 获取更多信息。
 
 ### Gradle 7.x
 
