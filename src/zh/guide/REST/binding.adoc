@@ -1,15 +1,15 @@
-这个框架为绑定REST请求到领域对象和命令对象提供了一个复杂但简单的机制。其中一种利用方式是将控制器中的`request`属性绑定到领域类的`properties`上。给定以下XML作为请求主体，`createBook`操作将创建一个新的`Book`并将"The Stand"赋给`title`属性，将"Stephen King"赋给`authorName`属性。
+这个框架为绑定REST请求到领域对象和命令对象提供了一个复杂但简单的机制。其中一种利用方式是将控制器中的 `request` 属性绑定到领域类的 `properties` 上。给定以下XML作为请求主体， `createBook` 操作将创建一个新的 `Book` 并将"The Stand"赋给 `title` 属性，将"Stephen King"赋给 `authorName` 属性。
 
 控制对象将自动绑定到请求的主体：
 
-如果命令对象类型是领域类，并且XML文档的根元素包含`id`属性，`id`值将用于从数据库中检索对应的持久实例，然后将文档的其余部分绑定到实例中。如果在数据库中找不到对应记录，则命令对象引用将为null。
+如果命令对象类型是领域类，并且XML文档的根元素包含 `id` 属性， `id` 值将用于从数据库中检索对应的持久实例，然后将文档的其余部分绑定到实例中。如果在数据库中找不到对应记录，则命令对象引用将为null。
 
-数据绑定依赖于由`DataBindingSourceCreator`接口的实例创建的{apiDocs}grails/databinding/DataBindingSource.html[DataBindingSource]接口。`DataBindingSourceCreator`的具体实现将基于请求的`contentType`选择。提供了几种实现来处理常见的内容类型。大多数情况下，默认实现很好用。下表列出了核心框架支持的内容类型以及每个内容类型使用的`DataBindingSourceCreator`实现。所有实现类都在`org.grails.databinding.bindingsource`包中。
+数据绑定依赖于由 `DataBindingSourceCreator` 接口的实例创建的{apiDocs}grails/databinding/DataBindingSource.html[DataBindingSource]接口。 `DataBindingSourceCreator` 的具体实现将基于请求的 `contentType` 选择。提供了几种实现来处理常见的内容类型。大多数情况下，默认实现很好用。下表列出了核心框架支持的内容类型以及每个内容类型使用的 `DataBindingSourceCreator` 实现。所有实现类都在 `org.grails.databinding.bindingsource` 包中。
 
-要为任何这些内容类型提供自己的`DataBindingSourceCreator`，编写一个实现`DataBindingSourceCreator`接口的类，并在Spring应用程序上下文中注册该类的实例。如果要替换现有的辅助程序之一，请使用上述相应的bean名称。如果要为核心框架未考虑的内容类型提供辅助程序，请使用任何您喜欢的bean名称，但要注意不要与上述任何bean名称冲突。
+要为任何这些内容类型提供自己的 `DataBindingSourceCreator` ，编写一个实现 `DataBindingSourceCreator` 接口的类，并在Spring应用程序上下文中注册该类的实例。如果要替换现有的辅助程序之一，请使用上述相应的bean名称。如果要为核心框架未考虑的内容类型提供辅助程序，请使用任何您喜欢的bean名称，但要注意不要与上述任何bean名称冲突。
 
-`DataBindingSourceCreator`接口定义了2个方法：
+`DataBindingSourceCreator` 接口定义了2个方法：
 
-{apiDocs}org/grails/web/databinding/bindingsource/AbstractRequestBodyDataBindingSourceCreator.html[AbstractRequestBodyDataBindingSourceCreator]是一个抽象类，设计用于扩展以简化编写自定义`DataBindingSourceCreator`类。扩展`AbstractRequestbodyDatabindingSourceCreator`的类需要实现一个名为`createBindingSource`的方法，该方法接受`InputStream`作为参数并返回`DataBindingSource`，并实现上述`DataBindingSourceCreator`接口中描述的`getMimeTypes`方法。`createBindingSource`的`InputStream`参数提供对请求主体的访问。
+{apiDocs}org/grails/web/databinding/bindingsource/AbstractRequestBodyDataBindingSourceCreator.html[AbstractRequestBodyDataBindingSourceCreator]是一个抽象类，设计用于扩展以简化编写自定义 `DataBindingSourceCreator` 类。扩展 `AbstractRequestbodyDatabindingSourceCreator` 的类需要实现一个名为 `createBindingSource` 的方法，该方法接受 `InputStream` 作为参数并返回 `DataBindingSource` ，并实现上述 `DataBindingSourceCreator` 接口中描述的 `getMimeTypes` 方法。 `createBindingSource` 的 `InputStream` 参数提供对请求主体的访问。
 
-要注册`MyCustomDataSourceCreator`的实例在Spring应用程序上下文中。将使框架在处理具有`contentType`为"text/custom+demo+csv"的请求时使用`myCustomCreator` bean。
+要注册 `MyCustomDataSourceCreator` 的实例在Spring应用程序上下文中。将使框架在处理具有 `contentType` 为"text/custom+demo+csv"的请求时使用 `myCustomCreator` bean。

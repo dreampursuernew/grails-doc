@@ -3,7 +3,7 @@
 * 必要的链接：theWebLayer.html#gsp[views]
 * 控制器动作用于创建/读取/更新/删除（CRUD）操作
 
-应用表达对搭建插件的依赖的方式是在`build.gradle`中包含以下内容。
+应用表达对搭建插件的依赖的方式是在 `build.gradle` 中包含以下内容。
 
 ```groovy
 dependencies {
@@ -15,7 +15,7 @@ implementation "org.grails.plugins:scaffolding"
 
 动态搭建
 
-启用搭建的最简单方法是通过将控制器中的`scaffold`属性设置为特定的域类：
+启用搭建的最简单方法是通过将控制器中的 `scaffold` 属性设置为特定的域类：
 
 ```groovy
 class BookController {
@@ -33,9 +33,9 @@ static scaffold = Book  // 或任何其他域类如“作者”，“出版社�
 * save
 * update
 
-也将生成CRUD界面。要访问此界面，请在浏览器中打开`http://localhost:8080/book`。
+也将生成CRUD界面。要访问此界面，请在浏览器中打开 `http://localhost:8080/book` 。
 
-注意：定义`scaffold`属性的旧替代方案如下：
+注意：定义 `scaffold` 属性的旧替代方案如下：
 
 ```groovy
 class BookController {
@@ -45,7 +45,7 @@ static scaffold = true
 
 不再支持Grails 3.0以上版本。
 
-如果您喜欢将领域模型保留在Java中，并https://hibernate.org/[与Hibernate映射]，您仍然可以使用搭建，只需导入域类并将其名称设置为`scaffold`参数。
+如果您喜欢将领域模型保留在Java中，并https://hibernate.org/[与Hibernate映射]，您仍然可以使用搭建，只需导入域类并将其名称设置为 `scaffold` 参数。
 
 您可以向搭建控制器添加新动作，例如：
 
@@ -91,7 +91,7 @@ log.error("{}", book)
 
 注意：默认情况下，搭建视图中文本区域的大小在CSS中定义，因此添加'rows'和'cols'属性不会产生任何效果。
 
-此外，标准的搭建视图期望形式为`<propertyName>InstanceList`用于集合和`<propertyName>Instance`用于单个实例。诱人的是使用诸如'books'和'book'等属性，但这些将不起作用。
+此外，标准的搭建视图期望形式为 `<propertyName>InstanceList` 用于集合和 `<propertyName>Instance` 用于单个实例。诱人的是使用诸如'books'和'book'等属性，但这些将不起作用。
 
 静态搭建
 
@@ -126,7 +126,7 @@ releaseDate()
 }
 ```
 
-如果您在约束中使用`inList`约束，生成器也可以生成列表而不是文本输入：
+如果您在约束中使用 `inList` 约束，生成器也可以生成列表而不是文本输入：
 
 ```groovy
 def constraints = {
@@ -136,7 +136,7 @@ releaseDate()
 }
 ```
 
-或者如果您对数字使用`range`约束：
+或者如果您对数字使用 `range` 约束：
 
 ```groovy
 def constraints = {
@@ -154,7 +154,7 @@ name(size:0..30)
 
 字段插件
 
-Grails搭建模板使用https://grails.org/plugins.html#plugin&#47;fields[字段插件]。一旦生成了搭建视图，您可以使用插件提供的`Taglib`自定义表单和表格（有关详细信息，请参阅http://grails3-plugins.github.io/fields/snapshot/[字段插件文档]）。
+Grails搭建模板使用https://grails.org/plugins.html#plugin&#47;fields[字段插件]。一旦生成了搭建视图，您可以使用插件提供的 `Taglib` 自定义表单和表格（有关详细信息，请参阅http://grails3-plugins.github.io/fields/snapshot/[字段插件文档]）。
 
 自定义搭建模板
 

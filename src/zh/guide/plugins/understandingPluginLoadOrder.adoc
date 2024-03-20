@@ -1,6 +1,6 @@
 控制插件依赖关系
 
-插件经常依赖于其他插件的存在，并且可以根据其他插件的存在进行调整。这是通过两种属性实现的。第一个称为`dependsOn`。例如，看一下Hibernate插件中的这个片段：
+插件经常依赖于其他插件的存在，并且可以根据其他插件的存在进行调整。这是通过两种属性实现的。第一个称为 `dependsOn` 。例如，看一下Hibernate插件中的这个片段：
 
 [source,groovy]
 ----
@@ -15,11 +15,11 @@ class HibernateGrailsPlugin {
 }
 ----
 
-Hibernate插件依赖于四个插件的存在：`dataSource`，`domainClass`，`i18n`和`core`插件。
+Hibernate插件依赖于四个插件的存在： `dataSource` ， `domainClass` ， `i18n` 和 `core` 插件。
 
 依赖关系将在Hibernate插件之前加载，如果所有依赖项没有加载，则插件将不会加载。
 
-`dependsOn`属性还支持用于指定版本范围的迷你表达式语言。以下是一些语法示例：
+`dependsOn` 属性还支持用于指定版本范围的迷你表达式语言。以下是一些语法示例：
 
 [source,groovy]
 ----
@@ -38,14 +38,14 @@ def dependsOn = [foo: "1.0 > *"]
 
 控制加载顺序
 
-使用`dependsOn`建立了一个“硬”依赖，如果依赖关系没有解析，插件将放弃并不会加载。但是也可以使用`loadAfter`和`loadBefore`属性实现弱依赖：
+使用 `dependsOn` 建立了一个“硬”依赖，如果依赖关系没有解析，插件将放弃并不会加载。但是也可以使用 `loadAfter` 和 `loadBefore` 属性实现弱依赖：
 
 [source,groovy]
 ----
 def loadAfter = ['controllers']
 ----
 
-在这里，如果`controllers`插件存在，则该插件将在`controllers`插件之后加载，否则将仅加载。然后插件可以根据其他插件的存在进行调整，例如Hibernate插件在其`doWithSpring`闭包中有以下代码：
+在这里，如果 `controllers` 插件存在，则该插件将在 `controllers` 插件之后加载，否则将仅加载。然后插件可以根据其他插件的存在进行调整，例如Hibernate插件在其 `doWithSpring` 闭包中有以下代码：
 
 [source,groovy]
 ----
@@ -58,9 +58,9 @@ if (manager?.hasGrailsPlugin("controllers")) {
 }
 ----
 
-在这里，只有在加载`controllers`插件后，Hibernate插件才会注册`OpenSessionInViewInterceptor`。`manager`变量是{apiDocs}grails/plugins/GrailsPluginManager.html[GrailsPluginManager]接口的一个实例，它提供了与其他插件交互的方法。
+在这里，只有在加载 `controllers` 插件后，Hibernate插件才会注册 `OpenSessionInViewInterceptor` 。 `manager` 变量是{apiDocs}grails/plugins/GrailsPluginManager.html[GrailsPluginManager]接口的一个实例，它提供了与其他插件交互的方法。
 
-您还可以使用`loadBefore`属性指定应在您的插件之前加载的一个或多个插件：
+您还可以使用 `loadBefore` 属性指定应在您的插件之前加载的一个或多个插件：
 
 [source,groovy]
 ----

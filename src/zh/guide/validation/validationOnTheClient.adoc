@@ -32,7 +32,7 @@
 </div>
 ----
 
-此代码检查`user` bean的`login`字段是否有任何错误，如果有，则向`div`添加`errors` CSS类，允许您使用CSS规则来突出显示`div`。
+此代码检查 `user` bean的 `login` 字段是否有任何错误，如果有，则向 `div` 添加 `errors` CSS类，允许您使用CSS规则来突出显示 `div` 。
 
 
 检索输入值
@@ -44,4 +44,4 @@
 <input type="text" name="login" value="${fieldValue(bean:user,field:'login')}"/>
 ----
 
-此代码将检查`User` bean中是否存在`FieldError`，如果存在，则获取`login`字段的最初输入值。
+此代码将检查 `User` bean中是否存在 `FieldError` ，如果存在，则获取 `login` 字段的最初输入值。

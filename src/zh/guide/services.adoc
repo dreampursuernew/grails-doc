@@ -11,9 +11,9 @@ Grails定义了服务层的概念。Grails团队不鼓励在控制器内嵌入�
 grails create-service helloworld.simple
 ----
 
-注意：如果在create-service脚本中未指定任何包，Grails会自动使用`grails-app/conf/application.yml`中定义的`grails.defaultPackage`作为包名。
+注意：如果在create-service脚本中未指定任何包，Grails会自动使用 `grails-app/conf/application.yml` 中定义的 `grails.defaultPackage` 作为包名。
 
-上述示例将在位置`grails-app/services/helloworld/SimpleService.groovy`创建一个服务。服务的名称以`Service`结尾，除此之外，服务就是一个普通的Groovy类：
+上述示例将在位置 `grails-app/services/helloworld/SimpleService.groovy` 创建一个服务。服务的名称以 `Service` 结尾，除此之外，服务就是一个普通的Groovy类：
 
 [source,groovy]
 ----

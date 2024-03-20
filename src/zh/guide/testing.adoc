@@ -1,7 +1,7 @@
 自动化测试是Grails开发的一个关键方面。Grails提供了丰富的测试功能，从低级单元测试到高级功能测试。这份详细的全面指南探讨了这些多样化的测试功能。
 
 自动生成测试
-当您使用`create-*`和`generate-*`命令时，Grails会自动生成`unit`或`integration`测试。例如，运行以下`create-controller`命令：
+当您使用 `create-*` 和 `generate-*` 命令时，Grails会自动生成 `unit` 或 `integration` 测试。例如，运行以下 `create-controller` 命令：
 
 [source,shell]
 ----
@@ -11,7 +11,7 @@ grails create-controller com.example.simple
 Grails会在grails-app/controllers/com/example/SimpleController.groovy生成一个控制器，同时在src/test/groovy/com/example/SimpleControllerSpec.groovy生成一个对应的单元测试。需要注意的是，Grails只会创建测试结构，您需要实现测试逻辑。
 
 运行测试
-要执行测试，您可以使用Gradle的`check`任务：
+要执行测试，您可以使用Gradle的 `check` 任务：
 
 [source,shell]
 ----
@@ -70,7 +70,7 @@ Grails会在grails-app/controllers/com/example/SimpleController.groovy生成一�
 注意：您可能需要在类名前指定包名并在其后添加"Spec"。例如，要运行ProductController的测试，请使用./gradlew test *.ProductControllerSpec。如果您想避免输入整个包层次结构，也可以使用星号通配符。
 
 调试
-要使用远程调试器调试您的测试，您可以在任何命令中的`./gradlew`后添加`--debug-jvm`，如下所示：
+要使用远程调试器调试您的测试，您可以在任何命令中的 `./gradlew` 后添加 `--debug-jvm` ，如下所示：
 
 [source,shell]
 ----

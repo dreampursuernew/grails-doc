@@ -2,7 +2,7 @@
 
 Grails服务的一个关键方面是能够使用Spring框架的依赖注入功能。Grails支持“按约定的依赖注入”。换句话说，您可以使用服务类的属性名称表示来自动将它们注入到控制器、标签库等中。
 
-例如，给定一个名为`BookService`的服务，如果您在控制器中定义一个名为`bookService`的属性，则如下所示：
+例如，给定一个名为 `BookService` 的服务，如果您在控制器中定义一个名为 `bookService` 的属性，则如下所示：
 
 [classpath:"[source, groovy]"]
 ----
@@ -21,9 +21,9 @@ class AuthorService {
 }
 ----
 
-注意：通常属性名称是通过将类型的第一个字母小写来生成的。例如，`BookService`类的实例将映射到名为`bookService`的属性。
+注意：通常属性名称是通过将类型的第一个字母小写来生成的。例如， `BookService` 类的实例将映射到名为 `bookService` 的属性。
 
-为了符合标准的JavaBean约定，如果类名的前2个字母是大写的，属性名将与类名相同。例如，`JDBCHelperService`类的属性名将为`JDBCHelperService`，而不是`jDBCHelperService`或`jdbcHelperService`。
+为了符合标准的JavaBean约定，如果类名的前2个字母是大写的，属性名将与类名相同。例如， `JDBCHelperService` 类的属性名将为 `JDBCHelperService` ，而不是 `jDBCHelperService` 或 `jdbcHelperService` 。
 
 有关去除大写字母的更多信息，请参阅JavaBean规范的第8.8节。
 
@@ -44,7 +44,7 @@ dataSources:
 	.....
 ----
 
-您可以像期望的那样注入主要的`dataSource`：
+您可以像期望的那样注入主要的 `dataSource` ：
 
 [classpath:"[source, java]"]
 ----
@@ -54,7 +54,7 @@ class BookSqlService {
 }
 ----
 
-但要注入`secondary`数据源，您必须使用Spring的`Autowired`注入或`resources.groovy`。
+但要注入 `secondary` 数据源，您必须使用Spring的 `Autowired` 注入或 `resources.groovy` 。
 
 [classpath:"[source, java]"]
 ----
@@ -68,7 +68,7 @@ class BookSqlSecondaryService {
 
 依赖注入与服务
 
-您可以使用相同的技术在其他服务中注入服务。如果有一个需要使用`BookService`的`AuthorService`，声明如下将允许这样做：
+您可以使用相同的技术在其他服务中注入服务。如果有一个需要使用 `BookService` 的 `AuthorService` ，声明如下将允许这样做：
 
 [classpath:"[source, groovy]"]
 ----
@@ -97,12 +97,12 @@ class Book {
 
 服务Bean名称
 
-与服务关联的默认Bean名称可能会存在问题，如果在不同包中定义了多个具有相同名称的服务。例如，考虑以下情况：一个应用程序定义了一个名为`com.demo.ReportingService`的服务类，该应用程序使用了一个名为`ReportingUtilities`的插件，该插件提供了一个名为`com.reporting.util.ReportingService`的服务类。
+与服务关联的默认Bean名称可能会存在问题，如果在不同包中定义了多个具有相同名称的服务。例如，考虑以下情况：一个应用程序定义了一个名为 `com.demo.ReportingService` 的服务类，该应用程序使用了一个名为 `ReportingUtilities` 的插件，该插件提供了一个名为 `com.reporting.util.ReportingService` 的服务类。
 
-对于每个服务的默认Bean名称都将是`reportingService`，因此它们将相互冲突。Grails通过在插件提供的服务的默认Bean名称前缀化插件名称来管理此问题。
+对于每个服务的默认Bean名称都将是 `reportingService` ，因此它们将相互冲突。Grails通过在插件提供的服务的默认Bean名称前缀化插件名称来管理此问题。
 
-在上述情况下，`reportingService` Bean 将是应用程序中定义的`com.demo.ReportingService`类的实例，而`reportingUtilitiesReportingService` Bean 将是由`ReportingUtilities`插件提供的`com.reporting.util.ReportingService`类的实例。
+在上述情况下， `reportingService` Bean 将是应用程序中定义的 `com.demo.ReportingService` 类的实例，而 `reportingUtilitiesReportingService` Bean 将是由 `ReportingUtilities` 插件提供的 `com.reporting.util.ReportingService` 类的实例。
 
 对于由插件提供的所有服务Bean，如果在应用程序或应用程序中使用的其他插件中没有同名的服务，则将创建一个不包含插件名称的Bean别名，并且该别名将指向包含插件名称前缀的名称所引用的Bean。
 
-例如，如果`ReportingUtilities`插件提供了一个名为`com.reporting.util.AuthorService`的服务，且应用程序或应用程序中没有其他`AuthorService`，那么将会有一个名为`reportingUtilitiesAuthorService`的Bean，它是这个`com.reporting.util.AuthorService`的实例，并且在上下文中定义了一个名为`authorService`的Bean别名，该别名指向相同的Bean。
+例如，如果 `ReportingUtilities` 插件提供了一个名为 `com.reporting.util.AuthorService` 的服务，且应用程序或应用程序中没有其他 `AuthorService` ，那么将会有一个名为 `reportingUtilitiesAuthorService` 的Bean，它是这个 `com.reporting.util.AuthorService` 的实例，并且在上下文中定义了一个名为 `authorService` 的Bean别名，该别名指向相同的Bean。

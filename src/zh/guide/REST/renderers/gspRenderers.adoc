@@ -1,4 +1,4 @@
-您也可以使用Groovy服务器页面（GSP）基础上的每个操作自定义渲染。例如，给定之前提到的`show`操作：
+您也可以使用Groovy服务器页面（GSP）基础上的每个操作自定义渲染。例如，给定之前提到的 `show` 操作：
 
 ```
 [source,groovy]
@@ -9,7 +9,7 @@ def show(Book book) {
 ----
 ```
 
-你可以提供一个`show.xml.gsp`文件来自定义XML的渲染：
+你可以提供一个 `show.xml.gsp` 文件来自定义XML的渲染：
 
 ```
 [source,groovy]

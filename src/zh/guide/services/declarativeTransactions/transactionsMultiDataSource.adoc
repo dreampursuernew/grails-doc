@@ -16,7 +16,7 @@ class Book {
 }
 ```
 
-您可以向`@Transactional`或`@ReadOnly`注解提供所需的数据源。
+您可以向 `@Transactional` 或 `@ReadOnly` 注解提供所需的数据源。
 
 ```groovy
 import grails.gorm.transactions.ReadOnly

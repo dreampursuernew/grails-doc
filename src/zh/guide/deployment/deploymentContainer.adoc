@@ -11,9 +11,9 @@ WAR文件
 grails war
 ----
 
-这将生成一个WAR文件，可以部署到`build/libs`目录中的容器中。
+这将生成一个WAR文件，可以部署到 `build/libs` 目录中的容器中。
 
-请注意，默认情况下，Grails会在WAR文件中包含一个可嵌入的Tomcat版本，以便可以运行（参见上一节），如果您部署到不同版本的Tomcat可能会引发问题。如果您不打算使用嵌入式容器，则应在部署到生产容器之前在`build.gradle`中删除Tomcat依赖项或将范围改为`testImplementation`：
+请注意，默认情况下，Grails会在WAR文件中包含一个可嵌入的Tomcat版本，以便可以运行（参见上一节），如果您部署到不同版本的Tomcat可能会引发问题。如果您不打算使用嵌入式容器，则应在部署到生产容器之前在 `build.gradle` 中删除Tomcat依赖项或将范围改为 `testImplementation` ：
 
 [源，Groovy]
 ----

@@ -36,9 +36,9 @@ static mappings = {
 }
 ```
 
-通过这种配置，`IllegalArgumentException`将由`ErrorsController`中的`illegalArgument`操作处理，`NullPointerException`将由`nullPointer`操作处理，并且`MyException`将由`customException`操作处理。其他异常将由通用规则处理，并使用`/errors/serverError`视图。
+通过这种配置， `IllegalArgumentException` 将由 `ErrorsController` 中的 `illegalArgument` 操作处理， `NullPointerException` 将由 `nullPointer` 操作处理，并且 `MyException` 将由 `customException` 操作处理。其他异常将由通用规则处理，并使用 `/errors/serverError` 视图。
 
-您可以通过请求的`exception`属性在自定义错误处理视图或控制器操作中访问异常：
+您可以通过请求的 `exception` 属性在自定义错误处理视图或控制器操作中访问异常：
 
 
 ```
@@ -50,4 +50,4 @@ class ErrorController {
 }
 ```
 
-警告：如果您的错误处理控制器操作也抛出异常，您最终会遇到`StackOverflowException`。
+警告：如果您的错误处理控制器操作也抛出异常，您最终会遇到 `StackOverflowException` 。

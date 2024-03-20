@@ -1,6 +1,6 @@
 === 每个环境配置
 
-Grails支持每个环境配置的概念。`grails-app/conf`目录中的`application.yml`和`application.groovy`文件可以使用YAML或者由http://docs.groovy-lang.org/latest/html/documentation/#_configslurper[ConfigSlurper]提供的语法进行每个环境的配置。例如，考虑Grails提供的以下默认`application.yml`定义：
+Grails支持每个环境配置的概念。 `grails-app/conf` 目录中的 `application.yml` 和 `application.groovy` 文件可以使用YAML或者由http://docs.groovy-lang.org/latest/html/documentation/#_configslurper[ConfigSlurper]提供的语法进行每个环境的配置。例如，考虑Grails提供的以下默认 `application.yml` 定义：
 
 [source,yaml]
 ----
@@ -22,7 +22,7 @@ environments:
                initialSize: 5
         ...
 ----
-以上可以在`application.groovy`中以Groovy语法表达如下：
+以上可以在 `application.groovy` 中以Groovy语法表达如下：
 
 [source,groovy]
 ----
@@ -58,7 +58,7 @@ environments {
 }
 ----
 
-请注意，通用配置提供在顶层，然后`environments`块指定每个环境`DataSource`的`dbCreate`和`url`属性的设置。
+请注意，通用配置提供在顶层，然后 `environments` 块指定每个环境 `DataSource` 的 `dbCreate` 和 `url` 属性的设置。
 
 === 打包和运行不同环境
 
@@ -69,14 +69,14 @@ Grails的link:commandLine.html[命令行]具有内置功能，可以在特定环
 grails <<environment>> <<command name>>
 ----
 
-此外，Grails已知3个预设环境：`dev`、`prod`和`test`，分别对应`development`、`production`和`test`。例如，要为`test`环境创建WAR文件，您可以运行：
+此外，Grails已知3个预设环境： `dev` 、 `prod` 和 `test` ，分别对应 `development` 、 `production` 和 `test` 。例如，要为 `test` 环境创建WAR文件，您可以运行：
 
 [source,bash]
 ----
 grails test war
 ----
 
-要针对其他环境，可以将`grails.env`变量传递给任何命令：
+要针对其他环境，可以将 `grails.env` 变量传递给任何命令：
 
 [source,bash]
 ----
@@ -105,7 +105,7 @@ switch (环境.current) {
 
 === 每个环境引导
 
-通常希望按每个环境运行代码，当您的应用程序启动时。为此，您可以使用`grails-app/init/BootStrap.groovy`文件支持每个环境执行：
+通常希望按每个环境运行代码，当您的应用程序启动时。为此，您可以使用 `grails-app/init/BootStrap.groovy` 文件支持每个环境执行：
 
 [source,groovy]
 ----
@@ -124,7 +124,7 @@ def init = { ServletContext ctx ->
 
 === 通用每个环境执行
 
-上述`BootStrap`示例在内部使用`grails.util.Environment`类来执行。您也可以自己使用这个类来执行自己的环境特定逻辑：
+上述 `BootStrap` 示例在内部使用 `grails.util.Environment` 类来执行。您也可以自己使用这个类来执行自己的环境特定逻辑：
 
 [source,groovy]
 ----

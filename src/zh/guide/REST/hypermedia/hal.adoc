@@ -43,11 +43,11 @@
 }
 ```
 
-使用HAL公开资源时，可以通过在`grails-app/conf/spring/resources.groovy`中覆盖渲染器，并使用`grails.rest.render.hal.HalJsonRenderer`（或XML变体中的`HalXmlRenderer`）来返回HAL而不是常规JSON。
+使用HAL公开资源时，可以通过在 `grails-app/conf/spring/resources.groovy` 中覆盖渲染器，并使用 `grails.rest.render.hal.HalJsonRenderer` （或XML变体中的 `HalXmlRenderer` ）来返回HAL而不是常规JSON。
 
 需要更新资源的可接受响应格式，以包含HAL格式。如果不这样做，服务器将返回406 - 不可接受的响应。
 
-可以通过设置`Resource`变换的`formats`属性来完成这一点。另外也可以通过更新控制器中的`responseFormats`来完成：
+可以通过设置 `Resource` 变换的 `formats` 属性来完成这一点。另外也可以通过更新控制器中的 `responseFormats` 来完成：
 
 ```groovy
 import grails.rest.*
@@ -58,7 +58,7 @@ class Book {
 }
 ```
 
-或者更新控制器中的`responseFormats`：
+或者更新控制器中的 `responseFormats` ：
 
 ```groovy
 class BookController extends RestfulController {
@@ -85,7 +85,7 @@ beans = {
 
 ....（此处省略部分内容，请查看原文）... 
 
-重要的是，您可以使用`link`方法定制链接渲染，此方法已添加到所有带有`grails.rest.Resource`注释的领域类或任何带有`grails.rest.Linkable`注释的类。例如，可以修改`show`动作如下以在输出中提供新链接：
+重要的是，您可以使用 `link` 方法定制链接渲染，此方法已添加到所有带有 `grails.rest.Resource` 注释的领域类或任何带有 `grails.rest.Linkable` 注释的类。例如，可以修改 `show` 动作如下以在输出中提供新链接：
 
 ```groovy
 def show(Book book) {
@@ -113,4 +113,4 @@ def show(Book book) {
 }
 ```
 
-`link`方法可以传递与`grails.rest.Link`类的属性匹配的命名参数。
+`link` 方法可以传递与 `grails.rest.Link` 类的属性匹配的命名参数。

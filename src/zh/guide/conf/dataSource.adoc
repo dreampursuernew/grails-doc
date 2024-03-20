@@ -11,7 +11,7 @@
 }
 ----
 
-一旦JAR已解决，您需要熟悉Grails如何管理其数据库配置。配置可以在`grails-app/conf/application.groovy`或`grails-app/conf/application.yml`中维护。这些文件包含dataSource定义，其中包括以下设置：
+一旦JAR已解决，您需要熟悉Grails如何管理其数据库配置。配置可以在 `grails-app/conf/application.groovy` 或 `grails-app/conf/application.yml` 中维护。这些文件包含dataSource定义，其中包括以下设置：
 
 * `driverClassName` - JDBC驱动程序的类名
 * `username` - 用于建立JDBC连接的用户名
@@ -22,9 +22,9 @@
 * `logSql` - 启用SQL日志记录到标准输出
 * `formatSql` - 格式化日志记录的SQL
 * `dialect` - 用于与数据库通信的Hibernate方言的字符串或类。有关可用方言，请查看http://docs.jboss.org/hibernate/core/3.6/javadocs/org/hibernate/dialect/package-summary.html[org.hibernate.dialect]包。
-* `readOnly` - 如果为`true`，则使DataSource只读，这会导致连接池在每个`Connection`上调用`setReadOnly(true)`
-* `transactional` - 如果为`false`，则将DataSource的transactionManager bean保留在链式BE1PC事务管理器实现之外。这仅适用于其他数据源。
-* `persistenceInterceptor` - 默认数据源将自动连接到持久性拦截器，其他数据源除非设置为`true`否则不会自动连接
+* `readOnly` - 如果为 `true` ，则使DataSource只读，这会导致连接池在每个 `Connection` 上调用 `setReadOnly(true)`
+* `transactional` - 如果为 `false` ，则将DataSource的transactionManager bean保留在链式BE1PC事务管理器实现之外。这仅适用于其他数据源。
+* `persistenceInterceptor` - 默认数据源将自动连接到持久性拦截器，其他数据源除非设置为 `true` 否则不会自动连接
 * `properties` - 设置在DataSource bean上的额外属性。请参阅http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Common_Attributes[Tomcat Pool]文档。这里还有一个Javadoc格式的https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/tomcat/jdbc/pool/PoolConfiguration.html[属性文档]。
 
 *

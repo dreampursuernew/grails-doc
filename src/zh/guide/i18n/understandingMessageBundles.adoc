@@ -1,6 +1,6 @@
-现在你已经了解了区域设置，要在Grails中使用它们，您需要创建一个包含您希望呈现的不同语言的消息包文件。Grails中的消息包位于`grails-app/i18n`目录中，是简单的Java属性文件。
+现在你已经了解了区域设置，要在Grails中使用它们，您需要创建一个包含您希望呈现的不同语言的消息包文件。Grails中的消息包位于 `grails-app/i18n` 目录中，是简单的Java属性文件。
 
-按照惯例，每个包的名称以`messages`开头，以区域设置结束。Grails附带了几个消息包，涵盖了`grails-app/i18n`目录中的多种语言。例如：
+按照惯例，每个包的名称以 `messages` 开头，以区域设置结束。Grails附带了几个消息包，涵盖了 `grails-app/i18n` 目录中的多种语言。例如：
 
 * messages.properties
 * messages_da.properties
@@ -9,4 +9,4 @@
 * messages_fr.properties
 * ...
 
-默认情况下，Grails会在`messages.properties`中查找消息，除非用户指定了区域设置。您可以通过简单地创建以您感兴趣的区域设置结束的新属性文件来创建自己的消息包。例如，`messages_en_GB.properties`是英国英语的消息包。
+默认情况下，Grails会在 `messages.properties` 中查找消息，除非用户指定了区域设置。您可以通过简单地创建以您感兴趣的区域设置结束的新属性文件来创建自己的消息包。例如， `messages_en_GB.properties` 是英国英语的消息包。

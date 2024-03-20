@@ -10,7 +10,7 @@ bb.beans {
 }
 ```
 
-这个配置对应一个拥有以下构造函数的 `MyExampleBean`：
+这个配置对应一个拥有以下构造函数的 `MyExampleBean` ：
 
 ```
 MyExampleBean(String foo, int bar) {

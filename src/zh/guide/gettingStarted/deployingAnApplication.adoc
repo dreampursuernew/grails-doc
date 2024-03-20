@@ -18,7 +18,7 @@ implementation "org.springframework.boot:spring-boot-starter-tomcat"
 
 **推荐**：对于 Grails 6 应用程序，建议使用 Tomcat 9 以获得兼容性和性能增强。请确保参考 http://tomcat.apache.org/whichversion.html[Tomcat 版本表] 以获取兼容性详情。
 
-默认情况下，`war` 任务在 `production` 环境下运行。您可以通过在 Gradle 命令中覆盖它来指定不同的环境，如 `development`：
+默认情况下， `war` 任务在 `production` 环境下运行。您可以通过在 Gradle 命令中覆盖它来指定不同的环境，如 `development` ：
 
 [source,bash]
 ----

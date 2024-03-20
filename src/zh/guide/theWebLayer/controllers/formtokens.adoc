@@ -16,7 +16,7 @@ withForm {
 }
 ----
 
-如果您只提供了链接：../ref/Controllers/withForm.html[withForm] 方法而没有链接到链接“invalidToken”方法的话，默认情况下Grails会将无效的令牌存储在`flash.invalidToken`变量中，并将请求重定向回原始页面。然后可以在视图中进行检查：
+如果您只提供了链接：../ref/Controllers/withForm.html[withForm] 方法而没有链接到链接“invalidToken”方法的话，默认情况下Grails会将无效的令牌存储在 `flash.invalidToken` 变量中，并将请求重定向回原始页面。然后可以在视图中进行检查：
 
 [source,xml]
 ----

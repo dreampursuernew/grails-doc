@@ -1,6 +1,6 @@
 Grails通过扩展版的Spring的{springapi}org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[PropertyPlaceholderConfigurer]来支持属性占位符配置的概念。
 
-在`grails-app/conf/spring/resources.xml`和`grails-app/conf/spring/resources.groovy`中，可以使用在{groovyapi}groovy/util/ConfigSlurper.html[ConfigSlurper]脚本或Java属性文件中定义的设置作为Spring配置的占位值。例如，在`grails-app/conf/application.groovy`中（或外部化配置文件）定义以下条目：
+在 `grails-app/conf/spring/resources.xml` 和 `grails-app/conf/spring/resources.groovy` 中，可以使用在{groovyapi}groovy/util/ConfigSlurper.html[ConfigSlurper]脚本或Java属性文件中定义的设置作为Spring配置的占位值。例如，在 `grails-app/conf/application.groovy` 中（或外部化配置文件）定义以下条目：
 
 [source, groovy]
 ----
@@ -8,7 +8,7 @@ database.driver="com.mysql.jdbc.Driver"
 database.dbname="mysql:mydb"
 ----
 
-然后在`resources.xml`中使用熟悉的${..}语法指定占位符，如下所示：
+然后在 `resources.xml` 中使用熟悉的${..}语法指定占位符，如下所示：
 
 [source, xml]
 ----
@@ -23,7 +23,7 @@ database.dbname="mysql:mydb"
  </bean>
 ----
 
-要在`resources.groovy`中指定占位符，需要使用单引号：
+要在 `resources.groovy` 中指定占位符，需要使用单引号：
 
 [source, groovy]
 ----
@@ -35,7 +35,7 @@ dataSource(org.springframework.jdbc.datasource.DriverManagerDataSource) {
 
 这将属性值设置为一个文本字符串，稍后由Spring的PropertyPlaceholderConfigurer解析。
 
-在`resources.groovy`中更好的选项是通过`grailsApplication`变量访问属性：
+在 `resources.groovy` 中更好的选项是通过 `grailsApplication` 变量访问属性：
 
 [source, groovy]
 ----

@@ -1,4 +1,4 @@
-如果你更愿意保留在`UrlMappings.groovy`文件中声明URL映射，那么只需简单地删除`Resource`转换的`uri`属性，并将以下行添加到`UrlMappings.groovy`文件中即可：
+如果你更愿意保留在 `UrlMappings.groovy` 文件中声明URL映射，那么只需简单地删除 `Resource` 转换的 `uri` 属性，并将以下行添加到 `UrlMappings.groovy` 文件中即可：
 
 [source,groovy]
 ----
@@ -14,6 +14,6 @@
 }
 ----
 
-上面的示例将暴露URI `/books/1/publisher`。
+上面的示例将暴露URI `/books/1/publisher` 。
 
 有关更详细的解释，可以在用户指南的链接：theWebLayer.html#urlmappings[URL映射部分]中找到有关链接：theWebLayer.html#restfulMappings[创建RESTful URL映射]的说明。

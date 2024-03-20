@@ -1,6 +1,6 @@
 像Java Server Pages (JSP)一样，GSP支持自定义标签库的概念。与JSP不同，Grails的标签库机制简单、优雅，并且可以在运行时完全重新加载。
 
-简单来说，要创建一个标签库，创建一个以`TagLib`结尾的Groovy类，并将其放在`grails-app/taglib`目录中：
+简单来说，要创建一个标签库，创建一个以 `TagLib` 结尾的Groovy类，并将其放在 `grails-app/taglib` 目录中：
 
 ```groovy
 class SimpleTagLib {
@@ -18,7 +18,7 @@ class SimpleTagLib {
 }
 ```
 
-`attrs`参数是标签的属性Map，而`body`参数是在调用时返回正文内容的Closure：
+`attrs` 参数是标签的属性Map，而 `body` 参数是在调用时返回正文内容的Closure：
 
 ```groovy
 class SimpleTagLib {
@@ -28,13 +28,13 @@ class SimpleTagLib {
 }
 ```
 
-如上所示，有一个隐式的`out`变量，用于引用输出的`Writer`，您可以使用它来追加内容到响应中。然后，您可以在GSP中引用标签；不需要导入任何内容：
+如上所示，有一个隐式的 `out` 变量，用于引用输出的 `Writer` ，您可以使用它来追加内容到响应中。然后，您可以在GSP中引用标签；不需要导入任何内容：
 
 ```xml
 <g:emoticon happy="true">Hi John</g:emoticon>
 ```
 
-注意：为了帮助IDE自动完成标签属性，您应该在标签闭包中添加带有`@attr`描述的Javadoc注释。由于标签库使用Groovy代码，可靠地检测所有可用属性可能会有困难。
+注意：为了帮助IDE自动完成标签属性，您应该在标签闭包中添加带有 `@attr` 描述的Javadoc注释。由于标签库使用Groovy代码，可靠地检测所有可用属性可能会有困难。
 
 例如：
 

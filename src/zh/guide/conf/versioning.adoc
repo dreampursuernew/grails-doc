@@ -14,7 +14,7 @@ def version = grailsApplication.metadata.getApplicationVersion（）
 def grailsVersion = grailsApplication.metadata.getGrailsVersion（）
 ----
 
-或者使用`GrailsUtil`类：
+或者使用 `GrailsUtil` 类：
 
 [source，groovy]
 ----

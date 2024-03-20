@@ -1,6 +1,6 @@
 ==== 添加命令行命令
 
-插件可以通过两种方式向Grails 3.0交互式shell中添加新命令。首先，使用链接:../ref/Command%20Line/create-script.html[create-script]，您可以创建一个代码生成脚本，该脚本将对应用程序可用。`create-script`命令将在`src/main/scripts`目录中创建脚本：
+插件可以通过两种方式向Grails 3.0交互式shell中添加新命令。首先，使用链接:../ref/Command%20Line/create-script.html[create-script]，您可以创建一个代码生成脚本，该脚本将对应用程序可用。 `create-script` 命令将在 `src/main/scripts` 目录中创建脚本：
 
 [source, groovy]
 ----
@@ -13,14 +13,14 @@
 
 代码生成脚本可用于在项目树中创建工件并自动化与Gradle的交互。
 
-如果您想要创建一个与加载的Grails应用程序实例交互的新shell命令，则应使用`create-command`命令：
+如果您想要创建一个与加载的Grails应用程序实例交互的新shell命令，则应使用 `create-command` 命令：
 
 [source, groovy]
 ----
 $ grails create-command MyExampleCommand
 ----
 
-这将创建一个名为`grails-app/commands/PACKAGE_PATH/MyExampleCommand.groovy`的文件，扩展了{apiDocs}grails/dev/commands/ApplicationCommand.html[ApplicationCommand]：
+这将创建一个名为 `grails-app/commands/PACKAGE_PATH/MyExampleCommand.groovy` 的文件，扩展了{apiDocs}grails/dev/commands/ApplicationCommand.html[ApplicationCommand]：
 
 [source, groovy]
 ----
@@ -35,9 +35,9 @@ class MyExampleCommand implements ApplicationCommand {
 }
 ----
 
-`ApplicationCommand`可以访问`GrailsApplication`实例，并像任何其他Spring bean一样受自动装配的影响。
+`ApplicationCommand` 可以访问 `GrailsApplication` 实例，并像任何其他Spring bean一样受自动装配的影响。
 
-您还可以通过命令中的简单属性通知Grails跳过对`Bootstrap.groovy`文件的执行：
+您还可以通过命令中的简单属性通知Grails跳过对 `Bootstrap.groovy` 文件的执行：
 
 [source, groovy]
 ----
@@ -51,7 +51,7 @@ class MyExampleCommand implements ApplicationCommand {
 }
 ----
 
-对于每个存在的`ApplicationCommand`，Grails将创建一个shell命令和一个Gradle任务来调用该`ApplicationCommand`。在上面的示例中，您可以使用以下命令调用`MyExampleCommand`类：
+对于每个存在的 `ApplicationCommand` ，Grails将创建一个shell命令和一个Gradle任务来调用该 `ApplicationCommand` 。在上面的示例中，您可以使用以下命令调用 `MyExampleCommand` 类：
 
 [source, groovy]
 ----
@@ -67,13 +67,13 @@ $ gradle myExample
 
 Grails版本全部小写字符，使用连字符分隔，并排除“Command”后缀。
 
-代码生成脚本和`ApplicationCommand`实例之间的主要区别在于后者完全可以访问Grails应用程序状态，因此可用于执行与数据库交互、调用GORM等任务。
+代码生成脚本和 `ApplicationCommand` 实例之间的主要区别在于后者完全可以访问Grails应用程序状态，因此可用于执行与数据库交互、调用GORM等任务。
 
 在Grails 2.x中，Gant脚本可用于执行这两种任务，而在Grails 3.x中，代码生成和与运行时应用程序状态交互已经清晰地分开。
 
 ==== 添加新的grails-app工件（控制器、标签库、服务等）
 
-插件可以通过在`grails-app`树中创建相关文件来添加新工件。
+插件可以通过在 `grails-app` 树中创建相关文件来添加新工件。
 
 [source, groovy]
 ----
@@ -85,9 +85,9 @@ Grails版本全部小写字符，使用连字符分隔，并排除“Command”�
 
 ==== 提供视图、模板和视图解析
 
-插件提供控制器时，还可以提供要呈现的默认视图。这是通过插件实现应用程序模块化的绝佳方法。Grails的视图解析机制首先会在安装到的应用程序中查找视图，如果失败，则会尝试在插件内查找视图。这意味着您可以通过在应用程序的`grails-app/views`目录中创建相应的GSP来重写插件提供的视图。
+插件提供控制器时，还可以提供要呈现的默认视图。这是通过插件实现应用程序模块化的绝佳方法。Grails的视图解析机制首先会在安装到的应用程序中查找视图，如果失败，则会尝试在插件内查找视图。这意味着您可以通过在应用程序的 `grails-app/views` 目录中创建相应的GSP来重写插件提供的视图。
 
-例如，考虑一个名为`BookController`的控制器，由一个名为“amazon”的插件提供。如果执行的操作是`list`，Grails首先会查找一个名为`grails-app/views/book/list.gsp`的视图，如果失败，则会在插件中查找相同视图。
+例如，考虑一个名为 `BookController` 的控制器，由一个名为“amazon”的插件提供。如果执行的操作是 `list` ，Grails首先会查找一个名为 `grails-app/views/book/list.gsp` 的视图，如果失败，则会在插件中查找相同视图。
 
 但是，如果视图使用插件提供的模板，则可能需要以下语法：
 
@@ -96,21 +96,21 @@ Grails版本全部小写字符，使用连字符分隔，并排除“Command”�
 <g:render template=\"fooTemplate\" plugin=\"amazon\"/>
 ----
 
-请注意`plugin`属性的使用，其中包含模板所在插件的名称。如果未指定，则Grails会查找与应用程序有关的模板。
+请注意 `plugin` 属性的使用，其中包含模板所在插件的名称。如果未指定，则Grails会查找与应用程序有关的模板。
 
 ==== 排除工件
 
 默认情况下，Grails在打包过程中排除以下文件：
 
 * `grails-app/conf/logback.groovy`
-* `grails-app/conf/application.yml`（重命名为`plugin.yml`）
+* `grails-app/conf/application.yml` （重命名为 `plugin.yml` ）
 * `grails-app/conf/spring/resources.groovy`
-* `/src/test/**`中的所有内容
-* `**/.svn/**`和`**/CVS/**`中的SCM管理文件
+* `/src/test/**` 中的所有内容
+* `**/.svn/**` 和 `**/CVS/**` 中的SCM管理文件
 
-默认情况下不排除`UrlMappings.groovy`文件，因此请删除不需要的插件工作的任何映射。您还可以自由添加不同名称的UrlMappings定义，这将被包含在内。例如，名为`grails-app/controllers/BlogUrlMappings.groovy`的文件是可以的。
+默认情况下不排除 `UrlMappings.groovy` 文件，因此请删除不需要的插件工作的任何映射。您还可以自由添加不同名称的UrlMappings定义，这将被包含在内。例如，名为 `grails-app/controllers/BlogUrlMappings.groovy` 的文件是可以的。
 
-可以使用`pluginExcludes`属性扩展要排除的列表：
+可以使用 `pluginExcludes` 属性扩展要排除的列表：
 
 [source, groovy]
 ----

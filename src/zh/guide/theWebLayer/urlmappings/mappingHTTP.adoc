@@ -1,6 +1,6 @@
 URL映射也可以根据HTTP方法（GET，POST，PUT或DELETE）进行配置。这对于RESTful API和基于HTTP方法限制映射非常有用。
 
-作为示例，以下映射为`ProductController`提供了一个RESTful API URL映射：
+作为示例，以下映射为 `ProductController` 提供了一个RESTful API URL映射：
 
 [来源，Groovy]
 ----
@@ -9,4 +9,4 @@ URL映射也可以根据HTTP方法（GET，POST，PUT或DELETE）进行配置。
 }
 ----
 
-请注意，如果在您的URL映射中指定了除GET之外的HTTP方法，那么在创建相应的链接时，您还必须通过将`method`参数传递给`g:link`或`g:createLink`来指定它以获取所需格式的链接。
+请注意，如果在您的URL映射中指定了除GET之外的HTTP方法，那么在创建相应的链接时，您还必须通过将 `method` 参数传递给 `g:link` 或 `g:createLink` 来指定它以获取所需格式的链接。

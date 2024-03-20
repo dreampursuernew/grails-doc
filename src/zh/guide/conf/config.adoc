@@ -1,20 +1,20 @@
 Grails中的配置通常分为两个部分：构建配置和运行时配置。
 
-构建配置通常通过Gradle和`build.gradle`文件来完成。运行时配置默认情况下在`grails-app/conf/application.yml`文件中指定。
+构建配置通常通过Gradle和 `build.gradle` 文件来完成。运行时配置默认情况下在 `grails-app/conf/application.yml` 文件中指定。
 
-如果您喜欢使用Grails 2.0风格的Groovy配置，则可以使用Groovy的ConfigSlurper语法来指定配置。有两个Groovy配置文件可用：`grails-app/conf/application.groovy`和`grails-app/conf/runtime.groovy`：
+如果您喜欢使用Grails 2.0风格的Groovy配置，则可以使用Groovy的ConfigSlurper语法来指定配置。有两个Groovy配置文件可用： `grails-app/conf/application.groovy` 和 `grails-app/conf/runtime.groovy` ：
 
-- 使用`application.groovy`用于不依赖应用程序类的配置
-- 使用`runtime.groovy`用于依赖应用程序类的配置
+- 使用 `application.groovy` 用于不依赖应用程序类的配置
+- 使用 `runtime.groovy` 用于依赖应用程序类的配置
 
-注意：这种分离是必要的，因为在`application.groovy`中定义的配置值在Grails CLI中是可用的，需要在应用程序编译之前加载`application.groovy`。在`application.groovy`中引用应用程序类将导致在CLI执行这些命令时出现异常。
+注意：这种分离是必要的，因为在 `application.groovy` 中定义的配置值在Grails CLI中是可用的，需要在应用程序编译之前加载 `application.groovy` 。在 `application.groovy` 中引用应用程序类将导致在CLI执行这些命令时出现异常。
 
 对于Groovy配置，配置脚本可以使用以下变量：
 - userHome：运行Grails应用程序的帐户的主目录位置。
-- grailsHome：安装Grails的目录位置。如果设置了`GRAILS_HOME`环境变量，则使用它。
+- grailsHome：安装Grails的目录位置。如果设置了 `GRAILS_HOME` 环境变量，则使用它。
 - appName：显示在build.gradle中的应用程序名称。
 - appVersion：显示在build.gradle中的应用程序版本。
 
-要访问运行时配置设置，即在`application.yml`中定义的设置，可以使用可在控制器和标签库中作为变量使用的{apiDocs}grails/core/GrailsApplication.html[grailsApplication]对象。 GrailsApplication可以方便地注入到服务和其他Grails组件中。
+要访问运行时配置设置，即在 `application.yml` 中定义的设置，可以使用可在控制器和标签库中作为变量使用的 {apiDocs}grails/core/GrailsApplication.html[grailsApplication] 对象。 GrailsApplication可以方便地注入到服务和其他Grails组件中。
 
 您还可以使用Spring的@Value注解来注入配置值。在访问配置设置时，使用与定义它们时相同的点符号表示法。

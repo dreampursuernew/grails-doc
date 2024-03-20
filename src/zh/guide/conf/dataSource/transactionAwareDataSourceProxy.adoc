@@ -1,3 +1,3 @@
-实际的`dataSource` bean被包装在一个事务感知代理中，因此您将获得当前事务或Hibernate`Session`正在使用的连接。
+实际的 `dataSource` bean被包装在一个事务感知代理中，因此您将获得当前事务或Hibernate `Session` 正在使用的连接。
 
-如果不是这种情况，那么从`dataSource`获取连接将是一个新连接，您将无法看到尚未提交的更改（假设您有一个合理的事务隔离设置，例如`READ_COMMITTED`或更好）。
+如果不是这种情况，那么从 `dataSource` 获取连接将是一个新连接，您将无法看到尚未提交的更改（假设您有一个合理的事务隔离设置，例如 `READ_COMMITTED` 或更好）。

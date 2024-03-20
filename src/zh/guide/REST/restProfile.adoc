@@ -1,6 +1,6 @@
 自Grails 3.1开始，Grails支持创建REST应用程序的定制配置文件，该配置文件提供了更专注的依赖项和命令集。
 
-要开始使用REST配置文件，创建一个指定`rest-api`作为配置文件名称的应用程序：
+要开始使用REST配置文件，创建一个指定 `rest-api` 作为配置文件名称的应用程序：
 
 [source, bash]
 ----
@@ -13,7 +13,7 @@ $ grails create-rest-api my-api
 * 默认使用JSON视图渲染响应（参见下一节）
 * 插件数量比默认的Grails插件更少（没有GSP，没有Asset Pipeline，没有HTML相关插件）
 
-例如，您会注意到在`grails-app/views`目录中有`*.gson`文件，用于渲染默认的索引页面以及任何404和500错误页面。
+例如，您会注意到在 `grails-app/views` 目录中有 `*.gson` 文件，用于渲染默认的索引页面以及任何404和500错误页面。
 
 如果您发出以下一组命令：
 [source, bash]

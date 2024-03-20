@@ -1,4 +1,4 @@
-要使用注解来映射一个域类，需要在`src/main/groovy/`中创建一个新的类，并使用作为EJB 3.0规范的一部分定义的注解（有关更多信息，请参阅http://annotations.hibernate.org/[Hibernate Annotations Docs]）：
+要使用注解来映射一个域类，需要在 `src/main/groovy/` 中创建一个新的类，并使用作为EJB 3.0规范的一部分定义的注解（有关更多信息，请参阅http://annotations.hibernate.org/[Hibernate Annotations Docs]）：
 
 ```groovy
 package com.books;
@@ -42,7 +42,7 @@ public class Book {
 }
 ```
 
-然后通过向`grails-app/conf/hibernate.cfg.xml`文件添加相关条目来使用Hibernate的`sessionFactory`注册类，如下所示：
+然后通过向 `grails-app/conf/hibernate.cfg.xml` 文件添加相关条目来使用Hibernate的 `sessionFactory` 注册类，如下所示：
 
 ```xml
 <!DOCTYPE hibernate-configuration SYSTEM
@@ -55,6 +55,6 @@ public class Book {
 </hibernate-configuration>
 ```
 
-有关`hibernate.cfg.xml`文件的更多信息，请参阅上一节。
+有关 `hibernate.cfg.xml` 文件的更多信息，请参阅上一节。
 
 当Grails加载时，它将为类注册必要的动态方法。要查看Hibernate域类的其他用途，请参阅关于link:scaffolding.html[scaffolding]的部分。

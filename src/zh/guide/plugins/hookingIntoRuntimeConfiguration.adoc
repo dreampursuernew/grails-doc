@@ -2,7 +2,7 @@ Grails提供了许多钩子来利用系统的不同部分，并通过约定执�
 
 ==== 钩入到Grails Spring配置
 
-首先，您可以通过覆盖`doWithSpring`方法从{apiDocs}grails/plugins/Plugin.html[Plugin]类中挂钩到Grails运行时配置，并返回一个定义附加bean的闭包。例如，以下代码段来自提供link:i18n.html[i18n]支持的核心Grails插件之一：
+首先，您可以通过覆盖 `doWithSpring` 方法从{apiDocs}grails/plugins/Plugin.html[Plugin]类中挂钩到Grails运行时配置，并返回一个定义附加bean的闭包。例如，以下代码段来自提供link:i18n.html[i18n]支持的核心Grails插件之一：
 
 [source,groovy]
 ----
@@ -27,17 +27,17 @@ class I18nGrailsPlugin extends Plugin {
 }
 ----
 
-这个插件配置了Grails的`messageSource` bean和几个其他bean来管理语言环境和切换。它使用link:spring.html#theBeanBuilderDSLExplained[Spring Bean Builder]语法来实现。
+这个插件配置了Grails的 `messageSource` bean和几个其他bean来管理语言环境和切换。它使用link:spring.html#theBeanBuilderDSLExplained[Spring Bean Builder]语法来实现。
 
 ==== 自定义Servlet环境
 
-在以前的Grails版本中，可以动态修改生成的`web.xml`。在Grails 3.x中，没有`web.xml`文件，也不再可以以编程方式修改`web.xml`文件。
+在以前的Grails版本中，可以动态修改生成的 `web.xml` 。在Grails 3.x中，没有 `web.xml` 文件，也不再可以以编程方式修改 `web.xml` 文件。
 
 但是，在Grails 3.x中，可以执行修改Servlet环境的最常见任务。
 
 ==== 添加新的Servlets
 
-如果要添加新的Servlet实例，最简单的方式就是在`doWithSpring`方法中定义一个新的Spring bean：
+如果要添加新的Servlet实例，最简单的方式就是在 `doWithSpring` 方法中定义一个新的Spring bean：
 
 [source,groovy]
 ----
@@ -79,8 +79,8 @@ myFilter(FilterRegistrationBean) {
 }
 ----
 
-注意：Grails内部注册的过滤器（`GrailsWebRequestFilter`，`HiddenHttpMethodFilter`等）通过递增`HIGHEST_PRECEDENCE`来定义，从而允许在Grails过滤器之前或之间插入多个过滤器。
+注意：Grails内部注册的过滤器（ `GrailsWebRequestFilter` ， `HiddenHttpMethodFilter` 等）通过递增 `HIGHEST_PRECEDENCE` 来定义，从而允许在Grails过滤器之前或之间插入多个过滤器。
 
 ==== 执行后初始化配置
 
-有时在构建Spring {springapi}org/springframework/context/ApplicationContext.html[ApplicationContext]后进行一些运行时配置是有用的。在这种情况下，您可以定义一个`doWithApplicationContext`闭包属性。
+有时在构建Spring {springapi}org/springframework/context/ApplicationContext.html[ApplicationContext]后进行一些运行时配置是有用的。在这种情况下，您可以定义一个 `doWithApplicationContext` 闭包属性。

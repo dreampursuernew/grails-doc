@@ -1,4 +1,4 @@
-JSON视图放入`grails-app/views`目录，并以`.gson`后缀结束。它们是常规Groovy脚本，可以在任何Groovy编辑器中打开。
+JSON视图放入 `grails-app/views` 目录，并以 `.gson` 后缀结束。它们是常规Groovy脚本，可以在任何Groovy编辑器中打开。
 
 示例JSON视图：
 
@@ -18,7 +18,7 @@ json.person {
 {"person":{"name":"bob"}}
 ----
 
-有一个隐含的`json`变量，它是http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]的实例。
+有一个隐含的 `json` 变量，它是http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]的实例。
 
 示例用法：
 

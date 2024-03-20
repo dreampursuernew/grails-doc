@@ -1,8 +1,8 @@
 ====基础知识
 
-Grails插件允许您在运行时向任何Grails管理或其他类注册动态方法。这项工作是在`doWithDynamicMethods`方法中完成的。
+Grails插件允许您在运行时向任何Grails管理或其他类注册动态方法。这项工作是在 `doWithDynamicMethods` 方法中完成的。
 
-注意：请注意，Grails 3.x具有更新的功能，如可从使用`CompileStatic`编译的代码中使用的特征。建议仅在无法使用特征的情况下添加动态行为。
+注意：请注意，Grails 3.x具有更新的功能，如可从使用 `CompileStatic` 编译的代码中使用的特征。建议仅在无法使用特征的情况下添加动态行为。
 
 ```groovy
 class ExamplePlugin extends Plugin {
@@ -14,9 +14,9 @@ class ExamplePlugin extends Plugin {
 }
 ```
 
-在这种情况下，我们使用隐式应用程序对象来获取所有控制器类的MetaClass实例的引用，并为每个控制器添加一个名为`myNewMethod`的新方法。如果您事先知道要向其添加方法的类，则可以简单地引用其`metaClass`属性。
+在这种情况下，我们使用隐式应用程序对象来获取所有控制器类的MetaClass实例的引用，并为每个控制器添加一个名为 `myNewMethod` 的新方法。如果您事先知道要向其添加方法的类，则可以简单地引用其 `metaClass` 属性。
 
-例如，我们可以向`java.lang.String`添加一个新方法`swapCase`：
+例如，我们可以向 `java.lang.String` 添加一个新方法 `swapCase` ：
 
 ```groovy
 class ExamplePlugin extends Plugin {
@@ -39,7 +39,7 @@ class ExamplePlugin extends Plugin {
 
 与应用程序上下文交互
 
-`doWithDynamicMethods`闭包会传递Spring `ApplicationContext`实例。这很有用，因为它允许您与其中的对象进行交互。例如，如果您正在实现一个与Hibernate交互的方法，则可以在`SessionFactory`实例与`HibernateTemplate`的组合中使用它：
+`doWithDynamicMethods` 闭包会传递Spring `ApplicationContext` 实例。这很有用，因为它允许您与其中的对象进行交互。例如，如果您正在实现一个与Hibernate交互的方法，则可以在 `SessionFactory` 实例与 `HibernateTemplate` 的组合中使用它：
 
 ```groovy
 import org.springframework.orm.hibernate3.HibernateTemplate

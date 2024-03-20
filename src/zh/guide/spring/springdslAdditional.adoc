@@ -1,6 +1,6 @@
 使用Spring Bean DSL
 
-您可以通过在`grails-app/conf/spring/resources.groovy`中配置新的（或覆盖现有的）bean来轻松注册它们，该文件使用了Grails的Spring DSL。Bean被定义在`beans`属性（一个闭包）内：
+您可以通过在 `grails-app/conf/spring/resources.groovy` 中配置新的（或覆盖现有的）bean来轻松注册它们，该文件使用了Grails的Spring DSL。Bean被定义在 `beans` 属性（一个闭包）内：
 
 ```groovy
 beans = {
@@ -21,7 +21,7 @@ beans = {
 }
 ```
 
-一旦配置完成，bean可以自动连接到Grails构件和其他支持依赖注入的类（例如`BootStrap.groovy`和集成测试），只需声明一个公共字段，其名称为您的bean的名称（在本例中为`myBean`）：
+一旦配置完成，bean可以自动连接到Grails构件和其他支持依赖注入的类（例如 `BootStrap.groovy` 和集成测试），只需声明一个公共字段，其名称为您的bean的名称（在本例中为 `myBean` ）：
 
 ```groovy
 class ExampleController {
@@ -57,7 +57,7 @@ beans = {
 }
 ```
 
-`GrailsApplication`对象可以通过`application`变量访问，并可用于访问Grails配置（以及其他内容）：
+`GrailsApplication` 对象可以通过 `application` 变量访问，并可用于访问Grails配置（以及其他内容）：
 
 ```groovy
 import grails.util.Environment
@@ -79,15 +79,15 @@ beans = {
 }
 ```
 
-注意：如果您在`resources.groovy`中定义一个与Grails或已安装插件先前注册的bean相同名称的bean，则您的bean将取代先前的注册。这是一种方便的自定义行为的方式，而无需编辑插件代码或影响可维护性的其他方法。
+注意：如果您在 `resources.groovy` 中定义一个与Grails或已安装插件先前注册的bean相同名称的bean，则您的bean将取代先前的注册。这是一种方便的自定义行为的方式，而无需编辑插件代码或影响可维护性的其他方法。
 
 使用XML
 
-Bean也可以使用`grails-app/conf/spring/resources.xml`进行配置。在Grails的早期版本中，这个文件是由`run-app`脚本自动生成的，但现在首选的方法是使用`resources.groovy`中的DSL，因此现在不再自动生成。但仍然受支持 - 您只需要自己创建它。
+Bean也可以使用 `grails-app/conf/spring/resources.xml` 进行配置。在Grails的早期版本中，这个文件是由 `run-app` 脚本自动生成的，但现在首选的方法是使用 `resources.groovy` 中的DSL，因此现在不再自动生成。但仍然受支持 - 您只需要自己创建它。
 
 这个文件是典型的Spring XML文件，Spring文档中有一个关于如何配置Spring bean的优秀参考。
 
-使用DSL配置的`myBean` bean将使用以下语法在XML文件中配置：
+使用DSL配置的 `myBean` bean将使用以下语法在XML文件中配置：
 
 ```xml
 <bean id="myBean" class="my.company.MyBeanImpl">
@@ -107,7 +107,7 @@ class ExampleController {
 
 引用现有的bean
 
-在`resources.groovy`或`resources.xml`中声明的bean可以按约定引用其他bean。例如，如果您有一个`BookService`类，其Spring bean名称将是`bookService`，因此您的bean在DSL中将如下引用它：
+在 `resources.groovy` 或 `resources.xml` 中声明的bean可以按约定引用其他bean。例如，如果您有一个 `BookService` 类，其Spring bean名称将是 `bookService` ，因此您的bean在DSL中将如下引用它：
 
 ```groovy
 beans = {
@@ -166,6 +166,6 @@ class MyBeanImpl {
 }
 ```
 
-在XML或DSL中使用`ref`非常强大，因为它配置了一个运行时引用，所以被引用的bean不必存在。只要在最终应用程序上下文配置发生时它已经就位，一切都会被正确解析。
+在XML或DSL中使用 `ref` 非常强大，因为它配置了一个运行时引用，所以被引用的bean不必存在。只要在最终应用程序上下文配置发生时它已经就位，一切都会被正确解析。
 
 有关可用bean的完整参考，请参阅参考指南中的插件参考。

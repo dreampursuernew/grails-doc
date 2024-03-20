@@ -27,7 +27,7 @@ introduction:
   ...
 ----
 
-`introduction` 键指向 `src/en/guide/introduction.adoc`。`title` 键定义了在 TOC 中显示的标题。因为 `whatsNew` 键被嵌套在 `introduction` 键下面，它指向 `src/en/guide/introduction/whatsNew.adoc`，该文件位于名为 `introduction` 的目录中。
+`introduction` 键指向 `src/en/guide/introduction.adoc` 。 `title` 键定义了在 TOC 中显示的标题。因为 `whatsNew` 键被嵌套在 `introduction` 键下面，它指向 `src/en/guide/introduction/whatsNew.adoc` ，该文件位于名为 `introduction` 的目录中。
 
 基本上，使用 `toc.yml` 文件和目录结构，您可以操作用户指南的结构。
 

@@ -6,7 +6,7 @@ static mappings = {
 }
 ```
 
-该映射将匹配所有像`/image/logo.jpg`这样的图片路径。当然，您也可以使用变量来实现相同的效果：
+该映射将匹配所有像 `/image/logo.jpg` 这样的图片路径。当然，您也可以使用变量来实现相同的效果：
 
 ```groovy
 static mappings = {
@@ -22,7 +22,7 @@ static mappings = {
 }
 ```
 
-在这种情况下，该映射将匹配`/image/logo.jpg`以及`/image/other/logo.jpg`。甚至更好的是，您可以使用双通配符变量：
+在这种情况下，该映射将匹配 `/image/logo.jpg` 以及 `/image/other/logo.jpg` 。甚至更好的是，您可以使用双通配符变量：
 
 ```groovy
 static mappings = {
@@ -31,14 +31,14 @@ static mappings = {
 }
 ```
 
-在这种情况下，它将在`name`参数内保存通配符匹配的路径，该参数可从`params`对象中获取：
+在这种情况下，它将在 `name` 参数内保存通配符匹配的路径，该参数可从 `params` 对象中获取：
 
 ```groovy
 def name = params.name
 println name // 打印出"logo"或"other/logo"
 ```
 
-如果您使用通配符URL映射，可能希望排除某些URI不参与Grails的URL映射过程。为此，您可以在`UrlMappings.groovy`类中提供一个`excludes`设置：
+如果您使用通配符URL映射，可能希望排除某些URI不参与Grails的URL映射过程。为此，您可以在 `UrlMappings.groovy` 类中提供一个 `excludes` 设置：
 
 ```groovy
 class UrlMappings {
@@ -49,4 +49,4 @@ class UrlMappings {
 }
 ```
 
-在这种情况下，Grails不会尝试匹配任何以`/images`或`/css`开头的URI。
+在这种情况下，Grails不会尝试匹配任何以 `/images` 或 `/css` 开头的URI。

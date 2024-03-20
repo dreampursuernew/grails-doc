@@ -1,4 +1,4 @@
-开始做到最简单的方法是为您的资源创建一个扩展`grails.rest.RestfulController`超类的新控制器。例如：
+开始做到最简单的方法是为您的资源创建一个扩展 `grails.rest.RestfulController` 超类的新控制器。例如：
 
 ```groovy
 class BookController extends RestfulController<Book> {
@@ -20,7 +20,7 @@ class BookController extends RestfulController<Book> {
 |PUT|/books/${id}|update|
 |DELETE|/books/${id}|delete|
 
-注意：仅当控制器提供HTML界面时才需要`create`和`edit`操作。
+注意：仅当控制器提供HTML界面时才需要 `create` 和 `edit` 操作。
 
 例如，如果您有一个链接:theWebLayer.html#restfulMappings[nested resource]，那么您通常希望同时查询父资源和子资源标识符。例如，考虑以下URL映射：
 
@@ -48,4 +48,4 @@ class BookController extends RestfulController {
 }
 ```
 
-上面的示例继承了`RestfulController`并覆盖了受保护的`queryForResource`方法，以自定义资源查询以考虑父资源。
+上面的示例继承了 `RestfulController` 并覆盖了受保护的 `queryForResource` 方法，以自定义资源查询以考虑父资源。

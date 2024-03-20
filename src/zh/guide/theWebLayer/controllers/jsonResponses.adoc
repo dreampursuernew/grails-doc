@@ -1,8 +1,8 @@
 ==== 使用respond方法输出JSON
 
-`respond`方法是返回JSON的首选方式，并与<link:theWebLayer.html#contentNegotiation[内容协商]和http://views.grails.org[JSON Views]集成。
+`respond` 方法是返回JSON的首选方式，并与<link:theWebLayer.html#contentNegotiation[内容协商]和http://views.grails.org[JSON Views]集成。
 
-`respond`方法提供内容协商策略，智能地为给定的客户端生成适当的响应。
+`respond` 方法提供内容协商策略，智能地为给定的客户端生成适当的响应。
 
 例如，给定以下控制器和操作：
 
@@ -18,14 +18,14 @@ class BookController {
 }
 ----
 
-`respond`方法将采取以下步骤：
+`respond` 方法将采取以下步骤：
 
-1. 如果客户端的`Accept`头指定了媒体类型（例如`application/json`），则使用该媒体类型
-2. 如果URI的文件扩展名（例如`/books.json`）包含在`grails-app/conf/application.yml`的`grails.mime.types`属性中定义的格式，则使用配置中定义的媒体类型
+1. 如果客户端的 `Accept` 头指定了媒体类型（例如 `application/json` ），则使用该媒体类型
+2. 如果URI的文件扩展名（例如 `/books.json` ）包含在 `grails-app/conf/application.yml` 的 `grails.mime.types` 属性中定义的格式，则使用配置中定义的媒体类型
 
-`respond`方法将寻找对象的适当的link:{apiDocs}grails/rest/render/Renderer.html[Renderer]以及link:{apiDocs}grails/rest/render/RendererRegistry.html[RendererRegistry]中计算的媒体类型。
+`respond` 方法将寻找对象的适当的link:{apiDocs}grails/rest/render/Renderer.html[Renderer]以及link:{apiDocs}grails/rest/render/RendererRegistry.html[RendererRegistry]中计算的媒体类型。
 
-Grails包含许多预配置的`Renderer`实现，将为传递给`respond`的参数生成默认的JSON响应表示。例如，访问`/book.json` URI会生成如下的JSON：
+Grails包含许多预配置的 `Renderer` 实现，将为传递给 `respond` 的参数生成默认的JSON响应表示。例如，访问 `/book.json` URI会生成如下的JSON：
 
 [source,json]
 ----
@@ -39,7 +39,7 @@ Grails包含许多预配置的`Renderer`实现，将为传递给`respond`的参�
 
 默认情况下，如果您定义一个控制器，就没有优先级关系确定要发送给客户端的格式，并且Grails假定您希望提供HTML作为响应类型。
 
-然而，如果您的应用程序主要是API，那么您可以使用`responseFormats`属性指定优先级：
+然而，如果您的应用程序主要是API，那么您可以使用 `responseFormats` 属性指定优先级：
 
 .grails-app/controllers/example/BookController.groovy
 [source,groovy]
@@ -54,30 +54,30 @@ class BookController {
 }
 ----
 
-在上面的示例中，如果无法从`Accept`头或文件扩展名中计算要返回的媒体类型，Grails将默认使用`json`进行响应。
+在上面的示例中，如果无法从 `Accept` 头或文件扩展名中计算要返回的媒体类型，Grails将默认使用 `json` 进行响应。
 
 ==== 使用视图输出JSON响应
 
-如果定义了视图（无论是GSP还是http://views.grails.org[JSON View]），那么在使用`respond`方法时，Grails将通过从传递给`respond`的参数计算一个模型来呈现视图。
+如果定义了视图（无论是GSP还是http://views.grails.org[JSON View]），那么在使用 `respond` 方法时，Grails将通过从传递给 `respond` 的参数计算一个模型来呈现视图。
 
-例如，在上一个示例中，如果您定义了`grails-app/views/index.gson`和`grails-app/views/index.gsp`视图，那么分别在客户端请求`application/json`或`text/html`媒体类型时，这些视图将被使用。因此，您可以定义一个后端，可以为Web浏览器提供响应或表示应用程序的API。
+例如，在上一个示例中，如果您定义了 `grails-app/views/index.gson` 和 `grails-app/views/index.gsp` 视图，那么分别在客户端请求 `application/json` 或 `text/html` 媒体类型时，这些视图将被使用。因此，您可以定义一个后端，可以为Web浏览器提供响应或表示应用程序的API。
 
-在渲染视图时，Grails将根据传递给`respond`方法的值的类型计算要传递给视图的模型。
+在渲染视图时，Grails将根据传递给 `respond` 方法的值的类型计算要传递给视图的模型。
 
 以下表总结了此规则：
 
 [cols="3*", options="header"]
 |===
 |示例|参数类型|计算的模型变量
-|`respond Book.list()`|`java.util.List`|`bookList`
-|`respond( [] )`|`java.util.List`|`emptyList`
-|`respond Book.get(1)`|`example.Book`|`book`
-|`respond( [1,2] )`|`java.util.List`|`integerList`
-|`respond( [1,2] as Set )`|`java.util.Set`|`integerSet`
-|`respond( [1,2] as Integer[] )`|`Integer[]`|`integerArray`
+| `respond Book.list()` | `java.util.List` | `bookList`
+| `respond( [] )` | `java.util.List` | `emptyList`
+| `respond Book.get(1)` | `example.Book` | `book`
+| `respond( [1,2] )` | `java.util.List` | `integerList`
+| `respond( [1,2] as Set )` | `java.util.Set` | `integerSet`
+| `respond( [1,2] as Integer[] )` | `Integer[]` | `integerArray`
 |===
 
-使用此规则，您可以在视图中引用传递给`respond`的参数：
+使用此规则，您可以在视图中引用传递给 `respond` 的参数：
 
 .grails-app/views/book/index.gson
 [source,groovy]
@@ -89,7 +89,7 @@ json bookList, { Book book ->
 }
 ----
 
-请注意，如果`Book.list()`返回一个空列表，则模型变量名称将被翻译为`emptyList`。这是经过设计的，如果未指定模型变量，则您应在视图中提供一个默认值，如上面示例中的`List`：
+请注意，如果 `Book.list()` 返回一个空列表，则模型变量名称将被翻译为 `emptyList` 。这是经过设计的，如果未指定模型变量，则您应在视图中提供一个默认值，如上面示例中的 `List` ：
 
 .grails-app/views/book/index.gson
 [source,groovy]
@@ -99,9 +99,9 @@ json bookList, { Book book ->
 ...
 ----
 
-有些情况可能需要更明确地控制模型变量的名称。例如，如果您有一个领域继承层次结构，其中调用`list()`可能返回不同的子类，依赖自动计算可能是不可靠的。
+有些情况可能需要更明确地控制模型变量的名称。例如，如果您有一个领域继承层次结构，其中调用 `list()` 可能返回不同的子类，依赖自动计算可能是不可靠的。
 
-在这种情况下，您应该通过`respond`和一个map参数直接传递模型：
+在这种情况下，您应该通过 `respond` 和一个map参数直接传递模型：
 
 [source,groovy]
 ----
@@ -110,18 +110,18 @@ respond bookList: Book.list()
 
 提示：当使用集合中的任何类型的混合参数作出响应时，始终使用显式模型名称。
 
-如果您只想增强计算的模型，则可以通过传递一个`model`参数来实现：
+如果您只想增强计算的模型，则可以通过传递一个 `model` 参数来实现：
 
 [source,groovy]
 ----
 respond Book.list(), [model: [bookCount: Book.count()]]
 ----
 
-上面的示例将生成一个像`[bookList:books, bookCount:totalBooks]`的模型，其中计算的模型与传递给`model`参数的模型结合。
+上面的示例将生成一个像 `[bookList:books, bookCount:totalBooks]` 的模型，其中计算的模型与传递给 `model` 参数的模型结合。
 
 ==== 使用render方法输出JSON
 
-`render`方法也可用于输出JSON，但应仅用于不需要创建JSON视图的简单情况：
+`render` 方法也可用于输出JSON，但应仅用于不需要创建JSON视图的简单情况：
 
 [source,groovy]
 ----

@@ -18,11 +18,11 @@ boolean handle()
 
 以下是一个关于使用GrailsApplicationCommand trait创建自定义命令的逐步指南，包含示例以及如何运行这些命令。
 
-在Grails中，你可以通过实现`GrailsApplicationCommand` trait来创建自定义命令。自定义命令允许你为Grails应用程序添加功能，可以通过命令行界面（CLI）执行。下面是一个关于使用`GrailsApplicationCommand` trait创建自定义命令的逐步指南，包含示例以及如何运行这些命令。
+在Grails中，你可以通过实现 `GrailsApplicationCommand` trait来创建自定义命令。自定义命令允许你为Grails应用程序添加功能，可以通过命令行界面（CLI）执行。下面是一个关于使用 `GrailsApplicationCommand` trait创建自定义命令的逐步指南，包含示例以及如何运行这些命令。
 
 **步骤1：创建自定义命令**
 
-要创建一个自定义命令，你需要创建一个实现`GrailsApplicationCommand` trait的Groovy类。该trait提供了命令执行的方法。让我们创建一个简单的示例命令，向用户打招呼：
+要创建一个自定义命令，你需要创建一个实现 `GrailsApplicationCommand` trait的Groovy类。该trait提供了命令执行的方法。让我们创建一个简单的示例命令，向用户打招呼：
 
 ```groovy
 // grails-app/commands/com/example/GreetCommand.groovy
@@ -47,7 +47,7 @@ class GreetCommand implements GrailsApplicationCommand {
 }
 ```
 
-在这个例子中，我们创建了一个`GreetCommand`类，该类实现了`GrailsApplicationCommand` trait。它提供了一个`getName()`方法来定义命令名称，一个`getDescription()`方法用于简要描述，以及一个`run()`方法来指定运行命令时执行的代码。
+在这个例子中，我们创建了一个 `GreetCommand` 类，该类实现了 `GrailsApplicationCommand` trait。它提供了一个 `getName()` 方法来定义命令名称，一个 `getDescription()` 方法用于简要描述，以及一个 `run()` 方法来指定运行命令时执行的代码。
 
 **步骤2：构建你的Grails应用**
 
@@ -77,7 +77,7 @@ Hello, user!
 
 **附加功能：命令参数和选项**
 
-Grails还支持自定义命令的命令行参数和选项。你可以通过实现`GrailsApplicationCommand`接口在你的命令类中定义这些参数。以下是一个命令的示例，该命令作为参数接收一个名称，并可选的`--loud`选项使问候更响亮：
+Grails还支持自定义命令的命令行参数和选项。你可以通过实现 `GrailsApplicationCommand` 接口在你的命令类中定义这些参数。以下是一个命令的示例，该命令作为参数接收一个名称，并可选的 `--loud` 选项使问候更响亮：
 
 ```groovy
 // grails-app/commands/com/example/GreetCommand.groovy
@@ -111,7 +111,7 @@ class GreetCommand implements GrailsApplicationCommand {
 }
 ```
 
-现在你可以使用参数和选项运行`greet`命令：
+现在你可以使用参数和选项运行 `greet` 命令：
 
 ```shell
 # 用默认消息问候用户
@@ -129,9 +129,9 @@ class GreetCommand implements GrailsApplicationCommand {
 
 这样可以为你的Grails应用程序创建更具灵活性和交互性的自定义命令。
 
-总结一下，使用`GrailsApplicationCommand` trait在Grails中创建自定义命令是一种强大的扩展应用程序功能的方式，超越了Web界面。你可以定义命令的名称、描述和逻辑，然后从命令行执行它，根据需要可选地传递参数和选项。
+总结一下，使用 `GrailsApplicationCommand` trait在Grails中创建自定义命令是一种强大的扩展应用程序功能的方式，超越了Web界面。你可以定义命令的名称、描述和逻辑，然后从命令行执行它，根据需要可选地传递参数和选项。
 
-**在Grails自定义命令中使用`executionContext`**
+**在Grails自定义命令中使用 `executionContext` **
 
 在Grails中，executionContext是一个运行时上下文对象，提供关于Grails应用程序当前执行环境的宝贵信息。它包括应用程序的环境等细节（例如开发、生产、测试），并允许开发人员在自定义命令中访问这个上下文。
 
@@ -178,12 +178,12 @@ class BackupCommand implements GrailsApplicationCommand {
 
 在这个例子中：
 
-- 创建了名为`BackupCommand`的自定义命令来备份客户数据。
-- 它检查`executionContext`以确定当前环境。
+- 创建了名为 `BackupCommand` 的自定义命令来备份客户数据。
+- 它检查 `executionContext` 以确定当前环境。
 - 如果环境是“production”，则使用生产特定逻辑执行完整备份。
 - 在其他环境中，使用非生产逻辑执行部分备份。
 
-使用`./gradlew runCommand -Pargs="backup"`运行此自定义命令时，它将根据你在生产环境或非生产环境中运行的环境，调整其行为，展示了如何根据`executionContext`在实际场景中做出环境特定决策。
+使用 `./gradlew runCommand -Pargs="backup"` 运行此自定义命令时，它将根据你在生产环境或非生产环境中运行的环境，调整其行为，展示了如何根据 `executionContext` 在实际场景中做出环境特定决策。
 
 **如何从Grails插件创建自定义命令**
 
@@ -195,7 +195,7 @@ class BackupCommand implements GrailsApplicationCommand {
 grails create-plugin my-plugin
 ```
 
-2. **定义命令：** 在你的Grails插件中，通过创建实现`GrailsApplicationCommand` trait或接口的Groovy类来定义自定义命令，提供像`getName()`、`getDescription()`和`handle()`等必要方法。
+2. **定义命令：** 在你的Grails插件中，通过创建实现 `GrailsApplicationCommand` trait或接口的Groovy类来定义自定义命令，提供像 `getName()` 、 `getDescription()` 和 `handle()` 等必要方法。
 
 3. **构建和打包插件：** 要发布插件，你应该使用Gradle的maven-publish插件。更新插件的build.gradle文件以包含以下配置：
 
@@ -232,12 +232,12 @@ dependencies {
 
 确保用你的插件组和版本替换"com.example:my-plugin:1.0.0"。
 
-5. **运行自定义命令：** 现在，你可以使用先前解释的Gradle`runCommand`任务从你的Grails应用程序的根目录运行自定义命令：
+5. **运行自定义命令：** 现在，你可以使用先前解释的Gradle `runCommand` 任务从你的Grails应用程序的根目录运行自定义命令：
 
 ```shell
 ./gradlew runCommand -Pargs="你的命令名称"
 ```
 
-用你在插件中定义的自定义命令名称替换`"你的命令名称"`。
+用你在插件中定义的自定义命令名称替换 `"你的命令名称"` 。
 
 通过按照这些步骤，你可以从Grails插件中创建和运行自定义命令，根据需要扩展你的Grails应用程序功能。这种方法允许你将自定义功能模块化，并在有需要时在多个Grails项目中共享。【翻译完毕】

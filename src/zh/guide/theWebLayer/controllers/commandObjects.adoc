@@ -18,9 +18,9 @@ class LoginCommand implements grails.validation.Validateable {
 }
 ```
 
-在这个例子中，命令对象类实现了`Validateable` trait。`Validateable` trait 允许定义 link:validation.html#constraints[约束]，就像 link:GORM.html[领域类] 中一样。如果命令对象在与正在使用它的控制器相同的源文件中定义，Grails 将自动使其成为`Validateable`。并非命令对象类必须是可验证的。
+在这个例子中，命令对象类实现了 `Validateable` trait。 `Validateable` trait 允许定义 link:validation.html#constraints[约束]，就像 link:GORM.html[领域类] 中一样。如果命令对象在与正在使用它的控制器相同的源文件中定义，Grails 将自动使其成为 `Validateable` 。并非命令对象类必须是可验证的。
 
-默认情况下，所有不是`java.util.Collection`或`java.util.Map`实例的 `Validateable` 对象属性都是 `nullable: false`。`java.util.Collection`和`java.util.Map`的实例默认为 `nullable: true`。如果要创建具有默认为 `nullable: true` 属性的 `Validateable` 对象，则可以通过在类中定义 `defaultNullable` 方法来指定：
+默认情况下，所有不是 `java.util.Collection` 或 `java.util.Map` 实例的 `Validateable` 对象属性都是 `nullable: false` 。 `java.util.Collection` 和 `java.util.Map` 的实例默认为 `nullable: true` 。如果要创建具有默认为 `nullable: true` 属性的 `Validateable` 对象，则可以通过在类中定义 `defaultNullable` 方法来指定：
 
 ```groovy
 class AuthorSearchCommand implements grails.validation.Validateable {
@@ -33,13 +33,13 @@ class AuthorSearchCommand implements grails.validation.Validateable {
 }
 ```
 
-在这个例子中，`name` 和 `age` 在验证期间将允许空值。
+在这个例子中， `name` 和 `age` 在验证期间将允许空值。
 
 使用命令对象
 
 为使用命令对象，控制器操作可以选择性地指定任意数量的命令对象参数。必须提供参数类型，以便 Grails 知道要创建和初始化哪些对象。
 
-在执行控制器操作之前，Grails 将自动创建命令对象类的实例，并通过绑定请求参数来填充其属性。如果命令对象类标记为`Validateable`，则会对命令对象进行验证。例如：
+在执行控制器操作之前，Grails 将自动创建命令对象类的实例，并通过绑定请求参数来填充其属性。如果命令对象类标记为 `Validateable` ，则会对命令对象进行验证。例如：
 
 ```groovy
 class LoginController {
@@ -57,9 +57,9 @@ class LoginController {
 
 如果命令对象的类型是领域类，并且存在 `id` 请求参数，则不会调用领域类构造函数创建一个新实例，而是会调用领域类的静态 `get` 方法，并将 `id` 参数的值作为参数传递。
 
-无论从`get`方法返回的是什么，都将传递给控制器操作。这意味着，如果存在`id`请求参数，但在数据库中找不到相应记录，则命令对象的值将是 `null`。如果从数据库检索实例时发生错误，则将 `null` 作为参数传递给控制器操作，并将错误添加到控制器的`errors`属性中。
+无论从 `get` 方法返回的是什么，都将传递给控制器操作。这意味着，如果存在 `id` 请求参数，但在数据库中找不到相应记录，则命令对象的值将是 `null` 。如果从数据库检索实例时发生错误，则将 `null` 作为参数传递给控制器操作，并将错误添加到控制器的 `errors` 属性中。
 
-如果命令对象的类型是一个领域类，并且没有`id`请求参数，或者有一个`id`请求参数且其值为空，则除非 HTTP 请求方法是“POST”，否则将 `null` 传递给控制器操作，在这种情况下，通过调用领域类构造函数将创建一个新实例。对于领域类实例非空的所有情况，只有在 HTTP 请求方法是“POST”、“PUT”或“PATCH”时才执行数据绑定。
+如果命令对象的类型是一个领域类，并且没有 `id` 请求参数，或者有一个 `id` 请求参数且其值为空，则除非 HTTP 请求方法是“POST”，否则将 `null` 传递给控制器操作，在这种情况下，通过调用领域类构造函数将创建一个新实例。对于领域类实例非空的所有情况，只有在 HTTP 请求方法是“POST”、“PUT”或“PATCH”时才执行数据绑定。
 
 命令对象和请求参数名称
 
@@ -107,7 +107,7 @@ class Product {
 }
 ```
 
-如果有一个名为`name`的请求参数，不清楚它是表示`Product`的名称还是`Person`的名称。如果一个控制器操作接受两个相同类型的命令对象，则可能会出现问题。
+如果有一个名为 `name` 的请求参数，不清楚它是表示 `Product` 的名称还是 `Person` 的名称。如果一个控制器操作接受两个相同类型的命令对象，则可能会出现问题。
 
 ```groovy
 class StoreController {
@@ -132,7 +132,7 @@ class Product {
 
 为了应对这个问题，框架对将参数名称映射到命令对象类型施加了特殊规则。命令对象数据绑定将对所有以控制器操作参数名称开头的参数视为属于相应的命令对象。
 
-例如，`product.name` 请求参数将绑定到 `product` 参数中的 `name` 属性，`buyer.name` 请求参数将绑定到 `buyer` 参数中的 `name` 属性，`seller.address.city` 请求参数将绑定到 `seller` 参数的 `address` 属性的 `city` 属性，等等...
+例如， `product.name` 请求参数将绑定到 `product` 参数中的 `name` 属性， `buyer.name` 请求参数将绑定到 `buyer` 参数中的 `name` 属性， `seller.address.city` 请求参数将绑定到 `seller` 参数的 `address` 属性的 `city` 属性，等等...
 
 命令对象和依赖注入
 

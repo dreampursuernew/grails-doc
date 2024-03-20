@@ -1,8 +1,8 @@
 Grails提供以下GORM配置选项： 
 
-* `grails.gorm.failOnError` - 如果设置为`true`，在域类上调用`save()`方法时，如果link:validation.html[验证] 在保存期间失败，则会抛出`grails.validation.ValidationException`。该选项还可以被赋予一个表示包名的字符串列表。如果值是一个字符串列表，则`failOnError`行为仅适用于这些包中的域类（包括子包）。有关更多信息，请参阅link:../ref/Domain%20Classes/save.html[save]方法文档。
+* `grails.gorm.failOnError` - 如果设置为 `true` ，在域类上调用 `save()` 方法时，如果link:validation.html[验证] 在保存期间失败，则会抛出 `grails.validation.ValidationException` 。该选项还可以被赋予一个表示包名的字符串列表。如果值是一个字符串列表，则 `failOnError` 行为仅适用于这些包中的域类（包括子包）。有关更多信息，请参阅link:../ref/Domain%20Classes/save.html[save]方法文档。
 
-例如，要为所有域类启用`failOnError`：
+例如，要为所有域类启用 `failOnError` ：
 
 ```yaml
 grails:
@@ -10,7 +10,7 @@ grails:
         failOnError: true
 ```
 
-要按包为域类启用`failOnError`：
+要按包为域类启用 `failOnError` ：
 
 ```yaml
 grails:

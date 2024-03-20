@@ -32,7 +32,7 @@ Grails 6 中的一个显著改进是不再支持执行冗余任务的某些命�
 
 由于这些改进，新的 CLI 提供了一种更简化和高效的方式来处理 Grails 应用程序和插件。
 
-另外，为了充分拥抱 Grails 6 的改进，建议从您的项目根目录中删除旧的 Grails wrapper 文件 `./grailsw` 和 `./grails`。这将确保您完全依赖新 CLI 的增强功能。
+另外，为了充分拥抱 Grails 6 的改进，建议从您的项目根目录中删除旧的 Grails wrapper 文件 `./grailsw` 和 `./grails` 。这将确保您完全依赖新 CLI 的增强功能。
 
 总的来说，Grails 6 通过其新 CLI、优化的命令和先进的功能为开发体验提供了显著改进，用于生成应用程序和插件。
 
@@ -94,7 +94,7 @@ distributionUrl=https\\://services.gradle.org/distributions/gradle-7.6.2-bin.zip
 
 #### 6. 采用现代插件管理器 Grails 6
 
-在 Gradle 中，有两种向项目添加插件的主要方式：`plugins` 块和 `apply plugin` 语句。
+在 Gradle 中，有两种向项目添加插件的主要方式： `plugins` 块和 `apply plugin` 语句。
 
 Grails 6 通过采用 Gradle 的 `plugins` 块而不是传统的 `apply plugin` 语句来管理插件，引入了对插件管理的重大改进。这种转变简化了项目的构建配置，并使其更符合现代 Gradle 约定。新的 Grails 项目现在将使用 `plugins` 块来管理插件依赖项和配置。
 
@@ -127,7 +127,7 @@ plugins {
 
 如果您正在将旧的 Grails 应用程序迁移到 Grails 6，您可以将插件声明从 `apply plugin` 更改为 `plugins` 块。例如，如果您的先前应用程序使用了 `views-json` 插件，则可以修改 build.gradle 如下：
 
-**之前（使用 `apply plugin`）：**
+**之前（使用 `apply plugin` ）：**
 
 .build.gradle
 ```groovy
@@ -162,7 +162,7 @@ apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.plugins.views-json"
 ```
 
-然而，在 Grails 6 中，建议的做法是将插件声明移至 `settings.gradle` 文件中的 `pluginManagement` 块。`pluginManagement` 块充当一个中心位置，可以为多项目构建中的所有项目管理插件版本。
+然而，在 Grails 6 中，建议的做法是将插件声明移至 `settings.gradle` 文件中的 `pluginManagement` 块。 `pluginManagement` 块充当一个中心位置，可以为多项目构建中的所有项目管理插件版本。
 
 **在 pluginManagement 块中配置插件：**
 
@@ -228,13 +228,13 @@ apply plugin: 'views-json'
 
 1. **模块化构建配置：** `buildSrc` 文件夹充当 Grails 应用程序内的一个独立的小型项目，允许您封装构建逻辑、插件和依赖项。关注点的分离提高了构建配置的组织和模块化程度。
 
-2. **简化构建脚本管理：** 通过将构建脚本依赖项移动到 `buildSrc`，您可以保持主要 `build.gradle` 文件的干净，并专注于应用程序的特定要求。这减少了混乱，促进了更简洁明了的构建脚本。
+2. **简化构建脚本管理：** 通过将构建脚本依赖项移动到 `buildSrc` ，您可以保持主要 `build.gradle` 文件的干净，并专注于应用程序的特定要求。这减少了混乱，促进了更简洁明了的构建脚本。
 
 3. **更好的协作性：** `buildSrc` 方法简化了团队内的协作。构建逻辑可以集中并在项目间共享，实现一致和高效的开发流程。
 
 **从 Grails 5 升级**
 
-新的 Grails 6 应用程序使用 `buildSrc/build.gradle`。如果需要进一步配置，`buildSrc` 目录可以托管构建脚本（例如，应用插件或声明依赖项）。Grails 项目中的 `buildSrc` 文件夹遵循特定的树形布局，其中包括 `build.gradle` 文件。以下是该树形布局的外观：
+新的 Grails 6 应用程序使用 `buildSrc/build.gradle` 。如果需要进一步配置， `buildSrc` 目录可以托管构建脚本（例如，应用插件或声明依赖项）。Grails 项目中的 `buildSrc` 文件夹遵循特定的树形布局，其中包括 `build.gradle` 文件。以下是该树形布局的外观：
 
 ```bash
 buildSrc/
@@ -287,7 +287,7 @@ apply plugin: 'views-json'
 // ... 其他配置和依赖项
 ```
 
-通过使用 `buildSrc` 文件夹，开发者可以将构建脚本依赖项和自定义插件配置从主 `build.gradle` 文件中分离出来。这导致更清晰、更简洁的构建脚本，易于维护和理解。此外，`buildSrc` 方法鼓励模块化，因为构建逻辑和自定义插件可以集中并在项目间共享，促进了更好的团队协作和一致性。
+通过使用 `buildSrc` 文件夹，开发者可以将构建脚本依赖项和自定义插件配置从主 `build.gradle` 文件中分离出来。这导致更清晰、更简洁的构建脚本，易于维护和理解。此外， `buildSrc` 方法鼓励模块化，因为构建逻辑和自定义插件可以集中并在项目间共享，促进了更好的团队协作和一致性。
 
 #### 7. MongoDB的GORM同步驱动：
 

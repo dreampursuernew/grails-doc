@@ -13,7 +13,7 @@ XML.createNamedConfig('adminApi') {
 }
 ```
 
-然后，当您使用`render`或`respond`方法时，如果需要自定义每个请求的呈现方式，可以将调用包装在一个命名配置中：
+然后，当您使用 `render` 或 `respond` 方法时，如果需要自定义每个请求的呈现方式，可以将调用包装在一个命名配置中：
 
 ```groovy
 XML.use( isAdmin ? 'adminApi' : 'publicApi') {

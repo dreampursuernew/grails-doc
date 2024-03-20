@@ -110,7 +110,7 @@ public void marshalObject(Object object, XML converter) {
 </book>
 ----
 
-您还可以使用构建器符号来实现类似的结果（尽管构建器符号对于`CompileStatic`无效）：
+您还可以使用构建器符号来实现类似的结果（尽管构建器符号对于 `CompileStatic` 无效）：
 
 [source,groovy]
 ----
@@ -127,7 +127,7 @@ public void marshalObject(Object object, XML converter) {
 ==== 使用convertAnother方法递归转换对象
 
 
-为了创建更复杂的响应，您可以使用`convertAnother`方法转换关联和其他对象：
+为了创建更复杂的响应，您可以使用 `convertAnother` 方法转换关联和其他对象：
 
 [source,groovy]
 ----

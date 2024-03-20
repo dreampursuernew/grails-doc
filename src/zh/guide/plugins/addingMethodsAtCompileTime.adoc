@@ -1,4 +1,4 @@
-Grails 3.0使得从插件中向现有的构件类型添加新特性变得容易。例如，假设您想要向控制器添加用于操作日期的方法。这可以通过在`src/main/groovy`中定义一个特性来实现：
+Grails 3.0使得从插件中向现有的构件类型添加新特性变得容易。例如，假设您想要向控制器添加用于操作日期的方法。这可以通过在 `src/main/groovy` 中定义一个特性来实现：
 
 ```groovy
 package myplugin
@@ -11,9 +11,9 @@ trait DateTrait {
 }
 ```
 
-`@Enhances`注解定义了应该应用该特性的构件类型。
+`@Enhances` 注解定义了应该应用该特性的构件类型。
 
-除了使用上面的`@Enhances`注解外，您还可以实现一个{apiDocs}grails/compiler/traits/TraitInjector.html[TraitInjector]来在编译时告诉Grails要向哪些构件注入特性：
+除了使用上面的 `@Enhances` 注解外，您还可以实现一个{apiDocs}grails/compiler/traits/TraitInjector.html[TraitInjector]来在编译时告诉Grails要向哪些构件注入特性：
 
 ```groovy
 package myplugin
@@ -33,9 +33,9 @@ class ControllerTraitInjector implements TraitInjector {
 }
 ```
 
-上面的`TraitInjector`将把`SomeTrait`添加到所有的控制器中。`getArtefactTypes`方法定义了应该应用该特性的构件类型。
+上面的 `TraitInjector` 将把 `SomeTrait` 添加到所有的控制器中。 `getArtefactTypes` 方法定义了应该应用该特性的构件类型。
 
-应用特性时也可以进行条件判断。一个`TraitInjector`实现还可以实现{apiDocs}grails/compiler/ast/SupportsClassNode.html[SupportsClassNode]接口，以仅将特性应用于满足自定义要求的构件。例如，如果只有在目标构件类具有特定注解时才应用某个特性，可以按如下方式实现：
+应用特性时也可以进行条件判断。一个 `TraitInjector` 实现还可以实现{apiDocs}grails/compiler/ast/SupportsClassNode.html[SupportsClassNode]接口，以仅将特性应用于满足自定义要求的构件。例如，如果只有在目标构件类具有特定注解时才应用某个特性，可以按如下方式实现：
 
 ```groovy
 package myplugin
@@ -59,9 +59,9 @@ class AnnotationBasedTraitInjector implements TraitInjector, SupportsClassNode {
 }
 ```
 
-`TraitInjector`将只向那些声明了`SomeAnnotation`的控制器中添加`SomeTrait`。
+`TraitInjector` 将只向那些声明了 `SomeAnnotation` 的控制器中添加 `SomeTrait` 。
 
-框架通过`META-INF/grails.factories`描述符来发现特性注入器，该描述符位于.jar文件中。该描述符会在构建时自动生成。对于上面所示的代码，生成的描述符如下：
+框架通过 `META-INF/grails.factories` 描述符来发现特性注入器，该描述符位于.jar文件中。该描述符会在构建时自动生成。对于上面所示的代码，生成的描述符如下：
 
 ```
 #Grails Factories File
@@ -71,4 +71,4 @@ myplugin.ControllerTraitInjector,myplugin.DateTraitTraitInjector
 
 注意：由于格式问题，在等号后包含了一个换行。
 
-该文件会在构建时自动生成并添加到.jar文件中。如果出于任何原因应用程序在`src/main/resources/META-INF/grails.factories`中定义了自己的`grails.factories`文件，则需要在该文件中明确定义特性注入器。只有当应用程序没有定义自己的`src/main/resources/META-INF/grails.factories`文件时，自动生成的元数据才是可靠的。"
+该文件会在构建时自动生成并添加到.jar文件中。如果出于任何原因应用程序在 `src/main/resources/META-INF/grails.factories` 中定义了自己的 `grails.factories` 文件，则需要在该文件中明确定义特性注入器。只有当应用程序没有定义自己的 `src/main/resources/META-INF/grails.factories` 文件时，自动生成的元数据才是可靠的。"

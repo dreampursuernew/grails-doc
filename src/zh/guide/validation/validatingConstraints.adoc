@@ -16,7 +16,7 @@ else {
 }
 ----
 
-域类上的`errors`属性是Spring {springapi}org/springframework/validation/Errors.html[Errors]接口的一个实例。`Errors`接口提供了导航验证错误和检索原始值的方法。
+域类上的 `errors` 属性是Spring {springapi}org/springframework/validation/Errors.html[Errors]接口的一个实例。 `Errors` 接口提供了导航验证错误和检索原始值的方法。
 
 ====验证阶段
 
@@ -27,7 +27,7 @@ else {
 def user = new User(params)
 ----
 
-此时，您可能已经在`errors`属性中存在由于类型转换（例如将字符串转换为日期）而产生的错误。您可以使用`Errors` API来检查这些错误并获取原始输入值：
+此时，您可能已经在 `errors` 属性中存在由于类型转换（例如将字符串转换为日期）而产生的错误。您可以使用 `Errors` API来检查这些错误并获取原始输入值：
 
 [source，groovy]
 ----
@@ -38,7 +38,7 @@ if（user.hasErrors（））{
 }
 ----
 
-验证的第二阶段发生在您调用链接：../ ref/Domain%20Classes/validate.html[validate]或链接：../ ref/Domain%20Classes/save.html[save]时。这是Grails将根据您定义的约束验证绑定值的时候。例如，默认情况下链接：../ ref/Domain%20Classes/save.html[save]方法在执行之前会调用`validate`，使您能够编写如下代码：
+验证的第二阶段发生在您调用链接：../ ref/Domain%20Classes/validate.html[validate]或链接：../ ref/Domain%20Classes/save.html[save]时。这是Grails将根据您定义的约束验证绑定值的时候。例如，默认情况下链接：../ ref/Domain%20Classes/save.html[save]方法在执行之前会调用 `validate` ，使您能够编写如下代码：
 
 [source，groovy]
 ----

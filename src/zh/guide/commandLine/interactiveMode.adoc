@@ -1,4 +1,4 @@
-当您执行`grails`命令而没有任何参数时，Grails命令行界面（CLI）进入交互模式。在这种模式下，它类似于一个shell，允许您运行多个CLI命令而无需重新初始化CLI运行时。这种模式在使用代码生成命令（如`create-controller`）、创建多个项目或探索各种CLI功能时特别有用。
+当您执行 `grails` 命令而没有任何参数时，Grails命令行界面（CLI）进入交互模式。在这种模式下，它类似于一个shell，允许您运行多个CLI命令而无需重新初始化CLI运行时。这种模式在使用代码生成命令（如 `create-controller` ）、创建多个项目或探索各种CLI功能时特别有用。
 
 交互模式的一个优势是可以使用Tab键来查看给定命令或标志的可能选项。以下是交互模式中可用选项的示例：
 
@@ -45,7 +45,7 @@ Creates an application
   -x, --stacktrace      Show full stack trace when exceptions occur.
 ```
 
-您还可以使用`--list-features`标志与任何创建命令中获取可用功能列表。
+您还可以使用 `--list-features` 标志与任何创建命令中获取可用功能列表。
 
 ```
 grails> create-app --list-features

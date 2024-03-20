@@ -36,13 +36,13 @@ bb.beans {
 ApplicationContext appContext = bb.createApplicationContext()
 ----
 
-注意：在link:plugins.html[插件]和`grails-app/conf/spring/resources.groovy`文件中，您不需要创建一个新的`BeanBuilder`的实例。相反，DSL分别在`doWithSpring`和`beans`块中隐式可用。
+注意：在link:plugins.html[插件]和 `grails-app/conf/spring/resources.groovy` 文件中，您不需要创建一个新的 `BeanBuilder` 的实例。相反，DSL分别在 `doWithSpring` 和 `beans` 块中隐式可用。
 
 此示例显示了如何使用BeanBuilder类配置带有数据源的Hibernate。
 
-每个方法调用（在这种情况下是`dataSource`和`sessionFactory`调用）映射到Spring中Bean的名称。方法的第一个参数是Bean的类，而最后一个参数是一个块。在块的主体中，您可以使用标准的Groovy语法为Bean设置属性。
+每个方法调用（在这种情况下是 `dataSource` 和 `sessionFactory` 调用）映射到Spring中Bean的名称。方法的第一个参数是Bean的类，而最后一个参数是一个块。在块的主体中，您可以使用标准的Groovy语法为Bean设置属性。
 
-Bean引用会自动根据Bean的名称解析。在上面的示例中可以看到`sessionFactory` bean 是如何解析`dataSource`引用的。
+Bean引用会自动根据Bean的名称解析。在上面的示例中可以看到 `sessionFactory` bean 是如何解析 `dataSource` 引用的。
 
 构建器还可以设置与Bean管理相关的特殊属性，如下所示：
 
@@ -67,7 +67,7 @@ sessionFactory(ConfigurableLocalSessionFactoryBean) { bean ->
 
 使用BeanBuilder与Spring MVC
 
-在常规的Spring MVC应用程序中，需要在类路径中包含`grails-spring-<version>.jar`文件才能使用BeanBuilder。然后，将以下`<context-param>`值添加到`/WEB-INF/web.xml`文件中：
+在常规的Spring MVC应用程序中，需要在类路径中包含 `grails-spring-<version>.jar` 文件才能使用BeanBuilder。然后，将以下 `<context-param>` 值添加到 `/WEB-INF/web.xml` 文件中：
 
 [source, xml]
 ----
@@ -84,7 +84,7 @@ sessionFactory(ConfigurableLocalSessionFactoryBean) { bean ->
 </context-param>
 ----
 
-然后创建一个`/WEB-INF/applicationContext.groovy`文件执行剩下的操作：
+然后创建一个 `/WEB-INF/applicationContext.groovy` 文件执行剩下的操作：
 
 [source, groovy]
 ----
@@ -102,7 +102,7 @@ beans {
 
 从文件系统加载Bean定义
 
-您可以使用`BeanBuilder`类加载外部Groovy脚本，这些脚本使用与此处定义的相同的路径匹配语法来定义Bean。例如：
+您可以使用 `BeanBuilder` 类加载外部Groovy脚本，这些脚本使用与此处定义的相同的路径匹配语法来定义Bean。例如：
 
 [source,groovy]
 ----
@@ -112,7 +112,7 @@ bb.loadBeans("classpath:*SpringBeans.groovy")
 def applicationContext = bb.createApplicationContext()
 ----
 
-这里的`BeanBuilder`加载类路径上以`SpringBeans.groovy`结尾的所有Groovy文件，并将它们解析为Bean定义。下面是一个示例脚本：
+这里的 `BeanBuilder` 加载类路径上以 `SpringBeans.groovy` 结尾的所有Groovy文件，并将它们解析为Bean定义。下面是一个示例脚本：
 
 [source, groovy]
 ----
@@ -138,7 +138,7 @@ beans {
 
 向绑定（上下文）添加变量
 
-如果您从脚本中加载Bean，可以通过创建一个Groovy `Binding`来设置要使用的绑定：
+如果您从脚本中加载Bean，可以通过创建一个Groovy `Binding` 来设置要使用的绑定：
 
 [source,groovy]
 ----
@@ -153,4 +153,4 @@ bb.loadBeans("classpath:*SpringBeans.groovy")
 def ctx = bb.createApplicationContext()
 ----
 
-然后您可以在DSL文件中访问`maxSize`和`productGroup`属性。
+然后您可以在DSL文件中访问 `maxSize` 和 `productGroup` 属性。

@@ -1,4 +1,4 @@
-默认情况下，用户区域设置是从传入的`Accept-Language`头部检测到的。您可以通过向Grails传递一个名为`lang`的参数来提供用户切换区域设置的能力： 
+默认情况下，用户区域设置是从传入的 `Accept-Language` 头部检测到的。您可以通过向Grails传递一个名为 `lang` 的参数来提供用户切换区域设置的能力： 
 
 ```groovy
 /book/list?lang=es
@@ -6,7 +6,7 @@
 
 Grails将自动切换用户的区域设置，并随后的请求将使用切换后的区域设置。
 
-默认情况下，Grails使用{springapi}org/springframework/web/servlet/i18n/SessionLocaleResolver.html[SessionLocaleResolver]作为`localeResolver` bean。
+默认情况下，Grails使用{springapi}org/springframework/web/servlet/i18n/SessionLocaleResolver.html[SessionLocaleResolver]作为 `localeResolver` bean。
 
 您可以很容易地更改默认区域设置：
 
@@ -22,7 +22,7 @@ beans = {
 }
 ```
 
-其他`localeResolver`也是可用的。例如，您可以将切换后的区域设置保存在Cookie中：
+其他 `localeResolver` 也是可用的。例如，您可以将切换后的区域设置保存在Cookie中：
 
 ```groovy
 .grails-app/conf/spring/resources.groovy

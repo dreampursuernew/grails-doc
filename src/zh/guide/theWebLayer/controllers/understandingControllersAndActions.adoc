@@ -7,7 +7,7 @@
 grails create-controller book
 ----
 
-该命令将在位置`grails-app/controllers/myapp/BookController.groovy`创建一个控制器：
+该命令将在位置 `grails-app/controllers/myapp/BookController.groovy` 创建一个控制器：
 
 [source,groovy]
 ----
@@ -21,9 +21,9 @@ class BookController {
 
 在这里，“myapp”将是您的应用程序的名称，如果没有指定默认包名称的话。
 
-`BookController`默认映射到/book URI（相对于您的应用程序根目录）。
+`BookController` 默认映射到/book URI（相对于您的应用程序根目录）。
 
-注意：`create-controller`和`generate-controller`命令只是为了方便起见，您也可以使用您喜欢的文本编辑器或IDE轻松创建控制器。
+注意： `create-controller` 和 `generate-controller` 命令只是为了方便起见，您也可以使用您喜欢的文本编辑器或IDE轻松创建控制器。
 
 创建动作
 
@@ -43,15 +43,15 @@ class BookController {
 }
 ----
 
-这个示例默认映射到/book/list URI，因为属性被命名为`list`。
+这个示例默认映射到/book/list URI，因为属性被命名为 `list` 。
 
 默认动作
 
-控制器有一个概念，即默认URI映射到控制器的根URI，例如对于`BookController`，默认为/book。请求默认URI时调用的动作由以下规则决定：
+控制器有一个概念，即默认URI映射到控制器的根URI，例如对于 `BookController` ，默认为/book。请求默认URI时调用的动作由以下规则决定：
 
 * 如果只有一个动作，它就是默认的
-* 如果您有一个名为`index`的动作，则它是默认的
-* 或者您可以使用`defaultAction`属性明确设置它：
+* 如果您有一个名为 `index` 的动作，则它是默认的
+* 或者您可以使用 `defaultAction` 属性明确设置它：
 
 [source,groovy]
 ----

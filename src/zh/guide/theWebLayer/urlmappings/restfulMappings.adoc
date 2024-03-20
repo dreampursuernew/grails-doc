@@ -5,7 +5,7 @@
 "/books"(resources:'book')
 ----
 
-你可以使用`resources`参数定义基本URI和要映射到的控制器的名称。上述映射将导致以下URL：
+你可以使用 `resources` 参数定义基本URI和要映射到的控制器的名称。上述映射将导致以下URL：
 
 [format="csv", options="header"]
 |===
@@ -19,9 +19,9 @@ PUT,/books/${id},update
 DELETE,/books/${id},delete
 |===
 
-如果不确定哪个映射将生成在你的情况下，只需在Grails控制台中运行`url-mappings-report`命令。它将为所有url映射生成一份非常整洁的报告。
+如果不确定哪个映射将生成在你的情况下，只需在Grails控制台中运行 `url-mappings-report` 命令。它将为所有url映射生成一份非常整洁的报告。
 
-如果希望包含或排除任何生成的URL映射，可以使用`includes`或`excludes`参数，接受要包含或排除的Grails操作的名称：
+如果希望包含或排除任何生成的URL映射，可以使用 `includes` 或 `excludes` 参数，接受要包含或排除的Grails操作的名称：
 
 [source,groovy]
 ----
@@ -34,7 +34,7 @@ DELETE,/books/${id},delete
 
 显式的REST映射
 
-从Grails 3.1开始，如果您不希望依赖`resources`映射来定义您的映射，那么可以将任何URL映射的前缀与HTTP方法名称（小写）结合起来，以指示它适用的HTTP方法。以下URL映射：
+从Grails 3.1开始，如果您不希望依赖 `resources` 映射来定义您的映射，那么可以将任何URL映射的前缀与HTTP方法名称（小写）结合起来，以指示它适用的HTTP方法。以下URL映射：
 
 [source,groovy]
 ----
@@ -58,7 +58,7 @@ delete "/books/$id"(controller:"book", action:"delete")
 
 单个资源
 
-单个资源是系统中只有一个（可能每个用户一个）的资源。您可以使用`single`参数（与`resources`相对）创建一个单个资源：
+单个资源是系统中只有一个（可能每个用户一个）的资源。您可以使用 `single` 参数（与 `resources` 相对）创建一个单个资源：
 
 [source,groovy]
 ----

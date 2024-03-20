@@ -1,4 +1,4 @@
-在Grails中创建RESTful API最简单的方法是将一个领域类暴露为REST资源。可以通过向任何领域类添加`grails.rest.Resource`转换来实现这一点：
+在Grails中创建RESTful API最简单的方法是将一个领域类暴露为REST资源。可以通过向任何领域类添加 `grails.rest.Resource` 转换来实现这一点：
 
 ```groovy
 import grails.rest.*
@@ -14,9 +14,9 @@ class Book {
 }
 ```
 
-仅通过添加`Resource`转换并指定URI，您的领域类将自动以XML或JSON格式作为REST资源提供。这个转换会自动注册所需的链接：theWebLayer.html#restfulMappings[RESTful URL映射]并创建一个名为`BookController`的控制器。
+仅通过添加 `Resource` 转换并指定URI，您的领域类将自动以XML或JSON格式作为REST资源提供。这个转换会自动注册所需的链接：theWebLayer.html#restfulMappings[RESTful URL映射]并创建一个名为 `BookController` 的控制器。
 
-您可以通过向`BootStrap.groovy`中添加一些测试数据来尝试它：
+您可以通过向 `BootStrap.groovy` 中添加一些测试数据来尝试它：
 
 ```groovy
 def init = { servletContext ->
@@ -40,7 +40,7 @@ def init = { servletContext ->
 {"id":1,"title":"The Stand"}
 ```
 
-如果希望更改默认返回JSON而不是XML，可以通过设置`Resource`转换的`formats`属性来实现：
+如果希望更改默认返回JSON而不是XML，可以通过设置 `Resource` 转换的 `formats` 属性来实现：
 
 ```groovy
 import grails.rest.*
@@ -51,7 +51,7 @@ class Book {
 }
 ```
 
-在上面的示例中，JSON将被优先处理。传递的列表应包含资源应暴露的格式的名称。这些格式的名称在`application.groovy`的`grails.mime.types`设置中定义：
+在上面的示例中，JSON将被优先处理。传递的列表应包含资源应暴露的格式的名称。这些格式的名称在 `application.groovy` 的 `grails.mime.types` 设置中定义：
 
 ```groovy
 grails.mime.types = [
@@ -64,7 +64,7 @@ grails.mime.types = [
 
 有关更多信息，请参阅用户指南中关于链接:theWebLayer.html#contentNegotiation[配置Mime类型]的部分。
 
-除了在URI中使用文件扩展名之外，您还可以使用ACCEPT标头来获取JSON响应。以下是使用Unix `curl`工具的示例：
+除了在URI中使用文件扩展名之外，您还可以使用ACCEPT标头来获取JSON响应。以下是使用Unix `curl` 工具的示例：
 
 ```bash
 $ curl -i -H "Accept: application/json" localhost:8080/books/1
@@ -73,7 +73,7 @@ $ curl -i -H "Accept: application/json" localhost:8080/books/1
 
 这得益于Grails的链接:theWebLayer.html#contentNegotiation[内容协商]功能。
 
-您可以通过发出`POST`请求来创建新资源：
+您可以通过发出 `POST` 请求来创建新资源：
 
 ```bash
 $ curl -i -X POST -H "Content-Type: application/json" -d '{"title":"Along Came A Spider"}' localhost:8080/books
@@ -82,7 +82,7 @@ Server: Apache-Coyote/1.1
 ...
 ```
 
-使用`PUT`请求可以进行更新：
+使用 `PUT` 请求可以进行更新：
 
 ```bash
 $ curl -i -X PUT -H "Content-Type: application/json" -d '{"title":"Along Came A Spider"}' localhost:8080/books/1
@@ -91,7 +91,7 @@ Server: Apache-Coyote/1.1
 ...
 ```
 
-最后，可以通过`DELETE`请求删除资源：
+最后，可以通过 `DELETE` 请求删除资源：
 
 ```bash
 $ curl -i -X DELETE localhost:8080/books/1
@@ -100,7 +100,7 @@ Server: Apache-Coyote/1.1
 ...
 ```
 
-正如您所看到的，`Resource`转换使资源上的所有HTTP方法动词可用。通过将`readOnly`属性设置为true，可以仅启用只读功能：
+正如您所看到的， `Resource` 转换使资源上的所有HTTP方法动词可用。通过将 `readOnly` 属性设置为true，可以仅启用只读功能：
 
 ```groovy
 import grails.rest.*
@@ -111,4 +111,4 @@ class Book {
 }
 ```
 
-在这种情况下，`POST`、`PUT`和`DELETE`请求将被禁止。
+在这种情况下， `POST` 、 `PUT` 和 `DELETE` 请求将被禁止。

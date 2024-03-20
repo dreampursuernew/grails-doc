@@ -1,22 +1,22 @@
-Grails应用程序可以使用内置的Tomcat服务器使用`bootRun`命令来执行。默认情况下，它会在8080端口上启动一个服务器：
+Grails应用程序可以使用内置的Tomcat服务器使用 `bootRun` 命令来执行。默认情况下，它会在8080端口上启动一个服务器：
 
 [source,bash]
 ----
 ./gradlew bootRun
 ----
 
-要指定一个不同的端口，你可以设置系统属性`-Dgrails.server.port`，如下所示：
+要指定一个不同的端口，你可以设置系统属性 `-Dgrails.server.port` ，如下所示：
 
 [source,bash]
 ----
 ./gradlew bootRun -Dgrails.server.port=8081
 ----
 
-对于调试Grails应用程序，你有两个选项。你可以在IDE中右键单击`Application.groovy`类，然后选择适当的调试操作，或者你可以使用以下命令运行应用程序，然后连接一个远程调试器：
+对于调试Grails应用程序，你有两个选项。你可以在IDE中右键单击 `Application.groovy` 类，然后选择适当的调试操作，或者你可以使用以下命令运行应用程序，然后连接一个远程调试器：
 
 [source,bash]
 ----
 ./gradlew bootRun --debug-jvm
 ----
 
-有关`bootRun`命令的更多信息，请参阅链接:../ref/Command%20Line/bootRun.html[Grails参考指南]。
+有关 `bootRun` 命令的更多信息，请参阅链接:../ref/Command%20Line/bootRun.html[Grails参考指南]。

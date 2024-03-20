@@ -1,4 +1,4 @@
-Grails的转换器功能涉及 {apiDocs}org/grails/web/converters/marshaller/ObjectMarshaller.html[ObjectMarshaller] 的概念，每种类型都可以注册一个 `ObjectMarshaller`。您可以注册自定义的 `ObjectMarshaller` 实例来完全自定义响应渲染。例如，您可以在 `BootStrap.init` 中定义以下内容：
+Grails的转换器功能涉及 {apiDocs}org/grails/web/converters/marshaller/ObjectMarshaller.html[ObjectMarshaller] 的概念，每种类型都可以注册一个 `ObjectMarshaller` 。您可以注册自定义的 `ObjectMarshaller` 实例来完全自定义响应渲染。例如，您可以在 `BootStrap.init` 中定义以下内容：
 
 [source, groovy]
 ----
@@ -58,4 +58,4 @@ beans = {
 }
 ----
 
-在启动应用程序时，`PostConstruct`注解将触发。
+在启动应用程序时， `PostConstruct` 注解将触发。

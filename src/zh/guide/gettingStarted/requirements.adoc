@@ -1,4 +1,4 @@
-在安装Grails之前，您需要安装一个带有下表中最低版本的Java开发工具包（JDK）。根据您的操作系统下载适当的JDK，运行安装程序，然后设置一个指向此安装位置的环境变量叫做`JAVA_HOME`。
+在安装Grails之前，您需要安装一个带有下表中最低版本的Java开发工具包（JDK）。根据您的操作系统下载适当的JDK，运行安装程序，然后设置一个指向此安装位置的环境变量叫做 `JAVA_HOME` 。
 
 | Grails版本 | JDK版本（最低要求）
 | 6 | 11
@@ -13,4 +13,4 @@ export JAVA_HOME=/Library/Java/Home
 export PATH="$PATH:$JAVA_HOME/bin"
 ```
 
-提示：在Windows上，您需要在`我的电脑/高级/环境变量`中配置这些环境变量。
+提示：在Windows上，您需要在 `我的电脑/高级/环境变量` 中配置这些环境变量。

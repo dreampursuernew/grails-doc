@@ -67,7 +67,7 @@ GORM for MongoDB 已更新以支持最新的 mongodb-driver-sync。如果您正�
 
 ### 默认禁用 StringCharArrayAccessor
 
-之前的 Grails 版本使用 `StringCharArrayAccessor`，默认启用并提供对 `java.lang.String` 内部的优化访问。在 Grails 5.0 中，默认情况下已禁用它，但您可以通过设置一个名为 `stringchararrayaccessor.disabled` 的系统属性并将其值设置为 `false` 来启用它。
+之前的 Grails 版本使用 `StringCharArrayAccessor` ，默认启用并提供对 `java.lang.String` 内部的优化访问。在 Grails 5.0 中，默认情况下已禁用它，但您可以通过设置一个名为 `stringchararrayaccessor.disabled` 的系统属性并将其值设置为 `false` 来启用它。
 
 注意：启用 StringCharArrayAccessor 将显示非法反射访问警告，因为它使用反射来进行优化。
 

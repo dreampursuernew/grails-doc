@@ -1,6 +1,6 @@
 ==== GrailsTypeChecked
 
-{apiDocs}grails/compiler/GrailsTypeChecked.html[grails.compiler.GrailsTypeChecked]注解的工作方式与`GrailsCompileStatic`注解类似，差别在于它只启用静态类型检查，而不是静态编译。这为不能在编译时静态验证的表达式提供了编译时反馈，同时仍然保留了类的动态分派功能。
+{apiDocs}grails/compiler/GrailsTypeChecked.html[grails.compiler.GrailsTypeChecked]注解的工作方式与 `GrailsCompileStatic` 注解类似，差别在于它只启用静态类型检查，而不是静态编译。这为不能在编译时静态验证的表达式提供了编译时反馈，同时仍然保留了类的动态分派功能。
 
 [groovy源码]
 ----

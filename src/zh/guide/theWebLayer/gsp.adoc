@@ -2,7 +2,7 @@
 
 提示：虽然GSP可以呈现任何格式，而不仅仅是HTML，但它更多地设计用于呈现标记。如果您正在寻找一种简化JSON响应的方法，请查看link:webServices.html#jsonViews[JSON Views]。
 
-GSP存放在`grails-app/views`目录中，通常会自动渲染（按照约定）或使用link:../ref/Controllers/render.html[render]方法进行渲染，例如：
+GSP存放在 `grails-app/views` 目录中，通常会自动渲染（按照约定）或使用link:../ref/Controllers/render.html[render]方法进行渲染，例如：
 
 [source,groovy]
 ----
@@ -22,7 +22,7 @@ def show() {
 }
 ----
 
-此操作将查找`Book`实例并创建一个包含名为`book`的键的模型。然后可以在GSP视图中使用名称`book`引用此键：
+此操作将查找 `Book` 实例并创建一个包含名为 `book` 的键的模型。然后可以在GSP视图中使用名称 `book` 引用此键：
 
 [source,groovy]
 ----

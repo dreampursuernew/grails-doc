@@ -11,11 +11,11 @@ Grails在以下方面利用了Spring Boot：
 
 ==== Grails ApplicationContext
 
-Spring开发者通常很想了解Grails的`ApplicationContext`实例是如何构建的。其基本原理如下。
+Spring开发者通常很想了解Grails的 `ApplicationContext` 实例是如何构建的。其基本原理如下。
 
 -GrailsAutoConfiguration注册了GrailsApplicationPostProcessor bean。这个bean配置了{apiDocs}grails/core/GrailsApplication.html[GrailsApplication]实例和{apiDocs}grails/plugins/GrailsPluginManager.html[GrailsPluginManager]。
--GrailsApplicationPostProcessor还实现了`BeanDefinitionRegistryPostProcessor`，在`postProcessBeanDefinitionRegistry`期间执行当前应用程序中的`grails-app/conf/spring/resources.groovy`，然后为每个插件调用`doWithSpring`方法，以确保所有bean定义都在应用上下文中注册。
+-GrailsApplicationPostProcessor还实现了 `BeanDefinitionRegistryPostProcessor` ，在 `postProcessBeanDefinitionRegistry` 期间执行当前应用程序中的 `grails-app/conf/spring/resources.groovy` ，然后为每个插件调用 `doWithSpring` 方法，以确保所有bean定义都在应用上下文中注册。
 
 ==== 配置的Spring Beans
 
-Grails的大部分配置都是在运行时发生的。每个链接：plugins.html[plugin]可以配置Spring beans，并在`ApplicationContext`中注册。要了解哪些bean被配置，请参考参考指南，该指南描述了每个Grails插件及其配置的bean。
+Grails的大部分配置都是在运行时发生的。每个链接：plugins.html[plugin]可以配置Spring beans，并在 `ApplicationContext` 中注册。要了解哪些bean被配置，请参考参考指南，该指南描述了每个Grails插件及其配置的bean。

@@ -1,6 +1,6 @@
-作为一个插件开发者，了解应用程序中存在哪些领域类、控制器或其他类型的构件可能是很重要的。例如，https://grails.org/plugins.html#plugin/elasticsearch[Elasticsearch插件]需要知道存在哪些领域类，以便检查它们是否具有任何`searchable`属性，并索引适当的类。那么它是如何做到的呢？答案在于`grailsApplication`对象，这是一个{apiDocs}grails/core/GrailsApplication.html[GrailsApplication]的实例，在控制器和GSP中自动可用，在其他任何地方都可以进行link:services.html#dependencyInjectionServices[注入]。
+作为一个插件开发者，了解应用程序中存在哪些领域类、控制器或其他类型的构件可能是很重要的。例如，https://grails.org/plugins.html#plugin/elasticsearch[Elasticsearch插件]需要知道存在哪些领域类，以便检查它们是否具有任何 `searchable` 属性，并索引适当的类。那么它是如何做到的呢？答案在于 `grailsApplication` 对象，这是一个{apiDocs}grails/core/GrailsApplication.html[GrailsApplication]的实例，在控制器和GSP中自动可用，在其他任何地方都可以进行link:services.html#dependencyInjectionServices[注入]。
 
-`grailsApplication`对象有许多重要的属性和方法用于查询构件。可能最常见的是给出特定构件类型所有类的方法：
+`grailsApplication` 对象有许多重要的属性和方法用于查询构件。可能最常见的是给出特定构件类型所有类的方法：
 
 [source,groovy]
 ----
@@ -9,7 +9,7 @@ for (cls in grailsApplication.<artefactType>Classes) {
 }
 ----
 
-在这种情况下，`artefactType`是构件类型的属性名称形式。在核心Grails中，您有：
+在这种情况下， `artefactType` 是构件类型的属性名称形式。在核心Grails中，您有：
 
 * domain
 * controller
@@ -37,16 +37,16 @@ for (cls in grailsApplication.urlMappingsClasses) {
 }
 ----
 
-您需要知道这些属性返回的对象并不是{javase}java.base/java/lang/Class.html[Class]的实例。相反，它们是{apiDocs}grails/core/GrailsClass.html[GrailsClass]的实例，其中包含一些特别有用的属性和方法，包括底层`Class`的一个方法：
+您需要知道这些属性返回的对象并不是{javase}java.base/java/lang/Class.html[Class]的实例。相反，它们是{apiDocs}grails/core/GrailsClass.html[GrailsClass]的实例，其中包含一些特别有用的属性和方法，包括底层 `Class` 的一个方法：
 
-* `shortName` - 构件的类名，不包含包名（等效于`Class.simpleName`）。
+* `shortName` - 构件的类名，不包含包名（等效于 `Class.simpleName` ）。
 * `logicalPropertyName` - 去除 'type' 后缀的属性形式的构件名称。例如 `MyGreatController` 变成了 'myGreat'。
 * `isAbstract()` - 一个布尔值，指示构件类是否是抽象的。
-* `getPropertyValue(name)` - 返回给定属性的值，无论它是静态的还是实例的。如果在声明时初始化属性，则此方法效果最好，例如 `static transactional = true`。
+* `getPropertyValue(name)` - 返回给定属性的值，无论它是静态的还是实例的。如果在声明时初始化属性，则此方法效果最好，例如 `static transactional = true` 。
 
 构件API还允许您通过名称获取类并检查类是否是构件：
 
 * get<type>Class(String name)
 * is<type>Class(Class clazz)
 
-第一个方法将检索给定名称的`GrailsClass`实例，例如 'MyGreatController'。第二个将检查一个类是否是特定类型的构件。例如，您可以使用 `grailsApplication.isControllerClass(org.example.MyGreatController)` 来检查 `MyGreatController` 是否实际上是一个控制器。
+第一个方法将检索给定名称的 `GrailsClass` 实例，例如 'MyGreatController'。第二个将检查一个类是否是特定类型的构件。例如，您可以使用 `grailsApplication.isControllerClass(org.example.MyGreatController)` 来检查 `MyGreatController` 是否实际上是一个控制器。

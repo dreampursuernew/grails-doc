@@ -1,4 +1,4 @@
-创建Grails应用程序时，首先需要熟悉`grails`命令的用法，如下所示：
+创建Grails应用程序时，首先需要熟悉 `grails` 命令的用法，如下所示：
 
 [source,bash]
 ----

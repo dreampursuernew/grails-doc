@@ -7,7 +7,7 @@ grails create-domain-class myapp.Person
 
 注意：如果在create-domain-class脚本中没有指定包，Grails将自动使用应用程序名称作为包名称。
 
-这将在`grails-app / domain / myapp / Person.groovy`位置创建一个类，就像下面这样：
+这将在 `grails-app / domain / myapp / Person.groovy` 位置创建一个类，就像下面这样：
 
 [source，groovy]
 ----

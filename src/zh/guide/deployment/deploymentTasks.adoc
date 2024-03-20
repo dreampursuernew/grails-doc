@@ -1,6 +1,6 @@
 设置独立部署的HTTPS和SSL证书
 
-要配置SSL证书并监听HTTPS端口而不是HTTP，请将以下属性添加到`application.yml`文件中：
+要配置SSL证书并监听HTTPS端口而不是HTTP，请将以下属性添加到 `application.yml` 文件中：
 
 ```groovy
 server:
@@ -13,7 +13,7 @@ server:
         key-password: <通常与您的密钥库密码相同>
 ```
 
-这些设置控制了用于生产部署的内嵌Tomcat容器。或者，这些属性也可以在命令行上指定。例如：`-Dserver.ssl.enabled=true -Dserver.ssl.key-store=/path/to/keystore`。
+这些设置控制了用于生产部署的内嵌Tomcat容器。或者，这些属性也可以在命令行上指定。例如： `-Dserver.ssl.enabled=true -Dserver.ssl.key-store=/path/to/keystore` 。
 
 注意：不支持通过应用程序属性配置HTTP和HTTPS连接器。如果您想要同时拥有两者，那么您需要通过编程的方式配置其中一个。（如何做到这一点的更多信息可以在下面的指南中找到。）
 

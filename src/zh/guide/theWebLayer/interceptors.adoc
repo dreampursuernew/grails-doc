@@ -5,7 +5,7 @@ Grails提供了独立的拦截器，使用link:../ref/Command%20Line/create-inte
 $ grails create-interceptor MyInterceptor
 ----
 
-上述命令将在`grails-app/controllers`目录中创建一个拦截器，其默认内容如下：
+上述命令将在 `grails-app/controllers` 目录中创建一个拦截器，其默认内容如下：
 
 [source，groovy]
 ----
@@ -28,4 +28,4 @@ class MyInterceptor {
 
 在Grails 3.0之前的版本中，Grails支持过滤器的概念。这些过滤器仍然受到支持以确保向后兼容，但被视为过时。
 
-Grails 3.0版本中的新拦截器概念在许多方面优于过滤器，最显著的是拦截器可以使用Groovy的`CompileStatic`注解来优化性能（这通常是至关重要的，因为拦截器可能会被执行多次请求。）"
+Grails 3.0版本中的新拦截器概念在许多方面优于过滤器，最显著的是拦截器可以使用Groovy的 `CompileStatic` 注解来优化性能（这通常是至关重要的，因为拦截器可能会被执行多次请求。）"

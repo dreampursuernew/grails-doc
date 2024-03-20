@@ -1,24 +1,24 @@
 Grails支持动态编码/解码方法的概念。一组标准编解码器与Grails捆绑在一起。Grails还支持一个简单的机制，使开发人员能够在运行时贡献自己的编解码器，这些编解码器将在运行时被识别。
 
 编解码器类
-Grails编解码器类可能包含一个编码闭包、一个解码闭包或两者都有。当Grails应用程序启动时，Grails框架动态从`grails-app/utils/`目录加载编解码器。
+Grails编解码器类可能包含一个编码闭包、一个解码闭包或两者都有。当Grails应用程序启动时，Grails框架动态从 `grails-app/utils/` 目录加载编解码器。
 
-该框架查找以`Codec`约定结尾的类名，位于`grails-app/utils/`下。例如，Grails附带的一个标准编解码器是`HTMLCodec`。
+该框架查找以 `Codec` 约定结尾的类名，位于 `grails-app/utils/` 下。例如，Grails附带的一个标准编解码器是 `HTMLCodec` 。
 
-如果一个编解码器包含一个`encode`闭包，Grails将创建一个动态的`encode`方法，并将该方法添加到`Object`类中，方法的名称代表了定义了编码闭包的编解码器。例如，`HTMLCodec`类定义了一个`encode`闭包，所以Grails将其命名为`encodeAsHTML`。
+如果一个编解码器包含一个 `encode` 闭包，Grails将创建一个动态的 `encode` 方法，并将该方法添加到 `Object` 类中，方法的名称代表了定义了编码闭包的编解码器。例如， `HTMLCodec` 类定义了一个 `encode` 闭包，所以Grails将其命名为 `encodeAsHTML` 。
 
-`HTMLCodec`和`URLCodec`类还定义了一个`decode`闭包，因此Grails分别将其附加到名称为`decodeHTML`和`decodeURL`的方法上。动态编解码器方法可以在Grails应用程序的任何地方调用。例如，考虑一个情况，一个报告包含一个名为“description”的属性，该属性可能包含必须进行转义以在HTML文档中呈现的特殊字符。在GSP中处理这种情况的一种方法是使用下面显示的动态编码方法对描述属性进行编码：
+`HTMLCodec` 和 `URLCodec` 类还定义了一个 `decode` 闭包，因此Grails分别将其附加到名称为 `decodeHTML` 和 `decodeURL` 的方法上。动态编解码器方法可以在Grails应用程序的任何地方调用。例如，考虑一个情况，一个报告包含一个名为“description”的属性，该属性可能包含必须进行转义以在HTML文档中呈现的特殊字符。在GSP中处理这种情况的一种方法是使用下面显示的动态编码方法对描述属性进行编码：
 
 [code,groovy]
 ----
 ${report.description.encodeAsHTML()}
 ----
 
-解码使用`value.decodeHTML()`语法进行。
+解码使用 `value.decodeHTML()` 语法进行。
 
 静态编译代码的编码器和解码器接口
 
-使用编解码器的首选方法是使用codecLookup bean获取`Encoder`和`Decoder`实例。
+使用编解码器的首选方法是使用codecLookup bean获取 `Encoder` 和 `Decoder` 实例。
 
 [code,groovy]
 ----
@@ -30,7 +30,7 @@ public interface CodecLookup {
 }
 ----
 
-使用`CodecLookup`和`Encoder`接口的示例
+使用 `CodecLookup` 和 `Encoder` 接口的示例
 [code,groovy]
 ----
 import org.grails.encoder.CodecLookup
@@ -61,7 +61,7 @@ HTMLCodec
 
 HTMLCodec默认为HTML4样式转义（在Grails 2.3.0之前的版本中的遗留HTMLCodec实现），可转义非ASCII字符。
 
-您可以在`application.groovy`中设置此配置属性，而不是使用HTML4转义，而是使用纯XML转义：
+您可以在 `application.groovy` 中设置此配置属性，而不是使用HTML4转义，而是使用纯XML转义：
 
 [code,groovy]
 ----

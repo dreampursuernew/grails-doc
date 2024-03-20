@@ -1,4 +1,4 @@
-{springBootReference}/html/production-ready-endpoints.html[Spring Boot Actuator endpoints] 允许您监控并与应用程序进行交互。Spring Boot 包含了许多内置的 endpoints。例如，`health` endpoint 提供基本的应用程序健康信息。
+{springBootReference}/html/production-ready-endpoints.html[Spring Boot Actuator endpoints] 允许您监控并与应用程序进行交互。Spring Boot 包含了许多内置的 endpoints。例如， `health` endpoint 提供基本的应用程序健康信息。
 
 这些 endpoints 在 Grails 3.1.8 中默认是禁用的。
 

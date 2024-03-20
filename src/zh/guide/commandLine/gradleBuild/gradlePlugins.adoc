@@ -1,4 +1,4 @@
-当您使用链接：../ref/Command%20Line/create-app.html[create-app]命令创建新项目时，会创建默认的 `settings.gradle`、 `buildSrc` 和 `build.gradle` 文件。默认的 `build.gradle` 配置了一组 Gradle 插件，使 Gradle 能够构建 Grails 项目：
+当您使用链接：../ref/Command%20Line/create-app.html[create-app]命令创建新项目时，会创建默认的 `settings.gradle` 、 `buildSrc` 和 `build.gradle` 文件。默认的 `build.gradle` 配置了一组 Gradle 插件，使 Gradle 能够构建 Grails 项目：
 
 [source, groovy]
 ----

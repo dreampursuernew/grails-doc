@@ -61,10 +61,10 @@ configuration:
 
 您还可以通过设置其他几个选项来自定义文档的外观，并提供图像：
 
-* *grails.doc.css* - 包含自定义 CSS 文件的目录位置（类型 `java.io.File`）
-* *grails.doc.js* - 包含自定义 JavaScript 文件的目录位置（类型 `java.io.File`）
-* *grails.doc.style* - 包含用于指南的自定义 HTML 模板的目录位置（类型 `java.io.File`）
-* *grails.doc.images* - 包含用于样式模板和文档页面中使用的图像文件的目录位置（类型 `java.io.File`）
+* *grails.doc.css* - 包含自定义 CSS 文件的目录位置（类型 `java.io.File` ）
+* *grails.doc.js* - 包含自定义 JavaScript 文件的目录位置（类型 `java.io.File` ）
+* *grails.doc.style* - 包含用于指南的自定义 HTML 模板的目录位置（类型 `java.io.File` ）
+* *grails.doc.images* - 包含用于样式模板和文档页面中使用的图像文件的目录位置（类型 `java.io.File` ）
 
 定制生成指南外观的最简单方法之一是为 `grails.doc.css` 提供一个值，然后将一个 custom.css 文件放在相应的目录中。Grails 将自动将此 CSS 文件包含在指南中。您也可以将 custom-pdf.css 文件放在该目录中。这将允许您覆盖指南的 PDF 版本的样式。
 
@@ -84,7 +84,7 @@ apply plugin: \"org.grails.grails-doc\"
 gradle docs
 ----
 
-该命令将输出一个 `docs/manual/index.html`，您可以在浏览器中打开以查看您的文档。
+该命令将输出一个 `docs/manual/index.html` ，您可以在浏览器中打开以查看您的文档。
 
 ==== 文档语法
 
@@ -92,10 +92,10 @@ gradle docs
 
 ===== 基本格式
 
-等宽字体：`monospace`
+等宽字体： `monospace`
 [source,groovy]
 ----
-\\`monospace\\`
+\\ `monospace\\`
 ----
 
 斜体： _italic_

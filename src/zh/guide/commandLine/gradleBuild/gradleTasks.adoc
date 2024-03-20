@@ -1,4 +1,4 @@
-如前所述，`grails`命令使用了一个嵌入式版本的Gradle和一些在之前Grails版本中存在的特定Grails命令映射到它们的Gradle等效项上。以下表格显示了哪些Grails命令调用了哪些Gradle任务：
+如前所述， `grails` 命令使用了一个嵌入式版本的Gradle和一些在之前Grails版本中存在的特定Grails命令映射到它们的Gradle等效项上。以下表格显示了哪些Grails命令调用了哪些Gradle任务：
 
 [format="csv", options="header"]
 |===
@@ -21,7 +21,7 @@ war,assemble
 $ gradle test
 ----
 
-然而，请注意，你需要使用与Grails 3.1兼容的Gradle版本（Gradle 2.2或以上）。如果你希望使用Grails使用的Gradle版本来调用一个Gradle任务，你可以使用`grails`命令：
+然而，请注意，你需要使用与Grails 3.1兼容的Gradle版本（Gradle 2.2或以上）。如果你希望使用Grails使用的Gradle版本来调用一个Gradle任务，你可以使用 `grails` 命令：
 
 [source,bash]
 ----
@@ -38,7 +38,7 @@ $ grails
  ...
 ----
 
-要在不使用交互模式TAB补全的情况下查看可用的Gradle任务，你可以使用Gradle的`tasks`任务：
+要在不使用交互模式TAB补全的情况下查看可用的Gradle任务，你可以使用Gradle的 `tasks` 任务：
 
 [source,bash]
 ----

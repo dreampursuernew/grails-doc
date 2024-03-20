@@ -1,8 +1,8 @@
-`application.yml`文件是在Grails 3.0中引入的，现在YAML是配置文件的首选格式。
+`application.yml` 文件是在Grails 3.0中引入的，现在YAML是配置文件的首选格式。
 
 === 使用系统属性/命令行参数
 
-假设您正在使用`JDBC_CONNECTION_STRING`命令行参数，并且您希望在yml文件中访问相同的属性，则可以按照以下方式进行：
+假设您正在使用 `JDBC_CONNECTION_STRING` 命令行参数，并且您希望在yml文件中访问相同的属性，则可以按照以下方式进行：
 
 ```yaml
 production:
@@ -12,7 +12,7 @@ production:
 
 类似地，系统参数也可以被访问。
 
-如果使用`./gradlew bootRun`来启动应用程序，则需要在`build.gradle`中对`bootRun`目标进行修改。
+如果使用 `./gradlew bootRun` 来启动应用程序，则需要在 `build.gradle` 中对 `bootRun` 目标进行修改。
 
 ```groovy
 bootRun {
@@ -20,7 +20,7 @@ bootRun {
 }
 ```
 
-为了测试，需要按照以下方式更改`test`任务：
+为了测试，需要按照以下方式更改 `test` 任务：
 
 ```groovy
 test { 
@@ -30,5 +30,5 @@ test {
 
 === 外部配置
 
-Grails默认会从`./config`或当前目录中读取`application.(properties|yml)`文件。
+Grails默认会从 `./config` 或当前目录中读取 `application.(properties|yml)` 文件。
 由于Grails是一个SpringBoot配置，也可以使用SpringBoot的配置选项，具体请参阅文档：{springBootReference}/html/features.html#features.external-config.files

@@ -1,4 +1,4 @@
-在创建JSON视图时，您可以遵循一些有用的约定。例如，如果您有一个名为`Book`的领域类，那么创建一个位于`grails-app/views/book/_book.gson`的模板，并使用链接：../ref/Controllers/respond.html[respond]方法将导致渲染该模板：
+在创建JSON视图时，您可以遵循一些有用的约定。例如，如果您有一个名为 `Book` 的领域类，那么创建一个位于 `grails-app/views/book/_book.gson` 的模板，并使用链接：../ref/Controllers/respond.html[respond]方法将导致渲染该模板：
 
 ```groovy
 def show(Long id) {
@@ -6,9 +6,9 @@ def show(Long id) {
 }
 ```
 
-此外，如果在验证期间出现错误，默认情况下Grails将尝试渲染一个名为`grails-app/views/book/_errors.gson`的模板，否则将尝试渲染`grails-app/views/errors/_errors.gson`（如果前者不存在）。
+此外，如果在验证期间出现错误，默认情况下Grails将尝试渲染一个名为 `grails-app/views/book/_errors.gson` 的模板，否则将尝试渲染 `grails-app/views/errors/_errors.gson` （如果前者不存在）。
 
-这很有用，因为在持久化对象时，您可以通过`respond`来渲染这些先前提到的模板中的验证错误：
+这很有用，因为在持久化对象时，您可以通过 `respond` 来渲染这些先前提到的模板中的验证错误：
 
 ```groovy
 @Transactional
@@ -23,6 +23,6 @@ def save(Book book) {
 }
 ```
 
-如果在上面的示例中发生验证错误，则将渲染`grails-app/views/book/_errors.gson`模板。
+如果在上面的示例中发生验证错误，则将渲染 `grails-app/views/book/_errors.gson` 模板。
 
 有关JSON视图（和标记视图）的更多信息，请参阅http://views.grails.org/latest/[JSON视图用户指南]。

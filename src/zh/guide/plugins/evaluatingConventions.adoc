@@ -22,14 +22,14 @@ for (controllerClass in application.controllerClasses) {
 
 动态方法约定如下：
 
-* `*Classes` - 检索特定工件名称下的所有类。例如 `application.controllerClasses`。
+* `*Classes` - 检索特定工件名称下的所有类。例如 `application.controllerClasses` 。
 * `get*Class` - 检索特定工件的命名类。例如 `application.getControllerClass("PersonController")`
-* `is*Class` - 如果给定类属于给定工件类型，则返回`true`。例如 `application.isControllerClass(PersonController)`
+* `is*Class` - 如果给定类属于给定工件类型，则返回 `true` 。例如 `application.isControllerClass(PersonController)`
 
 “GrailsClass”接口具有许多有用的方法，让您进一步评估和处理约定。其中包括：
 
 * `getPropertyValue` - 获取类上指定属性的初始值
-* `hasProperty` - 如果类具有指定的属性，则返回`true`
+* `hasProperty` - 如果类具有指定的属性，则返回 `true`
 * `newInstance` - 创建此类的新实例。
 * `getName` - 返回应用程序中类的逻辑名称，如果适用，则不包含尾随约定部分
 * `getShortName` - 返回不带包前缀的类的短名称

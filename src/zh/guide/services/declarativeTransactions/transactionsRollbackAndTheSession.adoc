@@ -1,6 +1,6 @@
 === 理解事务和 Hibernate 会话
 
-在使用事务时，您必须考虑到 Hibernate 如何处理底层持久性会话的重要考虑因素。当事务被回滚时，被 GORM 使用的 Hibernate 会话被清除。这意味着会话中的任何对象都变为脱离状态，访问未初始化的延迟加载集合将导致 `LazyInitializationException`。
+在使用事务时，您必须考虑到 Hibernate 如何处理底层持久性会话的重要考虑因素。当事务被回滚时，被 GORM 使用的 Hibernate 会话被清除。这意味着会话中的任何对象都变为脱离状态，访问未初始化的延迟加载集合将导致 `LazyInitializationException` 。
 
 要理解清除 Hibernate 会话的重要性，考虑以下示例：
 
@@ -26,9 +26,9 @@ Author.withTransaction { status ->
 }
 ```
 
-只有第二位作者会被保存，因为第一个事务通过清除 Hibernate 会话来回滚作者的 `save()`。如果 Hibernate 会话没有被清除，那么两个作者实例都将被持久化，并将导致非常意外的结果。
+只有第二位作者会被保存，因为第一个事务通过清除 Hibernate 会话来回滚作者的 `save()` 。如果 Hibernate 会话没有被清除，那么两个作者实例都将被持久化，并将导致非常意外的结果。
 
-然而，由于清除了会话而导致 `LazyInitializationException`，可能会让人感到沮丧。
+然而，由于清除了会话而导致 `LazyInitializationException` ，可能会让人感到沮丧。
 
 例如，考虑以下示例：
 
@@ -61,7 +61,7 @@ class AuthorController {
 }
 ```
 
-在上述示例中，如果 `Author` 的年龄超过了 `isTooOld()` 方法中定义的最大值，事务将被回滚并抛出 `AuthorException`。`AuthorException` 引用了作者，但当访问 `books` 关联时，会抛出 `LazyInitializationException`，因为底层的 Hibernate 会话已被清除。
+在上述示例中，如果 `Author` 的年龄超过了 `isTooOld()` 方法中定义的最大值，事务将被回滚并抛出 `AuthorException` 。 `AuthorException` 引用了作者，但当访问 `books` 关联时，会抛出 `LazyInitializationException` ，因为底层的 Hibernate 会话已被清除。
 
 要解决这个问题，您有几个选项。其中一个是确保您进行急切查询，以获取所需的数据：
 
@@ -96,7 +96,7 @@ class AuthorController {
 }
 ```
 
-在这种情况下，一个新请求将处理重新检索 `Author`。最后一个解决方案是再次检索 `Author` 数据，以确保会话保持在正确的状态：
+在这种情况下，一个新请求将处理重新检索 `Author` 。最后一个解决方案是再次检索 `Author` 数据，以确保会话保持在正确的状态：
 
 ```groovy
 class AuthorController {

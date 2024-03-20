@@ -75,7 +75,7 @@ static mappings = {
 <a href="/details/8675309">Show Account</a>
 ```
 
-要指定应应用于生成的`href`的属性，请将`Map`值指定为`attrs`属性。这些属性将直接应用于href，不会通过传递以用作请求参数。
+要指定应应用于生成的 `href` 的属性，请将 `Map` 值指定为 `attrs` 属性。这些属性将直接应用于href，不会通过传递以用作请求参数。
 
 ```xml
 <link:accountDetails attrs="[class: 'fancy']" acctNumber="8675309">

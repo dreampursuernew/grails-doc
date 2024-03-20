@@ -1,4 +1,4 @@
-插件可以轻松提供自己的构件，以便他们可以轻松找到可用的实现并参与重新加载。您只需要创建一个`ArtefactHandler`实现并将其注册在您的主要插件类中：
+插件可以轻松提供自己的构件，以便他们可以轻松找到可用的实现并参与重新加载。您只需要创建一个 `ArtefactHandler` 实现并将其注册在您的主要插件类中：
 
 ```groovy
 class MyGrailsPlugin {
@@ -7,7 +7,7 @@ class MyGrailsPlugin {
 }
 ```
 
-`artefacts`列表可以包含处理程序类（如上所示）或处理程序的实例。
+`artefacts` 列表可以包含处理程序类（如上所示）或处理程序的实例。
 
 那么，什么是构件处理程序？简单地说，它是{apiDocs}grails/core/ArtefactHandler.html[ArtefactHandler]接口的实现。为了让生活变得更轻松一些，有一个可以轻松扩展的基本实现：{apiDocs}grails/core/ArtefactHandlerAdapter.html[ArtefactHandlerAdapter]。
 

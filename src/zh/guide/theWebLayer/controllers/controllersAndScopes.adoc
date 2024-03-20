@@ -51,27 +51,27 @@ def delete() {
 }
 ```
 
-请求`delete`时，`message`值将在范围内，并可用于显示信息消息。在第二次请求后，它将从`flash`范围中删除。
+请求 `delete` 时， `message` 值将在范围内，并可用于显示信息消息。在第二次请求后，它将从 `flash` 范围中删除。
 
 请注意，属性名称可以是任意您想要的，并且通常是用于显示消息的字符串，但也可以是任何对象类型。
 
 作用域控制器
 
-新创建的应用程序在`application.yml`中将`grails.controllers.defaultScope`属性设置为“singleton”值。您可以将此值更改为下面列出的任何受支持的范围之一。如果未分配任何值属性，默认控制器将默认为“prototype”范围。
+新创建的应用程序在 `application.yml` 中将 `grails.controllers.defaultScope` 属性设置为“singleton”值。您可以将此值更改为下面列出的任何受支持的范围之一。如果未分配任何值属性，默认控制器将默认为“prototype”范围。
 
 支持的控制器范围包括：
 
-* `prototype`（默认）- 为每个请求创建一个新的控制器（建议用于作为Closure属性的操作）
+* `prototype` （默认）- 为每个请求创建一个新的控制器（建议用于作为Closure属性的操作）
 * `session` - 为用户会话范围创建一个控制器
 * `singleton` - 仅存在一个控制器实例（建议用作方法的操作）
 
-要激活其中一个范围，请向您的类添加一个静态`scope`属性，其值为前面列出的任何有效范围之一，例如：
+要激活其中一个范围，请向您的类添加一个静态 `scope` 属性，其值为前面列出的任何有效范围之一，例如：
 
 ```groovy
 静态范围 = “singleton”
 ```
 
-您可以在`application.yml`中使用`grails.controllers.defaultScope`键来定义默认的策略，例如：
+您可以在 `application.yml` 中使用 `grails.controllers.defaultScope` 键来定义默认的策略，例如：
 
 ```groovy
 grails:

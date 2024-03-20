@@ -29,14 +29,14 @@ class BookController {
 
 使用Accept-Version标头进行版本控制
 
-作为一种替代方法，Grails支持从客户端传递`Accept-Version`标头。例如，您可以定义以下URL映射：
+作为一种替代方法，Grails支持从客户端传递 `Accept-Version` 标头。例如，您可以定义以下URL映射：
 
 ```groovy
 "/books"(version:'1.0', resources:"book", namespace:'v1')
 "/books"(version:'2.0', resources:"book", namespace:'v2')
 ```
 
-然后在客户端简单地通过`Accept-Version`标头传递需要的版本：
+然后在客户端简单地通过 `Accept-Version` 标头传递需要的版本：
 
 ```bash
 $ curl -i -H "Accept-Version: 1.0" -X GET http://localhost:8080/books
@@ -44,7 +44,7 @@ $ curl -i -H "Accept-Version: 1.0" -X GET http://localhost:8080/books
 
 使用超媒体/媒体类型进行版本控制
 
-另一种版本控制的方式是使用媒体类型定义来声明您的自定义媒体类型的版本（有关超媒体概念的更多信息，请参阅“超媒体作为应用程序状态引擎”部分）。例如，在`application.groovy`中，您可以为资源声明一个包含版本参数（'v'参数）的自定义媒体类型：
+另一种版本控制的方式是使用媒体类型定义来声明您的自定义媒体类型的版本（有关超媒体概念的更多信息，请参阅“超媒体作为应用程序状态引擎”部分）。例如，在 `application.groovy` 中，您可以为资源声明一个包含版本参数（'v'参数）的自定义媒体类型：
 
 ```groovy
 grails.mime.types = [
@@ -57,7 +57,7 @@ grails.mime.types = [
 
 要确保将新的媒体类型放在'所有'媒体类型之后，以防请求的内容类型无法确定，则映射中的第一个条目用于响应。如果您将新的媒体类型放在顶部，则Grails将始终尝试在请求的媒体类型无法确定时发送回您的新的媒体类型。
 
-然后，覆盖渲染器（有关自定义渲染器的更多信息，请参阅“自定义响应渲染”部分），发送自定义媒体类型的重要步骤在`grails-app/conf/spring/resourses.groovy`：
+然后，覆盖渲染器（有关自定义渲染器的更多信息，请参阅“自定义响应渲染”部分），发送自定义媒体类型的重要步骤在 `grails-app/conf/spring/resourses.groovy` ：
 
 ```groovy
 import grails.rest.render.json.*
@@ -79,7 +79,7 @@ class BookController extends RestfulController {
 }
 ```
 
-然后使用`Accept`标头指定您需要的版本，使用媒体类型：
+然后使用 `Accept` 标头指定您需要的版本，使用媒体类型：
 
 ```groovy
 $ curl -i -H "Accept: application/vnd.books.org.book+json;v=1.0" -X GET http://localhost:8080/books

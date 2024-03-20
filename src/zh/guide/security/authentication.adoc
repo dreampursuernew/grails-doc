@@ -1,6 +1,6 @@
 Grails没有默认的身份验证机制，因为可以以许多不同的方式实现身份验证。然而，可以使用interceptors轻松实现一个简单的身份验证机制。这对于简单的用例来说已经足够了，但最好使用一个成熟的安全框架，例如使用Spring Security或Shiro插件。
 
-Interceptors允许您跨所有控制器或URI空间应用身份验证。例如，您可以通过运行以下命令在一个名为`grails-app/controllers/SecurityInterceptor.groovy` 的类中创建一组新的过滤器：
+Interceptors允许您跨所有控制器或URI空间应用身份验证。例如，您可以通过运行以下命令在一个名为 `grails-app/controllers/SecurityInterceptor.groovy` 的类中创建一组新的过滤器：
 
 ```
 grails create-interceptor security
@@ -27,9 +27,9 @@ class SecurityInterceptor {
 }
 ```
 
-在这里，拦截器在执行所有动作之前拦截，如果会话中没有用户，则重定向到`login`动作。
+在这里，拦截器在执行所有动作之前拦截，如果会话中没有用户，则重定向到 `login` 动作。
 
-`login`动作本身也很简单：
+`login` 动作本身也很简单：
 
 ```groovy
 def login() {

@@ -7,7 +7,7 @@
 <g:message code=\"my.localized.content\" />
 ----
 
-只要您在`messages.properties`中有一个键（带有适当的区域语言后缀），例如下面的这个，Grails就会查找消息：
+只要您在 `messages.properties` 中有一个键（带有适当的区域语言后缀），例如下面的这个，Grails就会查找消息：
 
 [source,groovy]
 ----
@@ -30,7 +30,7 @@ my.localized.content=Hola, me llamo {0}. Hoy es {1}.
 
 在Grails工件中使用MessageSource阅读消息
 
-在Grails工件中，您可以注入`messageSource`并使用方法`getMessage`来检索消息的参数：消息代码，消息参数，默认消息和区域设置。
+在Grails工件中，您可以注入 `messageSource` 并使用方法 `getMessage` 来检索消息的参数：消息代码，消息参数，默认消息和区域设置。
 
 [source,groovy]
 ----
@@ -59,7 +59,7 @@ def show() {
 }
 ----
 
-相同的技术也可以在link:theWebLayer.html#taglibs[标签库]中使用，但是如果您的标签库使用了自定义链接:theWebLayer.html#namespaces[命名空间]，那么您必须在调用之前加上`g.`：
+相同的技术也可以在link:theWebLayer.html#taglibs[标签库]中使用，但是如果您的标签库使用了自定义链接:theWebLayer.html#namespaces[命名空间]，那么您必须在调用之前加上 `g.` ：
 
 [source,groovy]
 ----

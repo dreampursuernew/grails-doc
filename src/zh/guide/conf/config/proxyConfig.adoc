@@ -1,14 +1,14 @@
-要设置Grails使用HTTP代理有两个步骤。首先，如果您希望使用它来创建应用程序等，您需要配置`grails` CLI以了解代理。这可以使用`GRAILS_OPTS`环境变量来完成，例如在Unix系统上：
+要设置Grails使用HTTP代理有两个步骤。首先，如果您希望使用它来创建应用程序等，您需要配置 `grails` CLI以了解代理。这可以使用 `GRAILS_OPTS` 环境变量来完成，例如在Unix系统上：
 
 [source,bash]
 ----
 export GRAILS_OPTS=\"-Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3128 -Dhttp.proxyUser=test -Dhttp.proxyPassword=test\"
 ----
 
-注意：默认的配置存储库通过HTTPS解析，因此使用了`https.proxyPort`和`https.proxyUser`，但是用户名和密码使用了`http.proxyUser`和`http.proxyPassword`来指定。
+注意：默认的配置存储库通过HTTPS解析，因此使用了 `https.proxyPort` 和 `https.proxyUser` ，但是用户名和密码使用了 `http.proxyUser` 和 `http.proxyPassword` 来指定。
 
-对于Windows系统，可以在`我的电脑/高级/环境变量`下配置环境变量。
+对于Windows系统，可以在 `我的电脑/高级/环境变量` 下配置环境变量。
 
-有了这个配置，`grails`命令可以通过代理连接和进行身份验证。
+有了这个配置， `grails` 命令可以通过代理连接和进行身份验证。
 
 其次，由于Grails使用Gradle作为构建系统，您需要配置Gradle通过代理进行身份验证。有关如何执行此操作的说明，请参阅https://docs.gradle.org/current/userguide/build_environment.html#sec:accessing_the_web_via_a_proxy[Gradle用户指南部分所述]。

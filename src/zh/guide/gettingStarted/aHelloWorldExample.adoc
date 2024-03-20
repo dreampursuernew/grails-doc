@@ -16,7 +16,7 @@ $ cd your_project_directory
 $ grails create-app myapp --servlet=tomcat
 ----
 
-使用`--servlet`选项并设置值为"tomcat"指定了Grails应用程序应配置为使用嵌入式Tomcat Servlet容器作为其运行时环境，允许你在开发和测试过程中将应用程序作为独立可执行文件运行。
+使用 `--servlet` 选项并设置值为"tomcat"指定了Grails应用程序应配置为使用嵌入式Tomcat Servlet容器作为其运行时环境，允许你在开发和测试过程中将应用程序作为独立可执行文件运行。
 
 === 步骤 2: 访问项目目录
 
@@ -71,7 +71,7 @@ class GreetingController {
 
 === 步骤 6: 运行应用程序
 
-Grails框架现在依赖于Gradle任务来运行应用程序。要启动应用程序，请使用以下Gradle `bootRun`命令：
+Grails框架现在依赖于Gradle任务来运行应用程序。要启动应用程序，请使用以下Gradle `bootRun` 命令：
 
 [source,shell]
 ----
@@ -121,9 +121,9 @@ class GreetingController {
 }
 ----
 
-- `GreetingController`类表示Grails中的一个控制器。
+- `GreetingController` 类表示Grails中的一个控制器。
 
-- 在控制器内部，有一个被定义为方法的`index`动作。在Grails中，动作本质上是控制器内处理特定任务或响应用户请求的方法。
+- 在控制器内部，有一个被定义为方法的 `index` 动作。在Grails中，动作本质上是控制器内处理特定任务或响应用户请求的方法。
 
 现在，让我们了解根据这个控制器和动作如何工作的Grails URL约定：
 
@@ -131,7 +131,7 @@ class GreetingController {
 - 控制器名称，在这种情况下是"GreetingController"，被用于URL中。但是，约定将控制器名称的第一个字母大写，并删除"Controller"后缀。因此，在URL中"GreetingController"变成了"greeting"。
 
 2. *URL中的动作名称：*
-- 默认情况下，如果你在URL中不指定动作，Grails会假定"index"动作。因此，在这个示例中，访问URL`/greeting`
+- 默认情况下，如果你在URL中不指定动作，Grails会假定"index"动作。因此，在这个示例中，访问URL `/greeting`
 
 查看用户指南的链接结尾:theWebLayer.html#understandingControllersAndActions[控制器和动作]部分，了解更多关于默认动作的信息。
 
@@ -157,7 +157,7 @@ http://localhost:8080/myapp/
 ./gradlew bootRun -Dgrails.server.servlet.context-path=/your-context-path
 ----
 
-将"/your-context-path"替换为你的Grails应用程序所需的上下文路径。这个命令通过`-Dgrails.server.servlet.context-path`系统属性直接设置上下文路径。
+将"/your-context-path"替换为你的Grails应用程序所需的上下文路径。这个命令通过 `-Dgrails.server.servlet.context-path` 系统属性直接设置上下文路径。
 
 例如，如果你想让你的应用程序在"http://localhost:8080/myapp"上可用，你可以使用以下命令：
 
@@ -170,7 +170,7 @@ http://localhost:8080/myapp/
 
 === 可选: 更改服务器端口
 
-如果端口8080已经被占用，你可以使用`grails.server.port`系统属性在不同的端口上启动服务器：
+如果端口8080已经被占用，你可以使用 `grails.server.port` 系统属性在不同的端口上启动服务器：
 
 [source,shell]
 ----
@@ -181,7 +181,7 @@ $ ./gradlew bootRun --Dgrails.server.port=9090
 
 === Windows用户注意事项
 
-如果你遇到与Java进程或文件名长度相关的错误，你可以使用`--stacktrace`标志或将`grails { pathingJar = true }`添加到你的"build.gradle"文件中。
+如果你遇到与Java进程或文件名长度相关的错误，你可以使用 `--stacktrace` 标志或将 `grails { pathingJar = true }` 添加到你的"build.gradle"文件中。
 
 === 结论
 

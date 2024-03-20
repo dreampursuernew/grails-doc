@@ -1,8 +1,8 @@
-正如前一节中提到的，默认情况下，拦截器只会按照约定匹配与关联控制器有关的请求。然而，您可以通过使用在{apiDocs}grails/artefact/Interceptor.html[Interceptor API]中定义的`match`或`matchAll`方法来配置拦截器以匹配任何请求。
+正如前一节中提到的，默认情况下，拦截器只会按照约定匹配与关联控制器有关的请求。然而，您可以通过使用在{apiDocs}grails/artefact/Interceptor.html[Interceptor API]中定义的 `match` 或 `matchAll` 方法来配置拦截器以匹配任何请求。
 
 匹配方法会返回一个{apiDocs}grails/interceptors/Matcher.html[Matcher]实例，该实例可以被用来配置拦截器如何匹配请求。
 
-例如，下面的拦截器将匹配所有请求，除了针对`login`控制器的请求：
+例如，下面的拦截器将匹配所有请求，除了针对 `login` 控制器的请求：
 
 [source,groovy]
 ----
@@ -36,10 +36,10 @@ class LoggingInterceptor {
 
 您可以在拦截器中定义任意数量的匹配器。它们将按照定义顺序执行。例如，上述拦截器将匹配以下所有情况：
 
-* 当调用`BookController`的`show`操作时
-* 当调用`AuthorController`或`PublisherController`时
+* 当调用 `BookController` 的 `show` 操作时
+* 当调用 `AuthorController` 或 `PublisherController` 时
 
-除了`uri`之外的所有命名参数都可以接受String或Regex表达式。`uri`参数支持与Spring的{springapi}org/springframework/util/AntPathMatcher.html[AntPathMatcher]兼容的String路径。可能的命名参数包括：
+除了 `uri` 之外的所有命名参数都可以接受String或Regex表达式。 `uri` 参数支持与Spring的{springapi}org/springframework/util/AntPathMatcher.html[AntPathMatcher]兼容的String路径。可能的命名参数包括：
 
 * `namespace` - 控制器的命名空间
 * `controller` - 控制器的名称

@@ -1,8 +1,8 @@
 自 Grails 3.1 开始，http://gradle.org 的[Gradle构建系统]用于构建相关任务，例如编译、运行测试和生成项目的二进制分发。建议在 Grails 3.1（及更高版本）中使用 Gradle 2.2 或更高版本。
 
-构建由`build.gradle`文件定义，该文件指定了项目的版本、项目的依赖关系以及查找这些依赖项的存储库（以及其他内容）。
+构建由 `build.gradle` 文件定义，该文件指定了项目的版本、项目的依赖关系以及查找这些依赖项的存储库（以及其他内容）。
 
-当您调用 `grails` 命令时，Grails 3.1 中附带的 Gradle 版本（目前为 2.9）通过http://www.gradle.org/docs/current/userguide/embedding.html[Gradle工具API]由`grails`进程调用：
+当您调用 `grails` 命令时，Grails 3.1 中附带的 Gradle 版本（目前为 2.9）通过http://www.gradle.org/docs/current/userguide/embedding.html[Gradle工具API]由 `grails` 进程调用：
 
 [source，bash]
 ----

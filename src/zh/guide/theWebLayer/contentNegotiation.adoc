@@ -1,8 +1,8 @@
-Grails内置支持http://en.wikipedia.org/wiki/Content_negotiation[内容协商]，可以使用HTTP `Accept`标头、显式格式请求参数或已映射的URI的扩展来进行内容协商。
+Grails内置支持http://en.wikipedia.org/wiki/Content_negotiation[内容协商]，可以使用HTTP `Accept` 标头、显式格式请求参数或已映射的URI的扩展来进行内容协商。
 
 ==== 配置MIME类型
 
-在您开始处理内容协商之前，您需要告诉Grails您希望支持的内容类型。默认情况下，Grails在`grails-app/conf/application.yml`中使用`grails.mime.types`设置配置了许多不同的内容类型：
+在您开始处理内容协商之前，您需要告诉Grails您希望支持的内容类型。默认情况下，Grails在 `grails-app/conf/application.yml` 中使用 `grails.mime.types` 设置配置了许多不同的内容类型：
 
 [source,yaml]
 ----
@@ -32,7 +32,7 @@ grails:
               - application/xml
 ----
 
-设置也可以在`grails-app/conf/application.groovy`中完成，如下所示：
+设置也可以在 `grails-app/conf/application.groovy` 中完成，如下所示：
 
 [source,groovy]
 ----
@@ -66,9 +66,9 @@ grails.mime.types = [ // the first one is the default format
 http://my.domain.org/books.xml
 ----
 
-注意：请求参数 `format` 也被允许，例如`http://my.domain.org/books?format=xml`，但默认的Grails URL映射 `get \"/$controller(.$format)?\"(action:\"index\")` 将用null覆盖`format`参数。因此，默认映射应更新为 `get \"/$controller\"(action:\"index\")`。
+注意：请求参数 `format` 也被允许，例如 `http://my.domain.org/books?format=xml` ，但默认的Grails URL映射 `get \"/$controller(.$format)?\"(action:\"index\")` 将用null覆盖 `format` 参数。因此，默认映射应更新为 `get \"/$controller\"(action:\"index\")` 。
 
-服务器端的结果是`response` 对象上的 `format` 属性值为 `xml`。
+服务器端的结果是 `response` 对象上的 `format` 属性值为 `xml` 。
 
 您也可以在链接：theWebLayer.html#urlmappings[URL映射]定义中定义此参数：
 
@@ -79,7 +79,7 @@ http://my.domain.org/books.xml
 }
 ----
 
-您可以编写控制器操作以基于此属性返回XML，但也可以使用专门的控制器`withFormat()` 方法：
+您可以编写控制器操作以基于此属性返回XML，但也可以使用专门的控制器 `withFormat()` 方法：
 
 注意：此示例需要添加 `org.grails.plugins:grails-plugin-converters` 插件
 
@@ -103,13 +103,13 @@ class BookController {
 }
 ----
 
-在此示例中，Grails只会执行与请求的内容类型匹配的 `withFormat()` 中的代码块。因此，如果首选格式为 `html`，则Grails将只执行`html()` 调用。每个'代码块'可以是用于对应视图的映射模型（如上例中用于 'html' 的部分）或一个闭包。闭包可以包含任何标准行为代码，例如可以返回一个模型或直接呈现内容。
+在此示例中，Grails只会执行与请求的内容类型匹配的 `withFormat()` 中的代码块。因此，如果首选格式为 `html` ，则Grails将只执行 `html()` 调用。每个'代码块'可以是用于对应视图的映射模型（如上例中用于 'html' 的部分）或一个闭包。闭包可以包含任何标准行为代码，例如可以返回一个模型或直接呈现内容。
 
-当没有明确匹配的格式时，可以使用 `*`（通配符）代码块来处理所有其他格式。
+当没有明确匹配的格式时，可以使用 `*` （通配符）代码块来处理所有其他格式。
 
-有一个特殊的格式，"all"，它与明确格式不同。如果指定了 "all"（通常通过Accept标头 - 见下文），那么当没有 `*`（通配符）块可用时，将执行`withFormat()` 的第一个代码块。
+有一个特殊的格式，"all"，它与明确格式不同。如果指定了 "all"（通常通过Accept标头 - 见下文），那么当没有 `*` （通配符）块可用时，将执行 `withFormat()` 的第一个代码块。
 
-您不应该添加明确的 "all" 块。在此示例中，格式为 "all" 将触发 `html` 处理程序（`html` 是第一个代码块，且没有 `*` 块）。
+您不应该添加明确的 "all" 块。在此示例中，格式为 "all" 将触发 `html` 处理程序（ `html` 是第一个代码块，且没有 `*` 块）。
 
 [source,groovy]
 ----
@@ -146,16 +146,16 @@ text/xml, application/xml, application/xhtml+xml, text/html;q=0.9, \
 application/json
 ----
 
-如前所述，Grails的默认配置是忽略浏览器的Accept标头。这是通过配置设置`grails.mime.disable.accept.header.userAgents` 完成的，该设置用于检测主要呈现引擎并忽略其ACCEPT标头。这使Grails的内容协商可以继续为非浏览器客户端工作：
+如前所述，Grails的默认配置是忽略浏览器的Accept标头。这是通过配置设置 `grails.mime.disable.accept.header.userAgents` 完成的，该设置用于检测主要呈现引擎并忽略其ACCEPT标头。这使Grails的内容协商可以继续为非浏览器客户端工作：
 
 [source,groovy]
 ----
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
 ----
 
-例如，如果看到上面的接受标头（'application/json'），那么将将`format` 设为 `json`，就像您期望的那样。当然，这也适用于`withFormat()` 方法，方式与设置 `format` URL参数时一样（尽管URL参数优先）。
+例如，如果看到上面的接受标头（'application/json'），那么将将 `format` 设为 `json` ，就像您期望的那样。当然，这也适用于 `withFormat()` 方法，方式与设置 `format` URL参数时一样（尽管URL参数优先）。
 
-一个为 '\\*/\\*' 的接受标头将导致`format` 属性的值为 `all`。
+一个为 '\\*/\\*' 的接受标头将导致 `format` 属性的值为 `all` 。
 
 注意：如果使用 accept 标头，但不包含任何注册的内容类型，Grails会假定是有问题的浏览器在发出请求，并设置HTML格式 - 请注意，这与其他内容协商模式的工作方式不同，因为其他模式会激活 "all" 格式！
 
@@ -193,7 +193,7 @@ Grails还支持使用URI扩展进行内容协商。例如，给定以下URI：
 \"/$controller/$action?/$id?(.$format)?\"{
 ----
 
-注意路径中包含`format`变量。如果不希望使用文件扩展名进行内容协商，则可以简单地删除URL映射的此部分：
+注意路径中包含 `format` 变量。如果不希望使用文件扩展名进行内容协商，则可以简单地删除URL映射的此部分：
 
 [source,groovy]
 ----

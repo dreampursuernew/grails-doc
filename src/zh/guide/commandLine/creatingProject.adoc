@@ -92,7 +92,7 @@ grails create-web-plugin \
 
 | Flag | Description | Example
 
-===`create-`命令标志
+=== `create-` 命令标志
 
 "create-*"命令用于生成一个基本的Grails项目，允许包含可选标志来选择额外功能，并自定义GORM设置、嵌入式servlet、测试框架和Java版本。
 

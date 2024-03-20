@@ -76,14 +76,14 @@
 |'classname.propertyName.'+ 闭包返回的字符串
 
 |===
-在`blank`约束的情况下，这将是`user.login.blank`，因此您需要在`grails-app/i18n/messages.properties`文件中添加类似以下的消息：
+在 `blank` 约束的情况下，这将是 `user.login.blank` ，因此您需要在 `grails-app/i18n/messages.properties` 文件中添加类似以下的消息：
 
 [source，groovy]
 ----
 user.login.blank=您必须指定登录名！
 ----
 
-类名将在有包和无包的情况下进行查找，有包的版本将优先。例如，`com.mycompany.myapp.User.login.blank`将在`user.login.blank`之前使用。这允许在您的领域类消息代码与插件的消息代码冲突的情况下进行处理。
+类名将在有包和无包的情况下进行查找，有包的版本将优先。例如， `com.mycompany.myapp.User.login.blank` 将在 `user.login.blank` 之前使用。这允许在您的领域类消息代码与插件的消息代码冲突的情况下进行处理。
 
 要了解哪些约束对应哪些代码，请参考每个约束的参考指南（例如 link:../ref/Constraints/blank.html[blank]）。
 
@@ -102,4 +102,4 @@ user.login.blank=您必须指定登录名！
 </g:hasErrors>
 ----
 
-在这个例子中，在链接：{gspdocs}/ref/Tags/eachError.html[eachError] 标记的主体内，我们使用链接：{gspdocs}/ref/Tags/message.html[message] 标记以及其`错误`参数来读取给定错误的消息。
+在这个例子中，在链接：{gspdocs}/ref/Tags/eachError.html[eachError] 标记的主体内，我们使用链接：{gspdocs}/ref/Tags/message.html[message] 标记以及其 `错误` 参数来读取给定错误的消息。

@@ -48,7 +48,7 @@ class SomeClass {
 }
 ```
 
-可以通过在类上标记`GrailsCompileStatic`并通过在特定方法上标记`GrailsCompileStatic`来排除特定方法，并指定该方法的类型检查应该被跳过，如下所示。
+可以通过在类上标记 `GrailsCompileStatic` 并通过在特定方法上标记 `GrailsCompileStatic` 来排除特定方法，并指定该方法的类型检查应该被跳过，如下所示。
 
 ```groovy
 import grails.compiler.GrailsCompileStatic
@@ -75,6 +75,6 @@ class SomeClass {
 }
 ```
 
-使用`GrailsCompileStatic`标记的代码都会被静态编译，除了不能被静态编译的 Grails 特定交互，但是`GrailsCompileStatic`可以识别为可以进行动态分派的操作。这些包括像在约束和映射闭包中的领域类中调用动态查找器和 DSL 代码等配置块。
+使用 `GrailsCompileStatic` 标记的代码都会被静态编译，除了不能被静态编译的 Grails 特定交互，但是 `GrailsCompileStatic` 可以识别为可以进行动态分派的操作。这些包括像在约束和映射闭包中的领域类中调用动态查找器和 DSL 代码等配置块。
 
 在决定静态编译代码时需要小心。静态编译有其相关的优点，但为了利用这些优点，您需要放弃动态分派的权力和灵活性。例如，如果代码被静态编译，它将无法利用运行时元编程增强功能，这些功能可能由插件提供。"

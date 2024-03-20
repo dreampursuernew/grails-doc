@@ -14,16 +14,16 @@ git clone http://github.com/grails/grails-core.git
 
 === 创建Grails安装
 
-如果您查看项目结构，您会发现它看起来并不像一个标准的`GRAILS_HOME`安装。但是，简单将其变为一个标准。只需从项目的根目录运行以下命令：
+如果您查看项目结构，您会发现它看起来并不像一个标准的 `GRAILS_HOME` 安装。但是，简单将其变为一个标准。只需从项目的根目录运行以下命令：
 
 [source,groovy]
 ----
 ./gradlew install
 ----
 
-这将获取Grails所需的所有标准依赖项，然后构建一个`GRAILS_HOME`安装。请注意，该目标跳过了大量的Grails测试类集合，这可能需要一些时间完成。
+这将获取Grails所需的所有标准依赖项，然后构建一个 `GRAILS_HOME` 安装。请注意，该目标跳过了大量的Grails测试类集合，这可能需要一些时间完成。
 
-完成以上命令后，只需将`GRAILS_HOME`环境变量设置为检出目录，并将“bin”目录添加到您的路径中。当您下次键入`grails`命令运行时，您将使用您刚刚构建的版本。
+完成以上命令后，只需将 `GRAILS_HOME` 环境变量设置为检出目录，并将“bin”目录添加到您的路径中。当您下次键入 `grails` 命令运行时，您将使用您刚刚构建的版本。
 
 如果您使用http://sdkman.io[SDKMAN]，则还可以通过以下方式使用本地安装：
 
@@ -48,7 +48,7 @@ sdk install grails dev /path/to/grails-core
 ./gradlew test
 ----
 
-这将需要一些时间（15-30分钟），因此考虑使用命令行运行单个测试。例如，要运行测试规范`BinaryPluginSpec`，只需执行以下命令：
+这将需要一些时间（15-30分钟），因此考虑使用命令行运行单个测试。例如，要运行测试规范 `BinaryPluginSpec` ，只需执行以下命令：
 
 [source,groovy]
 ----
@@ -100,4 +100,4 @@ sdk install grails dev /path/to/grails-core
 ./gradlew bootRun --debug-jvm
 ----
 
-默认情况下，Grails会fork一个JVM来运行应用程序。`-debug-jvm`参数将使调试器与forked JVM相关联。
+默认情况下，Grails会fork一个JVM来运行应用程序。 `-debug-jvm` 参数将使调试器与forked JVM相关联。

@@ -1,6 +1,6 @@
 ==== 简单变量
 
-前一节演示了如何将简单的URL映射到具体的"标记"上。在URL映射中，标记是每个斜杠'/'之间的字符序列。具体的标记是明确定义的，比如`/product`。然而，在许多情况下，在运行时你不知道特定标记的值是什么。这种情况下，你可以在URL中使用变量占位符，例如：
+前一节演示了如何将简单的URL映射到具体的"标记"上。在URL映射中，标记是每个斜杠'/'之间的字符序列。具体的标记是明确定义的，比如 `/product` 。然而，在许多情况下，在运行时你不知道特定标记的值是什么。这种情况下，你可以在URL中使用变量占位符，例如：
 
 ```groovy
 static mappings = {
@@ -8,7 +8,7 @@ static mappings = {
 }
 ```
 
-在这种情况下，通过将$id变量嵌入为第二个标记，Grails会自动将第二个标记映射到一个参数（可以通过`params`对象获得）。例如，给定URL`/product/MacBook`，以下代码将在响应中呈现"MacBook"：
+在这种情况下，通过将$id变量嵌入为第二个标记，Grails会自动将第二个标记映射到一个参数（可以通过 `params` 对象获得）。例如，给定URL `/product/MacBook` ，以下代码将在响应中呈现"MacBook"：
 
 ```groovy
 class ProductController {
@@ -30,7 +30,7 @@ static mappings = {
 /graemerocher/2007/01/10/my_funky_blog_entry
 ```
 
-URL中的每个标记再次映射到`params`对象，可用于`year`、`month`、`day`、`id`等值。
+URL中的每个标记再次映射到 `params` 对象，可用于 `year` 、 `month` 、 `day` 、 `id` 等值。
 
 ==== 动态控制器和动作名称
 
@@ -42,7 +42,7 @@ static mappings = {
 }
 ```
 
-在这里，控制器、动作和id的名称隐式地从嵌入在URL中的`controller`、`action`和`id`变量中获得。
+在这里，控制器、动作和id的名称隐式地从嵌入在URL中的 `controller` 、 `action` 和 `id` 变量中获得。
 
 你还可以通过闭包解析控制器名称和动作名称以动态执行：
 
@@ -56,7 +56,7 @@ static mappings = {
 
 ==== 可选变量
 
-默认映射的另一个特征是在变量末尾附加`?`来使其成为可选标记。在进一步的示例中，这种技术可以应用于博客URL映射以获得更灵活的链接：
+默认映射的另一个特征是在变量末尾附加 `?` 来使其成为可选标记。在进一步的示例中，这种技术可以应用于博客URL映射以获得更灵活的链接：
 
 ```groovy
 static mappings = {
@@ -64,7 +64,7 @@ static mappings = {
 }
 ```
 
-通过这种映射，所有这些URL都将匹配，并且仅相关参数将填充在`params`对象中：
+通过这种映射，所有这些URL都将匹配，并且仅相关参数将填充在 `params` 对象中：
 
 ```
 /graemerocher/2007/01/10/my_funky_blog_entry
@@ -82,7 +82,7 @@ static mappings = {
 "/$controller/$action?/$id?(.$format)?"()
 ```
 
-通过添加`(.$format)?`映射，你可以在控制器中使用`response.format`属性来访问文件扩展名：
+通过添加 `(.$format)?` 映射，你可以在控制器中使用 `response.format` 属性来访问文件扩展名：
 
 ```groovy
 def index() {
@@ -101,7 +101,7 @@ def index() {
 }
 ```
 
-这些变量将在传递给控制器的`params`对象中可用。
+这些变量将在传递给控制器的 `params` 对象中可用。
 
 ==== 动态解析变量
 

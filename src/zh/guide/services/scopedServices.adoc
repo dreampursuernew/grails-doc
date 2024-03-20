@@ -8,9 +8,9 @@
 * `flow` - 在Web流中，服务将存在于流的范围内
 * `conversation` - 在Web流中，服务将存在于对话的范围内，即根流及其子流
 * `session` - 为用户会话的范围创建一个服务
-* `singleton`（默认） - 服务只存在一个实例
+* `singleton` （默认） - 服务只存在一个实例
 
-注意：如果您的服务是`flash`，`flow`或`conversation`范围，则必须实现`java.io.Serializable`并且只能在Web流上下文中使用。
+注意：如果您的服务是 `flash` ， `flow` 或 `conversation` 范围，则必须实现 `java.io.Serializable` 并且只能在Web流上下文中使用。
 
 要启用这些范围之一，请向您的类添加一个静态范围属性，其值为上述之一，例如
 
@@ -20,8 +20,8 @@ static scope = "flow"
 
 升级：
 
-从Grails 2.3开始，新应用程序生成的配置默认将控制器范围设置为`singleton`。
-如果`singleton`控制器与`prototype`范围的服务交互，则服务实际上会像每个控制器一样的单例。
+从Grails 2.3开始，新应用程序生成的配置默认将控制器范围设置为 `singleton` 。
+如果 `singleton` 控制器与 `prototype` 范围的服务交互，则服务实际上会像每个控制器一样的单例。
 如果需要非单例服务，则应该同时更改控制器范围。
 
 请参阅用户指南中有关更多信息的链接：theWebLayer.html#controllersAndScopes[Controllers and Scopes]。

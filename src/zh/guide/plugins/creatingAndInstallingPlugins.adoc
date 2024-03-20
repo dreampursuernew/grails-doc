@@ -7,7 +7,7 @@
 grails create-plugin <<PLUGIN NAME>>
 ----
 
-这将为您指定的名称创建一个web插件项目。例如，运行`grails create-plugin example`将创建一个名为`example`的新web插件项目。
+这将为您指定的名称创建一个web插件项目。例如，运行 `grails create-plugin example` 将创建一个名为 `example` 的新web插件项目。
 
 在Grails 3.0中，您应该考虑您创建的插件是否需要一个web环境，或者插件是否可以与其他配置文件一起使用。如果您的插件不需要web环境，则应该使用“plugin”配置文件而不是默认的“web-plugin”配置文件:
 
@@ -25,9 +25,9 @@ grails create-plugin <<PLUGIN NAME>> --profile=plugin
 ./gradlew bootRun
 ----
 
-注意: 默认情况下，插件项目不提供index.gsp文件，因为大多数插件不需要。因此，如果您在创建插件后立即尝试在浏览器中查看插件运行，您将收到一个页面未找到的错误。 如果您愿意，您可以轻松创建一个`grails-app/views/index.gsp`来为您的插件创建。
+注意: 默认情况下，插件项目不提供index.gsp文件，因为大多数插件不需要。因此，如果您在创建插件后立即尝试在浏览器中查看插件运行，您将收到一个页面未找到的错误。 如果您愿意，您可以轻松创建一个 `grails-app/views/index.gsp` 来为您的插件创建。
 
-Grails插件的结构几乎与Grails应用程序项目的结构相同，只是在插件包结构下的`src/main/groovy`目录下会找到一个插件描述符类（一个以“GrailsPlugin”结尾的类）。例如:
+Grails插件的结构几乎与Grails应用程序项目的结构相同，只是在插件包结构下的 `src/main/groovy` 目录下会找到一个插件描述符类（一个以“GrailsPlugin”结尾的类）。例如:
 
 [source,groovy]
 ----
@@ -38,7 +38,7 @@ class ExampleGrailsPlugin extends Plugin {
 }
 ----
 
-所有插件都必须在`src/main/groovy`目录下拥有这个类，否则它们将不被视为插件。插件类定义了关于插件的元数据，以及可选的插件扩展点。
+所有插件都必须在 `src/main/groovy` 目录下拥有这个类，否则它们将不被视为插件。插件类定义了关于插件的元数据，以及可选的插件扩展点。
 
 您还可以使用几个特殊属性提供有关您的插件的其他信息:
 
@@ -88,7 +88,7 @@ Adds Quartz job scheduling features
 
 ==== 插件配置
 
-与其直接访问Grails配置，例如`grailsApplication.config.getProperty('mail.hostName', String)`，我们可以使用一个带有{springbootapi}/org/springframework/boot/context/properties/ConfigurationProperties.html[ConfigurationProperties]注解的Spring Boot配置bean（或POJO）。以下是一个插件配置示例:
+与其直接访问Grails配置，例如 `grailsApplication.config.getProperty('mail.hostName', String)` ，我们可以使用一个带有{springbootapi}/org/springframework/boot/context/properties/ConfigurationProperties.html[ConfigurationProperties]注解的Spring Boot配置bean（或POJO）。以下是一个插件配置示例:
 
 _./src/main/groovy/example/MailPluginConfiguration.groovy_
 [source,groovy]
@@ -107,7 +107,7 @@ class MailPluginConfiguration {
 
 ```
 
-您可以像任何其他bean一样将`MailPluginConfiguration`注入到您的bean中。
+您可以像任何其他bean一样将 `MailPluginConfiguration` 注入到您的bean中。
 
 _./grails-app/services/example/MailService.groovy_
 [source,groovy]
@@ -153,14 +153,14 @@ publishing {
 
 注意：请参考Gradle Maven Publish插件文档获取最新信息。
 
-要使您的插件可用于Grails应用程序中，请运行`./gradlew publishToMavenLocal`命令:
+要使您的插件可用于Grails应用程序中，请运行 `./gradlew publishToMavenLocal` 命令:
 
 [source,bash]
 ----
 ./gradlew publishToMavenLocal
 ----
 
-这将安装插件到您本地的Maven缓存中。然后，在应用程序中声明对插件的依赖项，在您的`build.gradle`文件中包含`mavenLocal()`在您的repositories哈希中:
+这将安装插件到您本地的Maven缓存中。然后，在应用程序中声明对插件的依赖项，在您的 `build.gradle` 文件中包含 `mavenLocal()` 在您的repositories哈希中:
 
 [source,groovy]
 ----
@@ -181,7 +181,7 @@ implementation "org.grails.plugins:quartz:0.1"
 
 *步骤1: 创建应用程序和插件*
 
-使用`grails`命令创建一个应用程序和一个插件:
+使用 `grails` 命令创建一个应用程序和一个插件:
 
 [source,groovy]
 ----
@@ -191,7 +191,7 @@ $ grails create-plugin myplugin
 
 *步骤2: 创建一个settings.gradle文件*
 
-在相同目录中创建一个`settings.gradle`文件，其中包含以下内容:
+在相同目录中创建一个 `settings.gradle` 文件，其中包含以下内容:
 
 [source,groovy]
 ----
@@ -212,7 +212,7 @@ include "myapp", "myplugin"
 
 *步骤3: 在插件中声明对该插件的项目依赖*
 
-在应用程序的`build.gradle`中，在`plugins`块内声明对插件的依赖关系:
+在应用程序的 `build.gradle` 中，在 `plugins` 块内声明对插件的依赖关系:
 
 [source,groovy]
 ----
@@ -223,15 +223,15 @@ grails {
 }
 ----
 
-注意: 您也可以在`dependencies`块内声明依赖关系，但是这样做将不会获得子项目重新加载！
+注意: 您也可以在 `dependencies` 块内声明依赖关系，但是这样做将不会获得子项目重新加载！
 
 *步骤4: 配置插件以启用重新加载*
 
-在插件目录中，添加或修改`gradle.properties`文件。需要设置一个新属性`exploded=true`，以便插件将爆炸目录添加到类路径中。
+在插件目录中，添加或修改 `gradle.properties` 文件。需要设置一个新属性 `exploded=true` ，以便插件将爆炸目录添加到类路径中。
 
 *步骤5: 运行应用程序*
 
-现在从应用程序目录的根目录使用`./gradlew bootRun`命令运行应用程序，您可以使用`verbose`标志查看Gradle输出:
+现在从应用程序目录的根目录使用 `./gradlew bootRun` 命令运行应用程序，您可以使用 `verbose` 标志查看Gradle输出:
 
 [source,groovy]
 ----

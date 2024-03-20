@@ -24,9 +24,9 @@ boolean after() { true }
 void afterView() {}
 ----
 
-如上所述，`before` 方法在动作之前执行，如果返回 `false`，可以取消动作的执行。
+如上所述， `before` 方法在动作之前执行，如果返回 `false` ，可以取消动作的执行。
 
-`after` 方法在动作执行后执行，并且如果返回 false，可以停止视图渲染。`after` 方法还可以分别使用 `view` 和 `model` 属性来修改视图或模型：
+`after` 方法在动作执行后执行，并且如果返回 false，可以停止视图渲染。 `after` 方法还可以分别使用 `view` 和 `model` 属性来修改视图或模型：
 
 [source,groovy]
 ----

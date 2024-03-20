@@ -1,7 +1,7 @@
-默认情况下，所有域类共享一个`DataSource`和一个数据库，但您可以选择将域类分区到两个或更多个数据源中。
+默认情况下，所有域类共享一个 `DataSource` 和一个数据库，但您可以选择将域类分区到两个或更多个数据源中。
 
 配置额外的数据源
-`grails-app/conf/application.yml`中的默认`DataSource`配置如下所示：
+`grails-app/conf/application.yml` 中的默认 `DataSource` 配置如下所示：
 
 ```
 dataSource:
@@ -29,7 +29,7 @@ environments:
                initialSize: 5
 ```
 
-这配置了一个名为`dataSource`的单个`DataSource`。要配置额外的数据源，请添加`dataSources`块（在顶级、环境块或两者中），并指定自定义名称。例如，此配置添加了第二个`DataSource`，在开发环境使用MySQL，在生产环境使用Oracle：
+这配置了一个名为 `dataSource` 的单个 `DataSource` 。要配置额外的数据源，请添加 `dataSources` 块（在顶级、环境块或两者中），并指定自定义名称。例如，此配置添加了第二个 `DataSource` ，在开发环境使用MySQL，在生产环境使用Oracle：
 
 ```
 dataSource:
@@ -78,7 +78,7 @@ environments:
 
 只要受Hibernate支持，您可以使用相同或不同的数据库。
 
-如需在Grails构件中注入`lookup`数据源，可以这样做：
+如需在Grails构件中注入 `lookup` 数据源，可以这样做：
 
 ```
 DataSource dataSource_lookup
@@ -87,7 +87,7 @@ DataSource dataSource_lookup
 注意：定义多个数据源时，其中一个**必须**命名为"dataSource"。这是必须的，因为Grails通过确定哪个命名为"dataSource"来确定哪个数据源是默认数据源。
 
 配置域类
-如果域类没有`DataSource`配置，则默认为标准`'dataSource'`。在`mapping`块中设置`datasource`属性以配置非默认`DataSource`。例如，如果要使`ZipCode`域类使用'lookup'`DataSource`，请进行如下配置：
+如果域类没有 `DataSource` 配置，则默认为标准 `'dataSource'` 。在 `mapping` 块中设置 `datasource` 属性以配置非默认 `DataSource` 。例如，如果要使 `ZipCode` 域类使用'lookup' `DataSource` ，请进行如下配置：
 
 ```
 class ZipCode {
@@ -100,7 +100,7 @@ class ZipCode {
 }
 ```
 
-域类还可以使用两个或更多数据源。使用`datasources`属性并提供名称列表来配置多个数据源，例如：
+域类还可以使用两个或更多数据源。使用 `datasources` 属性并提供名称列表来配置多个数据源，例如：
 
 ```
 class ZipCode {
@@ -113,7 +113,7 @@ class ZipCode {
 }
 ```
 
-如果域类使用默认`DataSource`和一个或多个其他数据源，请使用特殊名称`'DEFAULT'`表示默认`DataSource`：
+如果域类使用默认 `DataSource` 和一个或多个其他数据源，请使用特殊名称 `'DEFAULT'` 表示默认 `DataSource` ：
 
 ```
 class ZipCode {
@@ -126,7 +126,7 @@ class ZipCode {
 }
 ```
 
-如果域类使用所有配置的数据源，请使用特殊值`'ALL'`：
+如果域类使用所有配置的数据源，请使用特殊值 `'ALL'` ：
 
 ```
 class ZipCode {
@@ -140,7 +140,7 @@ class ZipCode {
 ```
 
 命名空间和GORM方法
-如果域类使用多个`DataSource`，则可以使用每个`DataSource`名称隐式表示的命名空间来为特定`DataSource`进行GORM调用。例如，考虑使用两个数据源的这个类：
+如果域类使用多个 `DataSource` ，则可以使用每个 `DataSource` 名称隐式表示的命名空间来为特定 `DataSource` 进行GORM调用。例如，考虑使用两个数据源的这个类：
 
 ```
 class ZipCode {
@@ -153,7 +153,7 @@ class ZipCode {
 }
 ```
 
-在不使用显式命名空间时，指定的第一个`DataSource`是默认值，因此在此情况下默认为'lookup'。但是，您可以通过使用`DataSource`名称在'auditing'`DataSource`上调用GORM方法，例如：
+在不使用显式命名空间时，指定的第一个 `DataSource` 是默认值，因此在此情况下默认为'lookup'。但是，您可以通过使用 `DataSource` 名称在'auditing' `DataSource` 上调用GORM方法，例如：
 
 ```
 def zipCode = ZipCode.auditing.get(42)
@@ -161,12 +161,12 @@ def zipCode = ZipCode.auditing.get(42)
 zipCode.auditing.save()
 ```
 
-可以看到，在静态情况和实例情况下，都将使用`DataSource`添加到方法调用中。
+可以看到，在静态情况和实例情况下，都将使用 `DataSource` 添加到方法调用中。
 
 Hibernate映射的域类
-您还可以将带注释的Java类分区到单独的数据源中。使用默认数据源的类在`grails-app/conf/hibernate.cfg.xml`中注册。要指定带注释类使用非默认数据源，请为该数据源创建一个带数据源名称前缀的`hibernate.cfg.xml`文件。
+您还可以将带注释的Java类分区到单独的数据源中。使用默认数据源的类在 `grails-app/conf/hibernate.cfg.xml` 中注册。要指定带注释类使用非默认数据源，请为该数据源创建一个带数据源名称前缀的 `hibernate.cfg.xml` 文件。
 
-例如，如果`Book`类在默认数据源中，则会在`grails-app/conf/hibernate.cfg.xml`中注册：
+例如，如果 `Book` 类在默认数据源中，则会在 `grails-app/conf/hibernate.cfg.xml` 中注册：
 
 ```
 <?xml version='1.0' encoding='UTF-8'?>
@@ -180,7 +180,7 @@ Hibernate映射的域类
 </hibernate-configuration>
 ```
 
-如果`Library`类在"ds2"数据源中，则会在`grails-app/conf/ds2_hibernate.cfg.xml`中注册：
+如果 `Library` 类在"ds2"数据源中，则会在 `grails-app/conf/ds2_hibernate.cfg.xml` 中注册：
 
 ```
 <?xml version='1.0' encoding='UTF-8'?>
@@ -197,7 +197,7 @@ Hibernate映射的域类
 对于使用hbm.xml文件映射的类，过程是相同的 - 只需在适当的hibernate.cfg.xml文件中列出它们。
 
 服务
-与域类一样，默认情况下，服务使用默认的`DataSource`和`PlatformTransactionManager`。要配置服务以使用不同的`DataSource`，请使用静态`datasource`属性，例如：
+与域类一样，默认情况下，服务使用默认的 `DataSource` 和 `PlatformTransactionManager` 。要配置服务以使用不同的 `DataSource` ，请使用静态 `datasource` 属性，例如：
 
 ```
 class DataService {
@@ -210,16 +210,16 @@ class DataService {
 }
 ```
 
-事务服务只能使用单个`DataSource`，因此请确保仅为`DataSource`与服务相同的域类进行更改。
+事务服务只能使用单个 `DataSource` ，因此请确保仅为 `DataSource` 与服务相同的域类进行更改。
 
 请注意，服务中指定的数据源对域类使用的数据源没有影响；这由域类中自己声明的数据源确定。它用于声明要使用的事务管理器。
 
-如果在`dataSource1`中有`Foo`域类，在`dataSource2`中有`Bar`域类，如果`WahooService`使用`dataSource1`，则保存新的`Foo`和新的`Bar`的服务方法将仅对`Foo`进行事务处理，因为它们共享相同的数据源。这个事务不会影响`Bar`实例。如果两者都需要事务处理，则需要使用两个服务和XA数据源进行两阶段提交，例如通过Atomikos插件。
+如果在 `dataSource1` 中有 `Foo` 域类，在 `dataSource2` 中有 `Bar` 域类，如果 `WahooService` 使用 `dataSource1` ，则保存新的 `Foo` 和新的 `Bar` 的服务方法将仅对 `Foo` 进行事务处理，因为它们共享相同的数据源。这个事务不会影响 `Bar` 实例。如果两者都需要事务处理，则需要使用两个服务和XA数据源进行两阶段提交，例如通过Atomikos插件。
 
 跨多个数据源的事务
 默认情况下，Grails不会尝试处理跨多个数据源的事务。
 
-您可以启用Grails使用最佳努力1PC模式来处理跨多个数据源的事务。为此，您必须在`application.yml`中设置`grails.transaction.chainedTransactionManagerPostProcessor.enabled`设置为`true`：
+您可以启用Grails使用最佳努力1PC模式来处理跨多个数据源的事务。为此，您必须在 `application.yml` 中设置 `grails.transaction.chainedTransactionManagerPostProcessor.enabled` 设置为 `true` ：
 
 ```
 grails:
@@ -232,9 +232,9 @@ https://www.javaworld.com/article/2077963/open-source-tools/distributed-transact
 
 这是一种涉及多个资源的同步单阶段提交的非XA模式。由于未使用<<ref-orgwiki-twophasecommit-2PC,2PC>>，因此它永远不会像<<ref-orgwiki-x-open-xa-XA,XA>>事务那样安全，但是如果参与者知晓妥协，通常足够。基本思想是尽可能延迟所有资源的提交，以便在事务中出现问题时只有基础设施故障（而非业务处理错误）。依赖于最佳努力1PC的系统认为基础设施故障足够罕见，可以承担风险以换取更高的吞吐量。如果业务处理服务也设计为幂等，那么实践中几乎不会出现问题。
 
-BE1PC实现是在Grails 2.3.6中添加的。在这一更改之前，附加数据源不参与Grails发起的事务。附加数据源中的事务基本上处于自动提交模式。在某些情况下，这可能是期望的行为。其中一个原因可能是性能：在每个新事务启动时，BE1PC事务管理器会为每个数据源创建一个新事务。通过在附加数据源的相应配置块中设置`transactional = false`，可以将该附加数据源排除在BE1PC事务管理器之外。从2.3.7版本开始，具有`readOnly = true`的数据源也将被排除在链式事务管理器之外。
+BE1PC实现是在Grails 2.3.6中添加的。在这一更改之前，附加数据源不参与Grails发起的事务。附加数据源中的事务基本上处于自动提交模式。在某些情况下，这可能是期望的行为。其中一个原因可能是性能：在每个新事务启动时，BE1PC事务管理器会为每个数据源创建一个新事务。通过在附加数据源的相应配置块中设置 `transactional = false` ，可以将该附加数据源排除在BE1PC事务管理器之外。从2.3.7版本开始，具有 `readOnly = true` 的数据源也将被排除在链式事务管理器之外。
 
-默认情况下，BE1PC实现会将所有实现Spring `link:{springapi}/org/springframework/transaction/PlatformTransactionManager.html[PlatformTransactionManager]`接口的bean添加到链式BE1PC事务管理器中。例如，在Grails应用程序上下文中的可能`link:{springapi}/org/springframework/jms/connection/JmsTransactionManager.html[JMSTransactionManager]`bean将会添加到Grails BE1PC事务管理器的事务管理器链中。
+默认情况下，BE1PC实现会将所有实现Spring `link:{springapi}/org/springframework/transaction/PlatformTransactionManager.html[PlatformTransactionManager]` 接口的bean添加到链式BE1PC事务管理器中。例如，在Grails应用程序上下文中的可能 `link:{springapi}/org/springframework/jms/connection/JmsTransactionManager.html[JMSTransactionManager]` bean将会添加到Grails BE1PC事务管理器的事务管理器链中。
 
 您可以使用以下配置选项从BE1PC实现中排除事务管理器bean：
 
@@ -246,9 +246,9 @@ grails:
       blacklistPattern: '.*'
 ```
 
-排除匹配是根据事务管理器bean的名称进行的。具有`transactional = false`或`readOnly = true`的数据源的事务管理器将被跳过，在这种情况下不需要使用此配置选项。
+排除匹配是根据事务管理器bean的名称进行的。具有 `transactional = false` 或 `readOnly = true` 的数据源的事务管理器将被跳过，在这种情况下不需要使用此配置选项。
 
 XA和两阶段提交
 当最佳努力1PC模式不适用于处理跨多个事务资源（不仅是数据源）的事务时，可以为Grails应用程序添加XA/2PC支持的几种选项。
 
-链接：{springdocs}/transaction.html#transaction-application-server-integration[Spring事务文档]包含有关集成不同应用程序服务器的JTA/XA事务管理器的信息。在这种情况下，可以在`resources.groovy`或`resources.xml`文件中手动配置名为`transactionManager`的bean。
+链接：{springdocs}/transaction.html#transaction-application-server-integration[Spring事务文档]包含有关集成不同应用程序服务器的JTA/XA事务管理器的信息。在这种情况下，可以在 `resources.groovy` 或 `resources.xml` 文件中手动配置名为 `transactionManager` 的bean。

@@ -1,10 +1,10 @@
-如果你不想利用`RestfulController`超类提供的功能，那么你可以手动实现每个HTTP动词。第一步是创建一个控制器：
+如果你不想利用 `RestfulController` 超类提供的功能，那么你可以手动实现每个HTTP动词。第一步是创建一个控制器：
 
 ```groovy
 $ grails create-controller book
 ```
 
-然后添加一些有用的导入并默认启用`readOnly`：
+然后添加一些有用的导入并默认启用 `readOnly` ：
 
 ```groovy
 import grails.gorm.transactions.*
@@ -30,13 +30,13 @@ PUT,/books/${id},update
 DELETE,/books/${id},delete
 ```
 
-请注意：如果你打算为REST资源实现HTML界面，则`create`和`edit`动作已经是必需的。它们是为了渲染适当的HTML表单来创建和编辑资源而存在的。如果不需要这些功能，它们可以被舍弃。
+请注意：如果你打算为REST资源实现HTML界面，则 `create` 和 `edit` 动作已经是必需的。它们是为了渲染适当的HTML表单来创建和编辑资源而存在的。如果不需要这些功能，它们可以被舍弃。
 
-实现REST动作的关键是Grails 2.3 中引入的`respond`方法。`respond`方法尝试为请求的内容类型（JSON、XML、HTML等）生成最合适的响应。
+实现REST动作的关键是Grails 2.3 中引入的 `respond` 方法。 `respond` 方法尝试为请求的内容类型（JSON、XML、HTML等）生成最合适的响应。
 
 ==== 实现'index'动作
 
-例如，要实现`index`动作，只需调用`respond`方法并传递希望回应的对象列表：
+例如，要实现 `index` 动作，只需调用 `respond` 方法并传递希望回应的对象列表：
 
 ```groovy
 def index(Integer max) {
@@ -45,9 +45,9 @@ def index(Integer max) {
 }
 ```
 
-请注意，在上面的例子中，我们还使用了`respond`方法的`model`参数来提供总计数。如果你打算通过用户界面支持分页，这是必需的。
+请注意，在上面的例子中，我们还使用了 `respond` 方法的 `model` 参数来提供总计数。如果你打算通过用户界面支持分页，这是必需的。
 
-`respond`方法将会使用内容协商来尝试根据客户端请求的内容类型提供最适当的响应（通过ACCEPT头部或文件扩展名指定）。
+`respond` 方法将会使用内容协商来尝试根据客户端请求的内容类型提供最适当的响应（通过ACCEPT头部或文件扩展名指定）。
 
 如果内容类型被确定为HTML，那么将会生成一个模型，该操作等同于：
 
@@ -58,13 +58,13 @@ def index(Integer max) {
 }
 ```
 
-通过提供一个`index.gsp`文件，你可以为给定的模型呈现适当的视图。如果内容类型不是HTML，则`respond`方法将尝试查找一个能够渲染传递对象的适当`grails.rest.render.Renderer`实例。这是通过检查`grails.rest.render.RendererRegistry`来完成的。
+通过提供一个 `index.gsp` 文件，你可以为给定的模型呈现适当的视图。如果内容类型不是HTML，则 `respond` 方法将尝试查找一个能够渲染传递对象的适当 `grails.rest.render.Renderer` 实例。这是通过检查 `grails.rest.render.RendererRegistry` 来完成的。
 
 默认情况下，已经为JSON和XML配置了渲染器。要了解如何注册自定义渲染器，请参阅“自定义响应渲染”部分。
 
 ==== 实现'show'动作
 
-`show`动作用于通过id显示个别资源，可以用一行Groovy代码（不包括方法签名）来实现：
+`show` 动作用于通过id显示个别资源，可以用一行Groovy代码（不包括方法签名）来实现：
 
 ```groovy
 def show(Book book) {
@@ -72,7 +72,7 @@ def show(Book book) {
 }
 ```
 
-通过将领域实例作为动作的参数指定，Grails将自动尝试使用请求的`id`参数查找领域实例。如果领域实例不存在，则将`null`传递到动作。如果传递的是 null，`respond`方法将返回 404 错误，否则再次尝试渲染适当的响应。如果格式是HTML，则会生成适当的模型。下面的动作与上述动作功能上是等价的：
+通过将领域实例作为动作的参数指定，Grails将自动尝试使用请求的 `id` 参数查找领域实例。如果领域实例不存在，则将 `null` 传递到动作。如果传递的是 null， `respond` 方法将返回 404 错误，否则再次尝试渲染适当的响应。如果格式是HTML，则会生成适当的模型。下面的动作与上述动作功能上是等价的：
 
 ```groovy
 def show(Book book) {

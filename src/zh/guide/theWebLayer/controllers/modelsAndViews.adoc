@@ -35,7 +35,7 @@ def index() {
 
 ==== 选择视图
 
-在前面的两个示例中，没有指定要渲染的 <<gsp,视图>> 的代码。那么Grails如何知道应该选择哪一个？答案在于约定。Grails会在`grails-app/views/book/show.gsp`位置查找该`show`动作的视图：
+在前面的两个示例中，没有指定要渲染的 <<gsp,视图>> 的代码。那么Grails如何知道应该选择哪一个？答案在于约定。Grails会在 `grails-app/views/book/show.gsp` 位置查找该 `show` 动作的视图：
 
 [source,groovy]
 ----
@@ -56,7 +56,7 @@ def show() {
 }
 ----
 
-在这种情况下，Grails将尝试在`grails-app/views/book/display.gsp`位置渲染一个视图。注意，Grails会自动使用`grails-app/views`目录中的`book`目录对视图位置进行限定。这很方便，但要访问共享视图，您应该使用绝对路径而不是相对路径：
+在这种情况下，Grails将尝试在 `grails-app/views/book/display.gsp` 位置渲染一个视图。注意，Grails会自动使用 `grails-app/views` 目录中的 `book` 目录对视图位置进行限定。这很方便，但要访问共享视图，您应该使用绝对路径而不是相对路径：
 
 [source,groovy]
 ----
@@ -66,20 +66,20 @@ def show() {
 }
 ----
 
-在这种情况下，Grails将尝试在`grails-app/views/shared/display.gsp`位置渲染一个视图。
+在这种情况下，Grails将尝试在 `grails-app/views/shared/display.gsp` 位置渲染一个视图。
 
 Grails还支持JSP作为视图，因此如果未在预期位置找到GSP但找到了JSP，它将使用JSP。
 
 [注意]
 ====
 
-与GSP不同，JSP必须位于目录路径`/src/main/webapp/WEB-INF/grails-app/views`中。
+与GSP不同，JSP必须位于目录路径 `/src/main/webapp/WEB-INF/grails-app/views` 中。
 
-另外，为确保JSP正常工作，请不要忽略在您的`build.gradle`文件中包含JSP和JSTL实现所需的依赖项。
+另外，为确保JSP正常工作，请不要忽略在您的 `build.gradle` 文件中包含JSP和JSTL实现所需的依赖项。
 
 ==== 为有命名空间的控制器选择视图
 
-如果控制器使用<<namespacedControllers,namespace>>属性为自身定义了命名空间，那将影响Grails在何处查找使用相对路径指定的视图的根目录。以带有命名空间的控制器渲染的视图的默认根目录为`grails-app/views/<命名空间名称>/<控制器名称>/`。如果在有命名空间的目录中找不到视图，那么Grails将会回退到非命名空间目录中查找视图。
+如果控制器使用<<namespacedControllers,namespace>>属性为自身定义了命名空间，那将影响Grails在何处查找使用相对路径指定的视图的根目录。以带有命名空间的控制器渲染的视图的默认根目录为 `grails-app/views/<命名空间名称>/<控制器名称>/` 。如果在有命名空间的目录中找不到视图，那么Grails将会回退到非命名空间目录中查找视图。
 
 请参阅下面的示例。
 
@@ -110,7 +110,7 @@ class ReportingController {
 
 ==== 渲染响应
 
-有时（例如在Ajax应用程序中），直接从控制器向响应中渲染文本或代码片段会更容易。为此，可以使用非常灵活的`render`方法：
+有时（例如在Ajax应用程序中），直接从控制器向响应中渲染文本或代码片段会更容易。为此，可以使用非常灵活的 `render` 方法：
 
 [source,groovy]
 ----
@@ -147,7 +147,7 @@ render(template: 'book_template', collection: Book.list())
 render(text: "<xml>some xml</xml>", contentType: "text/xml", encoding: "UTF-8")
 ----
 
-如果您打算使用Groovy的`MarkupBuilder`生成与`render`方法一起使用的HTML，请注意HTML元素和Grails标记之间的命名冲突，例如：
+如果您打算使用Groovy的 `MarkupBuilder` 生成与 `render` 方法一起使用的HTML，请注意HTML元素和Grails标记之间的命名冲突，例如：
 
 [source,groovy]
 ----
@@ -172,7 +172,7 @@ def login() {
 }
 ----
 
-实际上这将 <<tagsAsMethodCalls,调用form标签>>（这将返回一些文本，`MarkupBuilder`将忽略）。要正确输出`<form>`元素，请使用以下方式：
+实际上这将 <<tagsAsMethodCalls,调用form标签>>（这将返回一些文本， `MarkupBuilder` 将忽略）。要正确输出 `<form>` 元素，请使用以下方式：
 
 [source,groovy]
 ----

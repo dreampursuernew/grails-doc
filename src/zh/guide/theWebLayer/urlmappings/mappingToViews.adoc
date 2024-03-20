@@ -1,4 +1,4 @@
-您可以在不涉及控制器或动作的情况下解析URL以查看。例如，要将根URL“/”映射到位置为`grails-app/views/index.gsp`的GSP，您可以使用：
+您可以在不涉及控制器或动作的情况下解析URL以查看。例如，要将根URL“/”映射到位置为 `grails-app/views/index.gsp` 的GSP，您可以使用：
 
 ```groovy
 static mappings = {

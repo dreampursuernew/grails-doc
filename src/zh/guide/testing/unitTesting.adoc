@@ -21,4 +21,4 @@ class HelloControllerTests extends Specification implements ControllerUnitTest<H
 
 有关使用Grails测试支持编写测试的更多信息，请参见https://testing.grails.org[专用文档]。
 
-在Grails 3.2以下的版本中，使用基于`@TestMixin` AST转换的https://grails-plugins.github.io/grails-test-mixin-plugin/latest/guide/index.html[Grails测试混合框架]。这个库已被更简单、更适合IDE的trait实现取代。
+在Grails 3.2以下的版本中，使用基于 `@TestMixin` AST转换的https://grails-plugins.github.io/grails-test-mixin-plugin/latest/guide/index.html[Grails测试混合框架]。这个库已被更简单、更适合IDE的trait实现取代。

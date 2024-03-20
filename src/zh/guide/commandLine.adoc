@@ -78,7 +78,7 @@ features:
 grails create-app myapp
 ----
 
-会将默认包设置为`myapp`。
+会将默认包设置为 `myapp` 。
 
 如果您想要在创建应用程序时指定自己的默认包，可以通过在应用程序名称前添加包名来实现，例如：
 
@@ -91,7 +91,7 @@ grails create-app com.example.myapp
 
 === Gradle构建工具
 
-Grails现在使用Gradle构建系统进行项目管理。项目的构建配置在`build.gradle`文件中指定，您可以在其中定义项目的关键方面，例如版本、所需依赖项以及这些依赖项应该从哪些仓库获取。以下是如何完成的示例：
+Grails现在使用Gradle构建系统进行项目管理。项目的构建配置在 `build.gradle` 文件中指定，您可以在其中定义项目的关键方面，例如版本、所需依赖项以及这些依赖项应该从哪些仓库获取。以下是如何完成的示例：
 
 [source, groovy]
 ----

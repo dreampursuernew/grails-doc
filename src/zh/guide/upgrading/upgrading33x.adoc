@@ -48,7 +48,7 @@ gormVersion=7.0.4
 
 ### 将 GORM DSL 条目移到 runtime.groovy
 
-GORM DSL 条目应该移到 `runtime.groovy`。例如，在 `application.groovy` 中使用以下 GORM 配置是不受支持的，会导致应用程序崩溃：
+GORM DSL 条目应该移到 `runtime.groovy` 。例如，在 `application.groovy` 中使用以下 GORM 配置是不受支持的，会导致应用程序崩溃：
 
 [source, groovy]
 ----
@@ -157,7 +157,7 @@ bootRun {
 }
 ----
 
-Grails 4 应用程序是基于 Spring Boot 2.1 构建的。从 Spring Boot 2.0 开始，`addResources` 属性不再存在。相反，你需要将 `sourceResources` 属性设置为你想要使用的源集。通常是 `sourceSets.main`。这在 Spring Boot Gradle 插件文档中有描述。
+Grails 4 应用程序是基于 Spring Boot 2.1 构建的。从 Spring Boot 2.0 开始， `addResources` 属性不再存在。相反，你需要将 `sourceResources` 属性设置为你想要使用的源集。通常是 `sourceSets.main` 。这在 Spring Boot Gradle 插件文档中有描述。
 
 你的 Grails 4 应用程序的 `build.gradle` 可以配置为：
 
@@ -173,13 +173,13 @@ bootRun {
 
 ### 为 Grails 插件构建可执行的 JAR 包
 
-Spring Boot 2.1 包含了对 H2 数据库 Web 控制台的原生支持。由于这已经包含在 Spring Boot 中，因此相应的功能已从 Grails 中移除。因此，H2 控制台现在可用于 `/h2-console`，而不是之前的 `/dbconsole`。有关更多信息，请参阅 Spring Boot 文档中关于使用 H2 Web 控制台的部分。
+Spring Boot 2.1 包含了对 H2 数据库 Web 控制台的原生支持。由于这已经包含在 Spring Boot 中，因此相应的功能已从 Grails 中移除。因此，H2 控制台现在可用于 `/h2-console` ，而不是之前的 `/dbconsole` 。有关更多信息，请参阅 Spring Boot 文档中关于使用 H2 Web 控制台的部分。
 
 ### 升级 Hibernate
 
 如果你在 Grails 3 应用程序中使用 GORM 来实现 Hibernate，你需要升级到 Hibernate 5.4。
 
-类似于以下的 Grails 3 `build.gradle`：
+类似于以下的 Grails 3 `build.gradle` ：
 
 [source, groovy]
 .build.gradle
@@ -367,7 +367,7 @@ environments {
 | `org.grails.plugins.domain.DomainClassPluginSupport` |
 | `org.grails.plugins.domain.support.GormApiSupport` |
 | `org.grails.plugins.domain.support.GrailsDomainClassCleaner` | 现在由 `org.grails.datastore.mapping.model.MappingContext` 处理。
-| `grails.validation.AbstractConstraint` | 使用 `org.grails.datastore.gorm.validation.constraints.AbstractConstraint`。
+| `grails.validation.AbstractConstraint` | 使用 `org.grails.datastore.gorm.validation.constraints.AbstractConstraint` 。
 | `grails.validation.AbstractVetoingConstraint` | `org.grails.datastore.gorm.validation.constraints.AbstractVetoingConstraint`
 | `grails.validation.CascadingValidator` | `grails.gorm.validation.CascadingValidator`
 | `grails.validation.ConstrainedProperty` | `grails.gorm.validation.ConstrainedProperty`
@@ -402,7 +402,7 @@ environments {
 | `org.grails.validation.routines.RegexValidator` | 使用更新的 commons-validation 版本
 | `org.grails.validation.routines.ResultPair` | 使用更新的 commons-validation 版本
 | `org.grails.validation.routines.UrlValidator` | 使用更新的 commons-validation 版本
-| `grails.web.JSONBuilder`| `groovy.json.StreamingJsonBuilder`
+| `grails.web.JSONBuilder` | `groovy.json.StreamingJsonBuilder`
 |===
 
 ### Grails-Java8

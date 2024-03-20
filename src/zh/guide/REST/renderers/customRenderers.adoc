@@ -1,4 +1,4 @@
-如果您想要更多地控制呈现或者偏好使用自己的编组技术，那么您可以实现自己的`Renderer`实例。 下面是一个简单的实现示例，定制了`Book`类的呈现：
+如果您想要更多地控制呈现或者偏好使用自己的编组技术，那么您可以实现自己的 `Renderer` 实例。 下面是一个简单的实现示例，定制了 `Book` 类的呈现：
 
 ```groovy
 package myapp
@@ -19,9 +19,9 @@ class BookXmlRenderer extends AbstractRenderer<Book> {
 }
 ```
 
-`AbstractRenderer` 超类具有一个构造函数，接受要呈现的类和接受的`MimeType`（通过 ACCEPT 头或文件扩展名）的渲染器。
+`AbstractRenderer` 超类具有一个构造函数，接受要呈现的类和接受的 `MimeType` （通过 ACCEPT 头或文件扩展名）的渲染器。
 
-要配置此呈现器，只需将其添加为一个 bean 到 `grails-app/conf/spring/resources.groovy`：
+要配置此呈现器，只需将其添加为一个 bean 到 `grails-app/conf/spring/resources.groovy` ：
 
 ```groovy
 beans = {
@@ -29,7 +29,7 @@ beans = {
 }
 ```
 
-结果是所有`Book`实例将以以下格式呈现：
+结果是所有 `Book` 实例将以以下格式呈现：
 
 ```groovy
 <book id="1" title="The Stand"/>
@@ -39,7 +39,7 @@ beans = {
 
 容器呈现器
 
-`grails.rest.render.ContainerRenderer` 是一个用于呈现对象容器（列表、映射、集合等）响应的呈现器。 该接口与`Renderer`接口几乎相同，只是添加了`getComponentType()`方法，该方法应返回“包容”的类型。 例如：
+`grails.rest.render.ContainerRenderer` 是一个用于呈现对象容器（列表、映射、集合等）响应的呈现器。 该接口与 `Renderer` 接口几乎相同，只是添加了 `getComponentType()` 方法，该方法应返回“包容”的类型。 例如：
 
 ```groovy
 class BookListRenderer implements ContainerRenderer<List, Book> {

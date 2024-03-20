@@ -4,13 +4,13 @@ Grails带有很多命令行功能，您可能会发现在您自己的脚本中�
 
 [testApp（）]
 
-上面的代码将调用`test-app`命令。您还可以使用方法参数传递参数：
+上面的代码将调用 `test-app` 命令。您还可以使用方法参数传递参数：
 
 [testApp('--debug-jvm')]
 
 调用Gradle
 
-您可以使用`gradle`属性调用Gradle目录，而不是调用另一个Grails CLI命令。
+您可以使用 `gradle` 属性调用Gradle目录，而不是调用另一个Grails CLI命令。
 
 [gradle.compileGroovy()]
 
