@@ -1,6 +1,6 @@
 ==== 程序化文件上传
 
-Grails支持使用Spring的{springapi}org/springframework/web/multipart/MultipartHttpServletRequest.html[MultipartHttpServletRequest]接口进行文件上传。文件上传的第一步是创建一个类似于以下的多部分表单：
+Grails支持使用Spring的 {springapi}org/springframework/web/multipart/MultipartHttpServletRequest.html[MultipartHttpServletRequest]接口进行文件上传。文件上传的第一步是创建一个类似于以下的多部分表单：
 
 [source,xml]
 ----
@@ -30,7 +30,7 @@ def upload() {
 }
 ----
 
-这对于将文件传输到其他目的地并直接操作文件非常方便，因为您可以使用{springapi}org/springframework/web/multipart/MultipartFile.html[MultipartFile]接口获取 `InputStream` 等内容。
+这对于将文件传输到其他目的地并直接操作文件非常方便，因为您可以使用 {springapi}org/springframework/web/multipart/MultipartFile.html[MultipartFile]接口获取 `InputStream` 等内容。
 
 ==== 数据绑定进行文件上传
 
@@ -48,14 +48,14 @@ class Image {
 }
 ----
 
-如果您在构造函数中使用 `params` 对象创建图像，如下面的示例，Grails将自动将文件内容绑定为 `byte[]` 到 `myFile` 属性：
+如果您在构造函数中使用 `params` 对象创建图像，如下面的示例，Grails将自动将文件内容绑定为 ` byte[]` 到 `myFile` 属性：
 
 [source,groovy]
 ----
 def img = new Image(params)
 ----
 
-您应该设置link:../ref/Constraints/size.html[size]或link:../ref/Constraints/maxSize.html[maxSize]约束，否则您的数据库可能会创建带有无法容纳合理大小文件的小列大小。例如，H2和MySQL默认将 `byte[]` 属性的blob大小设置为255字节。
+您应该设置 link:../ref/Constraints/size.html[size]或 link:../ref/Constraints/maxSize.html[maxSize]约束，否则您的数据库可能会创建带有无法容纳合理大小文件的小列大小。例如，H2和MySQL默认将 ` byte[]` 属性的blob大小设置为255字节。
 
 还可以通过将图像上的 `myFile` 属性的类型更改为String类型，将文件的内容设置为字符串：
 
@@ -91,7 +91,7 @@ grails:
 
 `maxRequestSize` = 允许multipart/form-data请求的最大大小。
 
-请谨记https://www.owasp.org/index.php/Unrestricted_File_Upload[OWASP建议-无限制文件上传]
+请谨记 https://www.owasp.org/index.php/Unrestricted_File_Upload[OWASP建议-无限制文件上传]
 
 注意：限制文件大小到最大值以防止拒绝服务攻击。
 

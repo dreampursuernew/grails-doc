@@ -1,1 +1,34 @@
-有几种方法可以自定义 `Application` 类。\r\n\r\n\r\n=== 自定义扫描\r\n\r\n\r\n默认情况下，Grails将扫描所有已知的源目录以获取控制器、领域类等，但是，如果您希望扫描其他JAR文件中的包，则可以通过覆盖 `Application` 类的 `packageNames()` 方法来实现：\r\n\r\n[source,groovy]\r\n----\r\nclass Application extends GrailsAutoConfiguration {\r\n    @Override\r\n    Collection<String> packageNames() {\r\n        super.packageNames() + ['my.additional.package']\r\n    }\r\n\r\n    ...\r\n}\r\n----\r\n\r\n\r\n=== 注册其他Bean\r\n\r\n\r\n `Application` 类还可以用作Spring bean定义的来源，只需定义一个带有{springapi}org/springframework/context/annotation/Bean.html[Bean]注解的方法，返回的对象将成为一个Spring bean。方法的名称将用作bean的名称：\r\n\r\n[source,groovy]\r\n----\r\nclass Application extends GrailsAutoConfiguration {\r\n    @Bean\r\n    MyType myBean() {\r\n        return new MyType()\r\n    }\r\n\r\n    ...\r\n}\r\n----\r\n"
+有几种方法可以自定义 `Application` 类。
+
+### 自定义扫描
+
+默认情况下，Grails 将扫描所有已知源目录以查找控制器、领域类等。但是，如果您希望扫描其他 JAR 文件中的包，则可以通过覆盖 `Application` 类的 `packageNames()` 方法来实现：
+
+[source,groovy]
+----
+class Application extends GrailsAutoConfiguration {
+    @Override
+    Collection<String> packageNames() {
+        super.packageNames() + ['my.additional.package']
+    }
+
+    ...
+}
+----
+
+
+### 注册额外的 Bean
+
+`Application` 类还可以用作 Spring bean 定义的源。只需定义一个使用 {springapi}org/springframework/context/annotation/Bean.html[Bean] 注释的方法，返回的对象将成为 Spring bean。方法的名称将用作 bean 的名称：
+
+[source,groovy]
+----
+class Application extends GrailsAutoConfiguration {
+    @Bean
+    MyType myBean() {
+        return new MyType()
+    }
+
+    ...
+}
+----

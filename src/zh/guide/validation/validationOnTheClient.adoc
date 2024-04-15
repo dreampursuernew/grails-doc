@@ -1,13 +1,13 @@
 显示错误
 
-通常，如果出现验证错误，您将重定向回视图进行呈现。一旦在那里，你需要一些方法来显示错误。Grails支持一组丰富的标签来处理错误。要将错误渲染为列表，您可以使用link:{gspdocs}/ref/Tags/renderErrors.html[renderErrors]：
+通常，如果出现验证错误，您将重定向回视图进行呈现。一旦在那里，你需要一些方法来显示错误。Grails支持一组丰富的标签来处理错误。要将错误渲染为列表，您可以使用 link:{gspdocs}/ref/Tags/renderErrors.html[renderErrors]：
 
 [source,xml]
 ----
 <g:renderErrors bean="${user}" />
 ----
 
-如果您需要更多控制，可以使用link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors]和link:{gspdocs}/ref/Tags/eachError.html[eachError]:
+如果您需要更多控制，可以使用 link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors]和 link:{gspdocs}/ref/Tags/eachError.html[eachError]:
 
 [source,xml]
 ----
@@ -23,7 +23,7 @@
 
 突出显示错误
 
-当字段被错误输入时，通常会使用红框或某种指示符进行突出显示。这也可以通过使用link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors]作为方法来实现。例如：
+当字段被错误输入时，通常会使用红框或某种指示符进行突出显示。这也可以通过使用 link:{gspdocs}/ref/Tags/hasErrors.html[hasErrors]作为方法来实现。例如：
 
 [source,xml]
 ----
@@ -37,7 +37,7 @@
 
 检索输入值
 
-每个错误实际上是Spring中的{springapi}org/springframework/validation/FieldError.html[FieldError]类的一个实例，并且在内部保留了原始输入值。这很有用，因为您可以使用错误对象来使用link:../ref/Tags/fieldValue.html[fieldValue]标记来恢复用户输入的值：
+每个错误实际上是Spring中的 {springapi}org/springframework/validation/FieldError.html[FieldError]类的一个实例，并且在内部保留了原始输入值。这很有用，因为您可以使用错误对象来使用 link:../ref/Tags/fieldValue.html[fieldValue]标记来恢复用户输入的值：
 
 [source,xml]
 ----

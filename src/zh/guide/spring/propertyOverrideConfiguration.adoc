@@ -1,4 +1,4 @@
-Grails支持通过link:conf.html[配置]设置bean属性。
+Grails支持通过 link:conf.html[配置]设置bean属性。
 
 您可以使用bean的名称和值在 `beans` 块中定义它们：
 

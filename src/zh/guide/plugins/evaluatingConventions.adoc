@@ -1,8 +1,8 @@
-在考虑基于约定提供运行时配置之前，您首先需要了解如何从插件中评估这些约定。每个插件都有一个隐式的“application”变量，它是{apiDocs}grails/core/GrailsApplication.html[GrailsApplication]接口的一个实例。
+在考虑基于约定提供运行时配置之前，您首先需要了解如何从插件中评估这些约定。每个插件都有一个隐式的“application”变量，它是 {apiDocs}grails/core/GrailsApplication.html[GrailsApplication]接口的一个实例。
 
 “GrailsApplication”接口提供了评估项目中约定的方法，并在内部存储了应用程序中所有工件类的引用。
 
-工件实现了{apiDocs}grails/core/GrailsClass.html[GrailsClass]接口，代表了Grails资源，如控制器或标签库。例如，要获取所有“GrailsClass”实例，您可以执行以下操作：
+工件实现了 {apiDocs}grails/core/GrailsClass.html[GrailsClass]接口，代表了Grails资源，如控制器或标签库。例如，要获取所有“GrailsClass”实例，您可以执行以下操作：
 
 [source, groovy]
 ----
@@ -39,4 +39,4 @@ for (controllerClass in application.controllerClasses) {
 * `getNaturalName` - 以自然术语返回属性的名称（例如，“lastName”变为“Last Name”）
 * `getPackageName` - 返回包名
 
-有关完整参考，请参阅{apiDocs}grails/core/GrailsClass.html[javadoc API]。
+有关完整参考，请参阅 {apiDocs}grails/core/GrailsClass.html[javadoc API]。

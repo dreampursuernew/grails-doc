@@ -1,1 +1,1 @@
-在Grails中没有为RSS或Atom提供直接支持。您可以使用链接：../ref/Controllers/render.html[render]方法的XML功能构建RSS或Atom订阅源。
+在Grails中没有为RSS或Atom提供直接支持。您可以使用链接： ../ref/Controllers/render.html[render]方法的XML功能构建RSS或Atom订阅源。

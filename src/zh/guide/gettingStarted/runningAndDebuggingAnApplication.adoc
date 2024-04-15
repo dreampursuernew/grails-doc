@@ -19,4 +19,4 @@ Grails应用程序可以使用内置的Tomcat服务器使用 `bootRun` 命令来
 ./gradlew bootRun --debug-jvm
 ----
 
-有关 `bootRun` 命令的更多信息，请参阅链接:../ref/Command%20Line/bootRun.html[Grails参考指南]。
+有关 `bootRun` 命令的更多信息，请参阅链接:../ref/Command% 20Line/bootRun.html[Grails参考指南]。

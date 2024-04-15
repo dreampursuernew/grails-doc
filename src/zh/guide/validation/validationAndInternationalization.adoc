@@ -27,52 +27,52 @@
 |约束
 |错误代码
 
-|link:../ref/Constraints/blank.html[blank]
+| link:../ref/Constraints/blank.html[blank]
 |'className.propertyName.blank'
 
-|link:../ref/Constraints/creditCard.html[creditCard]
+| link:../ref/Constraints/creditCard.html[creditCard]
 |'className.propertyName.creditCard.invalid'
 
-|link:../ref/Constraints/email.html[email]
+| link:../ref/Constraints/email.html[email]
 |'className.propertyName.email.invalid'
 
-|link:../ref/Constraints/inList.html[inList]
+| link:../ref/Constraints/inList.html[inList]
 |'className.propertyName.not.inList'
 
-|link:../ref/Constraints/matches.html[matches]
+| link:../ref/Constraints/matches.html[matches]
 |'className.propertyName.matches.invalid'
 
-|link:../ref/Constraints/max.html[max]
+| link:../ref/Constraints/max.html[max]
 |'className.propertyName.max.exceeded'
 
-|link:../ref/Constraints/maxSize.html[maxSize]
+| link:../ref/Constraints/maxSize.html[maxSize]
 |'className.propertyName.maxSize.exceeded'
 
-|link:../ref/Constraints/min.html[min]
+| link:../ref/Constraints/min.html[min]
 |'className.propertyName.min.notmet'
 
-|link:../ref/Constraints/minSize.html[minSize]
+| link:../ref/Constraints/minSize.html[minSize]
 |'className.propertyName.minSize.notmet'
 
-|link:../ref/Constraints/notEqual.html[notEqual]
+| link:../ref/Constraints/notEqual.html[notEqual]
 |'className.propertyName.notEqual'
 
-|link:../ref/Constraints/nullable.html[nullable]
+| link:../ref/Constraints/nullable.html[nullable]
 |'className.propertyName.nullable'
 
-|link:../ref/Constraints/range.html[range]
+| link:../ref/Constraints/range.html[range]
 |'className.propertyName.range.toosmall'或'className.propertyName.range.toobig'
 
-|link:../ref/Constraints/size.html[size]
+| link:../ref/Constraints/size.html[size]
 |'className.propertyName.size.toosmall'或'className.propertyName.size.toobig'
 
-|link:../ref/Constraints/unique.html[unique]
+| link:../ref/Constraints/unique.html[unique]
 |'className.propertyName.unique'
 
-|link:../ref/Constraints/url.html[url]
+| link:../ref/Constraints/url.html[url]
 |'className.propertyName.url.invalid'
 
-|link:../ref/Constraints/validator.html[validator]
+| link:../ref/Constraints/validator.html[validator]
 |'classname.propertyName.'+ 闭包返回的字符串
 
 |===
@@ -89,7 +89,7 @@ user.login.blank=您必须指定登录名！
 
 显示消息
 
-链接：{gspdocs}/ref/Tags/renderErrors.html[renderErrors] 标记将使用链接：{gspdocs}/ref/Tags/message.html[message] 标记自动查找消息。如果您需要更多渲染控制，您可以自行处理：
+链接： {gspdocs}/ref/Tags/renderErrors.html[renderErrors] 标记将使用链接： {gspdocs}/ref/Tags/message.html[message] 标记自动查找消息。如果您需要更多渲染控制，您可以自行处理：
 
 [source，xml]
 ----
@@ -102,4 +102,4 @@ user.login.blank=您必须指定登录名！
 </g:hasErrors>
 ----
 
-在这个例子中，在链接：{gspdocs}/ref/Tags/eachError.html[eachError] 标记的主体内，我们使用链接：{gspdocs}/ref/Tags/message.html[message] 标记以及其 `错误` 参数来读取给定错误的消息。
+在这个例子中，在链接： {gspdocs}/ref/Tags/eachError.html[eachError] 标记的主体内，我们使用链接： {gspdocs}/ref/Tags/message.html[message] 标记以及其 `错误` 参数来读取给定错误的消息。

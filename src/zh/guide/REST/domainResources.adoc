@@ -14,7 +14,7 @@ class Book {
 }
 ```
 
-仅通过添加 `Resource` 转换并指定URI，您的领域类将自动以XML或JSON格式作为REST资源提供。这个转换会自动注册所需的链接：theWebLayer.html#restfulMappings[RESTful URL映射]并创建一个名为 `BookController` 的控制器。
+仅通过添加 `Resource` 转换并指定URI，您的领域类将自动以XML或JSON格式作为REST资源提供。这个转换会自动注册所需的链接： theWebLayer.html#restfulMappings[RESTful URL映射]并创建一个名为 `BookController` 的控制器。
 
 您可以通过向 `BootStrap.groovy` 中添加一些测试数据来尝试它：
 
@@ -45,7 +45,7 @@ def init = { servletContext ->
 ```groovy
 import grails.rest.*
 
-@Resource(uri='/books', formats=['json', 'xml'])
+@Resource(uri='/books', formats= ['json', 'xml'])
 class Book {
     ...
 }
@@ -62,7 +62,7 @@ grails.mime.types = [
 ]
 ```
 
-有关更多信息，请参阅用户指南中关于链接:theWebLayer.html#contentNegotiation[配置Mime类型]的部分。
+有关更多信息，请参阅用户指南中关于链接 :theWebLayer.html#contentNegotiation[配置Mime类型]的部分。
 
 除了在URI中使用文件扩展名之外，您还可以使用ACCEPT标头来获取JSON响应。以下是使用Unix `curl` 工具的示例：
 
@@ -71,7 +71,7 @@ $ curl -i -H "Accept: application/json" localhost:8080/books/1
 {"id":1,"title":"The Stand"}
 ```
 
-这得益于Grails的链接:theWebLayer.html#contentNegotiation[内容协商]功能。
+这得益于Grails的链接 :theWebLayer.html#contentNegotiation[内容协商]功能。
 
 您可以通过发出 `POST` 请求来创建新资源：
 

@@ -290,7 +290,7 @@ seleniumSafariDriverVersion=3.14.0
 <4> 包括 https://github.com/grails3-plugins/geb[Grails Geb Plugin 依赖项]，它具有对 `geb-spock` 的传递依赖。这是与 Geb 和 Spock 一起使用所必需的依赖项。
 <5> Selenium 和不同的驱动程序依赖项。
 
-还要在 `src/integration-test/resources/GebConfig.groovy` 中创建 http://www.gebish.org/manual/current/#configuration[Geb 配置] 文件。
+还要在 `src/integration-test/resources/GebConfig.groovy` 中创建 http://www.gebish.org/manual/current/# configuration[Geb 配置] 文件。
 
 [source, groovy]
 .src/integration-test/resources/GebConfig.groovy

@@ -1,12 +1,12 @@
 功能测试涉及对正在运行的应用程序进行HTTP请求，并验证其结果行为。这对于端到端测试场景非常有用，例如对JSON API发出REST调用。
 
-Grails默认提供了使用http://www.gebish.org[Geb框架]编写功能测试的支持。要创建功能测试，您可以使用 `create-functional-test` 命令，该命令将创建一个新的功能测试：
+Grails默认提供了使用 http://www.gebish.org[Geb框架]编写功能测试的支持。要创建功能测试，您可以使用 `create-functional-test` 命令，该命令将创建一个新的功能测试：
 
 ```groovy
 $ grails create-functional-test MyFunctional
 ```
 
-上述命令将在 `src/integration-test/groovy` 目录中创建一个名为 `MyFunctionalSpec.groovy` 的新Spock spec。该测试使用{apiDocs}grails/test/mixin/integration/Integration.html[Integration]注解，指示它是一个集成测试，并扩展了 `GebSpec` 超类：
+上述命令将在 `src/integration-test/groovy` 目录中创建一个名为 `MyFunctionalSpec.groovy` 的新Spock spec。该测试使用 {apiDocs}grails/test/mixin/integration/Integration.html[Integration]注解，指示它是一个集成测试，并扩展了 `GebSpec` 超类：
 
 ```groovy
 @Integration
@@ -34,7 +34,7 @@ class HomeSpec extends GebSpec {
 
 此外，应用程序在JVM中加载为测试，这意味着测试可以完全访问应用程序状态，并可以直接与数据服务交互，例如GORM来设置和清理测试数据。
 
-`Integration` 注解支持一个可选的 `applicationClass` 属性，该属性可用于指定用于功能测试的应用程序类。该类必须扩展{apiDocs}grails/boot/config/GrailsAutoConfiguration.html[GrailsAutoConfiguration]。
+`Integration` 注解支持一个可选的 `applicationClass` 属性，该属性可用于指定用于功能测试的应用程序类。该类必须扩展 {apiDocs}grails/boot/config/GrailsAutoConfiguration.html[GrailsAutoConfiguration]。
 
 如果未指定 `applicationClass` ，则测试运行时环境将尝试动态定位应用程序类，这在多项目构建中可能会有问题，因为可能存在多个应用程序类。
 

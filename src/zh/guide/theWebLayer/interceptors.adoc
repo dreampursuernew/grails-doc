@@ -1,4 +1,4 @@
-Grails提供了独立的拦截器，使用link:../ref/Command%20Line/create-interceptor.html[create-interceptor]命令：
+Grails提供了独立的拦截器，使用link:../ref/Command% 20Line/create-interceptor.html[create-interceptor]命令：
 
 [source，bash]
 ----

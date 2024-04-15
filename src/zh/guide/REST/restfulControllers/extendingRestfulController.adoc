@@ -22,7 +22,7 @@ class BookController extends RestfulController<Book> {
 
 注意：仅当控制器提供HTML界面时才需要 `create` 和 `edit` 操作。
 
-例如，如果您有一个链接:theWebLayer.html#restfulMappings[nested resource]，那么您通常希望同时查询父资源和子资源标识符。例如，考虑以下URL映射：
+例如，如果您有一个链接 :theWebLayer.html#restfulMappings[nested resource]，那么您通常希望同时查询父资源和子资源标识符。例如，考虑以下URL映射：
 
 ```groovy
 "/authors"(resources:'author') {

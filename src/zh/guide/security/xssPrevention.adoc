@@ -12,7 +12,7 @@
 
 警告：尽管Grails默认是安全的，但这并不保证您的应用程序不会受到XSS风格的攻击。这种攻击成功的可能性比通常情况下要小，但开发人员应始终意识到潜在的攻击向量，并在测试期间尝试发现应用程序中的漏洞。切换到不安全的默认值也很容易，从而增加引入漏洞的风险。
 
-有关XSS的更多详细信息，请参阅https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet#XSS_Prevention_Rules[OWASP-XSS防护规则]和https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting[OWASP-XSS的类型]。XSS的类型包括：[存储型XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)#Stored_XSS_Attacks)、[反射型XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)#Reflected_XSS_Attacks)和https://www.owasp.org/index.php/DOM_Based_XSS[基于DOM的XSS]。由于JavaScript客户端端模板和单页面应用的普及，https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet[基于DOM的XSS预防]变得更加重要。
+有关XSS的更多详细信息，请参阅https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet# XSS_Prevention_Rules[OWASP-XSS防护规则]和 https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting[OWASP-XSS的类型]。XSS的类型包括 ： [存储型XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)# Stored_XSS_Attacks)、 [反射型XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)#Reflected_XSS_Attacks)和 https://www.owasp.org/index.php/DOM_Based_XSS[基于DOM的XSS]。由于JavaScript客户端端模板和单页面应用的普及， https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet[基于DOM的XSS预防]变得更加重要。
 
 Grails编解码器主要用于防止存储和反射型XSS攻击。Grails 2.4包含HTMLJS编解码器，在防止某些基于DOM的XSS攻击方面有所帮助。
 

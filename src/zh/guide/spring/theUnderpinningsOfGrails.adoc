@@ -1,11 +1,11 @@
-Grails实际上是一个伪装成[Spring Boot]应用程序的应用。Spring Boot是Spring框架内置的MVC Web应用程序框架。虽然Spring Boot在易用性方面存在一些困难，但设计和架构却非常出色。对于Grails来说，它是构建另一个框架的完美基础。
+Grails实际上是一个伪装成 [Spring Boot]应用程序的应用。Spring Boot是Spring框架内置的MVC Web应用程序框架。虽然Spring Boot在易用性方面存在一些困难，但设计和架构却非常出色。对于Grails来说，它是构建另一个框架的完美基础。
 
 Grails在以下方面利用了Spring Boot：
 
--基本控制器逻辑 - Grails继承了Spring的{springapi}org/springframework/web/servlet/DispatcherServlet.html[DispatcherServlet]，并使用它来委托给Grails的链接：theWebLayer.html#controllers[controllers]
--数据绑定和验证 - Grails的链接：validation.html[validation]和链接：theWebLayer.html#dataBinding[data binding]功能是建立在Spring提供的功能基础之上的
--运行时配置 - Grails的整个运行时约定系统是通过Spring的{springapi}org/springframework/context/ApplicationContext.html[ApplicationContext]连接在一起的
--事务 - Grails在链接：GORM.html[GORM]中使用了Spring的事务管理
+-基本控制器逻辑 - Grails继承了Spring的 {springapi}org/springframework/web/servlet/DispatcherServlet.html[DispatcherServlet]，并使用它来委托给Grails的链接： theWebLayer.html#controllers[controllers]
+-数据绑定和验证 - Grails的链接： validation.html[validation]和链接： theWebLayer.html#dataBinding[data binding]功能是建立在Spring提供的功能基础之上的
+-运行时配置 - Grails的整个运行时约定系统是通过Spring的 {springapi}org/springframework/context/ApplicationContext.html[ApplicationContext]连接在一起的
+-事务 - Grails在链接： GORM.html[GORM]中使用了Spring的事务管理
 
 换句话说，Grails中嵌入了Spring一直运行。
 
@@ -13,9 +13,9 @@ Grails在以下方面利用了Spring Boot：
 
 Spring开发者通常很想了解Grails的 `ApplicationContext` 实例是如何构建的。其基本原理如下。
 
--GrailsAutoConfiguration注册了GrailsApplicationPostProcessor bean。这个bean配置了{apiDocs}grails/core/GrailsApplication.html[GrailsApplication]实例和{apiDocs}grails/plugins/GrailsPluginManager.html[GrailsPluginManager]。
+-GrailsAutoConfiguration注册了GrailsApplicationPostProcessor bean。这个bean配置了 {apiDocs}grails/core/GrailsApplication.html[GrailsApplication]实例和 {apiDocs}grails/plugins/GrailsPluginManager.html[GrailsPluginManager]。
 -GrailsApplicationPostProcessor还实现了 `BeanDefinitionRegistryPostProcessor` ，在 `postProcessBeanDefinitionRegistry` 期间执行当前应用程序中的 `grails-app/conf/spring/resources.groovy` ，然后为每个插件调用 `doWithSpring` 方法，以确保所有bean定义都在应用上下文中注册。
 
 ==== 配置的Spring Beans
 
-Grails的大部分配置都是在运行时发生的。每个链接：plugins.html[plugin]可以配置Spring beans，并在 `ApplicationContext` 中注册。要了解哪些bean被配置，请参考参考指南，该指南描述了每个Grails插件及其配置的bean。
+Grails的大部分配置都是在运行时发生的。每个链接： plugins.html[plugin]可以配置Spring beans，并在 `ApplicationContext` 中注册。要了解哪些bean被配置，请参考参考指南，该指南描述了每个Grails插件及其配置的bean。

@@ -1,6 +1,6 @@
-`Application` 类还实现了{apiDocs}grails/core/GrailsApplicationLifeCycle.html[GrailsApplicationLifeCycle]接口，所有插件都实现了这个接口。
+`Application` 类还实现了 {apiDocs}grails/core/GrailsApplicationLifeCycle.html[GrailsApplicationLifeCycle]接口，所有插件都实现了这个接口。
 
-这意味着 `Application` 类可以用来执行与插件相同的功能。您可以通过重写适当的方法来覆盖link:plugins.html#hookingIntoRuntimeConfiguration[常规插件钩子]，例如 `doWithSpring` ， `doWithApplicationContext` 等：
+这意味着 `Application` 类可以用来执行与插件相同的功能。您可以通过重写适当的方法来覆盖 link:plugins.html#hookingIntoRuntimeConfiguration[常规插件钩子]，例如 `doWithSpring` ， `doWithApplicationContext` 等：
 
 [source，groovy]
 ----

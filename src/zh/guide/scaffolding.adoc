@@ -1,6 +1,6 @@
 搭建脚手架可让您为域类生成一些基本的CRUD接口，其中包括：
 
-* 必要的链接：theWebLayer.html#gsp[views]
+* 必要的链接： theWebLayer.html#gsp[views]
 * 控制器动作用于创建/读取/更新/删除（CRUD）操作
 
 应用表达对搭建插件的依赖的方式是在 `build.gradle` 中包含以下内容。
@@ -45,7 +45,7 @@ static scaffold = true
 
 不再支持Grails 3.0以上版本。
 
-如果您喜欢将领域模型保留在Java中，并https://hibernate.org/[与Hibernate映射]，您仍然可以使用搭建，只需导入域类并将其名称设置为 `scaffold` 参数。
+如果您喜欢将领域模型保留在Java中，并 https://hibernate.org/[与Hibernate映射]，您仍然可以使用搭建，只需导入域类并将其名称设置为 `scaffold` 参数。
 
 您可以向搭建控制器添加新动作，例如：
 
@@ -113,11 +113,11 @@ grails generate-views Book
 grails generate-all Book
 ```
 
-如果您有包中的域类或从https://hibernate.org[Hibernate映射类]进行生成，请记住包含完全限定的包名。
+如果您有包中的域类或从 https://hibernate.org[Hibernate映射类]进行生成，请记住包含完全限定的包名。
 
 自定义生成的视图
 
-视图适应link:constraints.html[验证约束]。例如，您可以通过重新排序构建器中的约束来更改视图中字段出现的顺序：
+视图适应 link:constraints.html[验证约束]。例如，您可以通过重新排序构建器中的约束来更改视图中字段出现的顺序：
 
 ```groovy
 def constraints = {
@@ -154,8 +154,8 @@ name(size:0..30)
 
 字段插件
 
-Grails搭建模板使用https://grails.org/plugins.html#plugin&#47;fields[字段插件]。一旦生成了搭建视图，您可以使用插件提供的 `Taglib` 自定义表单和表格（有关详细信息，请参阅http://grails3-plugins.github.io/fields/snapshot/[字段插件文档]）。
+Grails搭建模板使用https://grails.org/plugins.html#plugin&#47; fields[字段插件]。一旦生成了搭建视图，您可以使用插件提供的 `Taglib` 自定义表单和表格（有关详细信息，请参阅 http://grails3-plugins.github.io/fields/snapshot/[字段插件文档]）。
 
 自定义搭建模板
 
-Grails用于生成控制器和视图的模板可以通过使用link:../ref/Command%20Line/install-templates.html[install-templates]命令进行自定义安装。"
+Grails用于生成控制器和视图的模板可以通过使用link:../ref/Command% 20Line/install-templates.html[install-templates]命令进行自定义安装。"

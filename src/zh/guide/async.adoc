@@ -6,8 +6,8 @@
 * GPars - http://gpars.org
 * Reactor - https://projectreactor.io
 
-通过构建在这些不同库之上，https://async.grails.org[Grails的异步特性]旨在简化框架内并发编程，包括Promises的概念和统一的事件模型。
+通过构建在这些不同库之上， https://async.grails.org[Grails的异步特性]旨在简化框架内并发编程，包括Promises的概念和统一的事件模型。
 
 一般来说，由于响应式编程模型是一个不断发展的领域，Grails尝试提供通用支持，以整合各种异步库，并不推荐任何单一库，因为它们都各有利弊。
 
-有关Grails的异步编程更多信息，请参阅https://async.grails.org[Grails异步框架]的用户指南。
+有关Grails的异步编程更多信息，请参阅 https://async.grails.org[Grails异步框架]的用户指南。

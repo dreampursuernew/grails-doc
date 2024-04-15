@@ -4,7 +4,7 @@ Grails定义了服务层的概念。Grails团队不鼓励在控制器内嵌入�
 
 创建一个服务
 
-您可以通过在终端窗口中从项目根目录运行link:../ref/Command%20Line/create-service.html[create-service]命令来创建一个Grails服务：
+您可以通过在终端窗口中从项目根目录运行link:../ref/Command% 20Line/create-service.html[create-service]命令来创建一个Grails服务：
 
 [source,groovy]
 ----

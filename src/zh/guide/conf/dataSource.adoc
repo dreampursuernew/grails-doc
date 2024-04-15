@@ -1,56 +1,78 @@
-由于Grails是构建在Java技术基础上的，设置数据源需要一些JDBC（代表Java数据库连接）的知识。
+自从Grails是建立在Java技术上的，设置数据源需要一些关于JDBC（代表Java数据库连接）的知识。
 
-如果您使用的是除了H2以外的数据库，您需要一个JDBC驱动程序。例如，对于MySQL，您需要http://www.mysql.com/downloads/connector/j/[Connector/J]。
+如果您使用的是除H2之外的数据库，您需要一个JDBC驱动程序。例如，对于MySQL，您需要 http://www.mysql.com/downloads/connector/j/[Connector/J]。
 
-驱动程序通常以JAR存档的形式提供。如果它在Maven存储库中可用，最好使用依赖项解析来解决jar，例如，您可以像这样为MySQL驱动程序添加一个依赖项：
+驱动程序通常以JAR归档形式提供。最好使用依赖解析来解决jar文件，例如，您可以像这样为MySQL驱动程序添加依赖项：
 
 [source,groovy]
 ----
-依赖项 {
+dependencies {
     runtimeOnly 'mysql:mysql-connector-java:5.1.29'
 }
 ----
 
-一旦JAR已解决，您需要熟悉Grails如何管理其数据库配置。配置可以在 `grails-app/conf/application.groovy` 或 `grails-app/conf/application.yml` 中维护。这些文件包含dataSource定义，其中包括以下设置：
+一旦JAR已解决，您需要了解Grails如何管理其数据库配置。配置可以在 `grails-app/conf/application.groovy` 或 `grails-app/conf/application.yml` 中维护。这些文件包含了包含以下设置的dataSource定义：
 
-* `driverClassName` - JDBC驱动程序的类名
-* `username` - 用于建立JDBC连接的用户名
-* `password` - 用于建立JDBC连接的密码
-* `url` - 数据库的JDBC URL
-* `dbCreate` - 是否根据域模型自动生成数据库 - 'create-drop'、'create'、'update'、'validate'或'none'之一
-* `pooled` - 是否使用连接池（默认为true）
-* `logSql` - 启用SQL日志记录到标准输出
-* `formatSql` - 格式化日志记录的SQL
-* `dialect` - 用于与数据库通信的Hibernate方言的字符串或类。有关可用方言，请查看http://docs.jboss.org/hibernate/core/3.6/javadocs/org/hibernate/dialect/package-summary.html[org.hibernate.dialect]包。
-* `readOnly` - 如果为 `true` ，则使DataSource只读，这会导致连接池在每个 `Connection` 上调用 `setReadOnly(true)`
-* `transactional` - 如果为 `false` ，则将DataSource的transactionManager bean保留在链式BE1PC事务管理器实现之外。这仅适用于其他数据源。
-* `persistenceInterceptor` - 默认数据源将自动连接到持久性拦截器，其他数据源除非设置为 `true` 否则不会自动连接
-* `properties` - 设置在DataSource bean上的额外属性。请参阅http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Common_Attributes[Tomcat Pool]文档。这里还有一个Javadoc格式的https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/tomcat/jdbc/pool/PoolConfiguration.html[属性文档]。
+- `driverClassName` - JDBC驱动程序的类名
+- `username` - 用于建立JDBC连接的用户名
+- `password` - 用于建立JDBC连接的密码
+- `url` - 数据库的JDBC URL
+- `dbCreate` - 是否根据域模型自动生成数据库 - 'create-drop', 'create', 'update', 'validate' 或 'none'之一
+- `pooled` - 是否使用连接池（默认为true）
+- `logSql` - 启用SQL日志记录到stdout
+- `formatSql` - 格式化记录的SQL
+- `dialect` - 代表与数据库通信所使用的Hibernate方言的字符串或类。查看 http://docs.jboss.org/hibernate/core/3.6/javadocs/org/hibernate/dialect/package-summary.html[org.hibernate.dialect]包中提供的方言。
+- “readOnly” - 如果“true”，则使数据源只读，这会导致连接池在每个“Connection”上调用“setReadOnly(true)”
+- “transactional” - 如果“false”，则将DataSource的transactionManager bean保留在链式BE1PC事务管理器实现之外。这仅适用于额外的数据源。
+- “persistenceInterceptor” - 默认数据源会自动与持久性拦截器连接，其他数据源不会自动连接，除非设置为 `true`
+- `properties` - 设置在DataSource bean上的额外属性。参见 http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Common_Attributes[Tomcat Pool]文档。还有一个Javadoc格式的https： //tomcat.apache.org/tomcat-7.0-doc/api/org/apache/tomcat/jdbc/pool/PoolConfiguration.html[属性文档]。
 
-*
+- `jmxExport` - 如果为 `false` ，将禁用将JMX MBeans注册到所有DataSources。默认情况下，JMX MBeans会为具有 `jmxEnabled=true` 属性的DataSources添加。
+- “type” - 如果要强制Grails在有多个可用对象时使用连接池类。
 
-*
+在 `application.groovy` 中，MySQL的典型配置可能类似于：
 
-*
+[source,groovy]
+----
+dataSource {
+    pooled = true
+    dbCreate = "update"
+    url = "jdbc:mysql://localhost:3306/my_database"
+    driverClassName = "com.mysql.jdbc.Driver"
+    dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+    username = "username"
+    password = "password"
+    type = "com.zaxxer.hikari.HikariDataSource"
+    properties {
+       jmxEnabled = true
+       initialSize = 5
+       maxActive = 50
+       ...
+    }
+}
+----
 
-*
+警告：配置数据源时，请不要在任何配置设置之前包含类型或def关键字，因为Groovy会将其视为本地变量定义，不会对其进行处理。例如，以下是无效的：
 
-*
+[source,groovy]
+----
+dataSource {
+    boolean pooled = true // 类型声明将导致被忽略的本地变量
+    ...
+}
+----
 
-*
+使用额外属性进行高级配置的示例：
 
-*
+...
+更多关于dbCreate的信息
 
-*
+Hibernate可以自动为您的域模型所需的数据库表创建表。通过 `dbCreate` 属性，您可以控制它在何时以及如何执行此操作，该属性可以接受以下值：
 
-*
+- *create* - 在启动时删除现有模式并创建模式，首先删除现有的表、索引等。
+- *create-drop* - 与*create*相同，但在应用程序干净关闭时还会删除表。
+- *update* - 创建缺失的表和索引，并在不删除任何表或数据的情况下更新当前模式。请注意，这无法正确处理许多模式更改，比如列重命名（您将保留包含现有数据的旧列）。
+- *validate* - 不对数据库进行任何更改。将配置与现有数据库模式进行比较并报告警告。
+- 其他任何值 - 什么都不做
 
-*
-
-*
-
-*
-
-*
-
-*
+设置 `dbCreate` 设置为“none”是一个明智的做法，一旦您的架构相对稳定，并且在部署应用程序和数据库到生产环境时一定要这样做。数据库更改现在通过正确的迁移进行管理，可以使用SQL脚本或类似 https://flywaydb.org/[Flyway]或 http://www.liquibase.org/[Liquibase]的迁移工具。 http://planets.grails.org/plugin/grails/database-migration[Database Migration]插件使用Liquibase。```

@@ -1,6 +1,6 @@
 H2数据库控制台是H2的一个便利功能，它提供一个基于Web的界面，可以访问任何你有JDBC驱动程序的数据库，非常方便查看开发中的数据库。当针对内存数据库运行时，特别有用。
 
-您可以通过浏览器访问http://localhost:8080/h2-console来访问控制台。查看[Spring Boot H2控制台文档]以获取更多有关可用选项的信息。
+您可以通过浏览器访问http://localhost:8080/h2-console来访问控制台。查看 [Spring Boot H2控制台文档]以获取更多有关可用选项的信息。
 
 提示：H2控制台默认情况下是禁用的（除非您使用Spring Boot的开发工具），必须通过将 `spring.h2.console.enabled` 属性配置为 `true` 来启用。
 

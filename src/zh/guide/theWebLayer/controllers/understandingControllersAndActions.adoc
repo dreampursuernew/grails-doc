@@ -1,6 +1,6 @@
 创建一个控制器
 
-控制器可以使用link:../ref/Command%20Line/create-controller.html[create-controller]或link:../ref/Command%20Line/generate-controller.html[generate-controller]命令进行创建。例如，尝试在Grails项目的根目录中运行以下命令：
+控制器可以使用link:../ref/Command% 20Line/create-controller.html[create-controller]或link:../ref/Command% 20Line/generate-controller.html[generate-controller]命令进行创建。例如，尝试在Grails项目的根目录中运行以下命令：
 
 [source,bash]
 ----

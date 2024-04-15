@@ -291,7 +291,7 @@ apply plugin: 'views-json'
 
 #### 7. MongoDB的GORM同步驱动：
 
-GORM for MongoDB已更新以支持最新的mongodb-driver-sync。如果您正在使用GORM for MongoDB并利用特定的MongoDB驱动程序或低级别的Mongo API功能，请考虑查看https://mongodb.github.io/mongo-java-driver/4.0/upgrading/[升级至4.0驱动程序指南]。
+GORM for MongoDB已更新以支持最新的mongodb-driver-sync。如果您正在使用GORM for MongoDB并利用特定的MongoDB驱动程序或低级别的Mongo API功能，请考虑查看 https://mongodb.github.io/mongo-java-driver/4.0/upgrading/[升级至4.0驱动程序指南]。
 
 此更新确保了与MongoDB的无缝集成，访问新功能以及与MongoDB数据库交互时的性能提升。
 
@@ -303,24 +303,24 @@ asset-pipeline插件4.3.0提供了新功能，用于管理和处理前端资产�
 
 #### 9. Spring 5.3：
 
-Grails 6是建立在Spring 5.3.27之上的。如果您的项目使用了Spring特定的功能，请参考https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x#upgrading-to-version-53[升级至Spring 5.3指南]。
+Grails 6是建立在Spring 5.3.27之上的。如果您的项目使用了Spring特定的功能，请参考https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x# upgrading-to-version-53[升级至Spring 5.3指南]。
 
 Spring 5.3引入了增强和修复Spring框架，为您提供了最新的依赖注入、Web框架和其他与Spring相关的功能改进。
 
 #### 10. Spring Boot 2.7：
 
-Grails 6更新到了Spring Boot 2.7。有关更多信息，请查阅https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes[Spring Boot 2.7发行说明]。
+Grails 6更新到了Spring Boot 2.7。有关更多信息，请查阅 https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes[Spring Boot 2.7发行说明]。
 
 Spring Boot 2.7带来了新功能、性能改进和兼容性提升，使其成为您的Grails应用程序的坚实基础。
 
 #### 11. Micronaut 3.9.3：
 
-Grails 6附带了Micronaut 3.9.3。如果您正在使用特定的Micronaut功能，请参考https://docs.micronaut.io/3.9.3/guide/index.html#upgrading[升级至Micronaut 3.x指南]。
+Grails 6附带了Micronaut 3.9.3。如果您正在使用特定的Micronaut功能，请参考 https://docs.micronaut.io/3.9.3/guide/index.html#upgrading[升级至Micronaut 3.x指南]。
 
 Micronaut 3.9.3带来了新功能、改进和错误修复，为您的应用程序提供了功能强大且轻量级的微服务框架。
 
 #### 12. Micronaut for Spring 4.5.1：
 
-Grails 6已更新为使用Micronaut for Spring 4.5.1。有关更多信息，请查看https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.5.1[发布说明]。
+Grails 6已更新为使用Micronaut for Spring 4.5.1。有关更多信息，请查看 https://github.com/micronaut-projects/micronaut-spring/releases/tag/v4.5.1[发布说明]。
 
 Micronaut for Spring 4.5.1在Micronaut和Spring之间提供了无缝集成，使您能够在Grails项目中利用两个框架的优势。

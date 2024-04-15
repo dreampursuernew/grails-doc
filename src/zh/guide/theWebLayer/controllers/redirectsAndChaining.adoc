@@ -1,6 +1,6 @@
 重定向
 
-操作可以使用链接来重定向:../ref/Controllers/redirect.html[redirect] 控制器方法：
+操作可以使用链接来重定向 :../ref/Controllers/redirect.html[redirect] 控制器方法：
 
 ```groovy
 class OverviewController {
@@ -17,7 +17,7 @@ class OverviewController {
 }
 ```
 
-内部链接link:../ref/Controllers/redirect.html[redirect] 方法使用了{javaee}javax/servlet/http/HttpServletResponse.html[HttpServletResponse] 对象的 `sendRedirect` 方法。
+内部链接 link:../ref/Controllers/redirect.html[redirect] 方法使用了 {javaee}javax/servlet/http/HttpServletResponse.html[HttpServletResponse] 对象的 `sendRedirect` 方法。
 
 `redirect` 方法预期以下之一：
 
@@ -42,7 +42,7 @@ redirect(uri: "/login.html")
 redirect(url: "http://grails.org")
 ```
 
-- 一个link:GORM.html[domain class] 实例：
+- 一个 link:GORM.html[domain class] 实例：
 
 ```groovy
 // 重定向到域实例
@@ -58,7 +58,7 @@ redirect book
 redirect(action: 'myaction', params: [myparam: "myvalue"])
 ```
 
-这些参数通过link:../ref/Controllers/params.html[params] 动态属性可用，该属性访问请求参数。如果指定了与请求参数相同名称的参数，请求参数会被覆盖，并使用控制器参数。
+这些参数通过 link:../ref/Controllers/params.html[params] 动态属性可用，该属性访问请求参数。如果指定了与请求参数相同名称的参数，请求参数会被覆盖，并使用控制器参数。
 
 因为 `params` 对象是一个Map，你可以使用它将当前请求参数从一个操作传递到下一个操作：
 

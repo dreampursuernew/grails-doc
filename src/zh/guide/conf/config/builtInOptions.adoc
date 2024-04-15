@@ -5,8 +5,8 @@ Grails有一组核心设置，值得了解。它们的默认值适用于大多�
 * `grails.enable.native2ascii` - 如果不需要将Grails i18n属性文件进行native2ascii转换，则将其设置为false（默认值为true）。
 * `grails.views.default.codec` - 设置GSP的默认编码方案 - 可以是'none'，'html'或'base64'中的一个（默认值为'none'）。为了减少XSS攻击的风险，将其设置为'html'。
 * `grails.views.gsp.encoding` - 用于GSP源文件的文件编码（默认值为'utf-8'）。
-* `grails.mime.file.extensions` - 是否使用文件扩展名来指定链接：theWebLayer.html#contentNegotiation[内容协商]中的mime类型（默认值为true）。
-* `grails.mime.types` - 用于链接：theWebLayer.html#contentNegotiation[内容协商]的支持的mime类型映射。
-* `grails.serverURL` - 一个字符串，指定绝对链接的服务器URL部分，包括服务器名称，例如grails.serverURL="http://my.yourportal.com"。参见链接：{gspdocs}/ref/Tags/createLink.html[createLink]。也被重定向使用。
+* `grails.mime.file.extensions` - 是否使用文件扩展名来指定链接： theWebLayer.html#contentNegotiation[内容协商]中的mime类型（默认值为true）。
+* `grails.mime.types` - 用于链接： theWebLayer.html#contentNegotiation[内容协商]的支持的mime类型映射。
+* `grails.serverURL` - 一个字符串，指定绝对链接的服务器URL部分，包括服务器名称，例如grails.serverURL="http://my.yourportal.com"。参见链接： {gspdocs}/ref/Tags/createLink.html[createLink]。也被重定向使用。
 * `grails.views.gsp.sitemesh.preprocess` - 确定是否进行SiteMesh预处理。禁用此选项会减慢页面的呈现速度，但如果需要SiteMesh解析GSP视图生成的HTML，那么禁用它是正确的选择。如果您不理解此高级属性，请不用担心：将其设置为true。
 * `grails.reload.excludes` 和 `grails.reload.includes` - 配置这些指令会确定项目特定源文件的重新加载行为。每个指令都需要一个字符串列表，这些字符串是应该在运行应用程序开发时从重新加载行为中排除或根据情况包含的项目源文件的类名。如果配置了 `grails.reload.includes` 指令，那么只有该列表中的类将重新加载。

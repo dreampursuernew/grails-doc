@@ -9,9 +9,9 @@ class MyGrailsPlugin {
 
 `artefacts` 列表可以包含处理程序类（如上所示）或处理程序的实例。
 
-那么，什么是构件处理程序？简单地说，它是{apiDocs}grails/core/ArtefactHandler.html[ArtefactHandler]接口的实现。为了让生活变得更轻松一些，有一个可以轻松扩展的基本实现：{apiDocs}grails/core/ArtefactHandlerAdapter.html[ArtefactHandlerAdapter]。
+那么，什么是构件处理程序？简单地说，它是 {apiDocs}grails/core/ArtefactHandler.html[ArtefactHandler]接口的实现。为了让生活变得更轻松一些，有一个可以轻松扩展的基本实现： {apiDocs}grails/core/ArtefactHandlerAdapter.html[ArtefactHandlerAdapter]。
 
-除了处理程序本身，每个新的构件都需要一个相应的包装器类，该类实现了{apiDocs}grails/core/GrailsClass.html[GrailsClass]。同样，可用骨架实现，例如{apiDocs}org/grails/core/AbstractInjectableGrailsClass.html[AbstractInjectableGrailsClass]，这对您的构件非常有用，因为它将其转换为一个自动装配的Spring bean，就像控制器和服务一样。
+除了处理程序本身，每个新的构件都需要一个相应的包装器类，该类实现了 {apiDocs}grails/core/GrailsClass.html[GrailsClass]。同样，可用骨架实现，例如 {apiDocs}org/grails/core/AbstractInjectableGrailsClass.html[AbstractInjectableGrailsClass]，这对您的构件非常有用，因为它将其转换为一个自动装配的Spring bean，就像控制器和服务一样。
 
 理解处理程序和包装器类如何工作的最佳方式是查看Quartz插件：
 
@@ -19,4 +19,4 @@ class MyGrailsPlugin {
 - https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/DefaultGrailsJobClass.java[DefaultGrailsJobClass]
 - https://github.com/grails-plugins/grails-quartz/blob/master/src/main/groovy/grails/plugins/quartz/JobArtefactHandler.groovy[JobArtefactHandler]
 
-另一个例子是http://github.com/pledbrook/grails-shiro[Shiro插件]，它添加了一个领域构件。
+另一个例子是 http://github.com/pledbrook/grails-shiro[Shiro插件]，它添加了一个领域构件。

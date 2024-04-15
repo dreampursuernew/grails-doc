@@ -36,7 +36,7 @@ bb.beans {
 ApplicationContext appContext = bb.createApplicationContext()
 ----
 
-注意：在link:plugins.html[插件]和 `grails-app/conf/spring/resources.groovy` 文件中，您不需要创建一个新的 `BeanBuilder` 的实例。相反，DSL分别在 `doWithSpring` 和 `beans` 块中隐式可用。
+注意：在 link:plugins.html[插件]和 `grails-app/conf/spring/resources.groovy` 文件中，您不需要创建一个新的 `BeanBuilder` 的实例。相反，DSL分别在 `doWithSpring` 和 `beans` 块中隐式可用。
 
 此示例显示了如何使用BeanBuilder类配置带有数据源的Hibernate。
 
@@ -51,9 +51,9 @@ Bean引用会自动根据Bean的名称解析。在上面的示例中可以看到
 sessionFactory(ConfigurableLocalSessionFactoryBean) { bean ->
     // 自动装配行为。另一个选项是'byType'。 <<autowire>>
     bean.autowire = 'byName'
-    // 将初始化方法设置为'init'。[init-method]
+    // 将初始化方法设置为'init'。 [init-method]
     bean.initMethod = 'init'
-    // 将销毁方法设置为'destroy'。[destroy-method]
+    // 将销毁方法设置为'destroy'。 [destroy-method]
     bean.destroyMethod = 'destroy'
     // 设置Bean的范围。 <<scope>>
     bean.scope = 'request'

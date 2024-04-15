@@ -1,4 +1,4 @@
-对于更复杂的编组器，建议您实现{apiDocs}org/grails/web/converters/marshaller/ObjectMarshaller.html[ObjectMarshaller]接口。例如，给定一个领域类：
+对于更复杂的编组器，建议您实现 {apiDocs}org/grails/web/converters/marshaller/ObjectMarshaller.html[ObjectMarshaller]接口。例如，给定一个领域类：
 
 [source,groovy]
 ----
@@ -58,7 +58,7 @@ XML.registerObjectMarshaller(new BookMarshaller())
 ==== 自定义根元素的名称
 
 
-如果您希望自定义周围元素的名称，可以实现{apiDocs}org/grails/web/converters/marshaller/NameAwareMarshaller.html[NameAwareMarshaller]：
+如果您希望自定义周围元素的名称，可以实现 {apiDocs}org/grails/web/converters/marshaller/NameAwareMarshaller.html[NameAwareMarshaller]：
 
 [source,groovy]
 ----

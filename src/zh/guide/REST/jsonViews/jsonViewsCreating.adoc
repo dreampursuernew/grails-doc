@@ -18,15 +18,15 @@ json.person {
 {"person":{"name":"bob"}}
 ----
 
-有一个隐含的 `json` 变量，它是http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]的实例。
+有一个隐含的 `json` 变量，它是 http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]的实例。
 
 示例用法：
 
 [source,groovy]
 ----
-json(1,2,3) == "[1,2,3]"
+json(1,2,3) == " [1,2,3]"
 json { name "Bob" } == '{"name":"Bob"}'
-json([1,2,3]) { n it } == '[{"n":1},{"n":2},{"n":3}]'
+json([1,2,3]) { n it } == ' [{"n":1},{"n":2},{"n":3}]'
 ----
 
-有关更多关于可能性的信息，请参考http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]上的API文档。
+有关更多关于可能性的信息，请参考 http://docs.groovy-lang.org/latest/html/api/groovy/json/StreamingJsonBuilder.html[StreamingJsonBuilder]上的API文档。

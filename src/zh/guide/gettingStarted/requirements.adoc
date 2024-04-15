@@ -4,7 +4,7 @@
 | 6 | 11
 | 5 | 8
 
-为了自动化安装Grails，我们建议使用http://sdkman.io[SDKMAN]，它大大简化了安装和管理多个Grails版本的过程。
+为了自动化安装Grails，我们建议使用 http://sdkman.io[SDKMAN]，它大大简化了安装和管理多个Grails版本的过程。
 
 在某些平台上（例如macOS），Java安装会被自动检测。但在许多情况下，您可能希望手动配置Java的位置。例如，如果您正在使用bash或Bourne Shell的另一个变体：
 

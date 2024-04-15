@@ -1,6 +1,6 @@
 在视图中阅读消息
 
-您最常需要消息的地方就是在视图中。使用link:{gspdocs}/ref/Tags/message.html[message]标签来实现：
+您最常需要消息的地方就是在视图中。使用 link:{gspdocs}/ref/Tags/message.html[message]标签来实现：
 
 [source,xml]
 ----
@@ -48,7 +48,7 @@ class MyappController {
 
 在控制器和标签库中使用消息标签阅读消息
 
-此外，您还可以在控制器和标签库中使用link:http://gsp.grails.org/latest/ref/Tags/message.html[Message Tag]来读取消息。然而，使用消息标签依赖于GSP支持，这并不是每个Grails应用程序都必然具有；例如一个rest应用程序。
+此外，您还可以在控制器和标签库中使用 link:http://gsp.grails.org/latest/ref/Tags/message.html[Message Tag]来读取消息。然而，使用消息标签依赖于GSP支持，这并不是每个Grails应用程序都必然具有；例如一个rest应用程序。
 
 在控制器中，您可以将标签调用为方法。
 
@@ -59,7 +59,7 @@ def show() {
 }
 ----
 
-相同的技术也可以在link:theWebLayer.html#taglibs[标签库]中使用，但是如果您的标签库使用了自定义链接:theWebLayer.html#namespaces[命名空间]，那么您必须在调用之前加上 `g.` ：
+相同的技术也可以在 link:theWebLayer.html#taglibs[标签库]中使用，但是如果您的标签库使用了自定义链接 :theWebLayer.html#namespaces[命名空间]，那么您必须在调用之前加上 `g.` ：
 
 [source,groovy]
 ----

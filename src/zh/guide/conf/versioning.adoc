@@ -1,6 +1,6 @@
 检测运行时的版本
 
-您可以使用Grails对应用程序元数据的支持来检测应用程序版本，使用{apiDocs}grails/core/GrailsApplication.html[GrailsApplication]类。例如，在link:theWebLayer.html#controllers[controllers]中，有一个可以使用的link:../ref/Controllers/grailsApplication.html[grailsApplication]变量：
+您可以使用Grails对应用程序元数据的支持来检测应用程序版本，使用 {apiDocs}grails/core/GrailsApplication.html[GrailsApplication]类。例如，在 link:theWebLayer.html#controllers[controllers]中，有一个可以使用的 link:../ref/Controllers/grailsApplication.html[grailsApplication]变量：
 
 [source，groovy]
 ----

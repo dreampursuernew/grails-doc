@@ -46,4 +46,4 @@ render book as XML
 // or render book as JSON
 ----
 
-为什么要区分转换器和渲染器呢？好吧，渲染器具有更大的灵活性，可以使用您选择的任何渲染技术。在实现自定义渲染器时，您可以使用http://wiki.fasterxml.com/JacksonHome[Jackson]、http://code.google.com/p/google-gson/[Gson]或任何Java库来实现渲染器。另一方面，转换器很大程度上与Grails自己的编组实现绑定。
+为什么要区分转换器和渲染器呢？好吧，渲染器具有更大的灵活性，可以使用您选择的任何渲染技术。在实现自定义渲染器时，您可以使用 http://wiki.fasterxml.com/JacksonHome[Jackson]、 http://code.google.com/p/google-gson/[Gson]或任何Java库来实现渲染器。另一方面，转换器很大程度上与Grails自己的编组实现绑定。

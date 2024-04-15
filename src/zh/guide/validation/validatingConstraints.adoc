@@ -1,6 +1,6 @@
 ====验证基础
 
-调用链接:../ ref/Domain%20Classes/validate.html[validate]方法来验证域类实例：
+调用链接:../ ref/Domain% 20Classes/validate.html[validate]方法来验证域类实例：
 
 [source，groovy]
 ----
@@ -20,7 +20,7 @@ else {
 
 ====验证阶段
 
-在Grails中有两个验证阶段，第一个是链接：theWebLayer.html#dataBinding[数据绑定]，当您将请求参数绑定到实例时发生，如下：
+在Grails中有两个验证阶段，第一个是链接： theWebLayer.html#dataBinding[数据绑定]，当您将请求参数绑定到实例时发生，如下：
 
 [source，groovy]
 ----
@@ -38,7 +38,7 @@ if（user.hasErrors（））{
 }
 ----
 
-验证的第二阶段发生在您调用链接：../ ref/Domain%20Classes/validate.html[validate]或链接：../ ref/Domain%20Classes/save.html[save]时。这是Grails将根据您定义的约束验证绑定值的时候。例如，默认情况下链接：../ ref/Domain%20Classes/save.html[save]方法在执行之前会调用 `validate` ，使您能够编写如下代码：
+验证的第二阶段发生在您调用链接：../ ref/Domain% 20Classes/validate.html[validate]或链接：../ ref/Domain% 20Classes/save.html[save]时。这是Grails将根据您定义的约束验证绑定值的时候。例如，默认情况下链接：../ ref/Domain% 20Classes/save.html[save]方法在执行之前会调用 `validate` ，使您能够编写如下代码：
 
 [source，groovy]
 ----

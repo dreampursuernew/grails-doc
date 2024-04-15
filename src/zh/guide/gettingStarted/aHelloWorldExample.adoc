@@ -47,7 +47,7 @@ grails> create-controller greeting
 
 此命令将在grails-app/controllers/myapp目录下生成一个名为"GreetingController.groovy"的新控制器。你可能会想知道为什么会有一个额外的"myapp"目录。这种结构符合Java开发中通常使用的约定，其中类被组织成包。Grails自动将应用程序名称包含在包结构中。如果你不指定包，Grails会默认使用应用程序名称。
 
-有关创建控制器的更详细信息，你可以参考链接:../ref/Command%20Line/create-controller.html[create-controller]页面的文档。
+有关创建控制器的更详细信息，你可以参考链接:../ref/Command% 20Line/create-controller.html[create-controller]页面的文档。
 
 === 步骤 5: 编辑控制器
 
@@ -67,7 +67,7 @@ class GreetingController {
 }
 ----
 
-该动作只是一个方法。在这种特定情况下，它调用了Grails提供的一个特殊方法来link:../ref/Controllers/render.html[渲染]页面。
+该动作只是一个方法。在这种特定情况下，它调用了Grails提供的一个特殊方法来 link:../ref/Controllers/render.html[渲染]页面。
 
 === 步骤 6: 运行应用程序
 
@@ -133,7 +133,7 @@ class GreetingController {
 2. *URL中的动作名称：*
 - 默认情况下，如果你在URL中不指定动作，Grails会假定"index"动作。因此，在这个示例中，访问URL `/greeting`
 
-查看用户指南的链接结尾:theWebLayer.html#understandingControllersAndActions[控制器和动作]部分，了解更多关于默认动作的信息。
+查看用户指南的链接结尾 :theWebLayer.html#understandingControllersAndActions[控制器和动作]部分，了解更多关于默认动作的信息。
 
 ==== 可选: 设置上下文路径
 

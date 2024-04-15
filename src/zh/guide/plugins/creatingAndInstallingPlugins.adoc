@@ -53,7 +53,7 @@ class ExampleGrailsPlugin extends Plugin {
 * `issueManagement` - 插件的问题跟踪
 * `scm` - 插件的源代码管理位置
 
-以下是https://github.com/grails-plugins/grails-quartz[Quartz Grails插件]的一个简化示例:
+以下是 https://github.com/grails-plugins/grails-quartz[Quartz Grails插件]的一个简化示例:
 
 [source,groovy]
 ----
@@ -88,7 +88,7 @@ Adds Quartz job scheduling features
 
 ==== 插件配置
 
-与其直接访问Grails配置，例如 `grailsApplication.config.getProperty('mail.hostName', String)` ，我们可以使用一个带有{springbootapi}/org/springframework/boot/context/properties/ConfigurationProperties.html[ConfigurationProperties]注解的Spring Boot配置bean（或POJO）。以下是一个插件配置示例:
+与其直接访问Grails配置，例如 `grailsApplication.config.getProperty('mail.hostName', String)` ，我们可以使用一个带有 {springbootapi}/org/springframework/boot/context/properties/ConfigurationProperties.html[ConfigurationProperties]注解的Spring Boot配置bean（或POJO）。以下是一个插件配置示例:
 
 _./src/main/groovy/example/MailPluginConfiguration.groovy_
 [source,groovy]
@@ -126,7 +126,7 @@ class MailService {
 
 ```
 
-请阅读{springBootReference}/html/features.html#features.external-config[Spring Boot Externalized Configuration]部分获取更多信息。
+请阅读 {springBootReference}/html/features.html#features.external-config[Spring Boot Externalized Configuration]部分获取更多信息。
 
 ==== 安装本地插件
 

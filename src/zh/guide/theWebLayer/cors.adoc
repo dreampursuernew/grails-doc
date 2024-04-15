@@ -12,9 +12,9 @@ grails:
 
 这将为所有URL `/**` 创建映射，并具有以下设置：
 
-|允许来源| `['*']` |
-|允许方法| `['*']` |
-|允许头部| `['*']` |
+|允许来源| ` ['*']` |
+|允许方法| ` ['*']` |
+|允许头部| ` ['*']` |
 |暴露头部| `null` |
 |最大年龄| `1800` |
 |允许凭证|false|
@@ -31,7 +31,7 @@ grails:
             - http://localhost:5000
 ```
 
-在上面的示例中， `allowedOrigins` 设置将替换 `[*]` 。
+在上面的示例中， `allowedOrigins` 设置将替换 ` [*]` 。
 
 还可以配置不同的URL。例如：
 
@@ -42,7 +42,7 @@ grails:
         allowedHeaders:
             - Content-Type
         mappings:
-            '[/api/**]':
+            ' [/api/**]':
                 allowedOrigins:
                     - http://localhost:5000
 ```
@@ -53,9 +53,9 @@ grails:
 
 以上设置将生成一个具有以下设置的单个映射 `/api/**` ：
 
-|允许来源| `['http://localhost:5000']` |
-|允许方法| `['*']` |
-|允许头部| `['Content-Type']` |
+|允许来源| ` ['http://localhost:5000']` |
+|允许方法| ` ['*']` |
+|允许头部| ` ['Content-Type']` |
 |暴露头部| `null` |
 |最大年龄| `1800` |
 |允许凭证|false|
@@ -67,5 +67,5 @@ grails:
     cors:
         enabled: true
         mappings:
-            '[/api/**]': inherit
+            ' [/api/**]': inherit
 ```

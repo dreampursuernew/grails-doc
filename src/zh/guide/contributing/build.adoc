@@ -3,7 +3,7 @@
 * JDK（11或以上）
 * git客户端
 
-一旦您安装了所有先决条件包，下一步是下载Grails源代码，该源代码托管在http://github.com[GitHub]中，由http://github.com/grails[\"grails\" GitHub用户]拥有多个存储库。这只是克隆您感兴趣的存储库的一个简单例子。例如，要获取核心框架，请运行：
+一旦您安装了所有先决条件包，下一步是下载Grails源代码，该源代码托管在 http://github.com[GitHub]中，由 http://github.com/grails[\"grails\" GitHub用户]拥有多个存储库。这只是克隆您感兴趣的存储库的一个简单例子。例如，要获取核心框架，请运行：
 
 [source,groovy]
 ----
@@ -25,7 +25,7 @@ git clone http://github.com/grails/grails-core.git
 
 完成以上命令后，只需将 `GRAILS_HOME` 环境变量设置为检出目录，并将“bin”目录添加到您的路径中。当您下次键入 `grails` 命令运行时，您将使用您刚刚构建的版本。
 
-如果您使用http://sdkman.io[SDKMAN]，则还可以通过以下方式使用本地安装：
+如果您使用 http://sdkman.io[SDKMAN]，则还可以通过以下方式使用本地安装：
 
 [source,groovy]
 ----
@@ -89,7 +89,7 @@ sdk install grails dev /path/to/grails-core
 * 修复grails-scripts的源路径。添加链接的源文件夹链接到“../scripts”。
 * 执行整个工作区的清除构建。
 * 使用Eclipse GIT scm团队提供程序：选择导航中的所有项目（除了\"Servers\"）右键单击-> Team -> Share project（而不是\"Share projects\"）。选择“Git”。然后选中“在项目的父文件夹中使用或创建存储库”并点击“完成”。
-* 从邮件列表线程http://grails.1312388.n4.nabble.com/Grails-development-code-style-IDE-formatting-settings-tp3854216p3854216.html[获得推荐的代码样式设置]（最终样式尚未确定，当前为http://grails.1312388.n4.nabble.com/attachment/3854262/0/profile.xml[profile.xml]）。在STS中导入代码样式xml文件Window->Preferences->Java->Code Style->Formatter->Import。Grails代码使用空格而不是制表符进行缩进。
+* 从邮件列表线程 http://grails.1312388.n4.nabble.com/Grails-development-code-style-IDE-formatting-settings-tp3854216p3854216.html[获得推荐的代码样式设置]（最终样式尚未确定，当前为 http://grails.1312388.n4.nabble.com/attachment/3854262/0/profile.xml[profile.xml]）。在STS中导入代码样式xml文件Window->Preferences->Java->Code Style->Formatter->Import。Grails代码使用空格而不是制表符进行缩进。
 
 === 调试Grails或Grails应用程序
 

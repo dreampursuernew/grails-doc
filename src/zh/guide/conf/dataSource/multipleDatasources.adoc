@@ -234,7 +234,7 @@ https://www.javaworld.com/article/2077963/open-source-tools/distributed-transact
 
 BE1PC实现是在Grails 2.3.6中添加的。在这一更改之前，附加数据源不参与Grails发起的事务。附加数据源中的事务基本上处于自动提交模式。在某些情况下，这可能是期望的行为。其中一个原因可能是性能：在每个新事务启动时，BE1PC事务管理器会为每个数据源创建一个新事务。通过在附加数据源的相应配置块中设置 `transactional = false` ，可以将该附加数据源排除在BE1PC事务管理器之外。从2.3.7版本开始，具有 `readOnly = true` 的数据源也将被排除在链式事务管理器之外。
 
-默认情况下，BE1PC实现会将所有实现Spring `link:{springapi}/org/springframework/transaction/PlatformTransactionManager.html[PlatformTransactionManager]` 接口的bean添加到链式BE1PC事务管理器中。例如，在Grails应用程序上下文中的可能 `link:{springapi}/org/springframework/jms/connection/JmsTransactionManager.html[JMSTransactionManager]` bean将会添加到Grails BE1PC事务管理器的事务管理器链中。
+默认情况下，BE1PC实现会将所有实现Spring ` link:{springapi}/org/springframework/transaction/PlatformTransactionManager.html[PlatformTransactionManager]` 接口的bean添加到链式BE1PC事务管理器中。例如，在Grails应用程序上下文中的可能 ` link:{springapi}/org/springframework/jms/connection/JmsTransactionManager.html[JMSTransactionManager]` bean将会添加到Grails BE1PC事务管理器的事务管理器链中。
 
 您可以使用以下配置选项从BE1PC实现中排除事务管理器bean：
 
@@ -251,4 +251,4 @@ grails:
 XA和两阶段提交
 当最佳努力1PC模式不适用于处理跨多个事务资源（不仅是数据源）的事务时，可以为Grails应用程序添加XA/2PC支持的几种选项。
 
-链接：{springdocs}/transaction.html#transaction-application-server-integration[Spring事务文档]包含有关集成不同应用程序服务器的JTA/XA事务管理器的信息。在这种情况下，可以在 `resources.groovy` 或 `resources.xml` 文件中手动配置名为 `transactionManager` 的bean。
+链接： {springdocs}/transaction.html#transaction-application-server-integration[Spring事务文档]包含有关集成不同应用程序服务器的JTA/XA事务管理器的信息。在这种情况下，可以在 `resources.groovy` 或 `resources.xml` 文件中手动配置名为 `transactionManager` 的bean。

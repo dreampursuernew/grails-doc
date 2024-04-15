@@ -1,4 +1,4 @@
-Grails提供了一个便利的功能，您可以使用 `create-*` 命令自动生成应用程序的单元测试和集成测试。这些生成的测试存储在 `src/test/groovy` 和 `src/integration-tests/groovy` 目录中。但是，您有责任使用适当的测试逻辑填充这些测试。您可以在专门用于link:testing.html[Unit and Integration Tests]的部分找到有关编写有效测试逻辑的全面指南。
+Grails提供了一个便利的功能，您可以使用 `create-*` 命令自动生成应用程序的单元测试和集成测试。这些生成的测试存储在 `src/test/groovy` 和 `src/integration-tests/groovy` 目录中。但是，您有责任使用适当的测试逻辑填充这些测试。您可以在专门用于 link:testing.html[Unit and Integration Tests]的部分找到有关编写有效测试逻辑的全面指南。
 
 要启动您的测试的执行，包括单元测试和集成测试，您可以利用Gradle的 `check` 任务。按照以下步骤操作：
 

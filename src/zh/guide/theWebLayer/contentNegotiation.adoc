@@ -1,4 +1,4 @@
-Grails内置支持http://en.wikipedia.org/wiki/Content_negotiation[内容协商]，可以使用HTTP `Accept` 标头、显式格式请求参数或已映射的URI的扩展来进行内容协商。
+Grails内置支持 http://en.wikipedia.org/wiki/Content_negotiation[内容协商]，可以使用HTTP `Accept` 标头、显式格式请求参数或已映射的URI的扩展来进行内容协商。
 
 ==== 配置MIME类型
 
@@ -70,7 +70,7 @@ http://my.domain.org/books.xml
 
 服务器端的结果是 `response` 对象上的 `format` 属性值为 `xml` 。
 
-您也可以在链接：theWebLayer.html#urlmappings[URL映射]定义中定义此参数：
+您也可以在链接： theWebLayer.html#urlmappings[URL映射]定义中定义此参数：
 
 [source,groovy]
 ----
@@ -120,11 +120,11 @@ withFormat {
 }
 ----
 
-注意：使用链接:../ref/Controllers/withFormat.html[withFormat] 时，请确保它是控制器操作中的最后一个调用，因为 `withFormat` 方法的返回值被操作用来决定接下来发生什么。
+注意：使用链接 :../ref/Controllers/withFormat.html[withFormat] 时，请确保它是控制器操作中的最后一个调用，因为 `withFormat` 方法的返回值被操作用来决定接下来发生什么。
 
 ==== 使用Accept标头
 
-每个传入的HTTP请求都有一个特殊的http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html[Accept] 标头，定义了客户端可以"接受"的媒体类型（或MIME类型）。在旧版浏览器中，通常是这样的：
+每个传入的HTTP请求都有一个特殊的 http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html[Accept] 标头，定义了客户端可以"接受"的媒体类型（或MIME类型）。在旧版浏览器中，通常是这样的：
 
 [source]
 ----
@@ -163,7 +163,7 @@ grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Tr
 
 从Grails 2.0开始，有一个单独的请求格式和响应格式的概念。请求格式由 `CONTENT_TYPE` 标头确定，并通常用于检测传入请求是否可以解析为XML或JSON，而响应格式使用文件扩展名、格式参数或ACCEPT标头来尝试向客户端提供适当的响应。
 
-链接：../ref/Controllers/withFormat.html[withFormat] 可用于控制器中处理响应格式的相关内容。如果要添加处理请求格式的逻辑，可以使用请求上可用的单独 `withFormat` 方法来完成：
+链接： ../ref/Controllers/withFormat.html[withFormat] 可用于控制器中处理响应格式的相关内容。如果要添加处理请求格式的逻辑，可以使用请求上可用的单独 `withFormat` 方法来完成：
 
 [source,groovy]
 ----
@@ -203,7 +203,7 @@ Grails还支持使用URI扩展进行内容协商。例如，给定以下URI：
 
 ==== 测试内容协商
 
-要测试单元测试或集成测试中的内容协商（请参阅链接：testing.html[测试]一节），可以操纵传入请求标头：
+要测试单元测试或集成测试中的内容协商（请参阅链接： testing.html[测试]一节），可以操纵传入请求标头：
 
 [source,groovy]
 ----

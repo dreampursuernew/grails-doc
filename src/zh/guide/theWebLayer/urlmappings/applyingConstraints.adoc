@@ -1,4 +1,4 @@
-URL映射还支持Grails的统一链接：验证.html＃constraints[验证约束]机制，让您进一步“约束”如何匹配URL。例如，如果我们重新查看之前的博客示例代码，映射当前看起来像这样：
+URL映射还支持Grails的统一链接：验证.html＃ constraints[验证约束]机制，让您进一步“约束”如何匹配URL。例如，如果我们重新查看之前的博客示例代码，映射当前看起来像这样：
 
 ```groovy
 static mappings = {

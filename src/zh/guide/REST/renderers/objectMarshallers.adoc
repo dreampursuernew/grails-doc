@@ -10,7 +10,7 @@ XML.registerObjectMarshaller Book, { Book book, XML xml ->
 }
 ----
 
-您还可以以这种方式自定义单个值的格式。例如，http://grails.org/plugin/jodatime[JodaTime插件]执行以下操作以支持将 JodaTime 日期呈现为JSON输出：
+您还可以以这种方式自定义单个值的格式。例如， http://grails.org/plugin/jodatime[JodaTime插件]执行以下操作以支持将 JodaTime 日期呈现为JSON输出：
 
 [source, groovy]
 ----

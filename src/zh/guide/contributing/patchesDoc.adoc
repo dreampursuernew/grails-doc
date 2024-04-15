@@ -1,6 +1,6 @@
 === 贡献简单的更改
 
-用户指南是使用http://asciidoctor.org/docs/user-manual/[Asciidoctor]编写的。贡献修复的最简单方法是简单点击文档每个部分右侧的"改进此文档"链接。
+用户指南是使用 http://asciidoctor.org/docs/user-manual/[Asciidoctor]编写的。贡献修复的最简单方法是简单点击文档每个部分右侧的"改进此文档"链接。
 
 这将链接到 Github 编辑屏幕，您可以在那里进行更改、预览并创建一个拉取请求。
 

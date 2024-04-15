@@ -1,4 +1,4 @@
-在领域类中，[constraints]是使用约束属性通过分配一个代码块来定义的：
+在领域类中， [constraints]是使用约束属性通过分配一个代码块来定义的：
 
 ```groovy
 class User {
@@ -63,7 +63,7 @@ class Response {
 }
 ```
 
-看到 `inList` 约束如何引用实例属性 `survey` ？ 这不起作用。 相反，请使用一个自定义[验证程序]：
+看到 `inList` 约束如何引用实例属性 `survey` ？ 这不起作用。 相反，请使用一个自定义 [验证程序]：
 
 ```groovy
 class Response {

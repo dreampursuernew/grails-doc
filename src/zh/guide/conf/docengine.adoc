@@ -1,6 +1,6 @@
 自Grails 1.2开始，用于创建此文档的文档引擎已经可以用于您自己的Grails项目。
 
-文档引擎使用了一种变种http://txstyle.org/[Textile] 语法，以便自动创建具有智能链接、格式等的项目文档。
+文档引擎使用了一种变种 http://txstyle.org/[Textile] 语法，以便自动创建具有智能链接、格式等的项目文档。
 
 ==== 创建项目文档
 
@@ -225,7 +225,7 @@ James,12
 
 [source,groovy]
 ----
-\\[format=\"csv\", options=\"header\"]
+\\ [format=\"csv\", options=\"header\"]
 |===
 
 *Name*,*Number*

@@ -1,6 +1,6 @@
 ==== 添加命令行命令
 
-插件可以通过两种方式向Grails 3.0交互式shell中添加新命令。首先，使用链接:../ref/Command%20Line/create-script.html[create-script]，您可以创建一个代码生成脚本，该脚本将对应用程序可用。 `create-script` 命令将在 `src/main/scripts` 目录中创建脚本：
+插件可以通过两种方式向Grails 3.0交互式shell中添加新命令。首先，使用链接:../ref/Command% 20Line/create-script.html[create-script]，您可以创建一个代码生成脚本，该脚本将对应用程序可用。 `create-script` 命令将在 `src/main/scripts` 目录中创建脚本：
 
 [source, groovy]
 ----
@@ -20,7 +20,7 @@
 $ grails create-command MyExampleCommand
 ----
 
-这将创建一个名为 `grails-app/commands/PACKAGE_PATH/MyExampleCommand.groovy` 的文件，扩展了{apiDocs}grails/dev/commands/ApplicationCommand.html[ApplicationCommand]：
+这将创建一个名为 `grails-app/commands/PACKAGE_PATH/MyExampleCommand.groovy` 的文件，扩展了 {apiDocs}grails/dev/commands/ApplicationCommand.html[ApplicationCommand]：
 
 [source, groovy]
 ----

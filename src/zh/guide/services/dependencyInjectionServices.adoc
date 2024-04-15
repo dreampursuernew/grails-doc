@@ -93,7 +93,7 @@ class Book {
 }
 ----
 
-警告：自Grails 3.2.8起，默认情况下不会启用此功能。如果要再次启用它，请查看http://docs.grails.org/latest/ref/Domain%20Classes/Usage.html#_spring_autowiring_of_domain_instances[Spring域实例的自动装配]。
+警告：自Grails 3.2.8起，默认情况下不会启用此功能。如果要再次启用它，请查看 http://docs.grails.org/latest/ref/Domain%20Classes/Usage.html#_spring_autowiring_of_domain_instances[Spring域实例的自动装配]。
 
 服务Bean名称
 

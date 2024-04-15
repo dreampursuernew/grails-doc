@@ -12,12 +12,12 @@ static mappings = {
 
 ```xml
 <g:link controller=\"blog\" action=\"show\"
-        params=\"[blog:'fred', year:2007]\">
+        params=\" [blog:'fred', year:2007]\">
     My Blog
 </g:link>
 
 <g:link controller=\"blog\" action=\"show\"
-        params=\"[blog:'fred', year:2007, month:10]\">
+        params=\" [blog:'fred', year:2007, month:10]\">
     My Blog - October 2007 Posts
 </g:link>
 ```

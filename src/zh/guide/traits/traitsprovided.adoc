@@ -25,10 +25,10 @@ Grails构件在编译时自动增加某些特征。
 以下是框架提供的其他Trait列表。Javadocs提供了与每个Trait相关的更多方法和属性的详细信息。
 
 |Trait|简要描述|
-|apiDocs}grails/web/api/WebAttributes.html[grails.web.api.WebAttributes]|通用Web属性|
-|{apiDocs}grails/web/api/ServletAttributes.html[grails.web.api.ServletAttributes]|Servlet API属性|
-|{apiDocs}grails/web/databinding/DataBinder.html[grails.web.databinding.DataBinder]|数据绑定API|
-|{apiDocs}grails/artefact/controller/support/RequestForwarder.html[grails.artefact.controller.support.RequestForwarder]|请求转发API|
-|{apiDocs}grails/artefact/controller/support/ResponseRedirector.html[grails.artefact.controller.support.ResponseRedirector]|响应重定向API|
-|{apiDocs}grails/artefact/controller/support/ResponseRenderer.html[grails.artefact.controller.support.ResponseRenderer]|响应渲染API|
-|{apiDocs}grails/validation/Validateable.html[grails.validation.Validateable]|验证API|
+| apiDocs}grails/web/api/WebAttributes.html[grails.web.api.WebAttributes]|通用Web属性|
+| {apiDocs}grails/web/api/ServletAttributes.html[grails.web.api.ServletAttributes]|Servlet API属性|
+| {apiDocs}grails/web/databinding/DataBinder.html[grails.web.databinding.DataBinder]|数据绑定API|
+| {apiDocs}grails/artefact/controller/support/RequestForwarder.html[grails.artefact.controller.support.RequestForwarder]|请求转发API|
+| {apiDocs}grails/artefact/controller/support/ResponseRedirector.html[grails.artefact.controller.support.ResponseRedirector]|响应重定向API|
+| {apiDocs}grails/artefact/controller/support/ResponseRenderer.html[grails.artefact.controller.support.ResponseRenderer]|响应渲染API|
+| {apiDocs}grails/validation/Validateable.html[grails.validation.Validateable]|验证API|

@@ -4,7 +4,7 @@
 
 如果命令对象类型是领域类，并且XML文档的根元素包含 `id` 属性， `id` 值将用于从数据库中检索对应的持久实例，然后将文档的其余部分绑定到实例中。如果在数据库中找不到对应记录，则命令对象引用将为null。
 
-数据绑定依赖于由 `DataBindingSourceCreator` 接口的实例创建的{apiDocs}grails/databinding/DataBindingSource.html[DataBindingSource]接口。 `DataBindingSourceCreator` 的具体实现将基于请求的 `contentType` 选择。提供了几种实现来处理常见的内容类型。大多数情况下，默认实现很好用。下表列出了核心框架支持的内容类型以及每个内容类型使用的 `DataBindingSourceCreator` 实现。所有实现类都在 `org.grails.databinding.bindingsource` 包中。
+数据绑定依赖于由 `DataBindingSourceCreator` 接口的实例创建的 {apiDocs}grails/databinding/DataBindingSource.html[DataBindingSource]接口。 `DataBindingSourceCreator` 的具体实现将基于请求的 `contentType` 选择。提供了几种实现来处理常见的内容类型。大多数情况下，默认实现很好用。下表列出了核心框架支持的内容类型以及每个内容类型使用的 `DataBindingSourceCreator` 实现。所有实现类都在 `org.grails.databinding.bindingsource` 包中。
 
 要为任何这些内容类型提供自己的 `DataBindingSourceCreator` ，编写一个实现 `DataBindingSourceCreator` 接口的类，并在Spring应用程序上下文中注册该类的实例。如果要替换现有的辅助程序之一，请使用上述相应的bean名称。如果要为核心框架未考虑的内容类型提供辅助程序，请使用任何您喜欢的bean名称，但要注意不要与上述任何bean名称冲突。
 

@@ -1,6 +1,6 @@
 使用render方法输出XML
 
-Grails支持几种不同的方式来生成XML和JSON响应。首先是link:../ref/Controllers/render.html[render]方法。
+Grails支持几种不同的方式来生成XML和JSON响应。首先是 link:../ref/Controllers/render.html[render]方法。
 
 `render` 方法可以传递一个代码块，用于在XML中构建标记：
 

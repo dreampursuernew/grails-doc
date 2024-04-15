@@ -2,15 +2,15 @@
 
 范围是类似哈希对象，您可以在其中存储变量。以下范围可供控制器使用：
 
-* link:../ref/Controllers/servletContext.html[servletContext] - 也称为应用程序范围，该范围可以让您在整个Web应用程序中共享状态。servletContext是{javaee}javax/servlet/ServletContext.html[ServletContext]的一个实例
-* link:../ref/Controllers/session.html[session] - 会话允许将状态与给定用户关联，并通常使用cookie将会话与客户端关联。会话对象是{javaee}javax/servlet/http/HttpSession.html[HttpSession]的一个实例
-* link:../ref/Controllers/request.html[request] - 请求对象仅允许存储当前请求的对象。请求对象是{javaee}javax/servlet/http/HttpServletRequest.html[HttpServletRequest]的一个实例
+* link:../ref/Controllers/servletContext.html[servletContext] - 也称为应用程序范围，该范围可以让您在整个Web应用程序中共享状态。servletContext是 {javaee}javax/servlet/ServletContext.html[ServletContext]的一个实例
+* link:../ref/Controllers/session.html[session] - 会话允许将状态与给定用户关联，并通常使用cookie将会话与客户端关联。会话对象是 {javaee}javax/servlet/http/HttpSession.html[HttpSession]的一个实例
+* link:../ref/Controllers/request.html[request] - 请求对象仅允许存储当前请求的对象。请求对象是 {javaee}javax/servlet/http/HttpServletRequest.html[HttpServletRequest]的一个实例
 * link:../ref/Controllers/params.html[params] - 可变映射，包含传入请求的查询字符串或POST参数
 * link:../ref/Controllers/flash.html[flash] - 见下文
 
 访问范围
 
-可以使用上面的变量名与Groovy的数组索引运算符相结合来访问范围，甚至可以在Servlet API提供的类上使用，例如{javaee}javax/servlet/http/HttpServletRequest.html[HttpServletRequest]：
+可以使用上面的变量名与Groovy的数组索引运算符相结合来访问范围，甚至可以在Servlet API提供的类上使用，例如 {javaee}javax/servlet/http/HttpServletRequest.html[HttpServletRequest]：
 
 ```groovy
 类 BookController {
@@ -38,7 +38,7 @@
 
 使用Flash范围
 
-Grails支持将link:../ref/Controllers/flash.html[flash]范围作为临时存储，使属性仅在此请求和下一个请求中可用。然后清除属性。例如，在重定向之前直接设置消息很有用：
+Grails支持将 link:../ref/Controllers/flash.html[flash]范围作为临时存储，使属性仅在此请求和下一个请求中可用。然后清除属性。例如，在重定向之前直接设置消息很有用：
 
 ```groovy
 def delete() {

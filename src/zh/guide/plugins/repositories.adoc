@@ -1,13 +1,13 @@
 在Grails中央插件仓库中分发插件
 
-首选的插件分发方式是发布到官方的Grails中央插件仓库。这将使您的插件在link:../ref/Command%20Line/list-plugins.html[list-plugins]命令中可见：
+首选的插件分发方式是发布到官方的Grails中央插件仓库。这将使您的插件在link:../ref/Command% 20Line/list-plugins.html[list-plugins]命令中可见：
 
 [source, groovy]
 ----
 grails list-plugins
 ----
 
-该命令列出了所有位于中央仓库中的插件。您的插件还将可用于link:../ref/Command%20Line/plugin-info.html[plugin-info]命令：
+该命令列出了所有位于中央仓库中的插件。您的插件还将可用于link:../ref/Command% 20Line/plugin-info.html[plugin-info]命令：
 
 [source, groovy]
 ----
@@ -16,4 +16,4 @@ grails plugin-info [plugin-name]
 
 该命令会打印有关插件的额外信息，例如描述、作者等。
 
-注意：如果您已创建了一个Grails插件并希望在中央仓库中托管它，您将在http://plugins.grails.org/[插件门户]网站上找到获得帐号的说明。
+注意：如果您已创建了一个Grails插件并希望在中央仓库中托管它，您将在 http://plugins.grails.org/[插件门户]网站上找到获得帐号的说明。

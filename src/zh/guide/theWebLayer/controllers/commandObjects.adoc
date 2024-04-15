@@ -177,7 +177,7 @@ class Widget {
 ```
 
 ```bash
-$ curl -H "Content-Type: application/json" -d '{"name":"Some Widget","42"}'[size] localhost:8080/demo/createWidget
+$ curl -H "Content-Type: application/json" -d '{"name":"Some Widget","42"}' [size] localhost:8080/demo/createWidget
  Name: Some Widget, Size: 42
 
 $ curl -H "Content-Type: application/xml" -d '<widget><name>Some Other Widget</name><size>2112</size></widget>' localhost:8080/bodybind/demo/createWidget
@@ -224,13 +224,13 @@ class DemoController {
     <g:fieldValue name="fullName" value=""/>
     <ul>
         <li>
-            <g:fieldValue name="books[0].title" value=""/>
-            <g:fieldValue name="books[0].isbn" value=""/>
+            <g:fieldValue name=" books[0].title" value=""/>
+            <g:fieldValue name=" books[0].isbn" value=""/>
         </li>
 
         <li>
-            <g:fieldValue name="books[1].title" value=""/>
-            <g:fieldValue name="books[1].isbn" value=""/>
+            <g:fieldValue name=" books[1].title" value=""/>
+            <g:fieldValue name=" books[1].isbn" value=""/>
         </li>
     </ul>
 </g:form>

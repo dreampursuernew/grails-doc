@@ -102,4 +102,4 @@ Grails会在grails-app/controllers/com/example/SimpleController.groovy生成一�
 ./gradlew test some.org.**.*
 ----
 
-这个命令将在some.org包或其子包中的unit阶段运行所有测试。为了获得更为详细的信息，建议查阅https://docs.gradle.org/current/userguide/java_testing.html[Java和JVM项目中的测试]的Gradle文档。
+这个命令将在some.org包或其子包中的unit阶段运行所有测试。为了获得更为详细的信息，建议查阅 https://docs.gradle.org/current/userguide/java_testing.html[Java和JVM项目中的测试]的Gradle文档。

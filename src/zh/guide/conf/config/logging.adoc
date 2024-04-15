@@ -1,5 +1,5 @@
-自Grails 3.0起，日志记录由http://logback.qos.ch[Logback logging framework]处理，并可以通过 `grails-app/conf/logback.xml` 文件进行配置。
+自Grails 3.0起，日志记录由 http://logback.qos.ch[Logback logging framework]处理，并可以通过 `grails-app/conf/logback.xml` 文件进行配置。
 
-注意：自Grails 5.1.2起，对于Groovy配置（ `grails-app/conf/logback.groovy` ）的支持已被移除（通过logback 1.2.9）。可以通过将https://github.com/virtualdogbert/logback-groovy-config[logback-groovy-config]库添加到项目中来重新添加Groovy配置。
+注意：自Grails 5.1.2起，对于Groovy配置（ `grails-app/conf/logback.groovy` ）的支持已被移除（通过logback 1.2.9）。可以通过将 https://github.com/virtualdogbert/logback-groovy-config[logback-groovy-config]库添加到项目中来重新添加Groovy配置。
 
-有关配置日志记录的更多信息，请参考http://logback.qos.ch/manual/groovy.html[Logback documentation]。
+有关配置日志记录的更多信息，请参考 http://logback.qos.ch/manual/groovy.html[Logback documentation]。

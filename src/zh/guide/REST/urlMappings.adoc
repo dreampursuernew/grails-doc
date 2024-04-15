@@ -16,4 +16,4 @@
 
 上面的示例将暴露URI `/books/1/publisher` 。
 
-有关更详细的解释，可以在用户指南的链接：theWebLayer.html#urlmappings[URL映射部分]中找到有关链接：theWebLayer.html#restfulMappings[创建RESTful URL映射]的说明。
+有关更详细的解释，可以在用户指南的链接： theWebLayer.html#urlmappings[URL映射部分]中找到有关链接： theWebLayer.html#restfulMappings[创建RESTful URL映射]的说明。

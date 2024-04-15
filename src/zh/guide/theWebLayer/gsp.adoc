@@ -1,8 +1,8 @@
 "Groovy Servers Pages（简称GSP）是Grails的视图技术。它旨在为ASP和JSP等技术的用户提供熟悉的界面，但要更加灵活和直观。
 
-提示：虽然GSP可以呈现任何格式，而不仅仅是HTML，但它更多地设计用于呈现标记。如果您正在寻找一种简化JSON响应的方法，请查看link:webServices.html#jsonViews[JSON Views]。
+提示：虽然GSP可以呈现任何格式，而不仅仅是HTML，但它更多地设计用于呈现标记。如果您正在寻找一种简化JSON响应的方法，请查看 link:webServices.html#jsonViews[JSON Views]。
 
-GSP存放在 `grails-app/views` 目录中，通常会自动渲染（按照约定）或使用link:../ref/Controllers/render.html[render]方法进行渲染，例如：
+GSP存放在 `grails-app/views` 目录中，通常会自动渲染（按照约定）或使用 link:../ref/Controllers/render.html[render]方法进行渲染，例如：
 
 [source,groovy]
 ----

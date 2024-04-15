@@ -52,7 +52,7 @@
 ```groovy
 import grails.rest.*
 
-@Resource(uri='/books', formats=['json', 'xml', 'hal'])
+@Resource(uri='/books', formats= ['json', 'xml', 'hal'])
 class Book {
     ...
 }

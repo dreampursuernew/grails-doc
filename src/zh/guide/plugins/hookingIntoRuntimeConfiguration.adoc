@@ -2,7 +2,7 @@ Grails提供了许多钩子来利用系统的不同部分，并通过约定执�
 
 ==== 钩入到Grails Spring配置
 
-首先，您可以通过覆盖 `doWithSpring` 方法从{apiDocs}grails/plugins/Plugin.html[Plugin]类中挂钩到Grails运行时配置，并返回一个定义附加bean的闭包。例如，以下代码段来自提供link:i18n.html[i18n]支持的核心Grails插件之一：
+首先，您可以通过覆盖 `doWithSpring` 方法从 {apiDocs}grails/plugins/Plugin.html[Plugin]类中挂钩到Grails运行时配置，并返回一个定义附加bean的闭包。例如，以下代码段来自提供 link:i18n.html[i18n]支持的核心Grails插件之一：
 
 [source,groovy]
 ----
@@ -27,7 +27,7 @@ class I18nGrailsPlugin extends Plugin {
 }
 ----
 
-这个插件配置了Grails的 `messageSource` bean和几个其他bean来管理语言环境和切换。它使用link:spring.html#theBeanBuilderDSLExplained[Spring Bean Builder]语法来实现。
+这个插件配置了Grails的 `messageSource` bean和几个其他bean来管理语言环境和切换。它使用 link:spring.html#theBeanBuilderDSLExplained[Spring Bean Builder]语法来实现。
 
 ==== 自定义Servlet环境
 
@@ -46,7 +46,7 @@ Closure doWithSpring() {{->
 }}
 ----
 
-如果需要自定义servlet，可以使用Spring Boot的http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/context/embedded/ServletRegistrationBean.html[ServletRegistrationBean]：
+如果需要自定义servlet，可以使用Spring Boot的 http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/context/embedded/ServletRegistrationBean.html[ServletRegistrationBean]：
 
 [source,groovy]
 ----
@@ -68,7 +68,7 @@ Closure doWithSpring() {{->
 }}
 ----
 
-但是，如果要控制过滤器注册的顺序，则需要使用Spring Boot的http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/web/servlet/FilterRegistrationBean.html[FilterRegistrationBean]：
+但是，如果要控制过滤器注册的顺序，则需要使用Spring Boot的 http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/web/servlet/FilterRegistrationBean.html[FilterRegistrationBean]：
 
 [source,groovy]
 ----

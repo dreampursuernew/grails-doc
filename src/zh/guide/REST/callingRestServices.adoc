@@ -1,4 +1,4 @@
-使用https://docs.micronaut.io/latest/guide/index.html#httpClient[Micronaut HTTP Client]调用Grails REST服务以及第三方服务非常简单。这个HTTP客户端具有低级API和基于AOP驱动的高级API，可用于简单请求以及构建声明性、类型安全的API层。
+使用 https://docs.micronaut.io/latest/guide/index.html#httpClient[Micronaut HTTP Client]调用Grails REST服务以及第三方服务非常简单。这个HTTP客户端具有低级API和基于AOP驱动的高级API，可用于简单请求以及构建声明性、类型安全的API层。
 
 要使用Micronaut HTTP客户端，必须在类路径上具有 `micronaut-http-client` 依赖项。将以下依赖项添加到您的 `build.gradle` 文件中。
 
@@ -12,9 +12,9 @@ implementation 'io.micronaut:micronaut-http-client'
 
 https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[HttpClient]接口构成了低级API的基础。该接口声明了一些方法来帮助执行HTTP请求和接收响应。
 
-`HttpClient` 接口中的大多数方法返回响应式流发布器实例，还包括一个名为RxHttpClient的子接口，提供返回RxJava Flowable类型的HttpClient接口的变体。在阻塞流中使用 `HttpClient` 时，可能需要调用 `toBlocking()` 来返回https://docs.micronaut.io/latest/api/io/micronaut/http/client/BlockingHttpClient.html[BlockingHttpClient]的实例。
+`HttpClient` 接口中的大多数方法返回响应式流发布器实例，还包括一个名为RxHttpClient的子接口，提供返回RxJava Flowable类型的HttpClient接口的变体。在阻塞流中使用 `HttpClient` 时，可能需要调用 `toBlocking()` 来返回 https://docs.micronaut.io/latest/api/io/micronaut/http/client/BlockingHttpClient.html[BlockingHttpClient]的实例。
 
-有几种方式可以获取引用https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[HttpClient]。最简单的方法是使用https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html#create-java.net.URL-[create]方法。
+有几种方式可以获取引用 https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[HttpClient]。最简单的方法是使用 https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html#create-java.net.URL-[create]方法。
 
 创建HTTP客户端
 [source, groovy]
@@ -37,13 +37,13 @@ https://docs.micronaut.io/latest/api/io/micronaut/http/client/HttpClient.html[Ht
 ----
 <1> 使用 `create` 方法创建 `HttpClient` 的新实例，并使用 `toBlocking()` 转换为 `BlockingHttpClient` 的实例，
 <2> 应使用 `close` 方法关闭客户端以防止线程泄漏。
-<3> Jackson的https://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html[ObjectMapper] API可用于将原始JSON映射到POGOs，在本例中为 `SearchResult` 。
+<3> Jackson的 https://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html[ObjectMapper] API可用于将原始JSON映射到POGOs，在本例中为 `SearchResult` 。
 
-有关使用 `HttpClient` 低级API的更多信息，请查阅https://docs.micronaut.io/latest/guide/index.html#lowLevelHttpClient[Http Client部分]的https://docs.micronaut.io/latest/guide/index.html[Micronaut用户指南]。
+有关使用 `HttpClient` 低级API的更多信息，请查阅 https://docs.micronaut.io/latest/guide/index.html#lowLevelHttpClient[Http Client部分]的 https://docs.micronaut.io/latest/guide/index.html[Micronaut用户指南]。
 
 声明性API
 
-通过将https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html[ `@Client` ]注解添加到任何接口或抽象类，可以编写声明性HTTP客户端。利用Micronaut的AOP支持（请参阅https://docs.micronaut.io/latest/guide/index.html#introductionAdvice[Introduction Advice]中的Micronaut用户指南部分），抽象或接口方法将在编译时作为HTTP调用实现。声明性客户端可返回数据绑定的POGOs（或POJOs），无需调用代码进行特殊处理。
+通过将 https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html[ `@Client` ]注解添加到任何接口或抽象类，可以编写声明性HTTP客户端。利用Micronaut的AOP支持（请参阅 https://docs.micronaut.io/latest/guide/index.html#introductionAdvice[Introduction Advice]中的Micronaut用户指南部分），抽象或接口方法将在编译时作为HTTP调用实现。声明性客户端可返回数据绑定的POGOs（或POJOs），无需调用代码进行特殊处理。
 
 [source,groovy]
 ----
@@ -75,4 +75,4 @@ interface GrailsAppForgeClient {
     }
 ----
 
-有关编写和使用声明性客户端的更多详细信息，请参阅https://docs.micronaut.io/latest/guide/index.html#clientAnnotation[Http Client部分]的https://docs.micronaut.io/latest/guide/index.html[Micronaut用户指南]。
+有关编写和使用声明性客户端的更多详细信息，请参阅 https://docs.micronaut.io/latest/guide/index.html#clientAnnotation[Http Client部分]的 https://docs.micronaut.io/latest/guide/index.html[Micronaut用户指南]。

@@ -13,7 +13,7 @@ trait DateTrait {
 
 `@Enhances` 注解定义了应该应用该特性的构件类型。
 
-除了使用上面的 `@Enhances` 注解外，您还可以实现一个{apiDocs}grails/compiler/traits/TraitInjector.html[TraitInjector]来在编译时告诉Grails要向哪些构件注入特性：
+除了使用上面的 `@Enhances` 注解外，您还可以实现一个 {apiDocs}grails/compiler/traits/TraitInjector.html[TraitInjector]来在编译时告诉Grails要向哪些构件注入特性：
 
 ```groovy
 package myplugin
@@ -35,7 +35,7 @@ class ControllerTraitInjector implements TraitInjector {
 
 上面的 `TraitInjector` 将把 `SomeTrait` 添加到所有的控制器中。 `getArtefactTypes` 方法定义了应该应用该特性的构件类型。
 
-应用特性时也可以进行条件判断。一个 `TraitInjector` 实现还可以实现{apiDocs}grails/compiler/ast/SupportsClassNode.html[SupportsClassNode]接口，以仅将特性应用于满足自定义要求的构件。例如，如果只有在目标构件类具有特定注解时才应用某个特性，可以按如下方式实现：
+应用特性时也可以进行条件判断。一个 `TraitInjector` 实现还可以实现 {apiDocs}grails/compiler/ast/SupportsClassNode.html[SupportsClassNode]接口，以仅将特性应用于满足自定义要求的构件。例如，如果只有在目标构件类具有特定注解时才应用某个特性，可以按如下方式实现：
 
 ```groovy
 package myplugin

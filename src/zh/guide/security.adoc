@@ -6,5 +6,5 @@ Grails默认具有一些内置的安全机制。
 
 - 所有通过GORM领域对象的标准数据库访问都会自动进行SQL转义，以防止SQL注入攻击
 - 默认的脚手架模板在显示时会对所有数据字段进行HTML转义
-- Grails创建标签（<gspdocs>/ref/Tags/link.html[link]、<gspdocs>/ref/Tags/form.html[form]、<gspdocs>/ref/Tags/createLink.html[createLink]、<gspdocs>/ref/Tags/createLinkTo.html[createLinkTo]等）都使用适当的转义机制，以防止代码注入
+- Grails创建标签（<gspdocs> /ref/Tags/link.html[link]、<gspdocs> /ref/Tags/form.html[form]、<gspdocs> /ref/Tags/createLink.html[createLink]、<gspdocs> /ref/Tags/createLinkTo.html[createLinkTo]等）都使用适当的转义机制，以防止代码注入
 - Grails提供了编解码器，让您可以轻松地转义呈现为HTML、JavaScript和URL的数据，以防止注入攻击。

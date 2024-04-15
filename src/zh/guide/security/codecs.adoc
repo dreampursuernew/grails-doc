@@ -72,7 +72,7 @@ XMLCodec
 该编解码器执行XML转义和反转义。它转义 & , < , > , " , ', \ ， @ ， ` ，不间断空格（\u00a0），行分隔符（\u2028）和段分隔符（\u2029）。
 
 HTMLJSCodec
-该编解码器执行HTML和JS编码。用于防止某些DOM-XSS漏洞。请参阅[OWASP - DOM based XSS Prevention Cheat Sheet]以了解如何预防基于DOM的XSS攻击的准则。
+该编解码器执行HTML和JS编码。用于防止某些DOM-XSS漏洞。请参阅 [OWASP - DOM based XSS Prevention Cheat Sheet]以了解如何预防基于DOM的XSS攻击的准则。
 
 URLCodec
 在创建链接或表单操作链接时，或任何时候数据用于创建URL时，需要进行URL编码。它防止非法字符进入URL并改变其含义，例如“Apple & Blackberry”作为GET请求中的参数不会很好地工作，因为和符号将破坏参数解析。

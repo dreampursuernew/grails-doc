@@ -6,7 +6,7 @@
 
 Grails将自动切换用户的区域设置，并随后的请求将使用切换后的区域设置。
 
-默认情况下，Grails使用{springapi}org/springframework/web/servlet/i18n/SessionLocaleResolver.html[SessionLocaleResolver]作为 `localeResolver` bean。
+默认情况下，Grails使用 {springapi}org/springframework/web/servlet/i18n/SessionLocaleResolver.html[SessionLocaleResolver]作为 `localeResolver` bean。
 
 您可以很容易地更改默认区域设置：
 

@@ -1,6 +1,6 @@
-Grails通过扩展版的Spring的{springapi}org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[PropertyPlaceholderConfigurer]来支持属性占位符配置的概念。
+Grails通过扩展版的Spring的 {springapi}org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[PropertyPlaceholderConfigurer]来支持属性占位符配置的概念。
 
-在 `grails-app/conf/spring/resources.xml` 和 `grails-app/conf/spring/resources.groovy` 中，可以使用在{groovyapi}groovy/util/ConfigSlurper.html[ConfigSlurper]脚本或Java属性文件中定义的设置作为Spring配置的占位值。例如，在 `grails-app/conf/application.groovy` 中（或外部化配置文件）定义以下条目：
+在 `grails-app/conf/spring/resources.xml` 和 `grails-app/conf/spring/resources.groovy` 中，可以使用在 {groovyapi}groovy/util/ConfigSlurper.html[ConfigSlurper]脚本或Java属性文件中定义的设置作为Spring配置的占位值。例如，在 `grails-app/conf/application.groovy` 中（或外部化配置文件）定义以下条目：
 
 [source, groovy]
 ----

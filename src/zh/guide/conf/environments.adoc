@@ -1,6 +1,6 @@
 === 每个环境配置
 
-Grails支持每个环境配置的概念。 `grails-app/conf` 目录中的 `application.yml` 和 `application.groovy` 文件可以使用YAML或者由http://docs.groovy-lang.org/latest/html/documentation/#_configslurper[ConfigSlurper]提供的语法进行每个环境的配置。例如，考虑Grails提供的以下默认 `application.yml` 定义：
+Grails支持每个环境配置的概念。 `grails-app/conf` 目录中的 `application.yml` 和 `application.groovy` 文件可以使用YAML或者由 http://docs.groovy-lang.org/latest/html/documentation/#_configslurper[ConfigSlurper]提供的语法进行每个环境的配置。例如，考虑Grails提供的以下默认 `application.yml` 定义：
 
 [source,yaml]
 ----
@@ -62,7 +62,7 @@ environments {
 
 === 打包和运行不同环境
 
-Grails的link:commandLine.html[命令行]具有内置功能，可以在特定环境的上下文中执行任何命令。格式为：
+Grails的 link:commandLine.html[命令行]具有内置功能，可以在特定环境的上下文中执行任何命令。格式为：
 
 [source,bash]
 ----
@@ -85,7 +85,7 @@ grails test war
 
 === 程序化环境检测
 
-在您的代码中，比如在Gant脚本或引导类中，您可以使用{apiDocs}grails/util/Environment.html[Environment]类来检测环境：
+在您的代码中，比如在Gant脚本或引导类中，您可以使用 {apiDocs}grails/util/Environment.html[Environment]类来检测环境：
 
 [source,groovy]
 ----

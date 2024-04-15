@@ -10,7 +10,7 @@ https://www.jetbrains.com/idea/[IntelliJ IDEA官网]
 
 == 2. Visual Studio Code (VS Code)
 
-Visual Studio Code是由微软开发的轻量级、开源的代码编辑器。虽然它不是一个完整的IDE，但它提供了强大的扩展支持Grails和Groovy开发。你可以安装像 https://marketplace.visualstudio.com/items?itemName=marlon407.code-groovy[code-groovy]和[https://marketplace.visualstudio.com/items?itemName=GDOTecnologia.gfvscode[Grails for VSCode]等扩展来增强你的Grails开发体验。
+Visual Studio Code是由微软开发的轻量级、开源的代码编辑器。虽然它不是一个完整的IDE，但它提供了强大的扩展支持Grails和Groovy开发。你可以安装像 https://marketplace.visualstudio.com/items?itemName= marlon407.code-groovy[code-groovy]和 [https://marketplace.visualstudio.com/items?itemName=GDOTecnologia.gfvscode[Grails for VSCode]等扩展来增强你的Grails开发体验。
 
 VS Code提供了语法高亮、代码导航和集成终端支持等功能。它是那些喜欢轻量级和可定制的开发环境的开发者的绝佳选择。
 

@@ -4,7 +4,7 @@ WAR文件
 
 在生产环境中，部署Grails应用的常见方法是通过WAR文件部署到现有的Servlet容器。容器允许在同一个端口上部署多个应用程序，但路径不同。
 
-创建一个WAR文件就像执行链接：../ref/Command%20Line/war.html[war]命令一样简单：
+创建一个WAR文件就像执行链接：../ref/Command% 20Line/war.html[war]命令一样简单：
 
 [源，Groovy]
 ----

@@ -105,7 +105,7 @@ class BookService {
 
 尽管在此示例中未对 `updateBook` 和 `deleteBook` 进行注释，但它们会从类级别注释中继承配置。
 
-有关更多信息，请参阅Spring用户指南http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html#transaction-declarative-annotations[ `使用 @Transactional` ]部分。
+有关更多信息，请参阅Spring用户指南 http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html#transaction-declarative-annotations[ `使用 @Transactional` ]部分。
 
 与Spring不同，您不需要任何先前的配置来使用 `@Transactional` ；只需根据需要指定注释，Grails将自动检测它们。
 

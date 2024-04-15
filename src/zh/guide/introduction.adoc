@@ -24,22 +24,22 @@ Grails是一个全栈框架，并试图通过核心技术及其关联的插件�
 |===
 | 项目             | 描述
 
-|http://gorm.grails.org/latest/hibernate[用于Hibernate的GORM]
+| http://gorm.grails.org/latest/hibernate[用于Hibernate的GORM]
 |用于SQL数据库的对象映射实现
 
-|http://gorm.grails.org/latest/mongodb[用于MongoDB的GORM]
+| http://gorm.grails.org/latest/mongodb[用于MongoDB的GORM]
 |用于MongoDB文档数据库的对象映射实现
 
-|http://gorm.grails.org/latest/neo4j[用于Neo4j的GORM]
+| http://gorm.grails.org/latest/neo4j[用于Neo4j的GORM]
 |用于Neo4j图数据库的对象映射实现
 
-|http://views.grails.org[JSON视图]
+| http://views.grails.org[JSON视图]
 |用于在服务器端渲染JSON的视图技术
 
-|http://gsp.grails.org[Groovy Server Pages]
+| http://gsp.grails.org[Groovy Server Pages]
 |用于在服务器端渲染HTML和其他标记的视图技术
 
-|http://async.grails.org[异步框架]
+| http://async.grails.org[异步框架]
 |带有对RxJava、GPars等的支持的异步编程抽象
 
 

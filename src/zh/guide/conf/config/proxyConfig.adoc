@@ -11,4 +11,4 @@ export GRAILS_OPTS=\"-Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3128 -Dhttp.p
 
 有了这个配置， `grails` 命令可以通过代理连接和进行身份验证。
 
-其次，由于Grails使用Gradle作为构建系统，您需要配置Gradle通过代理进行身份验证。有关如何执行此操作的说明，请参阅https://docs.gradle.org/current/userguide/build_environment.html#sec:accessing_the_web_via_a_proxy[Gradle用户指南部分所述]。
+其次，由于Grails使用Gradle作为构建系统，您需要配置Gradle通过代理进行身份验证。有关如何执行此操作的说明，请参阅 https://docs.gradle.org/current/userguide/build_environment.html#sec:accessing_the_web_via_a_proxy[Gradle用户指南部分所述]。

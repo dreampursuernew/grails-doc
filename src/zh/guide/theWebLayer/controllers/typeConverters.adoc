@@ -1,6 +1,6 @@
 === 类型转换方法
 
-如果你想避免link:theWebLayer.html#dataBinding[数据绑定]的开销，只想将传入参数（通常是字符串）转换为另一种更合适的类型，link:../ref/Controllers/params.html[params]对象针对每种类型提供了一些方便的转换方法：
+如果你想避免 link:theWebLayer.html#dataBinding[数据绑定]的开销，只想将传入参数（通常是字符串）转换为另一种更合适的类型， link:../ref/Controllers/params.html[params]对象针对每种类型提供了一些方便的转换方法：
 
 [source,groovy]
 ----
@@ -22,7 +22,7 @@ def total = params.int('total', 42)
 
 一个常见的用例是处理相同名称的多个请求参数。例如，您可能会得到一个查询字符串，如 `?name=Bob&name=Judy` 。
 
-在这种情况下，处理一个参数和处理多个参数具有不同的语义，因为Groovy对于 `String` 的迭代机制会遍历每个字符。为了避免这个问题，link:../ref/Controllers/params.html[params]对象提供了一个 `list` 方法，它总是返回一个列表：
+在这种情况下，处理一个参数和处理多个参数具有不同的语义，因为Groovy对于 `String` 的迭代机制会遍历每个字符。为了避免这个问题， link:../ref/Controllers/params.html[params]对象提供了一个 `list` 方法，它总是返回一个列表：
 
 [source,groovy]
 ----

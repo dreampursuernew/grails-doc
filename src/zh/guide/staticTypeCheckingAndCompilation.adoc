@@ -12,6 +12,6 @@ class MyClass {
 }
 ----
 
-更多关于 `CompileStatic` 如何工作以及为什么您可能希望使用它的详细信息，请参阅 http://docs.groovy-lang.org/latest/html/documentation/#_static_compilation[这些关于Groovy静态编译的注释]。
+更多关于 `CompileStatic` 如何工作以及为什么您可能希望使用它的详细信息，请参阅 http://docs.groovy-lang.org/latest/html/documentation/# _static_compilation[这些关于Groovy静态编译的注释]。
 
-使用 `CompileStatic` 的一项限制是，当您使用它时，放弃了动态调度提供的力量和灵活性。例如，在Grails中，您无法从标记有 `CompileStatic` 的类中调用GORM动态查找器，因为编译器无法验证动态查找器方法是否存在，因为它在编译时不存在。也许您希望利用Groovy的静态编译优势，而不放弃对Grails特定功能（如动态查找器）的动态调度访问，这就是{apiDocs}grails/compiler/GrailsCompileStatic.html[grails.compiler.GrailsCompileStatic] 的作用。 `GrailsCompileStatic` 的行为与 `CompileStatic` 类似，但它了解某些Grails特性，并允许访问这些特定功能以进行动态访问。
+使用 `CompileStatic` 的一项限制是，当您使用它时，放弃了动态调度提供的力量和灵活性。例如，在Grails中，您无法从标记有 `CompileStatic` 的类中调用GORM动态查找器，因为编译器无法验证动态查找器方法是否存在，因为它在编译时不存在。也许您希望利用Groovy的静态编译优势，而不放弃对Grails特定功能（如动态查找器）的动态调度访问，这就是 {apiDocs}grails/compiler/GrailsCompileStatic.html[grails.compiler.GrailsCompileStatic] 的作用。 `GrailsCompileStatic` 的行为与 `CompileStatic` 类似，但它了解某些Grails特性，并允许访问这些特定功能以进行动态访问。
